@@ -183,7 +183,7 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
     <div id="daja-exam-tags" class="exam-info" hidden></div>
     <div id="daja-passage" class="passage" lang="zh-Hant"></div>
     <div id="daja-inputs" class="answer-list"></div>
-    <p class="help">한자 또는 한글 독음으로 입력해 주세요. 띄어쓰기·쉼표·마침표는 채점하지 않습니다. 한 조문의 모든 빈칸을 맞혀야 완료됩니다.</p>
+    <p class="help">한자 또는 한글 독음으로 입력해 주세요. 不의 독음은 불·부 모두 인정합니다. 띄어쓰기·쉼표·마침표는 채점하지 않습니다. 한 조문의 모든 빈칸을 맞혀야 완료됩니다.</p>
     <div class="actions"><button id="daja-check" class="primary">채점하기</button><button id="daja-reveal">정답 보기</button><button id="daja-next" hidden>다음 조문 →</button></div>
     <div id="daja-feedback" class="result" role="status" aria-live="polite" hidden></div>
   </section>
@@ -340,7 +340,7 @@ function renderFullList(){
    const h=el('div',{className:'overview-head'});
    const heading=el('div',{className:'overview-title'});
    if(isNames)heading.append(document.createTextNode(q.num+'조'));
-   else heading.append(document.createTextNode((active==='bangjae-herbs'?q.num+'번 ':'')+q.name),el('span',{className:'hanja'},q.hanja));
+   else heading.append(document.createTextNode(q.name),el('span',{className:'hanja'},q.hanja));
    h.append(heading,el('span',{className:'overview-status'+(completed?' correct':hasWrong?' retry':'')},completed?'완료':hasWrong?'오답 복습':'미완료'));
    article.append(h);
    if(active.startsWith('sanghan-')){
@@ -403,7 +403,7 @@ function render(){
  q.answers.forEach((a,i)=>{const row=el('div',{className:'answer-row'}),label=el('label',{htmlFor:'answer-'+i},'빈칸 '+(i+1)),input=el('input',{id:'answer-'+i,type:'text',value:s.drafts[i]||'',placeholder:'처방명 입력',autocomplete:'off',spellcheck:false,disabled:s.done});input.setAttribute('aria-describedby','input-help');input.oninput=()=>{s.drafts[i]=input.value;saveSession();};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&e.keyCode!==229){e.preventDefault();if(i<q.answers.length-1)$('answer-'+(i+1)).focus();else check(false);}});row.append(label,input);$('answers').append(row);});
  $('input-help').textContent='한글 또는 한자로 입력해 주세요. 모든 빈칸을 맞히면 조문 1개가 완료됩니다.';
  }else{
- $('question-title').append(document.createTextNode(active.startsWith('sanghan-herbs-')?q.name:`${q.num}번 ${q.source==='첨부 자료'?q.name:q.source==='동원'?`동원 ${q.name}`:`《${q.source}》 ${q.name}`}`),el('span',{className:'hanja'},q.hanja));
+ $('question-title').append(document.createTextNode(active.startsWith('sanghan-herbs-')?q.name:(q.source==='첨부 자료'?q.name:q.source==='동원'?`동원 ${q.name}`:`《${q.source}》 ${q.name}`)),el('span',{className:'hanja'},q.hanja));
  if(active.startsWith('sanghan-herbs-'))applyExamFlags(q,false);
  if(active.startsWith('sanghan-herbs-')){$('question-meta').textContent=`${q.clauses==='비교'||q.clauses==='비교표'||q.clauses==='비교 언급'?'강의 비교·참고':q.clauses} · ${q.exception?'표준 원방 구성 보충':`강의 ${q.lecture}`}`;$('question-meta').hidden=false;}
  $('position').textContent='';const input=el('textarea',{id:'answer-0',value:s.drafts[0]||'',placeholder:'약재 사이를 쉼표 또는 공백으로 구분해 주세요.',spellcheck:false,autocomplete:'off',disabled:s.done});input.setAttribute('aria-label','구성 약재 입력');input.oninput=()=>{s.drafts[0]=input.value;saveSession();};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&e.keyCode!==229){e.preventDefault();check(false);}});$('answers').append(input);$('input-help').textContent='약재 순서는 상관없습니다. 용량·포제 제외, 자료에 있는 생강·대조는 포함합니다.';
@@ -544,9 +544,36 @@ function dajaCurrent(){
  return {q,blanks:s.current.blanks};
 }
 function dajaNorm(s){return String(s||'').normalize('NFKC').replace(/[\s,，、.。·ㆍ;；!！()（）]/g,'').replace(/真/g,'眞');}
+// 更(다시 경/갱): 63조 '不可更行桂枝湯'은 두 독음을 모두 인정합니다.
+const DAJA_READING_ALIASES = {'不可更行桂枝湯':['불가경행계지탕']};
+// 不(아닐 불/부): 모든 대자 빈칸에서 두 독음을 모두 정답으로 인정합니다.
+// 원문에서 실제 不 글자의 위치만 바꾸므로 다른 한자의 '부'·'불' 독음에는 영향을 주지 않습니다.
+function dajaAcceptedReadings(text){
+ const bases=[DAJA_READINGS[text],...(DAJA_READING_ALIASES[text]||[])].filter(Boolean);
+ const hanja=[...dajaNorm(text)].filter(char=>/[\u3400-\u9fff]/.test(char));
+ const positions=hanja.flatMap((char,i)=>char==='不'?[i]:[]);
+ const accepted=new Set(bases);
+ for(const reading of bases){
+   const syllables=[...dajaNorm(reading)];
+   if(syllables.length!==hanja.length)continue;
+   let variations=[syllables];
+   for(const pos of positions){
+     variations=variations.flatMap(chars=>{
+       const bul=[...chars],bu=[...chars];
+       bul[pos]='불';bu[pos]='부';
+       return [bul,bu];
+     });
+   }
+   for(const chars of variations)accepted.add(chars.join(''));
+ }
+ return [...accepted];
+}
 function dajaScores(){
  const s=dajaLoad(),c=dajaCurrent();if(!c)return[];
- return c.blanks.map((b,i)=>{const entered=dajaNorm(s.drafts[i]);return entered===dajaNorm(b.text)||entered===dajaNorm(DAJA_READINGS[b.text]);});
+ return c.blanks.map((b,i)=>{
+   const entered=dajaNorm(s.drafts[i]);
+   return entered===dajaNorm(b.text)||dajaAcceptedReadings(b.text).some(reading=>entered===dajaNorm(reading));
+ });
 }
 function dajaSetView(showList){
  dajaShowList=showList;$('daja-list').hidden=!showList;
@@ -638,7 +665,7 @@ function dajaRender(){
      const line=el('div',{className:'answer-result'});
      line.append(el('small',{},`빈칸 ${i+1} · ${marks[i]&&!s.revealed?'정답':'정답 확인'}`),
        el('p',{className:marks[i]&&!s.revealed?'correct':'wrong'},b.text),
-       el('small',{className:'daja-reading'},'독음: '+DAJA_READINGS[b.text]));
+       el('small',{className:'daja-reading'},'독음: '+dajaAcceptedReadings(b.text).join(' / ')));
      if(s.drafts[i]&&!marks[i])line.append(el('small',{},'입력: '+s.drafts[i]));
      fb.append(line);
    });
