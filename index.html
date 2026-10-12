@@ -127,6 +127,10 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 <button id="tab-herbs-core" role="tab" aria-selected="true" aria-controls="module" data-mode="sanghan-herbs-core">① 핵심처방 · 24개</button>
 <button id="tab-herbs-reference" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="sanghan-herbs-reference">② 비교·참고처방 · 13개</button>
 </nav>
+<nav id="bangjae-order-modes" class="group-tabs" role="tablist" aria-label="방제학 출제 순서" hidden>
+<button id="tab-bangjae-ordered" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="bangjae-herbs-ordered">순서대로</button>
+<button id="tab-bangjae-random" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="bangjae-herbs">무작위</button>
+</nav>
 <div id="module" role="tabpanel" aria-labelledby="tab-names">
 <div class="module-header"><h2 id="module-title">상한론 처방명</h2><span class="badge" id="module-count">45개 조문 · 58개 빈칸</span></div>
 <div id="view-switch" class="view-switch" role="group" aria-label="학습 화면 전환">
@@ -214,11 +218,12 @@ const CONFIG={
  'sanghan-names':{title:'상한론 처방명',count:'45개 조문 · 58개 빈칸',data:SOURCE.sanghan,kind:'names'},
  'sanghan-herbs-core':{title:'상한론 처방 구성 · 핵심처방',count:'PART 1 · 24개 처방 · 24문항',data:SOURCE.sanghanCore,kind:'herbs'},
  'sanghan-herbs-reference':{title:'상한론 처방 구성 · 비교·참고처방',count:'PART 2 · 13개 중 구성 확인 7문항',data:SOURCE.sanghanReference,kind:'herbs'},
- 'bangjae-herbs':{title:'방제학 처방 구성',count:'26–60번 · 35개 처방 · 40문항',data:SOURCE.bangjae.map(q=>({...q,id:'bangjae-'+q.id})),kind:'herbs'}
+ 'bangjae-herbs':{title:'방제학 처방 구성',count:'26–60번 · 35개 처방 · 40문항',data:SOURCE.bangjae.map(q=>({...q,id:'bangjae-'+q.id})),kind:'herbs'},
+ 'bangjae-herbs-ordered':{title:'방제학 처방 구성',count:'26–60번 · 35개 처방 · 40문항',data:SOURCE.bangjae.map(q=>({...q,id:'bangjae-'+q.id})).sort((a,b)=>a.num-b.num||a.num===b.num&&a.id.localeCompare(b.id,undefined,{numeric:true})||0),kind:'herbs'}
 };
 const STORAGE_PREFIX='midterm-2-2-2026:quiz:v1:';
 const VIEW_KEY=STORAGE_PREFIX+'view';
-const sessions={};let listView=false,listShowAnswers=true,active='sanghan-names',lastSanghan='sanghan-names',lastHerbGroup='sanghan-herbs-core',storageOK=true,toastTimer;
+const sessions={};let listView=false,listShowAnswers=true,active='sanghan-names',lastSanghan='sanghan-names',lastBangjae='bangjae-herbs',lastHerbGroup='sanghan-herbs-core',storageOK=true,toastTimer;
 const $=id=>document.getElementById(id);
 function el(tag,props={},text){const n=document.createElement(tag);Object.assign(n,props);if(text!==undefined)n.textContent=text;return n;}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -227,7 +232,7 @@ function gradeNames(raw,q){const marks=q.answers.map((a,i)=>{const v=cleanName(r
 function normHerb(h){return HERB_ALIASES[h]||h;}
 function gradeHerbs(raw,q){const actual=new Set(String(raw[0]||'').normalize('NFC').split(/[\s,，、·ㆍ;；/]+/).filter(Boolean).map(normHerb));const expected=new Set(q.herbs.map(normHerb));const missing=q.herbs.filter(h=>!actual.has(normHerb(h))),extra=[...actual].filter(h=>!expected.has(h));return {ok:!missing.length&&!extra.length,missing,extra,matched:q.herbs.filter(h=>actual.has(normHerb(h)))};}
 function evaluate(raw,q,kind){return kind==='names'?gradeNames(raw,q):gradeHerbs(raw,q);}
-function newSession(key){return {version:1,queue:shuffle(CONFIG[key].data.map(q=>q.id)),mastered:[],wrong:[],attempts:0,done:false,reveal:false,lastOK:false,drafts:[]};}
+function newSession(key){const ids=CONFIG[key].data.map(q=>q.id);return {version:1,queue:key==='bangjae-herbs-ordered'?ids:shuffle(ids),mastered:[],wrong:[],attempts:0,done:false,reveal:false,lastOK:false,drafts:[]};}
 function validSession(s,key){
  if(!s||s.version!==1||!Array.isArray(s.queue)||!Array.isArray(s.mastered)||!Array.isArray(s.wrong)||!Array.isArray(s.drafts)||!Number.isSafeInteger(s.attempts)||s.attempts<0||!['done','reveal','lastOK'].every(k=>typeof s[k]==='boolean'))return false;
  const ids=CONFIG[key].data.map(q=>q.id),known=new Set(ids);
@@ -350,7 +355,7 @@ function renderFullList(){
    }
    article.append(questionListing(q,isNames,listShowAnswers));
    if(!isNames){
-     const label=active==='bangjae-herbs'
+     const label=active.startsWith('bangjae-herbs')
        ?(q.source==='첨부 자료'?'':`《${q.source}》`) : `${q.clauses} · 강의 ${q.lecture}`;
      if(label)article.append(el('p',{className:'overview-formula-note'},label));
    }
@@ -375,20 +380,23 @@ function selectMode(key,writeHash=true){
 
  if(key==='sanghan-herbs')key='sanghan-herbs-core'; // 이전 초안의 링크 호환
  if(!CONFIG[key])key='sanghan-names';
- active=key;const isBangjae=key==='bangjae-herbs';const isSanghanHerbs=key.startsWith('sanghan-herbs-');
- if(!isBangjae)lastSanghan=key;
+ active=key;const isBangjae=key.startsWith('bangjae-herbs');const isSanghanHerbs=key.startsWith('sanghan-herbs-');
+ if(isBangjae)lastBangjae=key;else lastSanghan=key;
  if(isSanghanHerbs)lastHerbGroup=key;
  document.body.dataset.subject=isBangjae?'bangjae':'sanghan';setTab($('tab-sanghan'),!isBangjae);setTab($('tab-bangjae'),isBangjae);
  $('panel').setAttribute('aria-labelledby',isBangjae?'tab-bangjae':'tab-sanghan');$('sanghan-tabs').hidden=isBangjae;
  $('sanghan-herb-groups').hidden=!isSanghanHerbs;
+ $('bangjae-order-modes').hidden=!isBangjae;
+ setTab($('tab-bangjae-ordered'),key==='bangjae-herbs-ordered');setTab($('tab-bangjae-random'),key==='bangjae-herbs');
  setTab($('tab-names'),key==='sanghan-names');setTab($('tab-daja'),false);setTab($('tab-herbs'),isSanghanHerbs);
  setTab($('tab-herbs-core'),key==='sanghan-herbs-core');setTab($('tab-herbs-reference'),key==='sanghan-herbs-reference');
  $('module').setAttribute('aria-labelledby',isBangjae?'tab-bangjae':key==='sanghan-names'?'tab-names':'tab-herbs');
  const config=CONFIG[key];$('available').hidden=false;$('pending').hidden=true;
  $('ref-missing').hidden=key!=='sanghan-herbs-reference';
  $('module-title').textContent=config.title;$('module-count').hidden=false;$('module-count').textContent=config.count;
+ $('shuffle').hidden=key==='bangjae-herbs-ordered';
  loadSession(key);if(listView){setView(true);}else{render();}saveSession(key);
- try{localStorage.setItem(VIEW_KEY,JSON.stringify({active,lastSanghan,lastHerbGroup}));}catch{storageOK=false;}showStorage();
+ try{localStorage.setItem(VIEW_KEY,JSON.stringify({active,lastSanghan,lastBangjae,lastHerbGroup}));}catch{storageOK=false;}showStorage();
  if(writeHash&&location.hash!=='#'+key){try{history.replaceState(null,'','#'+key);}catch{}}
 }
 function updateProgress(){const s=loadSession(active),n=CONFIG[active].data.length,q=question();const correct=s.mastered.length;$('bar').style.width=correct/n*100+'%';const p=$('bar').parentElement;p.setAttribute('aria-valuemax',String(n));p.setAttribute('aria-valuenow',String(correct));$('position').textContent=`${correct} / ${n} 완료${q&&s.wrong.includes(q.id)?' · 오답 복습':''}`;$('stats').innerHTML=`<span class="label">정답</span><span class="count">${correct}</span><span class="sep">·</span><span class="label">남은 문제</span><span class="count">${n-correct}</span>`;}
@@ -418,10 +426,11 @@ function renderRules(){
  '조문과 빈칸 위치는 첨부 자료 기준입니다. 시호(柴胡)·시호탕(柴胡湯)·소시호탕(小柴胡湯), 치자탕(梔子湯)·치자시탕(梔子豉湯)은 원문대로 구분합니다. 약칭은 인정하지 않습니다. 공백은 무시하며 한글 또는 원문 한자를 인정합니다.',
  '한 조문의 모든 빈칸을 맞혀야 완료됩니다. 틀리거나 정답을 확인한 조문은 미출제 조문 뒤에서 다시 나옵니다. 셔플은 완료한 조문을 유지하며, 채점한 현재 조문은 다음으로 넘어갈 때까지 고정합니다.',
   '기출은 복기에서 해당 조문의 처방명을 직접 빈칸이나 대자로 적는 문제가 확인된 경우에만 표시합니다. 주치증·병기 객관식이나 처방 구성 문제는 이 탭의 기출로 표시하지 않습니다.'
- ]:active==='bangjae-herbs'?[
+ ]:active.startsWith('bangjae-herbs')?[
  '「실습시험처방 Clean 2 (1).pdf」 26–60번을 바탕으로 만든 기존 방제학 퀴즈 데이터를 그대로 사용합니다. 35개 처방, 출전 구분을 포함해 40문항입니다. 31·43·52·53번은 출전별로 별도 출제합니다.',
  '용량과 포제는 묻지 않습니다. 자료에 있는 생강·대조 등은 답에 포함합니다. 같은 약재를 여러 번 입력해도 한 번으로 처리합니다.',
  '인정하는 동의어: 소엽=자소엽, 소자=자소자, 나복자=내복자, 축사=사인=축사인, 남성=천남성, 인진=인진호, 연자=연자육, 귤피=진피, 감초=자감초. 백복령·적복령·복령, 백작약·적작약·작약, 계지·육계·계피는 구분합니다. 한글로 입력해 주세요.',
+ '순서대로는 26번부터 60번까지 순차 출제하며, 출전이 나뉜 처방은 번호가 같아도 별도로 출제합니다. 무작위는 문제 순서를 섞습니다. 두 모드의 진행 기록은 각각 보관됩니다.',
  '틀리거나 정답을 확인한 문제는 미출제 문제 뒤에서 다시 나옵니다. 진행 숫자는 맞힌 문제 수입니다.'
  ]:[
  '첨부하신 「상한론 처방구성.pdf」의 PART 1(핵심 24처방)·PART 2(비교·참고 13처방) 분류를 그대로 따릅니다. 두 그룹의 퀴즈와 진행 상태는 독립적입니다.',
@@ -453,11 +462,13 @@ function renderFeedback(){
  }else{if(!s.reveal&&!s.lastOK){if(r.missing.length)chips('빠뜨린 약재',r.missing,'miss');if(r.extra.length)chips('추가로 쓴 약재',r.extra,'extra');if(r.matched.length)chips('맞게 쓴 약재',r.matched);}chips('전체 구성',q.herbs);}
 }
 function nextQuestion(){const s=loadSession(active);if(!s.done)return;const id=s.queue.shift();if(!s.lastOK)s.queue.push(id);s.done=false;s.reveal=false;s.lastOK=false;s.drafts=[];saveSession();render();if(question())$('answer-0').focus();else $('again').focus();}
-function shuffleRemaining(){const s=loadSession(active);if(!s.queue.length)return;const old=s.queue[0],pinned=s.done?[old]:[],pending=s.done?s.queue.slice(1):s.queue;const fresh=shuffle(pending.filter(id=>!s.wrong.includes(id))),retry=shuffle(pending.filter(id=>s.wrong.includes(id)));let rest=[...fresh,...retry];if(!s.done&&rest[0]===old){const group=fresh.length?fresh:retry;if(group.length>1)group.push(group.shift());rest=[...fresh,...retry];}s.queue=[...pinned,...rest];if(!s.done&&s.queue[0]!==old)s.drafts=[];saveSession();render();toast('남은 문제를 섞었습니다.');}
+function shuffleRemaining(){if(active==='bangjae-herbs-ordered')return;const s=loadSession(active);if(!s.queue.length)return;const old=s.queue[0],pinned=s.done?[old]:[],pending=s.done?s.queue.slice(1):s.queue;const fresh=shuffle(pending.filter(id=>!s.wrong.includes(id))),retry=shuffle(pending.filter(id=>s.wrong.includes(id)));let rest=[...fresh,...retry];if(!s.done&&rest[0]===old){const group=fresh.length?fresh:retry;if(group.length>1)group.push(group.shift());rest=[...fresh,...retry];}s.queue=[...pinned,...rest];if(!s.done&&s.queue[0]!==old)s.drafts=[];saveSession();render();toast('남은 문제를 섞었습니다.');}
 function resetSession(){if(!CONFIG[active])return;if(!confirm(CONFIG[active].title+'의 진행 상태를 초기화할까요? 다른 퀴즈의 기록은 유지됩니다.'))return;sessions[active]=newSession(active);saveSession();render();$('answer-0').focus();}
 function init(){
  $('tab-sanghan').onclick=()=>selectMode(lastSanghan);
- $('tab-bangjae').onclick=()=>selectMode('bangjae-herbs');
+ $('tab-bangjae').onclick=()=>selectMode(lastBangjae);
+ $('tab-bangjae-ordered').onclick=()=>selectMode('bangjae-herbs-ordered');
+ $('tab-bangjae-random').onclick=()=>selectMode('bangjae-herbs');
  $('tab-names').onclick=()=>selectMode('sanghan-names');
  $('tab-daja').onclick=()=>selectMode('sanghan-daja');
  $('tab-herbs').onclick=()=>selectMode(lastHerbGroup);
@@ -471,13 +482,15 @@ function init(){
  $('ref-missing-list').replaceChildren(...SOURCE.sanghanReferenceNoComposition.map(q=>el('li',{},q.name+' · '+q.hanja)));
  let saved;try{saved=JSON.parse(localStorage.getItem(VIEW_KEY)||'null');}catch{storageOK=false;}
  if(saved){
+  if(['bangjae-herbs','bangjae-herbs-ordered'].includes(saved.lastBangjae))lastBangjae=saved.lastBangjae;
+  else if(['bangjae-herbs','bangjae-herbs-ordered'].includes(saved.active))lastBangjae=saved.active;
   if(saved.lastHerbGroup&&CONFIG[saved.lastHerbGroup]&&saved.lastHerbGroup.startsWith('sanghan-herbs-'))lastHerbGroup=saved.lastHerbGroup;
   if(saved.lastSanghan==='sanghan-herbs')lastSanghan='sanghan-herbs-core';
   else if(['sanghan-names','sanghan-daja','sanghan-herbs-core','sanghan-herbs-reference'].includes(saved.lastSanghan))lastSanghan=saved.lastSanghan;
  }
- const fromHash=location.hash.slice(1),route=fromHash==='sanghan'?'sanghan-names':fromHash==='bangjae'?'bangjae-herbs':fromHash;
+ const fromHash=location.hash.slice(1),route=fromHash==='sanghan'?'sanghan-names':fromHash==='bangjae'?lastBangjae:fromHash;
  selectMode(route||(saved&&saved.active)||'sanghan-names');
- window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);selectMode(h==='sanghan'?'sanghan-names':h==='bangjae'?'bangjae-herbs':h,false);});
+ window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);selectMode(h==='sanghan'?'sanghan-names':h==='bangjae'?lastBangjae:h,false);});
 }
 
 /* 상한론 대자: 기존 세션과 완전히 분리된 학습 모듈 */
@@ -786,11 +799,11 @@ function showDajaMode(writeHash=true){
  document.body.dataset.subject='sanghan';
  setTab($('tab-sanghan'),true);setTab($('tab-bangjae'),false);
  $('panel').setAttribute('aria-labelledby','tab-sanghan');
- $('sanghan-tabs').hidden=false;$('sanghan-herb-groups').hidden=true;
+ $('sanghan-tabs').hidden=false;$('sanghan-herb-groups').hidden=true;$('bangjae-order-modes').hidden=true;
  setTab($('tab-names'),false);setTab($('tab-herbs'),false);setTab($('tab-daja'),true);
  $('module').hidden=true;$('daja-panel').hidden=false;
  dajaSetView(dajaShowList);
- try{localStorage.setItem(VIEW_KEY,JSON.stringify({active,lastSanghan,lastHerbGroup}));}catch{}
+ try{localStorage.setItem(VIEW_KEY,JSON.stringify({active,lastSanghan,lastBangjae,lastHerbGroup}));}catch{}
  if(writeHash&&location.hash!=='#sanghan-daja')try{history.replaceState(null,'','#sanghan-daja');}catch{}
 }
 function initDaja(){
