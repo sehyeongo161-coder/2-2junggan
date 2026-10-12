@@ -548,7 +548,7 @@ function dajaCurrent(){
 }
 function dajaNorm(s){return String(s||'').normalize('NFKC').replace(/[\s,，、.。·ㆍ;；!！()（）]/g,'').replace(/真/g,'眞');}
 // 更(다시 경/갱): 63조 '不可更行桂枝湯'은 두 독음을 모두 인정합니다.
-const DAJA_READING_ALIASES = {'不可更行桂枝湯':['불가경행계지탕']};
+const DAJA_READING_ALIASES = {'不可更行桂枝湯':['불가경행계지탕'], '令胃氣和則愈':['령위기화즉유']};
 // 不(아닐 불/부): 모든 대자 빈칸에서 두 독음을 모두 정답으로 인정합니다.
 // 원문에서 실제 不 글자의 위치만 바꾸므로 다른 한자의 '부'·'불' 독음에는 영향을 주지 않습니다.
 function dajaAcceptedReadings(text){
