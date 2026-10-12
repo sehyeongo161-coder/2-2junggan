@@ -179,7 +179,7 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 <div id="passage" class="passage" lang="zh-Hant"></div>
 <div id="answers" class="answer-list"></div>
 <p id="input-help" class="help"></p>
-<div class="actions"><button id="prev" hidden>← 이전 문제</button><button id="check" class="primary">채점하기</button><button id="show">정답 보기</button><button id="next" hidden>다음 문제 →</button></div>
+<div class="actions"><button id="prev" hidden>← 이전 문제</button><button id="check" class="primary">채점하기</button><button id="show">정답 보기</button><button id="retry-current" hidden>다시 풀기 ↻</button><button id="next" hidden>다음 문제 →</button></div>
 <div id="feedback" class="result" role="status" aria-live="polite" hidden></div>
 </section>
 <section id="finish" class="card complete" hidden><span class="badge">학습 완료</span><h3>모든 문제를 맞히셨습니다.</h3><p id="finish-summary"></p><div class="actions"><button id="again" class="primary">다시 풀기</button></div></section>
@@ -278,8 +278,6 @@ function validSession(s,key){
    if(s.done){
      const q=CONFIG[key].data[s.cursor];
      if(s.lastOK!==(evaluate(s.drafts,q,CONFIG[key].kind).ok&&!s.reveal))return false;
-     if(s.lastOK&&!s.mastered.includes(q.id))return false;
-     if(!s.lastOK&&!s.mastered.includes(q.id)&&!s.wrong.includes(q.id))return false;
    }else if(s.lastOK||s.reveal)return false;
    return true;
  }
@@ -298,6 +296,11 @@ function loadSession(key){
    const currentIndex=CONFIG[key].data.findIndex(q=>q.id===firstId);
    s.cursor=Math.max(0,currentIndex);
    if(s.done&&s.lastOK&&s.queue[0]===firstId)s.queue.shift();
+   try{localStorage.setItem(STORAGE_PREFIX+key,JSON.stringify(s));}catch{storageOK=false;}
+ }
+ if(key==='bangjae-herbs-ordered'&&(s.mastered.length||s.wrong.length||s.attempts||s.queue.length!==CONFIG[key].data.length)){
+   // 이전 버전의 정답/오답 기록은 버리고 현재 학습 위치만 이어 받습니다.
+   s.mastered=[];s.wrong=[];s.attempts=0;s.queue=CONFIG[key].data.map(q=>q.id);
    try{localStorage.setItem(STORAGE_PREFIX+key,JSON.stringify(s));}catch{storageOK=false;}
  }
  sessions[key]=s;return s;
@@ -399,7 +402,7 @@ function renderFullList(){
  renderBangjaeNumberBar();
  const c=CONFIG[active],s=loadSession(active),isNames=c.kind==='names';
  $('full-list-title').textContent=c.title+' 전체 목록';
- $('full-list-count').textContent=`전체 ${c.data.length}문제 · 완료 ${s.mastered.length}`;
+ $('full-list-count').textContent=active==='bangjae-herbs-ordered'?`전체 ${c.data.length}문제`:`전체 ${c.data.length}문제 · 완료 ${s.mastered.length}`;
  $('full-list-description').textContent=isNames
    ?'조문을 한꺼번에 확인할 수 있습니다. 기출은 해당 조문에서 처방명을 직접 쓰도록 출제된 경우만 표시합니다.'
    :'약재 구성을 한 번에 확인할 수 있습니다. 구성이 적혀 있지 않은 처방은 임의로 보충하지 않았습니다.';
@@ -414,7 +417,8 @@ function renderFullList(){
    const heading=el('div',{className:'overview-title'});
    if(isNames)heading.append(document.createTextNode(q.num+'조'));
    else heading.append(document.createTextNode(q.name),el('span',{className:'hanja'},q.hanja));
-   h.append(heading,el('span',{className:'overview-status'+(completed?' correct':hasWrong?' retry':'')},completed?'완료':hasWrong?'오답 복습':'미완료'));
+   h.append(heading);
+   if(active!=='bangjae-herbs-ordered')h.append(el('span',{className:'overview-status'+(completed?' correct':hasWrong?' retry':'')},completed?'완료':hasWrong?'오답 복습':'미완료'));
    article.append(h);
    if(active.startsWith('sanghan-')){
      const info=el('div',{className:'overview-exams'});
@@ -428,7 +432,7 @@ function renderFullList(){
    }
    if(!completed||active==='bangjae-herbs-ordered'){
      const bot=el('div',{className:'overview-bottom'});
-     const go=el('button',{type:'button',className:'overview-jump'},completed?'다시 풀기 →':'이 문제 풀기 →');
+     const go=el('button',{type:'button',className:'overview-jump'},active==='bangjae-herbs-ordered'?'이 문제 풀기 →':completed?'다시 풀기 →':'이 문제 풀기 →');
      go.onclick=()=>jumpToQuestion(q.id);bot.append(go);article.append(bot);
    }
    box.append(article);
@@ -470,8 +474,8 @@ function selectMode(key,writeHash=true){
  if(writeHash&&location.hash!=='#'+key){try{history.replaceState(null,'','#'+key);}catch{}}
 }
 
-// 완료한 처방도 번호 막대와 이전·다음 버튼으로 언제든 복습할 수 있습니다.
-// 출제 순서/현재 번호와 정답·오답 기록은 별도로 유지합니다.
+// 순서대로 모드는 정답/오답 횟수 집계 없이 번호를 자유롭게 앞뒤로 탐색합니다.
+// 현재 위치만 저장하며 무작위 모드의 진행 기록과 구분합니다.
 function navigateBangjaeTo(index){
  if(active!=='bangjae-herbs-ordered')return;
  const s=loadSession(active),data=CONFIG[active].data;
@@ -485,7 +489,7 @@ function chooseBangjaeStart(num){
  const index=CONFIG[active].data.findIndex(q=>q.num===num);
  if(index<0)return;
  navigateBangjaeTo(index);
- toast(`${num}번부터 다시 풀 수 있습니다.`);
+ toast(`${num}번으로 이동했습니다.`);
 }
 function stepBangjaeOrdered(delta){
  if(active!=='bangjae-herbs-ordered')return;
@@ -495,24 +499,19 @@ function renderBangjaeNumberBar(){
  const isOrdered=active==='bangjae-herbs-ordered';
  const outer=$('bangjae-number-bar');outer.hidden=!isOrdered;
  if(!isOrdered)return;
- const s=loadSession(active),q=question(),mastered=new Set(s.mastered),errors=new Set(s.wrong);
+ const q=question();
  const track=$('bangjae-number-track');track.replaceChildren();
- const data=CONFIG[active].data;
  for(let num=26;num<=60;num++){
-   const problems=data.filter(x=>x.num===num);
-   const done=problems.filter(x=>mastered.has(x.id)).length;
    const isCurrent=!!q&&q.num===num;
-   const retry=problems.some(x=>errors.has(x.id));
-   let status=done===problems.length?'completed':retry?'retry':done?'partial':'';
-   const btn=el('button',{type:'button',className:'bangjae-number-tick '+status+(isCurrent?' current':'')});
+   const btn=el('button',{type:'button',className:'bangjae-number-tick'+(isCurrent?' current':'')});
    btn.append(el('span',{className:'tick-number'},String(num)));
-   btn.setAttribute('aria-label',`${num}번${isCurrent?', 현재 문제':''}${status==='completed'?', 모두 완료':status==='partial'?', 일부 완료':retry?', 오답 복습':''} · 여기부터 풀기`);
+   btn.setAttribute('aria-label',`${num}번${isCurrent?', 현재 문제':''} · 여기부터 풀기`);
    if(isCurrent)btn.setAttribute('aria-current','step');
    btn.title=`${num}번부터 이어서 풀기`;
    btn.onclick=()=>chooseBangjaeStart(num);
    track.append(btn);
  }
- $('bangjae-number-caption').textContent=q?`현재 ${q.num}번 · 완료 ${s.mastered.length}/${data.length}문항`:`완료 ${s.mastered.length}/${data.length}문항`;
+ $('bangjae-number-caption').textContent=q?`현재 ${q.num}번`:'26~60번';
 }
 // 새로고침은 기록을 보존합니다. 순서대로는 답안 기록과 무관하게 다음 번호로 이동합니다.
 function refreshBangjae(){
@@ -526,21 +525,14 @@ function refreshBangjae(){
  if(!s.queue.length){toast('모든 문제를 완료했습니다.');return;}
  if(s.done){nextQuestion();toast('기록을 유지하고 다음 문제를 표시했습니다.');return;}
  const current=s.queue.shift();
- if(active==='bangjae-herbs-ordered'){
-   // 미출제 처방은 오답 복습보다 먼저, 이미 틀렸던 처방은 오답 대기열 마지막에 배치
-   const firstRetry=s.queue.findIndex(id=>s.wrong.includes(id));
-   if(s.wrong.includes(current)||firstRetry<0)s.queue.push(current);
-   else s.queue.splice(firstRetry,0,current);
- }else{
-   // 무작위: 남은 미출제 문항을 섞되 기존 오답은 마지막으로 유지
-   s.queue.push(current);
-   const fresh=s.queue.filter(id=>!s.wrong.includes(id));
-   const retry=s.queue.filter(id=>s.wrong.includes(id));
-   s.queue=[...shuffle(fresh),...shuffle(retry)];
-   if(s.queue.length>1&&s.queue[0]===current){
-     const at=s.queue.findIndex(id=>id!==current);
-     [s.queue[0],s.queue[at]]=[s.queue[at],s.queue[0]];
-   }
+ // 무작위: 남은 미출제 문항을 섞되 기존 오답은 마지막으로 유지
+ s.queue.push(current);
+ const fresh=s.queue.filter(id=>!s.wrong.includes(id));
+ const retry=s.queue.filter(id=>s.wrong.includes(id));
+ s.queue=[...shuffle(fresh),...shuffle(retry)];
+ if(s.queue.length>1&&s.queue[0]===current){
+   const at=s.queue.findIndex(id=>id!==current);
+   [s.queue[0],s.queue[at]]=[s.queue[at],s.queue[0]];
  }
  s.drafts=[];s.done=false;s.reveal=false;s.lastOK=false;
  saveSession();render();
@@ -548,7 +540,18 @@ function refreshBangjae(){
  const field=$('answer-0');if(field)field.focus({preventScroll:true});
 }
 
-function updateProgress(){const s=loadSession(active),n=CONFIG[active].data.length,q=question();const correct=s.mastered.length;$('bar').style.width=correct/n*100+'%';const p=$('bar').parentElement;p.setAttribute('aria-valuemax',String(n));p.setAttribute('aria-valuenow',String(correct));$('position').textContent=`${correct} / ${n} 완료${q&&s.wrong.includes(q.id)?' · 오답 복습':''}`;$('stats').innerHTML=`<span class="label">정답</span><span class="count">${correct}</span><span class="sep">·</span><span class="label">남은 문제</span><span class="count">${n-correct}</span>`;}
+function updateProgress(){
+ const ordered=active==='bangjae-herbs-ordered';
+ $('stats').parentElement.hidden=ordered;
+ const p=$('bar').parentElement;p.hidden=ordered;
+ $('position').hidden=ordered;
+ if(ordered){$('stats').replaceChildren();$('position').textContent='';return;}
+ const s=loadSession(active),n=CONFIG[active].data.length,q=question(),correct=s.mastered.length;
+ $('bar').style.width=correct/n*100+'%';
+ p.setAttribute('aria-valuemax',String(n));p.setAttribute('aria-valuenow',String(correct));
+ $('position').textContent=`${correct} / ${n} 완료${q&&s.wrong.includes(q.id)?' · 오답 복습':''}`;
+ $('stats').innerHTML=`<span class="label">정답</span><span class="count">${correct}</span><span class="sep">·</span><span class="label">남은 문제</span><span class="count">${n-correct}</span>`;
+}
 function render(){
  renderBangjaeNumberBar();
  const c=CONFIG[active],s=loadSession(active),q=question();$('quiz').hidden=!q;$('finish').hidden=!!q;$('shuffle').disabled=!q;
@@ -565,11 +568,12 @@ function render(){
  $('question-title').append(document.createTextNode(active.startsWith('sanghan-herbs-')?q.name:(q.source==='첨부 자료'?q.name:q.source==='동원'?`동원 ${q.name}`:`《${q.source}》 ${q.name}`)),el('span',{className:'hanja'},q.hanja));
  if(active.startsWith('sanghan-herbs-'))applyExamFlags(q,false);
  if(active.startsWith('sanghan-herbs-')){$('question-meta').textContent=`${q.clauses==='비교'||q.clauses==='비교표'||q.clauses==='비교 언급'?'강의 비교·참고':q.clauses} · ${q.exception?'표준 원방 구성 보충':`강의 ${q.lecture}`}`;$('question-meta').hidden=false;}
- $('position').textContent='';const input=el('textarea',{id:'answer-0',value:s.drafts[0]||'',placeholder:'약재 사이를 쉼표 또는 공백으로 구분해 주세요.',spellcheck:false,autocomplete:'off',disabled:s.done});input.setAttribute('aria-label','구성 약재 입력');input.oninput=()=>{s.drafts[0]=input.value;saveSession();};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&e.keyCode!==229){e.preventDefault();check(false);}});$('answers').append(input);$('input-help').textContent=active==='bangjae-herbs'?'':'약재 순서는 상관없습니다. 용량·포제 제외, 자료에 있는 생강·대조는 포함합니다.';
+ $('position').textContent='';const input=el('textarea',{id:'answer-0',value:s.drafts[0]||'',placeholder:'약재 사이를 쉼표 또는 공백으로 구분해 주세요.',spellcheck:false,autocomplete:'off',disabled:s.done});input.setAttribute('aria-label','구성 약재 입력');input.oninput=()=>{s.drafts[0]=input.value;saveSession();};input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&e.keyCode!==229){e.preventDefault();check(false);}});$('answers').append(input);$('input-help').textContent=active.startsWith('bangjae-herbs')?'':'약재 순서는 상관없습니다. 용량·포제 제외, 자료에 있는 생강·대조는 포함합니다.';
  }
  $('check').disabled=s.done;$('show').disabled=s.done;
  const ordered=active==='bangjae-herbs-ordered';
  $('prev').hidden=!ordered;
+ $('retry-current').hidden=!(ordered&&s.done);
  $('next').hidden=!s.done&&!ordered;
  $('next').textContent=ordered?'다음 문제 →':s.mastered.length===c.data.length?'결과 보기 →':'다음 문제 →';
  updateProgress();if(s.done)renderFeedback();renderRules();
@@ -585,8 +589,9 @@ function renderRules(){
  '「실습시험처방 Clean 2 (1).pdf」 26–60번을 바탕으로 만든 기존 방제학 퀴즈 데이터를 그대로 사용합니다. 35개 처방, 출전 구분을 포함해 40문항입니다. 31·43·52·53번은 출전별로 별도 출제합니다.',
  '용량과 포제는 묻지 않습니다. 자료에 있는 생강·대조 등은 답에 포함합니다. 같은 약재를 여러 번 입력해도 한 번으로 처리합니다.',
  '인정하는 동의어: 소엽=자소엽, 소자=자소자, 나복자=내복자, 축사=사인=축사인, 남성=천남성, 인진=인진호, 연자=연자육, 귤피=진피, 감초=자감초. 백복령·적복령·복령, 백작약·적작약·작약, 계지·육계·계피는 구분합니다. 한글로 입력해 주세요.',
- '순서대로에서는 번호 막대와 이전·다음 문제 버튼으로 맞힌 처방도 자유롭게 다시 풀 수 있습니다. 60번 뒤에는 26번으로 돌아가며, 출전이 나뉜 같은 번호는 연속 출제합니다. 무작위와 순서대로의 진행 기록은 각각 보관됩니다.',
- '틀리거나 정답을 확인한 문제는 미출제 문제 뒤에서 다시 나옵니다. 진행 숫자는 맞힌 문제 수입니다.'
+ active==='bangjae-herbs-ordered'
+  ?'순서대로는 26~60번을 자유롭게 앞뒤로 이동하며 정답·오답 횟수를 집계하지 않습니다. 출전이 나뉜 같은 번호는 연속 출제하고, 현재 위치는 저장됩니다.'
+  :'무작위에서는 맞힌 문제를 완료 처리하며 틀리거나 정답을 확인한 문제는 미출제 문제 뒤에서 다시 나옵니다. 순서대로 학습 위치와는 별도로 저장됩니다.'
  ]:[
  '첨부하신 「상한론 처방구성.pdf」의 PART 1(핵심 24처방)·PART 2(비교·참고 13처방) 분류를 그대로 따릅니다. 두 그룹의 퀴즈와 진행 상태는 독립적입니다.',
  '구성 약재가 확인되는 처방만 출제합니다. 비교·참고 13처방 중 강의자료에 구성이 명시되지 않은 6처방은 퀴즈에서 제외하고 목록에 표시합니다.',
@@ -602,16 +607,9 @@ function check(reveal){
  if(!CONFIG[active])return;const s=loadSession(active),q=question();if(!q||s.done)return;const c=CONFIG[active],n=c.kind==='names'?q.answers.length:1;s.drafts=Array.from({length:n},(_,i)=>$('answer-'+i).value);
  if(!reveal){const missing=s.drafts.findIndex(v=>!v.trim());if(missing!==-1){$('answer-'+missing).focus();toast('빈칸에 답을 입력해 주세요.');return;}}
  const result=evaluate(s.drafts,q,c.kind);s.done=true;s.reveal=!!reveal;s.lastOK=!reveal&&result.ok;
+ // 순서대로는 이번 답안의 채점 결과만 보여주고, 맞힘/틀림을 누적하지 않습니다.
  if(active==='bangjae-herbs-ordered'){
-   if(s.lastOK){
-     if(!s.mastered.includes(q.id))s.mastered.push(q.id);
-     s.queue=s.queue.filter(id=>id!==q.id);
-     s.wrong=s.wrong.filter(id=>id!==q.id);
-   }else{
-     s.attempts++;
-     // 이미 정답 처리한 문제의 재복습 오답은 기존 완료 기록을 지우지 않습니다.
-     if(!s.mastered.includes(q.id)&&!s.wrong.includes(q.id))s.wrong.push(q.id);
-   }
+   // 이 모드에서는 저장할 값이 현재 위치와 이번 답안뿐입니다.
  }else if(s.lastOK){s.mastered.push(q.id);s.wrong=s.wrong.filter(id=>id!==q.id);}else{s.attempts++;if(!s.wrong.includes(q.id))s.wrong.push(q.id);}
  saveSession();render();$('next').focus();
 }
@@ -625,6 +623,15 @@ function renderFeedback(){
  if(translation){const interpretation=el('section',{className:'daja-translation'});interpretation.append(el('h4',{className:'daja-translation-title'},'조문 해석'),el('p',{className:'daja-translation-content'},translation));f.append(interpretation);}
 
  }else{if(!s.reveal&&!s.lastOK){if(r.missing.length)chips('빠뜨린 약재',r.missing,'miss');if(r.extra.length)chips('추가로 쓴 약재',r.extra,'extra');if(r.matched.length)chips('맞게 쓴 약재',r.matched);}chips('전체 구성',q.herbs);}
+}
+// 순서대로 모드: 이번 문제만 입력부터 다시 시작합니다. 채점 내역은 누적하지 않습니다.
+function retryBangjaeOrdered(){
+ if(active!=='bangjae-herbs-ordered')return;
+ const s=loadSession(active);
+ if(!s.done)return;
+ s.done=false;s.reveal=false;s.lastOK=false;s.drafts=[];
+ saveSession();render();
+ const field=$('answer-0');if(field)field.focus({preventScroll:true});
 }
 function nextQuestion(){
  if(active==='bangjae-herbs-ordered'){stepBangjaeOrdered(1);return;}
@@ -645,7 +652,7 @@ function init(){
  $('switch-quiz').onclick=()=>setView(false);
  $('switch-list').onclick=()=>setView(true);
  $('list-toggle-answers').onclick=()=>{listShowAnswers=!listShowAnswers;renderFullList();};
- $('check').onclick=()=>check(false);$('show').onclick=()=>check(true);$('prev').onclick=()=>stepBangjaeOrdered(-1);$('next').onclick=nextQuestion;$('shuffle').onclick=shuffleRemaining;$('reset').onclick=active.startsWith('bangjae-herbs')?refreshBangjae:resetSession;$('again').onclick=resetSession;
+ $('check').onclick=()=>check(false);$('show').onclick=()=>check(true);$('prev').onclick=()=>stepBangjaeOrdered(-1);$('retry-current').onclick=retryBangjaeOrdered;$('next').onclick=nextQuestion;$('shuffle').onclick=shuffleRemaining;$('reset').onclick=active.startsWith('bangjae-herbs')?refreshBangjae:resetSession;$('again').onclick=resetSession;
  $('ref-missing-list').replaceChildren(...SOURCE.sanghanReferenceNoComposition.map(q=>el('li',{},q.name+' · '+q.hanja)));
  let saved;try{saved=JSON.parse(localStorage.getItem(VIEW_KEY)||'null');}catch{storageOK=false;}
  if(saved){
