@@ -127,6 +127,17 @@ async function startQuiz(user){
       throw new Error('빈칸 채점 수정이 퀴즈 코드와 일치하지 않습니다. 관리자에게 문의해 주세요.');
     }
   }
+  // 서버에 저장된 퀴즈 스크립트가 새로고침 아이콘을 글자로 덮어쓰지 않도록 합니다.
+  // 버튼 내부의 SVG는 index.html에 유지하며 모드별 의미만 접근성 이름으로 갱신합니다.
+  const resetLabelOverride = "refreshButton.textContent=isBangjae?'↻ 새로고침':'진행 초기화';";
+  if (patchedQuizScript.includes(resetLabelOverride)) {
+    patchedQuizScript = patchedQuizScript.replace(
+      resetLabelOverride,
+      "refreshButton.setAttribute('aria-label',isBangjae?'새로고침':'진행 초기화');"
+    );
+  } else if (patchedQuizScript.includes('refreshButton.textContent')) {
+    throw new Error('새로고침 버튼 코드 버전이 일치하지 않습니다.');
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
