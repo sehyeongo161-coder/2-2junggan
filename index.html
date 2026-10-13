@@ -193,11 +193,16 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
  .study-nav-item{min-height:47px}
 }
 /* 신경정신과 독립형 학습 화면 */
-body[data-subject="neuro"]{--accent:#2365a3;--tint:#edf5fc;--line:#dce6ef;--muted:#708397}
+body[data-subject="neuro"]{--accent:#b34575;--tint:#fbeaf1;--line:#ecd5df;--muted:#926e82;background:#fcf8fa}
 body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px 24px 60px}
 #neuro-panel{margin:0;width:100%}
 #neuro-subtabs{margin:0 0 15px}
-#neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#f5f7fb}
+body[data-subject="neuro"] .subject-tabs{background:#f3e7ed}
+body[data-subject="neuro"] .subject-tabs button[aria-selected="true"]{color:#ac456f}
+body[data-subject="neuro"] #neuro-subtabs{border-color:#ead4df}
+body[data-subject="neuro"] #neuro-subtabs button[aria-selected="true"]{color:#b34575;border-bottom-color:#b34575}
+body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
+#neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#fcf8fa}
 @media(max-width:600px){body[data-subject="neuro"] #quiz-root{padding:25px 15px 40px}#neuro-panel{margin:0}#neuro-frame{border-radius:10px;min-height:1100px}}
 </style>
 </head>
@@ -416,7 +421,7 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-all-stats-scroll-v10';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-neuro-pink-random-v11';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
