@@ -396,7 +396,7 @@ body[data-subject="neuro"] #quiz-root{width:100%;max-width:none;padding:18px 12p
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectTab(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-random-shuffle-enter-v3';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-memorization-tables-v4';
  },true);
  for(const tab of oldTabs)tab.addEventListener('click',()=>{
    if(!neuroActive)return;
