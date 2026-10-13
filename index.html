@@ -378,7 +378,7 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
 </section>
 <section id="neuro-panel" role="tabpanel" aria-labelledby="tab-neuro" hidden>
 <nav id="neuro-subtabs" class="subtabs" role="tablist" aria-label="신경정신과 학습 유형">
-<button id="tab-neuro-past" type="button" role="tab" aria-selected="true" aria-controls="neuro-content">족보</button>
+<button id="tab-neuro-past" type="button" role="tab" aria-selected="true" aria-controls="neuro-content">퀴즈</button>
 <button id="tab-neuro-memo" type="button" role="tab" aria-selected="false" aria-controls="neuro-content" tabindex="-1">암기표</button>
 </nav>
 <div id="neuro-content" role="tabpanel" aria-labelledby="tab-neuro-past">
@@ -398,7 +398,7 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
  const panel=document.getElementById('panel'),neuroPanel=document.getElementById('neuro-panel');
  const frame=document.getElementById('neuro-frame'),neuroContent=document.getElementById('neuro-content');
  const subs={past:document.getElementById('tab-neuro-past'),memo:document.getElementById('tab-neuro-memo')};
- let neuroActive=false,neuroMode='past';
+ let neuroActive=false,neuroMode='past',pendingQuestion=null;
  function selectSubject(tab){
    for(const b of allTabs){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
  }
@@ -416,14 +416,35 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-fillblanks-v8';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-all-stats-scroll-v9';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
    if(!neuroActive)return;
    syncNeuroMode(mode);
  });
- frame.addEventListener('load',()=>syncNeuroMode(neuroMode));
+ frame.addEventListener('load',()=>{
+   syncNeuroMode(neuroMode);
+   if(pendingQuestion)frame.contentWindow?.postMessage({type:'neuro-open-question',id:pendingQuestion},location.origin);
+ });
+ // Reuse the subject page for global statistics' "이 문제 풀기" links.
+ window.__OPEN_NEURO_QUESTION=id=>{
+   if(typeof id!=='string'||!/^\\d{2}-\\d{2}$/.test(id))return;
+   if(document.getElementById('quiz-root').hidden)return;
+   pendingQuestion=id;
+   if(!neuroActive)neuroTab.click();
+   syncNeuroMode('past');
+   if(frame.getAttribute('src'))frame.contentWindow?.postMessage({type:'neuro-open-question',id},location.origin);
+ };
+ function scrollToNeuroQuestion(){
+   if(!neuroActive||neuroPanel.hidden)return;
+   const content=frame.contentDocument;
+   const card=content?.querySelector('#quizContainer .quizcard');
+   const childTop=card?card.getBoundingClientRect().top+(content.defaultView?.scrollY||0):0;
+   const target=frame.getBoundingClientRect().top+window.scrollY+childTop-85;
+   window.scrollTo({top:Math.max(0,Math.round(target)),behavior:'instant'});
+ }
+
  for(const tab of oldTabs)tab.addEventListener('click',()=>{
    if(!neuroActive)return;
    neuroActive=false;neuroPanel.hidden=true;panel.hidden=false;
@@ -434,6 +455,17 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
    if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
    if(e.data?.type==='neuro-mode-changed' && (e.data.mode==='past'||e.data.mode==='memo')){
      syncNeuroMode(e.data.mode);
+   }
+   if(e.data?.type==='neuro-progress-updated' && typeof e.data.uid==='string' && e.data.records && typeof e.data.records==='object'){
+     window.__NEURO_LIVE_RECORDS={uid:e.data.uid,records:e.data.records};
+     if(pendingQuestion){
+       frame.contentWindow?.postMessage({type:'neuro-open-question',id:pendingQuestion},location.origin);
+     }
+   }
+   if(e.data?.type==='neuro-focus-question'){
+     pendingQuestion=null;
+     syncNeuroMode('past');
+     requestAnimationFrame(()=>requestAnimationFrame(scrollToNeuroQuestion));
    }
    if(e.data?.type==='neuro-quiz-size'){
      const height=Number(e.data.height);
