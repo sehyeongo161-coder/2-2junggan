@@ -6,12 +6,13 @@
  const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
  // 암기표 분류는 상위 사이트의 신경정신과 하위 탭에서 제어합니다.
  const view=document.createElement('div');view.id='memoView';view.className='hide';
- view.innerHTML='<div class="main-head"><div><h1>신경정신과 암기표</h1><p>한의신경정신과학 정리본 · 20·21·22학번 족보 대조</p></div></div><div class="panel memo-toolbar"><div class="memo-heading"><strong>주제별 암기표</strong><span id="memoCount"></span></div><div class="memo-practice-switch" role="group" aria-label="암기표 공부 방식"><button type="button" id="memoStudy" class="selected" aria-pressed="true">표 보기</button><button type="button" id="memoPractice" aria-pressed="false">랜덤 빈칸</button><button type="button" id="memoRestart" hidden>빈칸 바꾸기</button><button type="button" id="memoNext" hidden>다음 표 →</button><span id="memoPracticeStats"></span></div><div class="memo-search"><input id="memoSearch" type="search" placeholder="학자·원문·개념 검색" aria-label="암기표 검색"><select id="memoYear" aria-label="기출 학번"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select><button type="button" class="btn" id="memoOnly" aria-pressed="false" title="기출문제와 연결된 20개 표만 보기 (추가 암기표 5개 숨김)">기출 연계표만</button></div><div id="memoCategories" class="memo-categories" role="group" aria-label="분야 선택"><button type="button" data-memo-cat="전체" class="selected">전체</button><button type="button" data-memo-cat="한의학">한의학</button><button type="button" data-memo-cat="심리학">심리학</button><button type="button" data-memo-cat="발달">발달</button><button type="button" data-memo-cat="신경생리">신경생리</button></div><p class="memo-help"><strong class="memo-mark">족보</strong>는 해당 행에 연결되는 실제 기출문제입니다. 학번·문항 버튼을 누르면 퀴즈로 이동합니다. <strong>복기 불완전</strong> 문항은 답을 확정하지 않았습니다.</p></div><div id="memoCards" class="memo-cards"></div>';
+ view.innerHTML='<div class="main-head"><div><h1>신경정신과 암기표</h1><p>한의신경정신과학 정리본 · 20·21·22학번 족보 대조</p></div></div><div class="panel memo-toolbar"><div class="memo-heading"><strong>주제별 암기표</strong><span id="memoCount"></span></div><div class="memo-practice-switch" role="group" aria-label="암기표 공부 방식"><button type="button" id="memoStudy" class="selected" aria-pressed="true">표 보기</button><button type="button" id="memoPractice" aria-pressed="false">랜덤 빈칸</button><button type="button" id="memoPrev" hidden>← 이전 표</button><button type="button" id="memoNext" hidden>다음 표 →</button><button type="button" id="memoRestart" hidden title="현재 표의 빈칸 위치를 다시 무작위로 바꾸기">↻ 새로고침</button><span id="memoPracticeStats"></span></div><div class="memo-search"><input id="memoSearch" type="search" placeholder="학자·원문·개념 검색" aria-label="암기표 검색"><select id="memoYear" aria-label="기출 학번"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select><button type="button" class="btn" id="memoOnly" aria-pressed="false" title="기출문제와 연결된 20개 표만 보기 (추가 암기표 5개 숨김)">기출 연계표만</button></div><p class="memo-help"><strong class="memo-mark">족보</strong>는 해당 행에 연결되는 실제 기출문제입니다. 학번·문항 버튼을 누르면 퀴즈로 이동합니다. <strong>복기 불완전</strong> 문항은 답을 확정하지 않았습니다.</p></div><div id="memoCards" class="memo-cards"></div>';
  document.querySelector('main.main').append(view);
- let category='전체',examOnly=false,practice=false;
+ let examOnly=false,practice=false;
  const attempts=new Map(), drafts=new Map();
  let practiceOrder=[],practiceCursor=0,practiceKey='',practiceTable=-1;
  const blankTargets=new Map();
+ const savedBlanks=new Map();
  let originalTarget=0;
  function scramble(list){
    const out=[...list];
@@ -19,7 +20,7 @@
    return out;
  }
  function resetPracticeOrder(){
-   practiceOrder=[];practiceCursor=0;practiceKey='';practiceTable=-1;blankTargets.clear();attempts.clear();drafts.clear();
+   practiceOrder=[];practiceCursor=0;practiceKey='';practiceTable=-1;blankTargets.clear();savedBlanks.clear();attempts.clear();drafts.clear();
  }
  function chooseBlanks(tableIndex){
    practiceTable=tableIndex;
@@ -40,6 +41,14 @@
      blankTargets.set('row_'+tableIndex+'_'+i,col);
    }
    originalTarget=item.originalDrills?.length?Math.floor(Math.random()*item.originalDrills.length):0;
+   savedBlanks.set(tableIndex,{targets:[...blankTargets.entries()],originalTarget});
+ }
+ function restoreBlanks(tableIndex){
+   const saved=savedBlanks.get(tableIndex);
+   if(!saved){chooseBlanks(tableIndex);return;}
+   practiceTable=tableIndex;blankTargets.clear();
+   for(const [key,col] of saved.targets)blankTargets.set(key,col);
+   originalTarget=saved.originalTarget;
  }
  function advanceTable(filtered){
    const ids=filtered.map(item=>data.indexOf(item));
@@ -49,7 +58,7 @@
    }
    let id=practiceOrder[practiceCursor];
    if(id===undefined)id=ids[0];
-   if(id!==practiceTable)chooseBlanks(id);
+   if(id!==practiceTable)restoreBlanks(id);
    return id;
  }
  const normAnswer=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s·.,;:!?'“”()\[\]{}\-_→+]/g,'');
@@ -115,7 +124,6 @@
   const year=document.getElementById('memoYear').value;
   const filtered=data.filter(item=>{
    const refs=refsOf(item);
-   if(category!=='전체'&&item.cat!==category)return false;
    if(examOnly&&!refs.length)return false;
    if(year!=='all'&&!refs.some(q=>q.year===year))return false;
    if(term&&!norm(item.title+' '+item.cat+' '+(item.note||'')+' '+(item.original||'')+' '+item.rows.map(r=>r.c.join(' ')).join(' ')).includes(term))return false;
@@ -133,6 +141,8 @@
   document.getElementById('memoPractice').setAttribute('aria-pressed',String(practice));
   document.getElementById('memoRestart').hidden=!practice;
   document.getElementById('memoNext').hidden=!practice;
+  document.getElementById('memoPrev').hidden=!practice;
+  document.getElementById('memoPrev').disabled=!practice||practiceCursor===0;
   document.getElementById('memoOnly').setAttribute('aria-pressed',String(examOnly));
   document.getElementById('memoOnly').classList.toggle('selected',examOnly);
   const target=document.getElementById('memoCards');
@@ -154,7 +164,7 @@
       return '<tr'+rowClass+'>'+cells+'</tr>'+rowDetail;
     }).join('');
     const associated=(item.refs||[]).map(id=>byId.get(id)).filter(Boolean).map(refMarkup).join('');
-    return '<section class="panel memo-card"><header class="memo-card-head"><h2><span class="memo-index">'+String(data.indexOf(item)+1).padStart(2,'0')+'</span> '+escape(item.title)+'</h2><div class="memo-labels"><span>'+escape(item.cat)+'</span><span class="'+(refs.length?'exam':'extra')+'">'+(refs.length?'족보 '+refs.length+'문항':'추가 암기')+'</span></div></header><div class="memo-scroll"><table class="memo-table"><thead><tr>'+item.heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows +'</tbody></table></div>'+renderOriginal(item,index)+(!practice&&item.note?'<p class="memo-note">'+escape(item.note)+'</p>':'')+(associated?'<p class="memo-assoc"><b>표 전체 관련 기출</b> '+associated+'</p>':'')+'</section>';
+    return '<section class="panel memo-card"><header class="memo-card-head"><h2><span class="memo-index">'+String(data.indexOf(item)+1).padStart(2,'0')+'</span> '+escape(item.title)+'</h2><div class="memo-labels"><span class="'+(refs.length?'exam':'extra')+'">'+(refs.length?'족보 '+refs.length+'문항':'추가 암기')+'</span></div></header><div class="memo-scroll"><table class="memo-table"><thead><tr>'+item.heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows +'</tbody></table></div>'+renderOriginal(item,index)+(!practice&&item.note?'<p class="memo-note">'+escape(item.note)+'</p>':'')+(associated?'<p class="memo-assoc"><b>표 전체 관련 기출</b> '+associated+'</p>':'')+'</section>';
   }).join('');
   updatePracticeStats();
  }
@@ -180,21 +190,19 @@
    if(practiceCursor>=practiceOrder.length){
      const previous=practiceOrder[practiceOrder.length-1];
      practiceOrder=scramble(practiceOrder);practiceCursor=0;
+     savedBlanks.clear();attempts.clear();drafts.clear();
      if(practiceOrder.length>1&&practiceOrder[0]===previous){
        const temp=practiceOrder[0];practiceOrder[0]=practiceOrder[1];practiceOrder[1]=temp;
      }
    }
-   const next=practiceOrder[practiceCursor];
-   for(const key of [...attempts.keys()])if(key.startsWith('row_'+next+'_')||key.startsWith('orig_'+next+'_'))attempts.delete(key);
-   for(const key of [...drafts.keys()])if(key.startsWith('row_'+next+'_')||key.startsWith('orig_'+next+'_'))drafts.delete(key);
    practiceTable=-1;render();
    document.querySelector('#memoCards .memo-blank')?.focus();
  });
- document.getElementById('memoCategories').addEventListener('click',e=>{
-  const button=e.target.closest('[data-memo-cat]');if(!button)return;
-  category=button.dataset.memoCat;resetPracticeOrder();
-  document.querySelectorAll('[data-memo-cat]').forEach(b=>b.classList.toggle('selected',b===button));
-  render();
+ document.getElementById('memoPrev').addEventListener('click',()=>{
+   if(!practice||practiceCursor===0)return;
+   practiceCursor--;
+   practiceTable=-1;render();
+   document.querySelector('#memoCards .memo-blank')?.focus();
  });
  document.getElementById('memoCards').addEventListener('click',e=>{
   const check=e.target.closest('[data-memo-check]');if(check){gradeInput(check.dataset.memoCheck);return;}
@@ -218,9 +226,6 @@
 .memo-search input,.memo-search select{width:100%;min-width:0;border:1px solid #d2dfeb;border-radius:9px;padding:10px 11px;min-height:42px;color:#25394d;background:white}
 .memo-search .btn{min-height:42px;padding:8px 9px}
 .memo-search .btn.selected{background:#e7f3ec;border-color:#a1cbb2;color:#246749}
-.memo-categories{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.memo-categories button{border:1px solid #dbe7ef;border-radius:8px;padding:7px 13px;background:#fff;color:#5f7489;font-size:12px;font-weight:750}
-.memo-categories button.selected{background:#2365a3;border-color:#2365a3;color:#fff}
 .memo-help{font-size:11px;color:#617c92;margin:12px 0 0;line-height:1.9}
 .memo-mark{display:inline-flex;align-items:center;justify-content:center;vertical-align:baseline;box-sizing:border-box;font-size:10px;line-height:1.55;font-weight:850;background:#e5f4eb;color:#286b4d;border:1px solid #cde8d8;border-radius:5px;padding:2px 8px;margin:0 7px 0 6px;white-space:nowrap;max-width:100%}
 .memo-cards{display:grid;gap:13px}
@@ -247,7 +252,7 @@
 .memo-practice-switch{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:0 0 11px}
 .memo-practice-switch>button{border:1px solid #d7e0e9;border-radius:9px;background:#fff;color:#576c84;padding:8px 14px;min-height:38px;font-size:12px;font-weight:750}
 .memo-practice-switch>button.selected{color:#2365a3;background:#eaf3fc;border-color:#acc8df}
-.memo-practice-switch>button#memoRestart{margin-left:10px}
+.memo-practice-switch>button#memoRestart{margin-left:0}
 .memo-practice-switch>button[hidden]{display:none}
 .memo-practice-switch>span{margin-left:auto;color:#6c8397;font-size:11px;white-space:nowrap}
 .memo-fill{display:flex;gap:5px;align-items:center;flex-wrap:wrap;min-width:120px}
@@ -274,8 +279,6 @@
 .memo-heading strong,.memo-card-head h2{color:#7f3e5e}
 .memo-search input,.memo-search select,.memo-blank{border-color:#e8cfdb}
 .memo-search .btn.selected,.memo-practice-switch>button.selected{background:#faeaf1;border-color:#dba9c0;color:#a64272}
-.memo-categories button{border-color:#eed8e3;color:#915a76}
-.memo-categories button.selected{background:#b34575;border-color:#b34575;color:white}
 .memo-mark{background:#fae4ef;color:#993e68;border-color:#efc8da}
 .memo-labels span.exam{background:#fcebf2;color:#a04470}
 .memo-highlight,.memo-table .memo-highlight,.memo-refs-row td{background:#fffafd}
@@ -290,6 +293,8 @@
 .memo-blank:focus-visible{outline:2px solid #c979a0;outline-offset:1px}
 .memo-practice-switch>button{border-color:#e6cbd7;color:#925673}
 .memo-practice-switch>button#memoNext{background:#b34575;border-color:#b34575;color:#fff;font-weight:800}
+.memo-practice-switch>button#memoPrev{border-color:#ddb6c8;color:#a34f76}
+.memo-practice-switch>button#memoRestart{background:#fff8fb;border-color:#dfbdce;color:#965473}
 .memo-practice-switch>button#memoNext:hover{background:#9e3b65}
 `;
  document.head.append(style);
