@@ -148,7 +148,7 @@
 .memo-categories button{border:1px solid #dbe7ef;border-radius:8px;padding:7px 13px;background:#fff;color:#5f7489;font-size:12px;font-weight:750}
 .memo-categories button.selected{background:#2365a3;border-color:#2365a3;color:#fff}
 .memo-help{font-size:11px;color:#617c92;margin:12px 0 0;line-height:1.9}
-.memo-mark{display:inline-block;vertical-align:middle;font-size:10px;font-weight:850;background:#e5f4eb;color:#286b4d;border:1px solid #cde8d8;border-radius:5px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+.memo-mark{display:inline-flex;align-items:center;justify-content:center;vertical-align:baseline;box-sizing:border-box;font-size:10px;line-height:1.55;font-weight:850;background:#e5f4eb;color:#286b4d;border:1px solid #cde8d8;border-radius:5px;padding:2px 8px;margin:0 7px 0 6px;white-space:nowrap;max-width:100%}
 .memo-cards{display:grid;gap:13px}
 .memo-card{overflow:hidden;box-shadow:none}
 .memo-card-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;padding:13px 16px;border-bottom:1px solid #e3ebf2}
