@@ -68,14 +68,32 @@
 body.neuro-memo-mode .topnav,body.neuro-memo-mode .aside{display:none!important}
 body.neuro-memo-mode .top-inner{min-height:48px}
 body.neuro-memo-mode .layout{margin-top:0}
+/* Align neuro presentation with Sanghan and Bangjae */
+body{background:#f5f6f8}
+.top{background:transparent;border:0}
+.top-inner{width:100%;max-width:none;padding:0 0 15px;min-height:0;display:block}
+.logo{font-size:22px;font-weight:780;line-height:1.4;color:#243244;letter-spacing:-.55px}
+.logo small{margin-top:4px;font-size:12px;color:#738096}
+.layout{width:100%;max-width:none;padding:0;margin:0 auto 28px;display:block}
+.topnav{display:inline-flex;width:max-content;max-width:100%;gap:4px;align-items:center;margin:2px 0 21px;padding:4px;background:#e9edf3;border-radius:12px}
+.topnav button{font-size:14px;font-weight:720;color:#65758b;border-radius:9px;padding:9px 17px;min-height:41px;white-space:nowrap}
+.topnav button.active{background:white;color:#2365a3;box-shadow:0 1px 4px #22344713}
+.main-head h1{font-size:24px;font-weight:770;color:#243244}
+.aside{margin-bottom:14px}
+.aside>.panel:first-child{border-color:#dce5ef;padding:9px 13px}
+.quizcard{border-radius:14px}
+body.neuro-memo-mode .top-inner{padding:0 0 8px}
+@media(max-width:850px){.layout{padding:0;margin:0 auto 24px}.top-inner{padding:0 0 13px}.main-head h1{font-size:21px}}
+@media(max-width:560px){.layout{padding:0}.topnav{width:100%;justify-content:stretch}.topnav button{flex:1;min-width:0;padding:9px 7px;font-size:13px}.top-inner{padding:0 0 12px}.logo{font-size:20px}.main-head h1{font-size:20px}.aside{margin-bottom:12px}}
 </style><style>html.neuro-auth-pending .top,html.neuro-auth-pending .layout{visibility:hidden}#neuro-auth-overlay{position:fixed;inset:0;z-index:100;background:#f5f7fb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;text-align:center;padding:28px;color:#365d80;font:600 15px/1.7 system-ui,sans-serif}#neuro-auth-overlay a{padding:10px 17px;background:#2365a3;color:white;text-decoration:none;border-radius:9px}html:not(.neuro-auth-pending) #neuro-auth-overlay{display:none}</style></head>
 <body><div id="neuro-auth-overlay" role="status">로그인 계정과 학습 기록을 확인하고 있습니다…</div>
-<header class="top"><div class="top-inner"><div class="logo">신경정신과 · 기출 실전 퀴즈<small>20·21·22학번 중간고사 · Firebase 계정별 학습</small></div><nav class="topnav" aria-label="보기 선택"><button data-tab="quiz" class="active">문제 풀기</button><button data-tab="list">문항 목록</button><button data-tab="stats">오답 통계</button></nav></div></header>
+<header class="top"><div class="top-inner"><div class="logo">신경정신과 · 족보<small>20·21·22학번 중간고사 · 계정별 학습 기록</small></div></div></header>
 <div class="layout"><aside class="aside">
 <section class="panel"><div class="section-label">학습 현황</div><div class="statgrid"><div class="statbox"><div class="value" id="totalCount">60</div><div class="unit">전체 문항</div></div><div class="statbox"><div class="value" id="doneCount">0</div><div class="unit">채점 완료</div></div><div class="statbox"><div class="value" id="rightCount">0</div><div class="unit">현재 정답</div></div><div class="statbox"><div class="value" id="wrongCount">0</div><div class="unit">현재 오답</div></div></div><div class="progress"><span id="progressBar"></span></div><div class="savehint">◦ <span id="saveText">학습 기록을 브라우저에 저장합니다.</span></div></section>
 <details class="mobileFilters" id="mobileFilters"><summary>출제 범위 · 오답 필터 설정</summary><section class="panel"><div class="section-label">출제 범위</div><div class="aside-forms"><div><label class="selectlabel" for="year">학번</label><select id="year" class="select"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select></div><div><label class="selectlabel" for="topic">주제</label><select id="topic" class="select"><option value="all">전체 주제</option></select></div><div class="whole"><label class="selectlabel">풀이 상태</label><div class="pillbox" id="statuses"><button data-filter="all" class="active">전체</button><button data-filter="new">미풀이</button><button data-filter="wrong">오답만</button><button data-filter="right">정답만</button></div></div><div class="whole"><label class="selectlabel" for="order">문제 순서</label><select class="select" id="order"><option value="shuffle">무작위</option><option value="source">주제별 원본 순서</option></select></div></div><div class="side-divider"></div><button class="btn" id="reshuffle" style="width:100%">↻ 문제 순서 섞기</button><div class="warn">정답 확인만 한 문제는 정답 처리되지 않습니다. 미확정·서술형 문제는 답안을 비교한 뒤 직접 채점합니다.</div></section>
 <section class="panel"><div class="section-label">학습 기록 관리</div><button class="subtle" id="resetRecord">전체 풀이 기록 초기화</button><div class="tiny">학습 기록은 로그인한 계정에 동기화하며, 연결이 끊기면 이 브라우저에 임시 보관합니다.</div></section></details>
 </aside><main class="main">
+<nav class="topnav" aria-label="족보 보기 선택"><button data-tab="quiz" class="active">퀴즈</button><button data-tab="list">목록</button><button data-tab="stats">오답 통계</button></nav>
 <div id="quizView"><div class="main-head"><div><h1>실전 문제 풀기</h1><p>기출 원문 기준 · 자동채점 / 자기채점 구분</p></div><div class="inline-acts quiz-tools" role="group" aria-label="문제 도구">
 <button class="btn toolbtn" id="shuffleTop" type="button" title="문제 순서를 새로 섞어 다른 문제로 이동" aria-label="셔플: 문제 순서 새로 섞기">⤨ <span>셔플</span></button>
 <button class="btn toolbtn" id="refreshTop" type="button" title="현재 문제의 입력·피드백 초기화 (채점 기록 유지)" aria-label="새로고침: 현재 문제 다시 풀기">↻ <span>새로고침</span></button>
