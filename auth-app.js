@@ -142,7 +142,7 @@ async function startQuiz(user){
   if (patchedQuizScript.includes(resetLabelOverride)) {
     patchedQuizScript = patchedQuizScript.replace(
       resetLabelOverride,
-      "refreshButton.setAttribute('aria-label',isBangjae?'새로고침':'진행 초기화');"
+      "refreshButton.setAttribute('aria-label',active==='bangjae-herbs-ordered'?'순서대로 채점 기록 초기화':isBangjae?'새로고침':'진행 초기화');"
     );
   } else if (patchedQuizScript.includes('refreshButton.textContent')) {
     throw new Error('새로고침 버튼 코드 버전이 일치하지 않습니다.');
@@ -153,6 +153,17 @@ async function startQuiz(user){
     if(patchedQuizScript.split(before).length!==2)throw new Error('방제학 채점결과 패치 버전 불일치');
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
+  // '순서대로' 새로고침만 최근 정답/오답/정답보기 표시를 지웁니다.
+  // Firebase의 errorStats 누적 통계와 다른 과목/모드 세션은 변경하지 않습니다.
+  const orderedRefreshBefore = "if(active==='bangjae-herbs-ordered'){\n   stepBangjaeOrdered(1);\n   toast('다음 처방으로 이동했습니다.');\n   return;\n }";
+  const orderedRefreshAfter = "if(active==='bangjae-herbs-ordered'){\n   if(!confirm('방제학 순서대로의 정답·오답·정답 보기 표시를 초기화할까요? 다른 학습 기록은 유지됩니다.'))return;\n   const s=loadSession(active);\n   s.orderedResults={};\n   s.done=false;s.reveal=false;s.lastOK=false;s.drafts=[];\n   saveSession();\n   if(listView)renderFullList();else render();\n   toast('순서대로 채점 기록을 초기화했습니다.');\n   return;\n }";
+  const orderedRefreshTipBefore = "refreshButton.title=isBangjae?'정답·오답 기록을 유지하며 다음 문제 보기':'이 퀴즈의 진행 기록 초기화';";
+  const orderedRefreshTipAfter = "refreshButton.title=active==='bangjae-herbs-ordered'?'순서대로 채점 표시 초기화':isBangjae?'정답·오답 기록을 유지하며 다음 문제 보기':'이 퀴즈의 진행 기록 초기화';";
+  if(patchedQuizScript.split(orderedRefreshBefore).length!==2 || patchedQuizScript.split(orderedRefreshTipBefore).length!==2){
+    throw new Error('순서대로 채점 기록 초기화 패치 버전이 일치하지 않습니다.');
+  }
+  patchedQuizScript = patchedQuizScript.replace(orderedRefreshBefore,orderedRefreshAfter)
+    .replace(orderedRefreshTipBefore,orderedRefreshTipAfter);
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
