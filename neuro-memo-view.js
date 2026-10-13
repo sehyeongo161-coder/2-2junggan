@@ -4,8 +4,7 @@
  const byId=new Map(bank.map(q=>[q.id,q]));
  const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
- const nav=document.querySelector('.topnav');
- const tab=document.createElement('button');tab.dataset.tab='memo';tab.textContent='암기표';tab.type='button';nav.append(tab);
+ // 암기표 분류는 상위 사이트의 신경정신과 하위 탭에서 제어합니다.
  const view=document.createElement('div');view.id='memoView';view.className='hide';
  view.innerHTML='<div class="main-head"><div><h1>신경정신과 암기표</h1><p>한의신경정신과학 정리본 · 20·21·22학번 족보 대조</p></div></div><div class="panel memo-toolbar"><div class="memo-heading"><strong>주제별 암기표</strong><span id="memoCount"></span></div><div class="memo-search"><input id="memoSearch" type="search" placeholder="학자·원문·개념 검색" aria-label="암기표 검색"><select id="memoYear" aria-label="기출 학번"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select><button type="button" class="btn" id="memoOnly" aria-pressed="false">기출 연계만</button></div><div id="memoCategories" class="memo-categories" role="group" aria-label="분야 선택"><button type="button" data-memo-cat="전체" class="selected">전체</button><button type="button" data-memo-cat="한의학">한의학</button><button type="button" data-memo-cat="심리학">심리학</button><button type="button" data-memo-cat="발달">발달</button><button type="button" data-memo-cat="신경생리">신경생리</button></div><p class="memo-help"><strong class="memo-mark">족보</strong>는 해당 행에 연결되는 실제 기출문제입니다. 학번·문항 버튼을 누르면 퀴즈로 이동합니다. <strong>복기 불완전</strong> 문항은 답을 확정하지 않았습니다.</p></div><div id="memoCards" class="memo-cards"></div>';
  document.querySelector('main.main').append(view);
