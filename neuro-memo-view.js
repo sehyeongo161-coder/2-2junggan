@@ -6,10 +6,52 @@
  const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
  // 암기표 분류는 상위 사이트의 신경정신과 하위 탭에서 제어합니다.
  const view=document.createElement('div');view.id='memoView';view.className='hide';
- view.innerHTML='<div class="main-head"><div><h1>신경정신과 암기표</h1><p>한의신경정신과학 정리본 · 20·21·22학번 족보 대조</p></div></div><div class="panel memo-toolbar"><div class="memo-heading"><strong>주제별 암기표</strong><span id="memoCount"></span></div><div class="memo-practice-switch" role="group" aria-label="암기표 공부 방식"><button type="button" id="memoStudy" class="selected" aria-pressed="true">표 보기</button><button type="button" id="memoPractice" aria-pressed="false">빈칸 연습</button><button type="button" id="memoRestart" hidden>다시 풀기</button><span id="memoPracticeStats"></span></div><div class="memo-search"><input id="memoSearch" type="search" placeholder="학자·원문·개념 검색" aria-label="암기표 검색"><select id="memoYear" aria-label="기출 학번"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select><button type="button" class="btn" id="memoOnly" aria-pressed="false" title="기출문제와 연결된 20개 표만 보기 (추가 암기표 5개 숨김)">기출 연계표만</button></div><div id="memoCategories" class="memo-categories" role="group" aria-label="분야 선택"><button type="button" data-memo-cat="전체" class="selected">전체</button><button type="button" data-memo-cat="한의학">한의학</button><button type="button" data-memo-cat="심리학">심리학</button><button type="button" data-memo-cat="발달">발달</button><button type="button" data-memo-cat="신경생리">신경생리</button></div><p class="memo-help"><strong class="memo-mark">족보</strong>는 해당 행에 연결되는 실제 기출문제입니다. 학번·문항 버튼을 누르면 퀴즈로 이동합니다. <strong>복기 불완전</strong> 문항은 답을 확정하지 않았습니다.</p></div><div id="memoCards" class="memo-cards"></div>';
+ view.innerHTML='<div class="main-head"><div><h1>신경정신과 암기표</h1><p>한의신경정신과학 정리본 · 20·21·22학번 족보 대조</p></div></div><div class="panel memo-toolbar"><div class="memo-heading"><strong>주제별 암기표</strong><span id="memoCount"></span></div><div class="memo-practice-switch" role="group" aria-label="암기표 공부 방식"><button type="button" id="memoStudy" class="selected" aria-pressed="true">표 보기</button><button type="button" id="memoPractice" aria-pressed="false">랜덤 빈칸</button><button type="button" id="memoRestart" hidden>빈칸 바꾸기</button><button type="button" id="memoNext" hidden>다음 표 →</button><span id="memoPracticeStats"></span></div><div class="memo-search"><input id="memoSearch" type="search" placeholder="학자·원문·개념 검색" aria-label="암기표 검색"><select id="memoYear" aria-label="기출 학번"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select><button type="button" class="btn" id="memoOnly" aria-pressed="false" title="기출문제와 연결된 20개 표만 보기 (추가 암기표 5개 숨김)">기출 연계표만</button></div><div id="memoCategories" class="memo-categories" role="group" aria-label="분야 선택"><button type="button" data-memo-cat="전체" class="selected">전체</button><button type="button" data-memo-cat="한의학">한의학</button><button type="button" data-memo-cat="심리학">심리학</button><button type="button" data-memo-cat="발달">발달</button><button type="button" data-memo-cat="신경생리">신경생리</button></div><p class="memo-help"><strong class="memo-mark">족보</strong>는 해당 행에 연결되는 실제 기출문제입니다. 학번·문항 버튼을 누르면 퀴즈로 이동합니다. <strong>복기 불완전</strong> 문항은 답을 확정하지 않았습니다.</p></div><div id="memoCards" class="memo-cards"></div>';
  document.querySelector('main.main').append(view);
  let category='전체',examOnly=false,practice=false;
  const attempts=new Map(), drafts=new Map();
+ let practiceOrder=[],practiceCursor=0,practiceKey='',practiceTable=-1;
+ const blankTargets=new Map();
+ let originalTarget=0;
+ function scramble(list){
+   const out=[...list];
+   for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
+   return out;
+ }
+ function resetPracticeOrder(){
+   practiceOrder=[];practiceCursor=0;practiceKey='';practiceTable=-1;blankTargets.clear();
+ }
+ function chooseBlanks(tableIndex){
+   practiceTable=tableIndex;
+   blankTargets.clear();
+   const item=data[tableIndex];
+   if(!item)return;
+   const eligible=item.rows.map((row,i)=>({row,i,cols:row.c.map((v,col)=>({v:String(v).trim(),col}))
+     .filter(v=>v.v&&v.v!=='—'&&v.v.length<=36&&!/^(?:O|X|\d+|[①②③④⑤⑥⑦⑧])$/.test(v.v)).map(v=>v.col)}))
+     .filter(x=>x.cols.length);
+   // Like Shanghan Daja, mask only a few randomly selected places per table.
+   const selected=scramble(eligible).slice(0,Math.min(3,eligible.length));
+   for(const {row,i,cols} of selected){
+     let candidates=cols;
+     // Long prose can make very poor exact-text blanks; favor compact keywords.
+     const atomic=cols.filter(c=>String(row.c[c]).trim().length<=24);
+     if(atomic.length)candidates=atomic;
+     const col=candidates[Math.floor(Math.random()*candidates.length)];
+     blankTargets.set('row_'+tableIndex+'_'+i,col);
+   }
+   originalTarget=item.originalDrills?.length?Math.floor(Math.random()*item.originalDrills.length):0;
+ }
+ function advanceTable(filtered){
+   const ids=filtered.map(item=>data.indexOf(item));
+   const signature=ids.join(',');
+   if(practiceKey!==signature||!practiceOrder.length){
+     practiceKey=signature;practiceOrder=scramble(ids);practiceCursor=0;practiceTable=-1;
+   }
+   let id=practiceOrder[practiceCursor];
+   if(id===undefined)id=ids[0];
+   if(id!==practiceTable)chooseBlanks(id);
+   return id;
+ }
  const normAnswer=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s·.,;:!?'“”()\[\]{}\-_→+]/g,'');
  function getExpected(key){
   const [kind,n,r]=key.split('_');const item=data[Number(n)];if(!item)return null;
@@ -18,9 +60,9 @@
    return q?{answer:q.answer,aliases:q.aliases||[]}:null;
   }
   if(kind==='row'){
-   const row=item.rows[Number(r)], col=item.blankCol??0;
-   if(!row||row.c[col]===undefined)return null;
-   return {answer:row.c[col],aliases:row.aliases||[]};
+   const row=item.rows[Number(r)],col=blankTargets.get(key);
+   if(!row||col===undefined||row.c[col]===undefined)return null;
+   return {answer:row.c[col],aliases:col===(item.blankCol??0)?(row.aliases||[]):[]};
   }
   return null;
  }
@@ -59,7 +101,8 @@
    if(!item.original)return '';
    const heading='<div class="memo-original-head"><b>'+escape(item.originalLabel||'원문 암기')+'</b><span>원문 빈칸 기출</span></div>';
    if(!practice) return '<div class="memo-original">'+heading+'<p class="memo-original-quote">'+escape(item.original)+'</p><p class="memo-original-help">20학번: 心風 · 21학번: 痰 부분이 빈칸으로 출제되었습니다.</p></div>';
-   return '<div class="memo-original">'+heading+(item.originalDrills||[]).map((drill,i)=>'<div class="memo-original-drill"><small>'+escape(drill.label)+'</small><p>'+escape(drill.display)+'</p>'+blankInput('orig_'+index+'_'+i)+'</div>').join('')+'</div>';
+   const drill=item.originalDrills?.[originalTarget];
+   return drill?'<div class="memo-original">'+heading+'<div class="memo-original-drill"><small>'+escape(drill.label)+'</small><p>'+escape(drill.display)+'</p>'+blankInput('orig_'+index+'_'+originalTarget)+'</div></div>':'';
  }
 
  const refsOf=item=>{
@@ -79,24 +122,29 @@
    return true;
   });
   const related=data.filter(item=>refsOf(item).length).length;
-  document.getElementById('memoCount').textContent=filtered.length+'개 표 표시'+(examOnly?' · 기출 연계표 '+related+'개만':' · 전체 '+data.length+'개 중 기출 연계 '+related+'개');
+  const selectedIndex=practice&&filtered.length?advanceTable(filtered):-1;
+  const shown=practice&&selectedIndex!==-1?[data[selectedIndex]]:filtered;
+  document.getElementById('memoCount').textContent=practice&&filtered.length?
+    '랜덤 '+(practiceCursor+1)+' / '+filtered.length+'개 표 · 한 번에 최대 3개 빈칸':
+    filtered.length+'개 표 표시'+(examOnly?' · 기출 연계표 '+related+'개만':' · 전체 '+data.length+'개 중 기출 연계 '+related+'개');
   document.getElementById('memoStudy').classList.toggle('selected',!practice);
   document.getElementById('memoPractice').classList.toggle('selected',practice);
   document.getElementById('memoStudy').setAttribute('aria-pressed',String(!practice));
   document.getElementById('memoPractice').setAttribute('aria-pressed',String(practice));
   document.getElementById('memoRestart').hidden=!practice;
+  document.getElementById('memoNext').hidden=!practice;
   document.getElementById('memoOnly').setAttribute('aria-pressed',String(examOnly));
   document.getElementById('memoOnly').classList.toggle('selected',examOnly);
   const target=document.getElementById('memoCards');
   if(!filtered.length){target.innerHTML='<div class="emptycard"><b>해당 암기표가 없습니다.</b><p>검색·분류 조건을 조정해 주세요.</p></div>';return;}
-  target.innerHTML=filtered.map(item=>{
+  target.innerHTML=shown.map(item=>{
     const index=data.indexOf(item);
     const refs=refsOf(item);
     const rows=item.rows.map((row,rowIndex)=>{
       const direct=(row.q||[]).map(id=>byId.get(id)).filter(Boolean);
       const rowClass=direct.length?' class="memo-highlight"':'';
       const cells=row.c.map((val,i)=>{
-        const hasBlank=practice&&i===(item.blankCol??0)&&String(val).trim()!=='—';
+        const hasBlank=practice&&blankTargets.get('row_'+index+'_'+rowIndex)===i;
         // 원문 두 빈칸의 정답이 연습모드 표 셀에 노출되지 않도록 합니다.
         const protectedOriginal=practice&&!!item.original&&rowIndex===0&&i===2;
         const inner=hasBlank?blankInput('row_'+index+'_'+rowIndex):protectedOriginal?'원문 빈칸은 아래에서 연습':(i===0?'<b>'+escape(val)+'</b>':escape(val));
@@ -110,15 +158,36 @@
   }).join('');
   updatePracticeStats();
  }
- document.getElementById('memoSearch').addEventListener('input',render);
- document.getElementById('memoYear').addEventListener('change',render);
- document.getElementById('memoOnly').addEventListener('click',()=>{examOnly=!examOnly;render();});
+ document.getElementById('memoSearch').addEventListener('input',()=>{resetPracticeOrder();render();});
+ document.getElementById('memoYear').addEventListener('change',()=>{resetPracticeOrder();render();});
+ document.getElementById('memoOnly').addEventListener('click',()=>{examOnly=!examOnly;resetPracticeOrder();render();});
  document.getElementById('memoStudy').addEventListener('click',()=>{practice=false;render();});
- document.getElementById('memoPractice').addEventListener('click',()=>{practice=true;render();});
- document.getElementById('memoRestart').addEventListener('click',()=>{attempts.clear();drafts.clear();render();document.querySelector('#memoCards .memo-blank')?.focus();});
+ document.getElementById('memoPractice').addEventListener('click',()=>{practice=true;resetPracticeOrder();render();});
+ document.getElementById('memoRestart').addEventListener('click',()=>{
+   const prefix='row_'+practiceTable+'_',orig='orig_'+practiceTable+'_';
+   for(const key of [...attempts.keys()])if(key.startsWith(prefix)||key.startsWith(orig))attempts.delete(key);
+   for(const key of [...drafts.keys()])if(key.startsWith(prefix)||key.startsWith(orig))drafts.delete(key);
+   chooseBlanks(practiceTable);render();document.querySelector('#memoCards .memo-blank')?.focus();
+ });
+ document.getElementById('memoNext').addEventListener('click',()=>{
+   if(!practiceOrder.length)return;
+   practiceCursor++;
+   if(practiceCursor>=practiceOrder.length){
+     const previous=practiceOrder[practiceOrder.length-1];
+     practiceOrder=scramble(practiceOrder);practiceCursor=0;
+     if(practiceOrder.length>1&&practiceOrder[0]===previous){
+       const temp=practiceOrder[0];practiceOrder[0]=practiceOrder[1];practiceOrder[1]=temp;
+     }
+   }
+   const next=practiceOrder[practiceCursor];
+   for(const key of [...attempts.keys()])if(key.startsWith('row_'+next+'_')||key.startsWith('orig_'+next+'_'))attempts.delete(key);
+   for(const key of [...drafts.keys()])if(key.startsWith('row_'+next+'_')||key.startsWith('orig_'+next+'_'))drafts.delete(key);
+   practiceTable=-1;render();
+   document.querySelector('#memoCards .memo-blank')?.focus();
+ });
  document.getElementById('memoCategories').addEventListener('click',e=>{
   const button=e.target.closest('[data-memo-cat]');if(!button)return;
-  category=button.dataset.memoCat;
+  category=button.dataset.memoCat;resetPracticeOrder();
   document.querySelectorAll('[data-memo-cat]').forEach(b=>b.classList.toggle('selected',b===button));
   render();
  });
@@ -194,6 +263,29 @@
 .memo-original-drill p{font-family:serif;font-size:15px;line-height:1.9;color:#344a60;margin:7px 0}
 .memo-original-drill .memo-fill{max-width:430px}
 @media(max-width:600px){.memo-practice-switch>button{flex:1}.memo-practice-switch>button#memoRestart{margin-left:0}.memo-practice-switch>span{flex-basis:100%;text-align:right}.memo-original{padding:11px 12px}.memo-original-quote{font-size:15px}}
+`;
+ style.textContent+=`
+/* Pink neuropsychiatry memorization theme */
+.memo-heading strong,.memo-card-head h2{color:#7f3e5e}
+.memo-search input,.memo-search select,.memo-blank{border-color:#e8cfdb}
+.memo-search .btn.selected,.memo-practice-switch>button.selected{background:#faeaf1;border-color:#dba9c0;color:#a64272}
+.memo-categories button{border-color:#eed8e3;color:#915a76}
+.memo-categories button.selected{background:#b34575;border-color:#b34575;color:white}
+.memo-mark{background:#fae4ef;color:#993e68;border-color:#efc8da}
+.memo-labels span.exam{background:#fcebf2;color:#a04470}
+.memo-highlight,.memo-table .memo-highlight,.memo-refs-row td{background:#fffafd}
+.memo-ref{border-color:#efd0de;background:#fff4f8;color:#9f406d}
+.memo-ref:hover{background:#fce7f0}
+.memo-table th{background:#fcf0f6;color:#80556e;border-color:#ecd6e0}
+.memo-table td{border-color:#f2e5ec}
+.memo-note,.memo-original{background:#fff8fb;color:#75566a;border-color:#efdce5}
+.memo-original-head{color:#8c4669}
+.memo-original-head span{color:#a04470;border-color:#eecbdb;background:#fcecf3}
+.memo-grade{background:#fcf1f6;border-color:#e8c7d7;color:#a04470}
+.memo-blank:focus-visible{outline:2px solid #c979a0;outline-offset:1px}
+.memo-practice-switch>button{border-color:#e6cbd7;color:#925673}
+.memo-practice-switch>button#memoNext{background:#b34575;border-color:#b34575;color:#fff;font-weight:800}
+.memo-practice-switch>button#memoNext:hover{background:#9e3b65}
 `;
  document.head.append(style);
  window.renderNeuroMemo=render;
