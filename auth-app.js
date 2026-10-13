@@ -30,9 +30,9 @@ function setBusy(form,busy){for(const b of form.querySelectorAll('button,input')
 function setAuthenticatedUI(profile){
   gate.hidden=true;toolbar.hidden=false;
   $('account-name').textContent=`${profile.name}님`;
-  if(!statsOpen)quizRoot.hidden=false;
+  if(!statsOpen&&!reviewSession)quizRoot.hidden=false;
 }
-function showGate(){gate.hidden=false;quizRoot.hidden=true;toolbar.hidden=true;$('analytics-panel').hidden=true;statsOpen=false;}
+function showGate(){gate.hidden=false;quizRoot.hidden=true;toolbar.hidden=true;$('analytics-panel').hidden=true;$('review-panel').hidden=true;statsOpen=false;reviewSession=null;}
 
 async function approveUser(user){
   const name=approvedDisplayNames.find(n=>nameEmail(n)===user.email);
@@ -128,6 +128,13 @@ async function startQuiz(user){
     }
   }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
+  // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
+  await new Promise((resolve,reject)=>{
+    const bridge=document.createElement('script');bridge.src='./review-bridge.js';
+    bridge.onload=resolve;bridge.onerror=()=>reject(new Error('REVIEW_BRIDGE_LOAD_FAILED'));
+    document.body.appendChild(bridge);
+  });
+  if(!window.__QUIZ_REVIEW_API)throw new Error('REVIEW_BRIDGE_INIT_FAILED');
   appLoaded=true;
 }
 
@@ -150,23 +157,7 @@ async function handleAuthenticated(user){
 }
 
 function metric(label,value){const item=document.createElement('div');item.className='analytics-metric';const count=document.createElement('b');count.textContent=String(value);const title=document.createElement('span');title.textContent=label;item.append(count,title);return item;}
-function renderStats(){
-  const area=$('analytics-list');area.replaceChildren();const over=$('analytics-overview');over.replaceChildren();
-  const filter=$('analytics-filter')?.value||'all';
-  const rows=currentStats.filter(row=>filter==='all'||row.group===filter);
-  over.append(metric('누적 채점 수',rows.reduce((sum,x)=>sum+(x.total||0),0)),metric('오답 수',rows.reduce((sum,x)=>sum+(x.wrong||0),0)),metric('정답 보기',rows.reduce((sum,x)=>sum+(x.revealed||0),0)));
-  const sorted=[...rows].sort((a,b)=>(b.wrong||0)-(a.wrong||0)||(b.revealed||0)-(a.revealed||0)||a.label.localeCompare(b.label,'ko'));
-  if(!sorted.length){const empty=document.createElement('div');empty.className='analytics-empty';empty.textContent='아직 채점 기록이 없습니다.';area.append(empty);return;}
-  for(const item of sorted){
-    const card=document.createElement('div');card.className='analytics-item';
-    const heading=document.createElement('div');heading.className='analytics-item-header';
-    const name=document.createElement('span');name.textContent=item.label;
-    const count=document.createElement('span');count.className='counts';count.textContent=`오답 ${item.wrong||0}회`;
-    heading.append(name,count);
-    const detail=document.createElement('small');detail.textContent=`${item.group} · 채점 ${item.total||0}회 · 정답 보기 ${item.revealed||0}회`;
-    card.append(heading,detail);area.append(card);
-  }
-}
+function renderStats(){updateStatControls();}
 async function showAnalytics(){
   if(!authenticatedUid)return;
   statsOpen=true;quizRoot.hidden=true;$('analytics-panel').hidden=false;
@@ -175,9 +166,7 @@ async function showAnalytics(){
   try{
     const snapshots=await getDocs(collection(db,'users',authenticatedUid,'errorStats'));
     currentStats=snapshots.docs.map(x=>({id:x.id,...x.data()}));
-    let sel=$('analytics-filter');
-    if(!sel){sel=document.createElement('select');sel.id='analytics-filter';sel.className='analytics-filter';
-      $('analytics-overview').before(sel);sel.onchange=renderStats;}
+    const sel=$('analytics-filter');
     const last=sel.value;sel.replaceChildren();
     for(const v of ['all',...new Set(currentStats.map(x=>x.group))]){
       const o=document.createElement('option');o.value=v;o.textContent=v==='all'?'전체 과목·유형':v;sel.append(o);
@@ -186,6 +175,166 @@ async function showAnalytics(){
     renderStats();
   }catch(error){wrap.replaceChildren();$('analytics-message').textContent='오답 통계를 불러오지 못했습니다. 네트워크와 보안 규칙을 확인해 주세요.';console.error(error);}
 }
+
+// A separate review session: never touches the normal quiz queues or progress saves.
+let reviewSession = null;
+function statRows() {
+  const filter = $('analytics-filter').value;
+  const minThree = $('analytics-min-three').checked;
+  const sorting = $('analytics-sort').value;
+  const filtered = currentStats.filter(row => (filter === 'all' || row.group === filter) && (!minThree || row.total >= 3));
+  filtered.sort((a,b) => {
+    const primary = sorting === 'count' ? (b.wrong || 0) - (a.wrong || 0)
+      : (b.wrong / Math.max(1,b.total)) - (a.wrong / Math.max(1,a.total));
+    return primary || b.wrong - a.wrong || b.revealed - a.revealed || b.total - a.total || a.label.localeCompare(b.label,'ko');
+  });
+  return filtered;
+}
+function reviewCandidates() {
+  const api = window.__QUIZ_REVIEW_API;
+  if(!api)return [];
+  return statRows().filter(x => x.wrong > 0 || x.revealed > 0)
+    .map(stat => ({stat, item: api.resolve(stat)})).filter(x => x.item !== null);
+}
+function renderStatRows() {
+  const area = $('analytics-list');area.replaceChildren();
+  const rows = statRows();
+  const items = reviewCandidates();
+  $('analytics-review-count').textContent = `복습 가능 ${items.length}문항`;
+  $('start-review').disabled = !items.length;
+  if (!rows.length) {
+    const empty = document.createElement('div');empty.className='analytics-empty';
+    empty.textContent = currentStats.length ? '조건에 맞는 기록이 없습니다. 필터를 변경해 보세요.' : '아직 채점 기록이 없습니다. 퀴즈를 먼저 풀어 주세요.';
+    area.append(empty);return;
+  }
+  for (const row of rows) {
+    const card = document.createElement('div');card.className='analytics-item';
+    const heading = document.createElement('div');heading.className='analytics-item-header';
+    const name = document.createElement('span');name.textContent=row.label;
+    const ratio = Math.round((row.wrong || 0) / Math.max(1,row.total) * 100);
+    const count = document.createElement('span');count.className='counts';count.textContent=`오답률 ${ratio}%`;
+    const detail = document.createElement('small');
+    detail.textContent=`${row.group} · ${row.total}회 중 오답 ${row.wrong}회 · 정답 보기 ${row.revealed}회`;
+    heading.append(name,count);card.append(heading,detail);area.append(card);
+  }
+}
+function statOverview() {
+  const box = $('analytics-overview');box.replaceChildren();
+  const filter = $('analytics-filter').value;
+  const rows = currentStats.filter(x => filter === 'all' || x.group === filter);
+  box.append(metric('누적 채점 수',rows.reduce((s,x)=>s+(x.total||0),0)),
+    metric('오답 수',rows.reduce((s,x)=>s+(x.wrong||0),0)),
+    metric('정답 보기',rows.reduce((s,x)=>s+(x.revealed||0),0)));
+}
+function updateStatControls() {statOverview();renderStatRows();}
+function startReview() {
+  const candidates = reviewCandidates();
+  if(!candidates.length) { $('analytics-message').textContent='복습할 오답 기록이 없습니다.';return; }
+  reviewSession = {items: candidates, index:0, checked:false, revealed:false, result:null, correct:0, wrong:0, seen:0};
+  statsOpen=false;
+  $('analytics-panel').hidden=true;quizRoot.hidden=true;$('review-panel').hidden=false;
+  renderReview();
+  $('review-panel').scrollIntoView({block:'start',behavior:'instant'});
+}
+function addReviewText(parent, str, className) {
+  const s=document.createElement('span');if(className)s.className=className;s.textContent=str;parent.append(s);
+}
+function renderReviewPassage(item) {
+  const passage = $('review-passage');passage.replaceChildren();
+  passage.hidden = !['name','daja'].includes(item.type);
+  if(item.type==='name'){
+    for(let i=0;i<item.parts.length;i++){
+      passage.append(document.createTextNode(item.parts[i]));
+      if(i<item.answers.length){
+        const answer = item.answers[i];
+        addReviewText(passage,i===item.target?'_ '.repeat([...answer].length).trim():answer,i===item.target?'review-hole':'review-other-answer');
+      }
+    }
+  } else if(item.type==='daja') {
+    passage.append(document.createTextNode(item.original.slice(0,item.start)));
+    addReviewText(passage,'_ '.repeat([...item.answer.replace(/[\s,，、.。]/g,'')].length).trim(),'review-hole');
+    passage.append(document.createTextNode(item.original.slice(item.end)));
+  }
+}
+function renderReview() {
+  const s=reviewSession;
+  if(!s)return;
+  const finished=s.index>=s.items.length;
+  $('review-question').hidden=finished;
+  $('review-finish').hidden=!finished;
+  if(finished){
+    $('review-summary').textContent=`${s.seen}문항 복습 · 정답 ${s.correct}문항 · 오답/정답보기 ${s.wrong}문항`;
+    return;
+  }
+  const {stat,item}=s.items[s.index];
+  $('review-position').textContent=`${s.index+1} / ${s.items.length} · 시작 당시 오답률 ${Math.round(stat.wrong/Math.max(1,stat.total)*100)}% (${stat.wrong}/${stat.total})`;
+  $('review-progress').style.width=(s.index/s.items.length*100)+'%';
+  $('review-category').textContent=item.group;
+  $('review-title').replaceChildren();
+  addReviewText($('review-title'),item.title);
+  if(item.hanja)addReviewText($('review-title'),` (${item.hanja})`,'review-hanja');
+  $('review-note').textContent=item.type==='herbs'?'약재를 쉼표 또는 공백으로 구분해 입력하세요. 순서는 무관합니다.':item.type==='daja'?'한자 또는 독음(한글)으로 입력하세요.':'한글 또는 한자로 입력하세요.';
+  renderReviewPassage(item);
+  const fieldWrap=$('review-input-wrap');fieldWrap.replaceChildren();
+  const field=document.createElement(item.type==='herbs'?'textarea':'input');
+  field.id='review-answer';field.spellcheck=false;field.autocomplete='off';
+  field.setAttribute('aria-label','복습 정답 입력');
+  if(item.type!=='herbs'){field.type='text';field.placeholder='정답을 입력하세요';field.className='review-input';}
+  else{field.rows=3;field.placeholder='약재 구성 입력';}
+  field.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.isComposing&&!e.shiftKey){e.preventDefault();reviewGrade(false);}
+  });
+  fieldWrap.append(field);
+  $('review-feedback').replaceChildren();$('review-feedback').hidden=true;
+  $('review-check').hidden=false;$('review-reveal').hidden=false;
+  $('review-next').hidden=true;
+  $('review-check').disabled=false;$('review-reveal').disabled=false;
+  field.disabled=false;
+  field.focus({preventScroll:true});
+}
+function reviewGrade(reveal) {
+  const s=reviewSession;if(!s||s.checked||s.index>=s.items.length)return;
+  const {item}=s.items[s.index];
+  const input=$('review-answer');
+  const result=window.__QUIZ_REVIEW_API.grade(item,input.value);
+  const correct=!reveal&&result.ok;
+  s.checked=true;s.revealed=!!reveal;s.result=result;
+  s.seen++;if(correct)s.correct++;else s.wrong++;
+  input.disabled=true;
+  $('review-check').hidden=true;$('review-reveal').hidden=true;$('review-next').hidden=false;
+  $('review-next').textContent=s.index===s.items.length-1?'복습 결과 보기 →':'다음 문제 →';
+  const fb=$('review-feedback');fb.hidden=false;
+  const h=document.createElement('h4');h.className=correct?'correct':'wrong';
+  h.textContent=correct?'정답입니다.':reveal?'정답을 확인했습니다.':'오답입니다.';fb.append(h);
+  const ans=document.createElement('p');ans.textContent=`정답: ${item.accepted||item.answer}`;fb.append(ans);
+  if(item.reading?.length){const reading=document.createElement('p');reading.className='review-reading';reading.textContent='독음: '+item.reading.join(' / ');fb.append(reading);}
+  if(result.missing?.length){const missing=document.createElement('p');missing.textContent='빠뜨린 약재: '+result.missing.join(' · ');fb.append(missing);}
+  if(result.extra?.length){const extra=document.createElement('p');extra.textContent='추가 입력: '+result.extra.join(' · ');fb.append(extra);}
+  // Do not alter the original quiz's per-mode session. Only append to Firestore stat.
+  window.__QUIZ_TRACK_ATTEMPT({key:item.key,label:item.label,group:item.group,correct,revealed:!!reveal});
+  $('review-next').focus();
+}
+function reviewNext() {
+  if(!reviewSession?.checked)return;
+  reviewSession.index++;reviewSession.checked=false;reviewSession.revealed=false;
+  renderReview();
+}
+async function exitReview() {
+  reviewSession=null;$('review-panel').hidden=true;
+  // The client-side stat writes are in-flight; wait for them before refreshing the list.
+  if(pendingStats.size)await Promise.allSettled([...pendingStats]);
+  await showAnalytics();
+}
+$('start-review').onclick=startReview;
+$('analytics-sort').onchange=updateStatControls;
+$('analytics-min-three').onchange=updateStatControls;
+$('analytics-filter').onchange=updateStatControls;
+$('review-check').onclick=()=>reviewGrade(false);
+$('review-reveal').onclick=()=>reviewGrade(true);
+$('review-next').onclick=reviewNext;
+$('review-exit').onclick=exitReview;
+$('review-back').onclick=exitReview;
+$('review-again').onclick=async()=>{await exitReview();startReview();};
 
 $('open-register').onclick=()=>switchRegister(true);
 $('open-login').onclick=()=>switchRegister(false);

@@ -136,6 +136,31 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 
 /* Firebase accounts — quiz data are delivered only after approved login. */
 .auth-panel{max-width:490px;margin:10vh auto 24px;padding:0 18px}.auth-title{margin-bottom:24px}.auth-card{background:#fff;border:1px solid #e0e5ec;border-radius:16px;padding:26px;box-shadow:0 12px 28px #22344708}.auth-card h2{font-size:21px;margin:0 0 8px}.auth-muted{font-size:14px;color:#667789;line-height:1.7}.auth-form{display:grid;gap:14px;margin-top:19px}.auth-form label{font-size:14px;font-weight:700;display:grid;gap:5px}.auth-form input{border:1px solid #ccd6e3;border-radius:9px;padding:11px 12px;width:100%;font-size:16px}.auth-form button{margin-top:7px}.auth-link{border:0;color:#365f96;text-decoration:underline;background:transparent;padding:12px 0;margin-top:8px;font-size:14px}.auth-message{color:#a24438;font-size:14px;line-height:1.55;margin:12px 0 0;min-height:20px}.auth-message.ok{color:#23724c}.account-toolbar{max-width:940px;margin:16px auto 0;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#52647d;font-size:14px}.account-tools{display:flex;flex-wrap:wrap;gap:8px}.account-tools button{font-size:13px;min-height:37px;padding:6px 12px}.analytics-panel{max-width:940px;margin:28px auto 70px;padding:0 24px}.analytics-head{display:flex;justify-content:space-between;align-items:center;gap:16px}.analytics-head h2{font-size:26px;margin:0}.analytics-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.analytics-metric{padding:17px;border:1px solid #dce5ee;background:#f8fafc;border-radius:13px}.analytics-metric b{display:block;font-size:26px}.analytics-metric span{color:#65778e;font-size:13px}.analytics-list{display:grid;gap:10px}.analytics-item{padding:15px 18px;background:#fff;border:1px solid #e3e8ee;border-radius:12px}.analytics-item-header{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;font-weight:700}.analytics-item small{color:#6a7b8c;font-weight:500}.analytics-item .counts{color:#a44737;font-weight:700}.analytics-empty{padding:25px;border:1px dashed #cdd9e6;border-radius:12px;color:#667789}.analytics-filter{margin-bottom:13px;padding:9px;background:#fff;border:1px solid #ccd6e3;border-radius:9px;max-width:100%;font-size:14px}.auth-wait{padding:24px;text-align:center;color:#65778e}@media(max-width:600px){.account-toolbar,.analytics-panel{padding-left:15px;padding-right:15px}.account-toolbar{flex-wrap:wrap}.analytics-overview{gap:6px}.analytics-metric{padding:12px}.analytics-metric b{font-size:21px}.analytics-head{align-items:flex-start;flex-wrap:wrap}}
+
+/* 오답률 기반 취약문제 복습 */
+.analytics-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 11px}
+.analytics-controls label{font-size:13px;font-weight:650;color:#596e85;display:grid;gap:6px}
+.analytics-controls select{background:#fff;border:1px solid #ccd6e3;border-radius:9px;min-height:43px;padding:9px 11px;width:100%;color:#26374c}
+.analytics-controls .analytics-check{display:flex;align-items:center;gap:9px;grid-column:span 2;font-weight:500}
+.analytics-check input{width:17px;height:17px;accent-color:var(--accent)}
+.analytics-review-bar{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:17px 18px;border:1px solid #dce5ee;border-radius:13px;background:#fff;margin:14px 0 17px}
+.analytics-review-bar p{margin:0;font-size:13px;color:#67778d;line-height:1.6}
+.analytics-review-bar strong{display:block;color:#26374c;font-size:17px;margin-bottom:2px}
+.review-panel .analytics-head{margin-bottom:20px}
+.review-position{font-size:14px;color:#66778e;margin:12px 0 16px}
+.review-panel .progress{margin-bottom:0}
+.review-card{margin-top:14px}
+.review-category{display:inline-block;background:var(--tint);border-radius:6px;color:var(--accent);padding:4px 10px;font-weight:650;font-size:13px;margin-bottom:10px}
+.review-card h3{font-size:25px;line-height:1.5;margin:4px 0 15px;overflow-wrap:anywhere}
+.review-hanja{color:#748296;font-weight:500;font-size:.75em}
+.review-hole{background:#e9f1fb;border-bottom:2px solid #6592c7;border-radius:4px;color:#37649d;padding:3px 7px;margin:0 3px;white-space:nowrap;font:600 16px system-ui,sans-serif}
+.review-other-answer{color:#6b7184;font-weight:600}
+.review-input{display:block;width:100%;max-width:100%;font-size:17px;padding:13px 14px;border:1px solid #cbd7e5;border-radius:10px;background:#fff}
+.review-reading{color:#63758c;font-size:14px}
+#review-feedback p{overflow-wrap:anywhere;margin:6px 0}
+.review-finish{text-align:center;margin-top:15px}
+.review-finish p{color:#66778e}
+@media(max-width:600px){.analytics-controls{grid-template-columns:1fr 1fr;gap:8px}.analytics-review-bar{flex-wrap:wrap}.analytics-review-bar button{width:100%}.review-card h3{font-size:21px}.review-hole{font-size:14px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -173,8 +198,34 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
  <div class="analytics-head"><div><p class="eyebrow">개인 학습 기록</p><h2>내 오답 통계</h2></div><button id="close-analytics" type="button">퀴즈로 돌아가기</button></div>
  <p class="auth-muted">이 계정에서 채점한 기록만 표시합니다. 방제학 순서대로는 집계하지 않으며 정답 보기는 오답과 별도로 표시합니다.</p>
  <div id="analytics-overview" class="analytics-overview"></div>
+ <div class="analytics-controls">
+   <label for="analytics-filter">과목·유형<select id="analytics-filter"><option value="all">전체 과목·유형</option></select></label>
+   <label for="analytics-sort">정렬 방식<select id="analytics-sort"><option value="rate">오답률 높은 순</option><option value="count">오답 횟수 많은 순</option></select></label>
+   <label class="analytics-check"><input id="analytics-min-three" type="checkbox">3회 이상 채점한 문제만 보기</label>
+ </div>
+ <div class="analytics-review-bar"><p><strong id="analytics-review-count">복습 가능 0문항</strong>기존 퀴즈 진도는 유지하고 오답 기록만 누적합니다.</p><button type="button" id="start-review" class="primary" disabled>취약 문제부터 풀기 →</button></div>
  <div id="analytics-list" class="analytics-list"></div>
  <p id="analytics-message" role="status"></p>
+</section>
+<section id="review-panel" class="analytics-panel review-panel" hidden>
+ <div class="analytics-head"><div><p class="eyebrow">내 오답 통계</p><h2>취약 문제 복습</h2></div><button type="button" id="review-exit">오답 통계로 돌아가기</button></div>
+ <div id="review-question">
+   <div class="progress" role="progressbar" aria-label="복습 진행률"><div id="review-progress"></div></div>
+   <p id="review-position" class="review-position"></p>
+   <div class="card review-card">
+     <span id="review-category" class="review-category"></span>
+     <h3 id="review-title"></h3>
+     <div id="review-passage" class="passage" lang="zh-Hant" hidden></div>
+     <div id="review-input-wrap"></div>
+     <p id="review-note" class="help"></p>
+     <div class="actions"><button id="review-check" class="primary" type="button">채점하기</button><button id="review-reveal" type="button">정답 보기</button><button id="review-next" type="button" hidden>다음 문제 →</button></div>
+     <div id="review-feedback" class="result" role="status" aria-live="polite" hidden></div>
+   </div>
+ </div>
+ <div id="review-finish" class="card review-finish" hidden>
+   <h3>취약 문제 복습 완료</h3><p id="review-summary"></p>
+   <div class="actions" style="justify-content:center"><button class="primary" id="review-again" type="button">최신 오답률로 다시 풀기</button><button id="review-back" type="button">오답 통계 보기</button></div>
+ </div>
 </section>
 
 <main id="quiz-root" hidden>
