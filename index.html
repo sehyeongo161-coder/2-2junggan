@@ -175,6 +175,23 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 .review-finish{text-align:center;margin-top:15px}
 .review-finish p{color:#66778e}
 @media(max-width:600px){.analytics-controls{grid-template-columns:1fr 1fr;gap:8px}.analytics-review-bar{flex-wrap:wrap}.analytics-review-bar button{width:100%}.review-card h3{font-size:21px}.review-hole{font-size:14px}}
+
+/* 퀴즈 ↔ 오답 통계 공통 내비게이션 */
+.study-nav[hidden],.account-tools #open-analytics[hidden]{display:none!important}
+.study-nav{position:sticky;top:0;z-index:40;display:flex;align-items:stretch;gap:5px;max-width:892px;margin:12px auto 0;padding:6px;background:rgba(255,255,255,.96);border:1px solid #dce5ef;border-radius:14px;box-shadow:0 4px 18px #2234470a;backdrop-filter:blur(8px)}
+.study-nav-item{display:flex;flex:1;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 12px;font-weight:720;font-size:14px;color:#62718a;border:0;border-radius:10px;background:transparent;white-space:nowrap}
+.study-nav-item:hover{background:var(--tint);color:var(--accent)}
+.study-nav-item.selected{background:var(--tint);color:var(--accent)}
+.study-nav-item:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+#close-analytics{display:none}
+.analytics-row-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:5px}
+.analytics-practice{flex:none;color:var(--accent);border:1px solid var(--line);background:#fff;border-radius:8px;font-size:13px;font-weight:680;min-height:35px;padding:6px 12px}
+.analytics-practice:hover{background:var(--tint)}
+@media(max-width:600px){
+ body.has-study-nav{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+ .study-nav{position:fixed;top:auto;left:0;right:0;bottom:0;max-width:none;width:100%;margin:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));border-radius:15px 15px 0 0;border:1px solid #dce5ef;box-shadow:0 -5px 22px #20344d15}
+ .study-nav-item{min-height:47px}
+}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -206,8 +223,16 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 </section>
 <div id="account-toolbar" class="account-toolbar" hidden>
  <button type="button" id="sync-status" class="auth-link" aria-live="polite"></button><span id="account-name"></span>
- <div class="account-tools"><button id="open-analytics" type="button">내 오답 통계</button><button id="account-signout" type="button">로그아웃</button></div>
+ <div class="account-tools"><button id="open-analytics" type="button" hidden>내 오답 통계</button><button id="account-signout" type="button">로그아웃</button></div>
 </div>
+<nav id="study-nav" class="study-nav" aria-label="퀴즈와 오답 통계 전환" hidden>
+  <button id="nav-quiz" class="study-nav-item selected" type="button" aria-pressed="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg><span>퀴즈</span>
+  </button>
+  <button id="nav-stats" class="study-nav-item" type="button" aria-pressed="false">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M8 16v-4M13 16V8M18 16V5"/></svg><span>오답 통계</span>
+  </button>
+</nav>
 <section id="analytics-panel" class="analytics-panel" hidden>
  <div class="analytics-head"><div><p class="eyebrow">개인 학습 기록</p><h2>내 오답 통계</h2></div><button id="close-analytics" type="button">퀴즈로 돌아가기</button></div>
  <p class="auth-muted">이 계정에서 채점한 기록만 표시합니다. 방제학 순서대로는 집계하지 않으며 정답 보기는 오답과 별도로 표시합니다.</p>
