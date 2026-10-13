@@ -144,7 +144,7 @@ function switchTab(tab){
  if(tab!=='memo')lastPastTab=tab;
  document.body.classList.toggle('neuro-memo-mode',tab==='memo');
  const logo=document.querySelector('.logo');
- if(logo?.firstChild)logo.firstChild.textContent=tab==='memo'?'신경정신과 · 암기표':'신경정신과 · 족보';
+ if(logo?.firstChild)logo.firstChild.textContent=tab==='memo'?'신경정신과 · 암기표':'신경정신과 · 퀴즈';
  for(const t of ['quiz','list','stats','memo']){
    $(t+'View').classList.toggle('hide',t!==tab);
    document.querySelector('[data-tab="'+t+'"]')?.classList.toggle('active',t===tab);
@@ -177,7 +177,8 @@ window.__neuroOpenQuestion=id=>{
 };
 window.addEventListener('message',e=>{
  if(e.source!==window.parent||e.origin!==location.origin||e.data?.type!=='neuro-open-question')return;
- window.__neuroOpenQuestion(e.data.id);
+ if(typeof window.__neuroOpenQuestion==='function')window.__neuroOpenQuestion(e.data.id);
+ else window.__neuroPendingQuestion=e.data.id;
 });
 window.openNeuroMemoQuestion=(id)=>{
  if(!byId.has(id))return;
@@ -287,6 +288,7 @@ $('listSearch').addEventListener('input',e=>{state.listSearch=e.target.value;ren
 $('resetRecord').addEventListener('click',()=>{if(!confirm('이 브라우저에 저장된 정답·오답·열람 기록을 모두 초기화하시겠습니까?'))return;records={};state.responses={};state.revealed={};state.feedback=null;save();updateCounters();if(state.tab==='quiz')renderQuiz();if(state.tab==='list')renderList();if(state.tab==='stats')renderStats();});
 for(const [n,title] of [...new Map(bank.map(q=>[q.topicNo,q.topic])).entries()]){const opt=document.createElement('option');opt.value=n;opt.textContent=String(n).padStart(2,'0')+' · '+title;$('topic').append(opt);}
 $('mobileFilters').open=false;state.orderList=shuffle(bank.map(q=>q.id));state.order='shuffle';state.current=null;syncFilters();renderQuiz();window.__neuroApplyMode?.(window.__neuroRequestedMode);
+if(window.__neuroPendingQuestion){const id=window.__neuroPendingQuestion;window.__neuroPendingQuestion=null;window.__neuroOpenQuestion(id);}
 if(window.parent!==window)window.parent.postMessage({type:'neuro-progress-updated',uid:window.__neuroUid,records},location.origin);
 if(!storeOK)$('saveText').textContent='브라우저 저장을 사용할 수 없습니다.';
 };
