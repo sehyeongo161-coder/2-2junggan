@@ -19,7 +19,7 @@
    return out;
  }
  function resetPracticeOrder(){
-   practiceOrder=[];practiceCursor=0;practiceKey='';practiceTable=-1;blankTargets.clear();
+   practiceOrder=[];practiceCursor=0;practiceKey='';practiceTable=-1;blankTargets.clear();attempts.clear();drafts.clear();
  }
  function chooseBlanks(tableIndex){
    practiceTable=tableIndex;
@@ -167,7 +167,12 @@
    const prefix='row_'+practiceTable+'_',orig='orig_'+practiceTable+'_';
    for(const key of [...attempts.keys()])if(key.startsWith(prefix)||key.startsWith(orig))attempts.delete(key);
    for(const key of [...drafts.keys()])if(key.startsWith(prefix)||key.startsWith(orig))drafts.delete(key);
-   chooseBlanks(practiceTable);render();document.querySelector('#memoCards .memo-blank')?.focus();
+   const oldPattern=JSON.stringify([...blankTargets.entries()]);
+   for(let i=0;i<12;i++){
+     chooseBlanks(practiceTable);
+     if(JSON.stringify([...blankTargets.entries()])!==oldPattern)break;
+   }
+   render();document.querySelector('#memoCards .memo-blank')?.focus();
  });
  document.getElementById('memoNext').addEventListener('click',()=>{
    if(!practiceOrder.length)return;
