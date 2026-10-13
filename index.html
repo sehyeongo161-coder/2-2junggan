@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>본과 2-2 중간고사</title>
-<meta name="description" content="상한론 처방명·처방 구성(핵심/비교)과 방제학 처방 구성 암기 퀴즈">
+<meta name="description" content="상한론·방제학 암기 퀴즈와 신경정신과 중간고사 기출 실전 퀴즈">
 <link rel="canonical" href="https://sehyeongo161-coder.github.io/2-2junggan/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sehyeongo161-coder.github.io/2-2junggan/">
 <meta property="og:site_name" content="본과 2-2 중간고사">
 <meta property="og:title" content="본과 2-2 중간고사">
-<meta property="og:description" content="상한론 · 방제학">
+<meta property="og:description" content="상한론 · 방제학 · 신경정신과">
 <meta property="og:image" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <meta property="og:image:secure_url" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <meta property="og:image:type" content="image/png">
@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="본과 2-2 중간고사">
-<meta name="twitter:description" content="상한론 · 방제학">
+<meta name="twitter:description" content="상한론 · 방제학 · 신경정신과">
 <meta name="twitter:image" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <style>
 :root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#243244;background:#f5f6f8;line-height:1.6;color-scheme:light;--accent:#365f96;--tint:#eaf0f8;--line:#d4dfed;--muted:#65758b}
@@ -192,6 +192,12 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
  .study-nav{position:fixed;top:auto;left:0;right:0;bottom:0;max-width:none;width:100%;margin:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));border-radius:15px 15px 0 0;border:1px solid #dce5ef;box-shadow:0 -5px 22px #20344d15}
  .study-nav-item{min-height:47px}
 }
+/* 신경정신과 독립형 학습 화면 */
+body[data-subject="neuro"]{--accent:#2365a3;--tint:#edf5fc;--line:#dce6ef;--muted:#708397}
+body[data-subject="neuro"] #quiz-root{max-width:1220px}
+#neuro-panel{margin:-10px -10px 0}
+#neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#f5f7fb}
+@media(max-width:600px){#neuro-panel{margin:-12px -12px 0}#neuro-frame{border-radius:0;min-height:1100px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -271,6 +277,7 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 <nav class="subject-tabs" role="tablist" aria-label="과목">
 <button id="tab-sanghan" role="tab" aria-selected="true" aria-controls="panel" data-subject="sanghan">상한론</button>
 <button id="tab-bangjae" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1" data-subject="bangjae">방제학</button>
+<button id="tab-neuro" role="tab" aria-selected="false" aria-controls="neuro-panel" tabindex="-1">신경정신과</button>
 </nav>
 <section id="panel" role="tabpanel" aria-labelledby="tab-sanghan">
 <nav id="sanghan-tabs" class="subtabs" role="tablist" aria-label="상한론 학습 유형">
@@ -368,9 +375,42 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
   </details>
 </section>
 </section>
+<section id="neuro-panel" role="tabpanel" aria-labelledby="tab-neuro" hidden>
+<iframe id="neuro-frame" title="신경정신과 중간고사 기출 실전 퀴즈" referrerpolicy="same-origin"></iframe>
+</section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
 
+
+<script>
+/* 다른 과목의 퀴즈 상태를 그대로 유지한 채 신경정신과만 독립 패널로 표시합니다. */
+(()=>{
+ const neuroTab=document.getElementById('tab-neuro');
+ const oldTabs=[document.getElementById('tab-sanghan'),document.getElementById('tab-bangjae')];
+ const allTabs=[...oldTabs,neuroTab],panel=document.getElementById('panel'),neuroPanel=document.getElementById('neuro-panel'),frame=document.getElementById('neuro-frame');
+ let neuroActive=false;
+ function selectTab(tab){
+   for(const b of allTabs){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
+ }
+ neuroTab.addEventListener('click',()=>{
+   if(document.getElementById('quiz-root').hidden)return;
+   neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
+   document.body.dataset.subject='neuro';selectTab(neuroTab);
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html';
+ },true);
+ for(const tab of oldTabs)tab.addEventListener('click',()=>{
+   if(!neuroActive)return;
+   neuroActive=false;neuroPanel.hidden=true;panel.hidden=false;
+   document.body.dataset.subject=tab.dataset.subject;
+   selectTab(tab);
+ },true);
+ window.addEventListener('message',e=>{
+   if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='neuro-quiz-size')return;
+   const height=Number(e.data.height);
+   if(Number.isFinite(height)&&height>=550&&height<=20000)frame.style.height=(height+16)+'px';
+ });
+})();
+</script>
 <script type="module" src="./auth-app.js?v=20261013-ordered-reset-2"></script>
 </body>
 </html>
