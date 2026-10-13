@@ -196,6 +196,7 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 body[data-subject="neuro"]{--accent:#2365a3;--tint:#edf5fc;--line:#dce6ef;--muted:#708397}
 body[data-subject="neuro"] #quiz-root{width:100%;max-width:none;padding:18px 12px 28px}
 #neuro-panel{margin:0;width:100%}
+#neuro-subtabs{margin:0 0 15px}
 #neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#f5f7fb}
 @media(max-width:600px){body[data-subject="neuro"] #quiz-root{padding:8px 5px 24px}#neuro-panel{margin:0}#neuro-frame{border-radius:0;min-height:1100px}}
 </style>
@@ -376,38 +377,68 @@ body[data-subject="neuro"] #quiz-root{width:100%;max-width:none;padding:18px 12p
 </section>
 </section>
 <section id="neuro-panel" role="tabpanel" aria-labelledby="tab-neuro" hidden>
-<iframe id="neuro-frame" title="신경정신과 중간고사 기출 실전 퀴즈" referrerpolicy="same-origin"></iframe>
+<nav id="neuro-subtabs" class="subtabs" role="tablist" aria-label="신경정신과 학습 유형">
+<button id="tab-neuro-past" type="button" role="tab" aria-selected="true" aria-controls="neuro-content">족보</button>
+<button id="tab-neuro-memo" type="button" role="tab" aria-selected="false" aria-controls="neuro-content" tabindex="-1">암기표</button>
+</nav>
+<div id="neuro-content" role="tabpanel" aria-labelledby="tab-neuro-past">
+<iframe id="neuro-frame" title="신경정신과 족보 · 암기표" referrerpolicy="same-origin"></iframe>
+</div>
 </section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
 
 
 <script>
-/* 다른 과목의 퀴즈 상태를 그대로 유지한 채 신경정신과만 독립 패널로 표시합니다. */
+/* 상한론의 하위탭처럼 신경정신과도 '족보 / 암기표'로 구분합니다. */
 (()=>{
  const neuroTab=document.getElementById('tab-neuro');
  const oldTabs=[document.getElementById('tab-sanghan'),document.getElementById('tab-bangjae')];
- const allTabs=[...oldTabs,neuroTab],panel=document.getElementById('panel'),neuroPanel=document.getElementById('neuro-panel'),frame=document.getElementById('neuro-frame');
- let neuroActive=false;
- function selectTab(tab){
+ const allTabs=[...oldTabs,neuroTab];
+ const panel=document.getElementById('panel'),neuroPanel=document.getElementById('neuro-panel');
+ const frame=document.getElementById('neuro-frame'),neuroContent=document.getElementById('neuro-content');
+ const subs={past:document.getElementById('tab-neuro-past'),memo:document.getElementById('tab-neuro-memo')};
+ let neuroActive=false,neuroMode='past';
+ function selectSubject(tab){
    for(const b of allTabs){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
+ }
+ function syncNeuroMode(mode){
+   neuroMode=mode==='memo'?'memo':'past';
+   for(const [key,button] of Object.entries(subs)){
+     const on=neuroMode===key;
+     button.setAttribute('aria-selected',String(on));
+     button.tabIndex=on?0:-1;
+   }
+   neuroContent.setAttribute('aria-labelledby',subs[neuroMode].id);
+   if(frame.getAttribute('src'))frame.contentWindow?.postMessage({type:'neuro-select-mode',mode:neuroMode},location.origin);
  }
  neuroTab.addEventListener('click',()=>{
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
-   document.body.dataset.subject='neuro';selectTab(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-memorization-tables-v4';
+   document.body.dataset.subject='neuro';selectSubject(neuroTab);
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-neuro-subtabs-v5';
+   syncNeuroMode(neuroMode);
  },true);
+ for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
+   if(!neuroActive)return;
+   syncNeuroMode(mode);
+ });
+ frame.addEventListener('load',()=>syncNeuroMode(neuroMode));
  for(const tab of oldTabs)tab.addEventListener('click',()=>{
    if(!neuroActive)return;
    neuroActive=false;neuroPanel.hidden=true;panel.hidden=false;
    document.body.dataset.subject=tab.dataset.subject;
-   selectTab(tab);
+   selectSubject(tab);
  },true);
  window.addEventListener('message',e=>{
-   if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='neuro-quiz-size')return;
-   const height=Number(e.data.height);
-   if(Number.isFinite(height)&&height>=550&&height<=20000)frame.style.height=(height+16)+'px';
+   if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
+   if(e.data?.type==='neuro-mode-changed' && (e.data.mode==='past'||e.data.mode==='memo')){
+     syncNeuroMode(e.data.mode);
+   }
+   if(e.data?.type==='neuro-quiz-size'){
+     const height=Number(e.data.height);
+     if(Number.isFinite(height)&&height>=550&&height<=20000)frame.style.height=(height+16)+'px';
+   }
  });
 })();
 </script>
