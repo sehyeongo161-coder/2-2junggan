@@ -195,6 +195,32 @@ async function handleAuthenticated(user){
 
 function metric(label,value){const item=document.createElement('div');item.className='analytics-metric';const count=document.createElement('b');count.textContent=String(value);const title=document.createElement('span');title.textContent=label;item.append(count,title);return item;}
 function renderStats(){updateStatControls();}
+// 공통 오답 통계에서 기존 신경정신과 progress 문서를 읽어 함께 표시합니다.
+async function loadNeuroStatistics(){
+ let records={};
+ try{
+   const snap=await getDoc(doc(db,'users',authenticatedUid,'progress','neuro-psy-midterm-v1'));
+   const payload=snap.exists()?snap.data().payload:null;
+   records=typeof payload==='string'?JSON.parse(payload):(payload&&typeof payload==='object'?payload:{});
+ }catch(error){console.warn('신경정신과 기록 읽기 실패',error);}
+ const live=window.__NEURO_LIVE_RECORDS;
+ if(live?.uid===authenticatedUid && live.records && typeof live.records==='object')records=live.records;
+ if(!records||typeof records!=='object'||Array.isArray(records))return [];
+ const entries=Object.entries(records).filter(([id,r])=>/^\d{2}-\d{2}$/.test(id)&&r&&typeof r==='object'&&((r.attempts||0)>0||r.viewed));
+ if(!entries.length)return [];
+ let index=[];
+ try{
+   const response=await fetch('./neuro-stat-index.json?v=20261014-all-stats-v9');
+   if(response.ok)index=await response.json();
+ }catch(error){console.warn('신경정신과 문항 정보 읽기 실패',error);}
+ const labels=new Map(index.map(x=>[x.id,x]));
+ return entries.map(([id,r])=>{
+   const q=labels.get(id),total=Math.max(0,Number(r.attempts)||0);
+   return {id:'neuro:'+id,group:'신경정신과',
+     label:q?String(q.label)+' · '+String(q.prompt).slice(0,90):'신경정신과 · '+id,
+     total,wrong:Math.min(total,Math.max(0,Number(r.wrong)||0)),revealed:r.viewed?1:0,neuroId:id};
+ });
+}
 async function showAnalytics(){
   if(!authenticatedUid)return;
   if(!quizRoot.hidden)lastQuizScroll=window.scrollY;
@@ -204,7 +230,8 @@ async function showAnalytics(){
   $('analytics-message').textContent='';
   try{
     const snapshots=await getDocs(collection(db,'users',authenticatedUid,'errorStats'));
-    currentStats=snapshots.docs.map(x=>({id:x.id,...x.data()}));
+    const neuroStats=await loadNeuroStatistics();
+    currentStats=[...snapshots.docs.map(x=>({id:x.id,...x.data()})),...neuroStats];
     const sel=$('analytics-filter');
     const last=sel.value;sel.replaceChildren();
     for(const v of ['all',...new Set(currentStats.map(x=>x.group))]){
@@ -239,7 +266,7 @@ function renderStatRows() {
   const area = $('analytics-list');area.replaceChildren();
   const rows = statRows();
   const items = reviewCandidates();
-  $('analytics-review-count').textContent = `복습 가능 ${items.length}문항`;
+  $('analytics-review-count').textContent = `공통 복습 가능 ${items.length}문항 · 신경정신과는 개별 문항 풀기`;
   $('start-review').disabled = !items.length;
   if (!rows.length) {
     const empty = document.createElement('div');empty.className='analytics-empty';
@@ -253,15 +280,20 @@ function renderStatRows() {
     const ratio = Math.round((row.wrong || 0) / Math.max(1,row.total) * 100);
     const count = document.createElement('span');count.className='counts';count.textContent=`오답률 ${ratio}%`;
     const detail = document.createElement('small');
-    detail.textContent=`${row.group} · ${row.total}회 중 오답 ${row.wrong}회 · 정답 보기 ${row.revealed}회`;
+    detail.textContent=row.neuroId?`${row.group} · ${row.total}회 중 오답 ${row.wrong}회 · 해설 ${row.revealed?'확인':'미확인'}`:`${row.group} · ${row.total}회 중 오답 ${row.wrong}회 · 정답 보기 ${row.revealed}회`;
     const bottom=document.createElement('div');bottom.className='analytics-row-bottom';
     bottom.append(detail);
     const candidate=items.find(entry=>entry.stat.id===row.id);
-    if(candidate){
+    if(candidate || row.neuroId){
       const action=document.createElement('button');action.type='button';
       action.className='analytics-practice';action.textContent='이 문제 풀기';
       action.setAttribute('aria-label',`${row.label} 다시 풀기`);
-      action.onclick=()=>startReview(candidate);
+      action.onclick=()=>{
+        if(row.neuroId){
+          navigateToQuiz();
+          requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_NEURO_QUESTION?.(row.neuroId)));
+        }else startReview(candidate);
+      };
       bottom.append(action);
     }
     heading.append(name,count);card.append(heading,bottom);area.append(card);
