@@ -7,6 +7,7 @@ const $ = id => document.getElementById(id);
 const gate = $('account-gate'), quizRoot = $('quiz-root'), toolbar = $('account-toolbar');
 let auth, db, authenticatedUid=null, appLoaded=false, registering=false, statsOpen=false;
 let currentStats=[];
+let lastQuizScroll=0,lastStatsScroll=0;
 const approvedDisplayNames = ['고세현','석주형','홍대진','안선웅','박준영','김지원'];
 
 // 이름별 가입용 가상 이메일: 기존 관리자 생성 계정의 이메일과 겹치지 않도록 새 식별자를 사용합니다.
@@ -30,9 +31,17 @@ function setBusy(form,busy){for(const b of form.querySelectorAll('button,input')
 function setAuthenticatedUI(profile){
   gate.hidden=true;toolbar.hidden=false;
   $('account-name').textContent=`${profile.name}님`;
+  $('study-nav').hidden=false;
+  document.body.classList.add('has-study-nav');
   if(!statsOpen&&!reviewSession)quizRoot.hidden=false;
+  syncStudyNav();
 }
-function showGate(){gate.hidden=false;quizRoot.hidden=true;toolbar.hidden=true;$('analytics-panel').hidden=true;$('review-panel').hidden=true;statsOpen=false;reviewSession=null;}
+function showGate(){
+  gate.hidden=false;quizRoot.hidden=true;toolbar.hidden=true;
+  $('analytics-panel').hidden=true;$('review-panel').hidden=true;
+  $('study-nav').hidden=true;document.body.classList.remove('has-study-nav');
+  statsOpen=false;reviewSession=null;
+}
 
 async function approveUser(user){
   const name=approvedDisplayNames.find(n=>nameEmail(n)===user.email);
@@ -177,7 +186,9 @@ function metric(label,value){const item=document.createElement('div');item.class
 function renderStats(){updateStatControls();}
 async function showAnalytics(){
   if(!authenticatedUid)return;
-  statsOpen=true;quizRoot.hidden=true;$('analytics-panel').hidden=false;
+  if(!quizRoot.hidden)lastQuizScroll=window.scrollY;
+  statsOpen=true;quizRoot.hidden=true;$('review-panel').hidden=true;$('analytics-panel').hidden=false;
+  syncStudyNav();
   const wrap=$('analytics-list');wrap.textContent='통계를 불러오는 중입니다…';
   $('analytics-message').textContent='';
   try{
@@ -232,7 +243,17 @@ function renderStatRows() {
     const count = document.createElement('span');count.className='counts';count.textContent=`오답률 ${ratio}%`;
     const detail = document.createElement('small');
     detail.textContent=`${row.group} · ${row.total}회 중 오답 ${row.wrong}회 · 정답 보기 ${row.revealed}회`;
-    heading.append(name,count);card.append(heading,detail);area.append(card);
+    const bottom=document.createElement('div');bottom.className='analytics-row-bottom';
+    bottom.append(detail);
+    const candidate=items.find(entry=>entry.stat.id===row.id);
+    if(candidate){
+      const action=document.createElement('button');action.type='button';
+      action.className='analytics-practice';action.textContent='이 문제 풀기';
+      action.setAttribute('aria-label',`${row.label} 다시 풀기`);
+      action.onclick=()=>startReview(candidate);
+      bottom.append(action);
+    }
+    heading.append(name,count);card.append(heading,bottom);area.append(card);
   }
 }
 function statOverview() {
@@ -244,12 +265,14 @@ function statOverview() {
     metric('정답 보기',rows.reduce((s,x)=>s+(x.revealed||0),0)));
 }
 function updateStatControls() {statOverview();renderStatRows();}
-function startReview() {
-  const candidates = reviewCandidates();
+function startReview(selected) {
+  const candidates = selected?.item ? [selected] : reviewCandidates();
   if(!candidates.length) { $('analytics-message').textContent='복습할 오답 기록이 없습니다.';return; }
   reviewSession = {items: candidates, index:0, checked:false, revealed:false, result:null, correct:0, wrong:0, seen:0};
   statsOpen=false;
+  lastStatsScroll=window.scrollY;
   $('analytics-panel').hidden=true;quizRoot.hidden=true;$('review-panel').hidden=false;
+  syncStudyNav();
   renderReview();
   $('review-panel').scrollIntoView({block:'start',behavior:'instant'});
 }
@@ -341,6 +364,7 @@ async function exitReview() {
   // The client-side stat writes are in-flight; wait for them before refreshing the list.
   if(pendingStats.size)await Promise.allSettled([...pendingStats]);
   await showAnalytics();
+  requestAnimationFrame(()=>window.scrollTo(0,lastStatsScroll));
 }
 $('start-review').onclick=startReview;
 $('analytics-sort').onchange=updateStatControls;
@@ -355,8 +379,39 @@ $('review-again').onclick=async()=>{await exitReview();startReview();};
 
 $('open-register').onclick=()=>switchRegister(true);
 $('open-login').onclick=()=>switchRegister(false);
-$('close-analytics').onclick=()=>{statsOpen=false;$('analytics-panel').hidden=true;quizRoot.hidden=false;};
-$('open-analytics').onclick=showAnalytics;
+// Both views stay mounted: switching tabs never rerenders quiz inputs or resets a queue.
+function syncStudyNav(){
+  const onQuiz=!quizRoot.hidden;
+  for(const [id,active] of [['nav-quiz',onQuiz],['nav-stats',!onQuiz]]){
+    const button=$(id);
+    if(button){button.classList.toggle('selected',active);button.setAttribute('aria-pressed',String(active));}
+  }
+}
+function navigateToQuiz(){
+  if(!authenticatedUid||!quizRoot.hidden)return;
+  lastStatsScroll=window.scrollY;
+  statsOpen=false;
+  $('analytics-panel').hidden=true;$('review-panel').hidden=true;
+  quizRoot.hidden=false;syncStudyNav();
+  requestAnimationFrame(()=>window.scrollTo(0,lastQuizScroll));
+}
+async function navigateToStats(){
+  if(!authenticatedUid)return;
+  if(!quizRoot.hidden)lastQuizScroll=window.scrollY;
+  if(reviewSession){
+    statsOpen=false;quizRoot.hidden=true;
+    $('analytics-panel').hidden=true;$('review-panel').hidden=false;
+    syncStudyNav();
+    requestAnimationFrame(()=>window.scrollTo(0,lastStatsScroll));
+  }else if($('analytics-panel').hidden){
+    await showAnalytics();
+    requestAnimationFrame(()=>window.scrollTo(0,lastStatsScroll));
+  }
+}
+$('nav-quiz').onclick=navigateToQuiz;
+$('nav-stats').onclick=navigateToStats;
+$('close-analytics').onclick=navigateToQuiz;
+$('open-analytics').onclick=navigateToStats;
 $('account-signout').onclick=async()=>{try{await flushProgress();await Promise.all([...pendingStats]);await retryStats();await signOut(auth);location.reload();}catch{syncStatus('저장 실패 · 연결 후 다시 로그아웃해 주세요');}};
 
 if(firebaseConfig.apiKey.startsWith('YOUR_')||firebaseConfig.projectId==='YOUR_PROJECT_ID'){
