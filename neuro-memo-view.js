@@ -97,7 +97,9 @@
       const rowClass=direct.length?' class="memo-highlight"':'';
       const cells=row.c.map((val,i)=>{
         const hasBlank=practice&&i===(item.blankCol??0)&&String(val).trim()!=='—';
-        const inner=hasBlank?blankInput('row_'+index+'_'+rowIndex):(i===0?'<b>'+escape(val)+'</b>':escape(val));
+        // 원문 두 빈칸의 정답이 연습모드 표 셀에 노출되지 않도록 합니다.
+        const protectedOriginal=practice&&!!item.original&&rowIndex===0&&i===2;
+        const inner=hasBlank?blankInput('row_'+index+'_'+rowIndex):protectedOriginal?'원문 빈칸은 아래에서 연습':(i===0?'<b>'+escape(val)+'</b>':escape(val));
         return '<td>'+inner+(i===0&&direct.length?'<span class="memo-mark">족보</span>':'')+'</td>';
       }).join('');
       const rowDetail=direct.length?'<tr class="memo-refs-row"><td colspan="'+item.heads.length+'">'+direct.map(refMarkup).join('')+'</td></tr>':'';
