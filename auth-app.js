@@ -113,7 +113,21 @@ async function startQuiz(user){
   };
   const source=document.createElement('script');source.id='quiz-data';source.type='application/json';source.textContent=dataJson;
   document.body.appendChild(source);
-  const script=document.createElement('script');script.textContent=quizScript;document.body.appendChild(script);
+  // Firestore에 저장된 기존 퀴즈 스크립트에서 '빈칸은 반드시 입력' 검사만 제거합니다.
+  // 빈 입력은 평가 함수에서 오답으로 처리되고, 오답 통계/재출제 기능은 그대로 작동합니다.
+  const blankAnswerGuards = [
+    ["if(!reveal){const missing=s.drafts.findIndex(v=>!v.trim());if(missing!==-1){$('answer-'+missing).focus();toast('빈칸에 답을 입력해 주세요.');return;}}", '빈칸에 답을 입력해 주세요.'],
+    ["if(!reveal){const blank=s.drafts.findIndex(x=>!x.trim());if(blank>=0){$('daja-answer-'+blank).focus();toast('모든 빈칸에 답을 입력해 주세요.');return;}}", '모든 빈칸에 답을 입력해 주세요.']
+  ];
+  let patchedQuizScript = quizScript;
+  for (const [guard, message] of blankAnswerGuards) {
+    if (patchedQuizScript.includes(guard)) {
+      patchedQuizScript = patchedQuizScript.replace(guard, '');
+    } else if (patchedQuizScript.includes(message)) {
+      throw new Error('빈칸 채점 수정이 퀴즈 코드와 일치하지 않습니다. 관리자에게 문의해 주세요.');
+    }
+  }
+  const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   appLoaded=true;
 }
 
