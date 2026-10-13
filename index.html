@@ -194,11 +194,11 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 }
 /* 신경정신과 독립형 학습 화면 */
 body[data-subject="neuro"]{--accent:#2365a3;--tint:#edf5fc;--line:#dce6ef;--muted:#708397}
-body[data-subject="neuro"] #quiz-root{width:100%;max-width:none;padding:18px 12px 28px}
+body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px 24px 60px}
 #neuro-panel{margin:0;width:100%}
 #neuro-subtabs{margin:0 0 15px}
 #neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#f5f7fb}
-@media(max-width:600px){body[data-subject="neuro"] #quiz-root{padding:8px 5px 24px}#neuro-panel{margin:0}#neuro-frame{border-radius:0;min-height:1100px}}
+@media(max-width:600px){body[data-subject="neuro"] #quiz-root{padding:25px 15px 40px}#neuro-panel{margin:0}#neuro-frame{border-radius:10px;min-height:1100px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -416,7 +416,7 @@ body[data-subject="neuro"] #quiz-root{width:100%;max-width:none;padding:18px 12p
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-neuro-subtabs-v5';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-aligned-layout-v6';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
