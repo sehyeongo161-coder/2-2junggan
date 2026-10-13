@@ -429,7 +429,7 @@ body[data-subject="neuro"] #quiz-root{max-width:940px;margin:0 auto;padding:42px
  });
  // Reuse the subject page for global statistics' "이 문제 풀기" links.
  window.__OPEN_NEURO_QUESTION=id=>{
-   if(typeof id!=='string'||!/^\\d{2}-\\d{2}$/.test(id))return;
+   if(typeof id!=='string'||!/^\d{2}-\d{2}$/.test(id))return;
    if(document.getElementById('quiz-root').hidden)return;
    pendingQuestion=id;
    if(!neuroActive)neuroTab.click();
