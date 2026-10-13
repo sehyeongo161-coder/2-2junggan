@@ -12,15 +12,62 @@
 @media(max-width:850px){.mobileFilters>summary{display:block;background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:10px;color:#33658c;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:10px}.mobileFilters:not([open])>summary{margin-bottom:0}.aside .panel:first-child{padding:12px!important}.aside .statgrid{margin:8px 0}.aside .savehint{margin-top:8px}.layout{display:flex;flex-direction:column;padding:0 13px;margin:18px auto}.aside{position:static;width:100%}.aside .panel{padding:14px}.aside-forms{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}.aside-forms .whole{grid-column:span 2}.aside .warn{margin-top:10px}.main-head h1{font-size:21px}.quizcard{padding:22px 19px}.question{font-size:18px}.statsgrid{gap:8px}.top-inner{padding:9px 13px}}
 @media(max-width:560px){.top-inner{flex-wrap:wrap}.logo{font-size:14px}.topnav{width:100%;justify-content:stretch}.topnav button{flex:1;padding:7px 5px}.layout{gap:14px}.statgrid{grid-template-columns:repeat(4,1fr)}.statbox{padding:8px 6px}.statbox .value{font-size:17px}.statbox .unit{font-size:10px}.aside-forms{grid-template-columns:1fr 1fr}.choicegrid{grid-template-columns:1fr}.main-head{align-items:start}.main-head h1{font-size:20px}.question{font-size:17px}.quizcard{padding:19px 15px}.controls .spacer{display:none}.controls .btn{flex:1;padding:10px 7px}.statsgrid{grid-template-columns:repeat(3,1fr)}.statrow .name{width:115px}.statrow{gap:6px}.statrow .nums{width:54px}}
 @media print{body{background:white}.topnav,.aside,.inline-acts,.controls,.navfoot,.listbar,.notice,.choice-note,.mode-switch,.statgrid{display:none!important}.layout{display:block;padding:0}.quizcard{border:0;box-shadow:none;padding:5mm}.reveal{display:block!important}.main-head{margin:0 0 15px}.question{font-size:17px}.top{border:0}.top-inner{padding:0}.choicegrid{display:none}.study{break-inside:avoid}}
+
+/* Compact, full-width neuropsychiatry workspace */
+.top-inner{max-width:none;width:100%;padding:9px 16px}
+.layout{max-width:none;width:100%;margin:12px auto 26px;padding:0 14px;display:block}
+.aside{position:static;width:100%;margin-bottom:12px}
+.aside>.panel:first-child{display:flex;align-items:center;gap:14px;margin:0 0 9px;padding:8px 13px;box-shadow:none;border-radius:10px;flex-wrap:wrap}
+.aside>.panel:first-child .section-label{display:none}
+.aside .statgrid{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0}
+.aside .statbox{display:flex;gap:5px;align-items:baseline;padding:3px 7px;background:transparent;border-radius:6px}
+.aside .statbox .value{font-size:16px}
+.aside .statbox .unit{font-size:11px;margin:0}
+.aside .progress{flex:1;min-width:55px;max-width:180px}
+.aside .savehint{margin:0 0 0 auto;font-size:11px}
+.mobileFilters{display:block;margin:0 0 13px}
+.mobileFilters>summary{display:inline-flex;align-items:center;cursor:pointer;padding:7px 13px;margin:0;border:1px solid var(--line);border-radius:8px;background:white;color:#37678f;font-size:12px;font-weight:750}
+.mobileFilters[open]>summary{margin-bottom:8px}
+.mobileFilters>.panel{box-shadow:none;margin:0 0 8px;padding:13px 16px}
+.mobileFilters .aside-forms{display:grid;grid-template-columns:180px minmax(160px,1fr) minmax(190px,1.3fr) 180px;gap:10px;align-items:end}
+.mobileFilters .aside-forms .whole{grid-column:auto}
+.mobileFilters .select{margin:0}
+.mobileFilters .pillbox{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.mobileFilters .pillbox button{padding:9px 4px}
+.mobileFilters .side-divider,.mobileFilters .warn{display:none}
+.mobileFilters #reshuffle{width:auto!important;margin-top:11px}
+.mobileFilters>.panel:last-child{padding:7px 14px}
+.mobileFilters>.panel:last-child .section-label{display:none}
+.main{width:100%;min-width:0}
+.main-head{margin:0 0 10px;align-items:center}
+.main-head h1{font-size:21px}
+.main-head p{margin:0;font-size:11px}
+.quizcard{padding:22px 26px 20px}
+.question-meta{margin-bottom:7px}
+.topic{padding-bottom:9px;margin-bottom:12px}
+.question{font-size:21px;margin:0 0 18px;line-height:1.65}
+.essayinput{min-height:110px}
+.answerinput{max-width:none}
+.quick-controls{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:13px;flex-wrap:wrap}
+.grade-actions,.nav-actions{display:flex;align-items:center;gap:8px}
+.grade-actions .btn,.nav-actions .btn{min-height:43px}
+.next-primary{background:#2365a3;border-color:#2365a3;color:white;font-weight:800;padding:10px 19px}
+.next-primary:hover{background:#1a568c;color:white}
+.response{margin-top:12px}
+.reveal{margin-top:12px;padding:13px 16px}
+.notice{margin-top:10px}
+@media(max-width:1020px){.mobileFilters .aside-forms{grid-template-columns:repeat(2,minmax(0,1fr))}.mobileFilters .pillbox{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:850px){.layout{display:block;margin:10px auto 20px;padding:0 10px}.aside{width:100%}.aside>.panel:first-child{padding:8px;gap:6px}.aside .statgrid{gap:2px}.aside .savehint{margin-left:auto}.mobileFilters>summary{display:inline-flex;margin:0 0 5px}.mobileFilters:not([open])>summary{margin-bottom:0}.mobileFilters>.panel{padding:12px}.mobileFilters .aside-forms{grid-template-columns:repeat(2,minmax(0,1fr))}.mobileFilters .aside-forms .whole{grid-column:auto}.quizcard{padding:19px 18px}}
+@media(max-width:560px){.layout{padding:0 6px}.top-inner{padding:9px 11px}.aside>.panel:first-child{gap:3px 7px}.aside .statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%}.aside .statbox{display:flex;flex-direction:column;align-items:center;gap:0;padding:1px}.aside .statbox .value{font-size:15px}.aside .statbox .unit{font-size:10px}.aside .progress{min-width:60px}.aside .savehint{font-size:10px}.main-head h1{font-size:19px}.main-head p{display:none}.quizcard{padding:17px 12px}.question{font-size:18px;margin-bottom:14px}.quick-controls{display:grid;grid-template-columns:1fr;gap:9px}.grade-actions,.nav-actions{width:100%;gap:7px}.grade-actions .btn,.nav-actions .btn{flex:1;min-width:0;padding:10px 8px}.grade-actions .btn.primary{flex:1.15}.nav-actions .next-primary{flex:1.6}.mobileFilters .aside-forms{display:grid;grid-template-columns:1fr 1fr}.mobileFilters .aside-forms .whole{grid-column:span 2}.mobileFilters .pillbox{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style><style>html.neuro-auth-pending .top,html.neuro-auth-pending .layout{visibility:hidden}#neuro-auth-overlay{position:fixed;inset:0;z-index:100;background:#f5f7fb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;text-align:center;padding:28px;color:#365d80;font:600 15px/1.7 system-ui,sans-serif}#neuro-auth-overlay a{padding:10px 17px;background:#2365a3;color:white;text-decoration:none;border-radius:9px}html:not(.neuro-auth-pending) #neuro-auth-overlay{display:none}</style></head>
 <body><div id="neuro-auth-overlay" role="status">로그인 계정과 학습 기록을 확인하고 있습니다…</div>
 <header class="top"><div class="top-inner"><div class="logo">신경정신과 · 기출 실전 퀴즈<small>20·21·22학번 중간고사 · Firebase 계정별 학습</small></div><nav class="topnav" aria-label="보기 선택"><button data-tab="quiz" class="active">문제 풀기</button><button data-tab="list">문항 목록</button><button data-tab="stats">오답 통계</button></nav></div></header>
 <div class="layout"><aside class="aside">
 <section class="panel"><div class="section-label">학습 현황</div><div class="statgrid"><div class="statbox"><div class="value" id="totalCount">60</div><div class="unit">전체 문항</div></div><div class="statbox"><div class="value" id="doneCount">0</div><div class="unit">채점 완료</div></div><div class="statbox"><div class="value" id="rightCount">0</div><div class="unit">현재 정답</div></div><div class="statbox"><div class="value" id="wrongCount">0</div><div class="unit">현재 오답</div></div></div><div class="progress"><span id="progressBar"></span></div><div class="savehint">◦ <span id="saveText">학습 기록을 브라우저에 저장합니다.</span></div></section>
-<details class="mobileFilters" id="mobileFilters" open><summary>출제 범위 · 오답 필터 설정</summary><section class="panel"><div class="section-label">출제 범위</div><div class="aside-forms"><div><label class="selectlabel" for="year">학번</label><select id="year" class="select"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select></div><div><label class="selectlabel" for="topic">주제</label><select id="topic" class="select"><option value="all">전체 주제</option></select></div><div class="whole"><label class="selectlabel">풀이 상태</label><div class="pillbox" id="statuses"><button data-filter="all" class="active">전체</button><button data-filter="new">미풀이</button><button data-filter="wrong">오답만</button><button data-filter="right">정답만</button></div></div><div class="whole"><label class="selectlabel" for="order">문제 순서</label><select class="select" id="order"><option value="shuffle">무작위</option><option value="source">주제별 원본 순서</option></select></div></div><div class="side-divider"></div><button class="btn" id="reshuffle" style="width:100%">↻ 문제 순서 섞기</button><div class="warn">정답 확인만 한 문제는 정답 처리되지 않습니다. 미확정·서술형 문제는 답안을 비교한 뒤 직접 채점합니다.</div></section>
-<section class="panel"><div class="section-label">학습 기록 관리</div><button class="subtle" id="resetRecord">전체 풀이 기록 초기화</button><div class="tiny">현재 브라우저의 이 파일에만 저장되며, Firebase 계정과는 연동되지 않습니다.</div></section></details>
+<details class="mobileFilters" id="mobileFilters"><summary>출제 범위 · 오답 필터 설정</summary><section class="panel"><div class="section-label">출제 범위</div><div class="aside-forms"><div><label class="selectlabel" for="year">학번</label><select id="year" class="select"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select></div><div><label class="selectlabel" for="topic">주제</label><select id="topic" class="select"><option value="all">전체 주제</option></select></div><div class="whole"><label class="selectlabel">풀이 상태</label><div class="pillbox" id="statuses"><button data-filter="all" class="active">전체</button><button data-filter="new">미풀이</button><button data-filter="wrong">오답만</button><button data-filter="right">정답만</button></div></div><div class="whole"><label class="selectlabel" for="order">문제 순서</label><select class="select" id="order"><option value="shuffle">무작위</option><option value="source">주제별 원본 순서</option></select></div></div><div class="side-divider"></div><button class="btn" id="reshuffle" style="width:100%">↻ 문제 순서 섞기</button><div class="warn">정답 확인만 한 문제는 정답 처리되지 않습니다. 미확정·서술형 문제는 답안을 비교한 뒤 직접 채점합니다.</div></section>
+<section class="panel"><div class="section-label">학습 기록 관리</div><button class="subtle" id="resetRecord">전체 풀이 기록 초기화</button><div class="tiny">학습 기록은 로그인한 계정에 동기화하며, 연결이 끊기면 이 브라우저에 임시 보관합니다.</div></section></details>
 </aside><main class="main">
-<div id="quizView"><div class="main-head"><div><h1>실전 문제 풀기</h1><p>기출 원문 기준 · 자동채점 / 자기채점 구분</p></div><div class="inline-acts"><button class="btn" id="randomPick">무작위 한 문제</button><button class="btn" id="skipNext">다음 문제 →</button></div></div>
+<div id="quizView"><div class="main-head"><div><h1>실전 문제 풀기</h1><p>기출 원문 기준 · 자동채점 / 자기채점 구분</p></div><div class="inline-acts"><button class="btn" id="randomPick">무작위 출제</button></div></div>
 <div id="quizContainer"></div><div class="notice">* 일부 복기에는 실제 시험 선지·사례의 일부가 남아 있지 않습니다. 직접 만든 <b>학습용 4지선다 보기</b>는 원래 시험 선지가 아니며, 미확인 복기 답안은 추정으로 표시합니다. 22학번 9번은 문제 복기 자체가 없어 제외했습니다.</div></div>
 <div id="listView" class="hide"><div class="main-head"><div><h1>문항 목록</h1><p>문항을 선택하면 해당 문제로 이동합니다.</p></div></div><section class="panel listbar"><input type="search" id="listSearch" placeholder="기출 문장·학번·주제 검색" aria-label="문항 검색"><span class="listcount" id="listCount"></span></section><div class="listitems" id="listItems"></div></div>
 <div id="statsView" class="hide"><div class="main-head"><div><h1>오답 통계</h1><p>오답 횟수와 문항별 현재 상태를 따로 관리합니다.</p></div></div><div class="statsgrid" id="statCards"></div><section class="panel statssection"><h2>학번별 현재 풀이 상태</h2><div id="yearStats"></div></section><section class="panel statssection"><h2>주제별 현재 풀이 상태</h2><div id="topicStats"></div></section><section class="panel statssection"><h2>많이 틀린 문제</h2><div id="wrongStats"></div></section><p class="summary-foot">정답을 확인했지만 직접 풀지 않은 문항은 별도 상태로 취급합니다. 동일 문항에서 틀린 후 다시 맞히면 현재 상태는 정답으로 바뀌지만 누적 오답 횟수는 남습니다.</p></div>
@@ -71,7 +118,7 @@ function renderQuiz(){updateCounters();const q=chooseCurrent();const root=$('qui
  const canChoice=q.mode==='short'&&q.options;
  const scoreTag=s==='right'?'<span class="tag" style="color:#198067;background:#edfbf5">정답 기록</span>':s==='wrong'?'<span class="tag" style="color:#b1494d;background:#fff3f2">오답 기록</span>':rec(q.id).viewed?'<span class="tag">해설 확인</span>':'';
  const label=q.mode==='manual'?'서술형 · 자기채점':q.mode==='blanks'?'복수 빈칸 · 자동채점':'단답형 · 자동채점';
- root.innerHTML=`<div class="panel quizcard"><div class="question-meta"><div class="qbadges"><span class="tag year">${q.year}학번</span><span class="tag">${label}</span>${q.uncertain?'<span class="tag warning">복기·답 불확실</span>':''}${scoreTag}</div><span>${index} / ${arr.length} 문항</span></div><div class="topic">SECTION ${String(q.topicNo).padStart(2,'0')} · ${escapeHtml(q.topic)}<div style="font-size:11px;color:#8b9aab;margin-top:4px">${escapeHtml(q.label)}</div></div><div class="question">${q.prompt}</div>${q.uncertain?'<div class="hintbar">이 문항에는 복기 누락·추정 답안이 포함되어 있습니다. 확정 정답으로 자동 판정하지 않을 수 있습니다.</div>':''}<div id="fields">${renderFields(q)}</div>${canChoice?`<button class="mode-switch" id="modeSwitch">${state.answerMode==='text'?'학습용 4지선다로 풀기':'답 직접 입력으로 풀기'}</button>`:''}<div class="controls">${q.mode==='manual'?'<button class="btn primary long" id="revealBtn">답안 비교하기</button>':'<button class="btn primary long" id="submitBtn">채점하기</button><button class="btn" id="revealBtn">정답·해설 보기</button>'}<div class="spacer"></div><button class="btn" id="retryBtn">입력 지우기</button></div><div id="response" class="response" role="status" aria-live="polite"></div><div class="reveal" id="reveal"><h3>복기 답안 및 해설</h3><div class="answer-text">${q.answer}</div>${q.mode==='manual'?'<div class="rubric"><p>작성한 답과 자료의 설명을 비교하여 자기채점해 주세요. ? 표시는 답안을 확정할 수 없다는 의미입니다.</p><button class="btn" id="markRight">맞혔어요</button><button class="btn danger" id="markWrong">틀렸어요</button></div>':''}<details class="study"><summary>이 주제의 추가 학습 내용 펼치기</summary><div class="study-content">${q.lesson}</div></details></div></div><div class="navfoot"><button class="btn" id="prevBtn">← 이전 문제</button><span class="center">문항별 기록 자동 저장</span><button class="btn" id="nextBtn">다음 문제 →</button></div>`;
+ root.innerHTML=`<div class="panel quizcard"><div class="question-meta"><div class="qbadges"><span class="tag year">${q.year}학번</span><span class="tag">${label}</span>${q.uncertain?'<span class="tag warning">복기·답 불확실</span>':''}${scoreTag}</div><span>${index} / ${arr.length} 문항</span></div><div class="topic">SECTION ${String(q.topicNo).padStart(2,'0')} · ${escapeHtml(q.topic)}<div style="font-size:11px;color:#8b9aab;margin-top:4px">${escapeHtml(q.label)}</div></div><div class="question">${q.prompt}</div>${q.uncertain?'<div class="hintbar">이 문항에는 복기 누락·추정 답안이 포함되어 있습니다. 확정 정답으로 자동 판정하지 않을 수 있습니다.</div>':''}<div id="fields">${renderFields(q)}</div>${canChoice?`<button class="mode-switch" id="modeSwitch">${state.answerMode==='text'?'학습용 4지선다로 풀기':'답 직접 입력으로 풀기'}</button>`:''}<div class="controls quick-controls"><div class="grade-actions">${q.mode==='manual'?'<button class="btn primary long" id="revealBtn">답안 비교</button>':'<button class="btn primary long" id="submitBtn">채점하기</button><button class="btn" id="revealBtn">정답·해설</button>'}</div><div class="nav-actions"><button class="btn" id="prevBtn">← 이전</button><button class="btn next-primary" id="nextBtn">다음 문제 →</button></div></div><div id="response" class="response" role="status" aria-live="polite"></div><div class="reveal" id="reveal"><h3>복기 답안 및 해설</h3><div class="answer-text">${q.answer}</div>${q.mode==='manual'?'<div class="rubric"><p>작성한 답과 자료의 설명을 비교하여 자기채점해 주세요. ? 표시는 답안을 확정할 수 없다는 의미입니다.</p><button class="btn" id="markRight">맞혔어요</button><button class="btn danger" id="markWrong">틀렸어요</button></div>':''}<details class="study"><summary>이 주제의 추가 학습 내용 펼치기</summary><div class="study-content">${q.lesson}</div></details></div></div>`;
  // 현재 화면의 에세이 답안과 단답 입력 보존
  root.querySelectorAll('.answerinput').forEach(input=>input.addEventListener('input',()=>{const idx=input.dataset.idx===undefined?0:Number(input.dataset.idx);responseFor(q.id).values[idx]=input.value;}));
  const textArea=root.querySelector('textarea');if(textArea)textArea.addEventListener('input',()=>{responseFor(q.id).values[0]=textArea.value;});
@@ -80,7 +127,6 @@ function renderQuiz(){updateCounters();const q=chooseCurrent();const root=$('qui
  const toggle=$('modeSwitch');if(toggle)toggle.addEventListener('click',()=>{state.answerMode=state.answerMode==='text'?'choice':'text';state.feedback=null;renderQuiz();});
  const gradeBtn=$('submitBtn');if(gradeBtn)gradeBtn.addEventListener('click',()=>grade(q));
  $('revealBtn').addEventListener('click',()=>reveal(q,true));
- $('retryBtn').addEventListener('click',()=>{state.responses[q.id]={values:[],selected:null};state.feedback=null;state.revealed[q.id]=false;renderQuiz();});
  $('prevBtn').addEventListener('click',()=>next(-1));$('nextBtn').addEventListener('click',()=>next(1));
  if(state.revealed[q.id])displayReveal(q);
  if(state.feedback&&state.feedback.id===q.id)showFeedback(state.feedback.correct,state.feedback.message);
@@ -88,7 +134,7 @@ function renderQuiz(){updateCounters();const q=chooseCurrent();const root=$('qui
 }
 function grade(q){if(!answeredReady(q)){$('response').className='response note visible';$('response').textContent='답을 먼저 입력하거나 선택해 주세요.';return;}
  const r=responseFor(q.id);const signature=q.mode==='blanks'?r.values.map(norm).join('|'):(state.answerMode==='choice'&&q.options)?'option:'+r.selected:norm(r.values[0]);
- if(r.lastSubmission===signature){const resp=$('response');resp.className='response note visible';resp.textContent='이미 채점한 답입니다. 답을 수정하거나 입력을 지워 다시 풀어주세요.';return;}
+ if(r.lastSubmission===signature){const resp=$('response');resp.className='response note visible';resp.textContent='이미 채점한 답입니다. 답을 수정하면 다시 채점할 수 있습니다.';return;}
  r.lastSubmission=signature;let result=false;let partial='';
  if(q.mode==='blanks'){const each=q.answers.map((aliases,i)=>aliases.some(a=>norm(a)===norm(r.values[i])));result=each.every(Boolean);partial=`${each.filter(Boolean).length}/${each.length}개 빈칸 일치`;document.querySelectorAll('.blankrow input').forEach((x,i)=>{x.classList.toggle('correct',each[i]);x.classList.toggle('incorrect',!each[i]);});}
  else if(q.mode==='short'){result=state.answerMode==='choice'&&q.options?r.selected===0:q.accepted.some(a=>norm(a)===norm(r.values[0]));
@@ -124,7 +170,6 @@ $('topic').addEventListener('change',e=>{state.topic=e.target.value;filterChange
 $('order').addEventListener('change',e=>{state.order=e.target.value;filterChanged();});
 for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{state.filter=b.dataset.filter;syncFilters();filterChanged();});
 $('reshuffle').addEventListener('click',()=>{state.orderList=shuffle(bank.map(q=>q.id));state.order='shuffle';syncFilters();filterChanged();});
-$('skipNext').addEventListener('click',quickNext);
 $('randomPick').addEventListener('click',()=>{const arr=eligible();if(!arr.length)return;state.current=arr[Math.floor(Math.random()*arr.length)].id;resetPanel();renderQuiz();});
 $('listSearch').addEventListener('input',e=>{state.listSearch=e.target.value;renderList();});
 $('resetRecord').addEventListener('click',()=>{if(!confirm('이 브라우저에 저장된 정답·오답·열람 기록을 모두 초기화하시겠습니까?'))return;records={};state.responses={};state.revealed={};state.feedback=null;save();updateCounters();if(state.tab==='quiz')renderQuiz();if(state.tab==='list')renderList();if(state.tab==='stats')renderStats();});
