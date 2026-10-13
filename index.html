@@ -129,6 +129,20 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 .bangjae-number-tick.partial::before{background:linear-gradient(90deg,#78b78b 50%,#e7eee9 50%)}
 .bangjae-number-tick.retry::before{background:#e3aa74}
 .bangjae-number-tick:focus-visible{outline:2px solid #2c7656;outline-offset:1px}
+.bangjae-number-tick .tick-mark{order:0;display:block;min-height:13px;line-height:13px;font-size:13px;font-weight:800}
+.bangjae-number-tick.status-correct .tick-mark{color:#227747}
+.bangjae-number-tick.status-wrong .tick-mark{color:#b33336}
+.bangjae-number-tick.status-revealed .tick-mark{color:#9b6d1e}
+.bangjae-number-tick.status-partial .tick-mark{color:#5d7190}
+.bangjae-number-tick.status-correct::before{background:#7fbc8f}
+.bangjae-number-tick.status-wrong::before{background:#db7777}
+.bangjae-number-tick.status-revealed::before{background:#d5ad6c}
+.bangjae-number-tick.status-partial::before{background:linear-gradient(90deg,#7fbc8f 50%,#e7eee9 50%)}
+.overview-status.status-correct{background:#edf7ef;color:#276948}
+.overview-status.status-wrong{background:#fff0f0;color:#a63336}
+.overview-status.status-revealed{background:#fff6e5;color:#8e651e}
+.overview-status.status-unseen{background:#edf1f6;color:#63758d}
+
 .bangjae-number-help{font-size:12px;color:#7d8d84;line-height:1.65;margin:4px 0 0}
 @media(max-width:600px){.bangjae-number-bar{padding:13px 12px 11px;margin:0 0 15px}.bangjae-number-heading{gap:2px}.bangjae-number-heading span{font-size:11px}.bangjae-number-help{font-size:11px}}
 
