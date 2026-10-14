@@ -164,6 +164,14 @@ async function startQuiz(user){
   }
   patchedQuizScript = patchedQuizScript.replace(orderedRefreshBefore,orderedRefreshAfter)
     .replace(orderedRefreshTipBefore,orderedRefreshTipAfter);
+  // 미응시 문항 먼저, 틀림·정답 보기 문항은 뒤에 재출제합니다. 데이터/누적 통계는 보존합니다.
+  const unseenFirstPatches=[["function loadSession(key){","function prioritizeUnseenQueue(queue,wrong,pin=false){const hold=pin?queue.slice(0,1):[];const rest=pin?queue.slice(1):queue;const bad=new Set(wrong);return [...hold,...rest.filter(id=>!bad.has(id)),...rest.filter(id=>bad.has(id))];}\nfunction loadSession(key){"],["sessions[key]=s;return s;","if(key!=='bangjae-herbs-ordered')s.queue=prioritizeUnseenQueue(s.queue,s.wrong,s.done);\n sessions[key]=s;return s;"],["const s=loadSession(active);if(!s.done)return;const id=s.queue.shift();if(!s.lastOK)s.queue.push(id);s.done=false;s.reveal=false;s.lastOK=false;s.drafts=[];saveSession();","const s=loadSession(active);if(!s.done)return;const id=s.queue.shift();if(!s.lastOK)s.queue.push(id);s.queue=prioritizeUnseenQueue(s.queue,s.wrong);s.done=false;s.reveal=false;s.lastOK=false;s.drafts=[];saveSession();"],["dajaSession=s;return s;\n}","dajaSession=s;s.queue=prioritizeUnseenQueue(s.queue,s.wrong,s.checked);return s;\n}"],["const old=s.queue.shift();if(!s.lastOK)s.queue.push(old);\n s.current=null;s.drafts=[];s.checked=false;","const old=s.queue.shift();if(!s.lastOK)s.queue.push(old);\n s.queue=prioritizeUnseenQueue(s.queue,s.wrong);\n s.current=null;s.drafts=[];s.checked=false;"],["function stepBangjaeOrdered(delta){\n if(active!=='bangjae-herbs-ordered')return;\n navigateBangjaeTo(loadSession(active).cursor+delta);\n}","function stepBangjaeOrdered(delta){\n if(active!=='bangjae-herbs-ordered')return;\n const s=loadSession(active),a=CONFIG[active].data;\n if(delta<0){navigateBangjaeTo(s.cursor+delta);return;}\n const results=s.orderedResults||{};\n const order=Array.from({length:a.length},(_,i)=>(s.cursor+i+1)%a.length);\n const unseen=order.find(i=>!results[a[i].id]||results[a[i].id]==='unseen');\n const wrong=order.find(i=>results[a[i].id]==='wrong'||results[a[i].id]==='revealed');\n const next=unseen??wrong;\n if(next===undefined){toast('모든 처방을 맞혔습니다. 새로고침으로 새 세트를 시작해 주세요.');return;}\n navigateBangjaeTo(next);\n}"]];
+  for(const [before,after] of unseenFirstPatches){
+    if(patchedQuizScript.split(before).length!==2){
+      console.warn('미응시 우선 출제 패치를 적용하지 못한 코드 조각:',before.slice(0,60));continue;
+    }
+    patchedQuizScript=patchedQuizScript.replace(before,after);
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
