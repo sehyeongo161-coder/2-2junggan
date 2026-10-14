@@ -28,7 +28,7 @@
    const item=data[tableIndex];
    if(!item)return;
    const eligible=item.rows.map((row,i)=>({row,i,cols:row.c.map((v,col)=>({v:String(v).trim(),col}))
-     .filter(v=>v.v&&v.v!=='—'&&v.v.length<=36&&!/^(?:O|X|\d+|[①②③④⑤⑥⑦⑧])$/.test(v.v)).map(v=>v.col)}))
+     .filter(v=>v.v&&v.v!=='—'&&v.v.length<=36&&!/^(?:O|X|\d+|[①②③④⑤⑥⑦⑧])$/.test(v.v)&&( !Array.isArray(row.blankCols) || row.blankCols.includes(v.col) )).map(v=>v.col)}))
      .filter(x=>x.cols.length);
    // Like Shanghan Daja, mask only a few randomly selected places per table.
    const selected=scramble(eligible).slice(0,Math.min(3,eligible.length));
@@ -71,7 +71,7 @@
   if(kind==='row'){
    const row=item.rows[Number(r)],col=blankTargets.get(key);
    if(!row||col===undefined||row.c[col]===undefined)return null;
-   return {answer:row.c[col],aliases:col===(item.blankCol??0)?(row.aliases||[]):[]};
+   return {answer:row.c[col],aliases:[...(col===(item.blankCol??0)?(row.aliases||[]):[]),...(row.aliasesByCol?.[col]||[])]};
   }
   return null;
  }
@@ -157,14 +157,15 @@
         const hasBlank=practice&&blankTargets.get('row_'+index+'_'+rowIndex)===i;
         // 원문 두 빈칸의 정답이 연습모드 표 셀에 노출되지 않도록 합니다.
         const protectedOriginal=practice&&!!item.original&&rowIndex===0&&i===2;
-        const inner=hasBlank?blankInput('row_'+index+'_'+rowIndex):protectedOriginal?'원문 빈칸은 아래에서 연습':(i===0?'<b>'+escape(val)+'</b>':escape(val));
+        const hiddenHint=practice&&item.hideOriginalWhenNameBlank&&i===2&&blankTargets.get('row_'+index+'_'+rowIndex)===0&&rowIndex<5;
+        const inner=hasBlank?blankInput('row_'+index+'_'+rowIndex):protectedOriginal?'원문 빈칸은 아래에서 연습':hiddenHint?'<span class="memo-muted-hint">해당 원문은 표 보기에서 확인</span>':(i===0?'<b>'+escape(val)+'</b>':escape(val));
         return '<td>'+inner+(i===0&&direct.length?'<span class="memo-mark">족보</span>':'')+'</td>';
       }).join('');
       const rowDetail=direct.length?'<tr class="memo-refs-row"><td colspan="'+item.heads.length+'">'+direct.map(refMarkup).join('')+'</td></tr>':'';
       return '<tr'+rowClass+'>'+cells+'</tr>'+rowDetail;
     }).join('');
     const associated=(item.refs||[]).map(id=>byId.get(id)).filter(Boolean).map(refMarkup).join('');
-    return '<section class="panel memo-card"><header class="memo-card-head"><h2><span class="memo-index">'+String(data.indexOf(item)+1).padStart(2,'0')+'</span> '+escape(item.title)+'</h2><div class="memo-labels"><span class="'+(refs.length?'exam':'extra')+'">'+(refs.length?'족보 '+refs.length+'문항':'추가 암기')+'</span></div></header><div class="memo-scroll"><table class="memo-table"><thead><tr>'+item.heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows +'</tbody></table></div>'+renderOriginal(item,index)+(!practice&&item.note?'<p class="memo-note">'+escape(item.note)+'</p>':'')+(associated?'<p class="memo-assoc"><b>표 전체 관련 기출</b> '+associated+'</p>':'')+'</section>';
+    return '<section class="panel memo-card"><header class="memo-card-head"><h2><span class="memo-index">'+String(data.indexOf(item)+1).padStart(2,'0')+'</span> '+escape(item.title)+'</h2><div class="memo-labels"><span class="'+(refs.length?'exam':'extra')+'">'+(refs.length?'족보 '+refs.length+'문항':'추가 암기')+'</span></div></header><div class="memo-scroll"><table class="memo-table"><thead><tr>'+item.heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows +'</tbody></table></div>'+renderOriginal(item,index)+(!practice&&item.note?'<p class="memo-note">'+escape(item.note)+'</p>':'')+(item.sourceUrl&&/^https:\/\//.test(item.sourceUrl)?'<p class="memo-source"><a href="'+escape(item.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+escape(item.sourceLabel||'관련 원문 확인')+' ↗</a></p>':'')+(associated?'<p class="memo-assoc"><b>표 전체 관련 기출</b> '+associated+'</p>':'')+'</section>';
   }).join('');
   updatePracticeStats();
  }
@@ -296,6 +297,12 @@
 .memo-practice-switch>button#memoPrev{border-color:#ddb6c8;color:#a34f76}
 .memo-practice-switch>button#memoRestart{background:#fff8fb;border-color:#dfbdce;color:#965473}
 .memo-practice-switch>button#memoNext:hover{background:#9e3b65}
+`;
+ style.textContent+=`
+.memo-source{margin:0;padding:10px 15px 13px;background:#fff9fc;border-top:1px solid #f1e1e9}
+.memo-source a{color:#9e4e73;font-weight:750;font-size:12px;text-decoration:none}
+.memo-source a:hover{text-decoration:underline}
+.memo-muted-hint{font-size:11px;color:#ac8a9b}
 `;
  document.head.append(style);
  window.renderNeuroMemo=render;
