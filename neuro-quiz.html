@@ -283,7 +283,7 @@ function shuffleQuiz(){
 }
 function refreshCurrent(){
  if(state.tab==='list'){
-   state.order='ordered';
+   state.order='source';
    state.orderList=bank.map(q=>q.id);
    state.listSearch='';
    $('listSearch').value='';
