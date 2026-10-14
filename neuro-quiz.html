@@ -146,6 +146,16 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,.answerinput:foc
 .summary-evidence p{margin:0;line-height:1.85;color:#514252;font-size:12.5px}
 .summary-evidence p.summary-evidence-warning{margin-top:8px;padding-top:8px;border-top:1px dashed #e7c5d4;color:#b05266;font-size:11px}
 @media(max-width:560px){.summary-evidence{padding:10px 11px}.summary-evidence p{font-size:12px}}
+.outside-evidence{background:#fffafc;border:1px solid #e8d9e2;margin-top:10px;border-radius:10px;padding:13px 14px}
+.outside-evidence-title{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:7px}
+.outside-evidence-title strong{color:#865470;font-size:12px}
+.outside-evidence-title span{font-size:10.5px;color:#a17e91;border-radius:6px;background:#f8edf3;padding:3px 7px}
+.outside-evidence p{font-size:12.5px;line-height:1.83;margin:0;color:#594955}
+.outside-evidence-sources{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.outside-evidence-sources a{font-size:11px;display:inline-flex;align-items:center;max-width:100%;border:1px solid #e3d3dd;padding:5px 9px;border-radius:8px;color:#94506f;text-decoration:none;background:#fff}
+.outside-evidence-sources a:hover{background:#fdf0f6;border-color:#cb9bb3;text-decoration:underline}
+.outside-evidence p.outside-uncertain{font-size:11px;color:#a65d6a;margin-top:9px;padding-top:7px;border-top:1px dashed #e6cedb}
+@media(max-width:560px){.outside-evidence{padding:10px 11px}.outside-evidence p{font-size:12px}}
 </style><style>html.neuro-auth-pending .top,html.neuro-auth-pending .layout{visibility:hidden}#neuro-auth-overlay{position:fixed;inset:0;z-index:100;background:#f5f7fb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;text-align:center;padding:28px;color:#365d80;font:600 15px/1.7 system-ui,sans-serif}#neuro-auth-overlay a{padding:10px 17px;background:#2365a3;color:white;text-decoration:none;border-radius:9px}html:not(.neuro-auth-pending) #neuro-auth-overlay{display:none}</style></head>
 <body><div id="neuro-auth-overlay" role="status">로그인 계정과 학습 기록을 확인하고 있습니다…</div>
 <header class="top"><div class="top-inner"><div class="logo">신경정신과 · 족보<small>20·21·22학번 중간고사 · 계정별 학습 기록</small></div></div></header>
@@ -170,6 +180,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,.answerinput:foc
 <script src="./neuro-memo-data.js?v=20261014-fillblanks-v8"></script>
 <script src="./neuro-memo-view.js?v=20261014-prev-next-refresh-v12"></script>
 <script src="./neuro-summary-evidence.js?v=20261014-summary-answer-v15"></script>
+<script src="./neuro-external-evidence.js?v=20261014-external-final-v16"></script>
 <script>
 /* 상위 과목 하위탭에서 퀴즈/암기표 화면을 전환합니다. */
 window.__neuroRequestedMode='past';
@@ -183,6 +194,7 @@ window.addEventListener('message', event => {
 window.startNeuroQuiz=()=>{'use strict';
 const bank=JSON.parse(document.getElementById('dataBank').textContent);
 const evidence=window.NEURO_SUMMARY_EVIDENCE||{};
+const external=window.NEURO_EXTERNAL_EVIDENCE||{};
 const evidenceEscape=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 for(const q of bank){
  const cited=evidence[q.id];
@@ -191,6 +203,19 @@ for(const q of bank){
   <div class="summary-evidence-top"><strong>정리본 근거 · 보충 설명</strong><span>한의신경정신과학 정리본 ${evidenceEscape(cited.pages)}쪽</span></div>
   <p>${evidenceEscape(cited.note)}</p>
   ${q.uncertain?'<p class="summary-evidence-warning">※ 복기가 불완전한 문항입니다. 정리본에서 뒷받침되는 범위만 보강했고, 미확인 정답을 확정하지 않았습니다.</p>':''}
+ </section>`;
+}
+// 확인 가능한 외부 고전·공식 의학·학술 자료만 사용하고 원본 답안/채점 기준은 그대로 보존합니다.
+for(const q of bank){
+ const ext=external[q.id];
+ if(!ext || !Array.isArray(ext.refs) || !ext.refs.length)continue;
+ const links=ext.refs.filter(x=>x&&/^https:\/\//.test(x.url))
+   .map(x=>`<a href="${evidenceEscape(x.url)}" target="_blank" rel="noopener noreferrer">${evidenceEscape(x.title)} ↗</a>`).join('');
+ q.answer+=`<section class="outside-evidence" aria-label="외부 문헌 교차검증">
+  <div class="outside-evidence-title"><strong>외부 문헌 교차검증</strong><span>교수님 정리본 밖 참고</span></div>
+  <p>${evidenceEscape(ext.note)}</p>
+  <div class="outside-evidence-sources">${links}</div>
+  ${q.uncertain?'<p class="outside-uncertain">※ 참고문헌이 개념을 설명하더라도, 불완전한 족보 복기 문장의 확정 답안을 보증하지는 않습니다.</p>':''}
  </section>`;
 }
 const byId=new Map(bank.map(q=>[q.id,q]));
