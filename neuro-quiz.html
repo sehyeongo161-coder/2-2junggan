@@ -182,7 +182,7 @@ const norm=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s.,·–�
 let storeOK=true;
 let records=window.__neuroInitialRecords||{};
 if(!Object.keys(records).length){try{const raw=localStorage.getItem(KEY);if(raw){const obj=JSON.parse(raw);if(obj&&typeof obj==='object')records=obj;}}catch(e){storeOK=false;}}
-const state={tab:'quiz',year:'all',topic:'all',filter:'all',order:'shuffle',current:null,answerMode:'text',revealed:{},responses:{},choiceOrders:{},listSearch:'',orderList:[],feedback:null};
+const state={tab:'quiz',year:'all',topic:'all',filter:'all',order:'shuffle',current:null,answerMode:'text',revealed:{},responses:{},choiceOrders:{},listSearch:'',orderList:[],listOrder:[],listShuffled:false,feedback:null};
 function save(){
  if(window.parent!==window)window.parent.postMessage({type:'neuro-progress-updated',uid:window.__neuroUid,records},location.origin);
  try{localStorage.setItem(KEY,JSON.stringify(records));$('saveText').textContent='브라우저 저장됨 · 계정 동기화 중';}catch(e){storeOK=false;$('saveText').textContent='브라우저 저장 제한 · 계정 동기화 시도';}window.__neuroSaveRecords?.(records);}
@@ -257,39 +257,40 @@ function actionNote(kind,message){
  if(area){area.textContent=message;area.classList.add('visible');}
 }
 function shuffleQuiz(){
+ if(state.tab==='list'){
+   const previous=(state.listShuffled?state.listOrder:bank.map(q=>q.id)).join('|');
+   let order=shuffle(bank.map(q=>q.id));
+   for(let i=0;i<4&&order.join('|')===previous;i++)order=shuffle(bank.map(q=>q.id));
+   if(order.join('|')===previous&&order.length>1)[order[0],order[1]]=[order[1],order[0]];
+   state.listOrder=order;state.listShuffled=true;
+   renderList();
+   actionNote('list','기출 목록의 순서를 새로 섞었습니다.');
+   return;
+ }
  const current=state.current;
  const previous=sortedList().join('|');
  state.order='shuffle';
  let order=shuffle(bank.map(q=>q.id));
- // Make a deliberate shuffle visible even in the very rare same-order case.
  for(let t=0;t<4&&order.join('|')===previous;t++)order=shuffle(bank.map(q=>q.id));
  if(order.join('|')===previous&&order.length>1)[order[0],order[1]]=[order[1],order[0]];
  const choices=order.filter(id=>inScope(byId.get(id)));
- if(state.tab==='quiz'&&choices.length>1&&choices[0]===current){
+ if(choices.length>1&&choices[0]===current){
    const alt=choices.find(id=>id!==current),i=order.indexOf(current),j=order.indexOf(alt);
    [order[i],order[j]]=[order[j],order[i]];
  }
  state.orderList=order;
- state.feedback=null;
- syncFilters();
- if(state.tab==='list'){
-   renderList();
-   actionNote('list','문항 순서를 새로 섞었습니다.');
- }else{
-   state.current=null;
-   renderQuiz();
-   actionNote('quiz','문항을 무작위로 다시 섞어 새 문제를 불러왔습니다.');
- }
+ state.current=null;state.feedback=null;
+ syncFilters();renderQuiz();
+ actionNote('quiz','문항을 무작위로 다시 섞어 새 문제를 불러왔습니다.');
 }
 function refreshCurrent(){
  if(state.tab==='list'){
-   state.order='source';
-   state.orderList=bank.map(q=>q.id);
+   state.listShuffled=false;
+   state.listOrder=[];
    state.listSearch='';
    $('listSearch').value='';
-   syncFilters();
    renderList();
-   actionNote('list','검색을 지우고 학번·문항 순서로 전체 기출을 새로 표시했습니다.');
+   actionNote('list','검색을 지우고 기출 자료 원본 순서로 전체 문항을 새로 표시했습니다.');
    return;
  }
  const arr=eligible();
@@ -355,7 +356,7 @@ function syncFilters(){$('year').value=state.year;$('topic').value=state.topic;$
 function renderList(){
  updateCounters();
  // The list is a reference document: ignore quiz-only new/right/wrong filters.
- let arr=sortedList().map(id=>byId.get(id)).filter(q=>q&&
+ let arr=(state.listShuffled?state.listOrder:bank.map(q=>q.id)).map(id=>byId.get(id)).filter(q=>q&&
     (state.year==='all'||q.year===state.year)&&
     (state.topic==='all'||String(q.topicNo)===state.topic));
  const query=norm(state.listSearch);
