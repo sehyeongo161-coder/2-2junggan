@@ -421,7 +421,7 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-refresh-reset-v20';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-graded-next-v21';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
@@ -479,7 +479,7 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
  });
 })();
 </script>
-<script type="module" src="./auth-app.js?v=20261014-global-neuro-stats-v9"></script>
+<script type="module" src="./auth-app.js?v=20261014-unseen-first-v10"></script>
 </body>
 </html>
 
