@@ -1,9 +1,17 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="ko" class="print-auth-check"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#a34570">
 <title>신경정신과 중간고사 족보 총망라 · A4 인쇄용</title>
 <meta name="description" content="한의신경정신과학 20·21·22학번 기출 60문항, 정리본 해설 및 외부 근거. iPad 친화형 PDF 인쇄용 HTML.">
 <style>
+/* Consistent sign-in gate with the existing six-user neuro study page. */
+html.print-auth-check .toolbar, html.print-auth-check .document{display:none!important}
+.auth-check{min-height:100svh;display:grid;place-content:center;text-align:center;gap:10px;padding:24px;color:#73495d;background:#fff9fc}
+.auth-check strong{font-size:18px}
+.auth-check p{font-size:13px;color:#775f6b;margin:4px 0}
+.auth-check a{color:#99486f;font-size:13px;font-weight:800}
+html:not(.print-auth-check) .auth-check{display:none}
+@media print{.auth-check{display:none!important}}
 :root{color-scheme:light;--rose:#a34570;--rose-strong:#8b335c;--rose-pale:#fff4f8;--rose-border:#efd8e2;--ink:#383139;--muted:#766772;--bg:#f8f4f6;--line:#eae0e5}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -114,7 +122,7 @@ button{font:inherit;cursor:pointer}
 body.hide-answers .answer-box,body.hide-answers .summary-evidence,body.hide-answers .external-evidence,body.hide-answers .uncertain-note,body.hide-answers .topic-lecture{display:none}
 @media print{body.hide-answers .answer-box,body.hide-answers .summary-evidence,body.hide-answers .external-evidence,body.hide-answers .uncertain-note,body.hide-answers .topic-lecture{display:block!important}}
 </style></head>
-<body><div class="toolbar"><div class="toolbar-inner"><div class="toolbar-brand"><strong>신경정신과 · 족보 총망라</strong><small>아이패드 보기 · A4 PDF 인쇄 최적화</small></div><div class="toolbar-actions"><button id="toggleAnswers" type="button" aria-pressed="false">정답·해설 가리기</button><button id="printDocument" class="primary" type="button">인쇄 / PDF 저장</button></div></div></div>
+<body><div class="auth-check" id="printAuthGate" role="status" aria-live="polite"><strong>학습 자료를 불러오는 중입니다</strong><p>기존 시험공부 사이트의 로그인 상태를 확인하고 있습니다.</p></div><div class="toolbar"><div class="toolbar-inner"><div class="toolbar-brand"><strong>신경정신과 · 족보 총망라</strong><small>아이패드 보기 · A4 PDF 인쇄 최적화</small></div><div class="toolbar-actions"><button id="toggleAnswers" type="button" aria-pressed="false">정답·해설 가리기</button><button id="printDocument" class="primary" type="button">인쇄 / PDF 저장</button></div></div></div>
 <div class="document">
 <header class="cover"><div class="eyebrow">한의신경정신과학 · 중간고사</div><h1>신경정신과 족보 총망라</h1><p class="subtitle">20·21·22학번 기출 원문 → 복기 답안 → 정리본 근거 → 외부 문헌 교차검증 → 주제별 강의·변형 대비</p><div class="metrics"><span class="metric">총 60문항</span><span class="metric">SECTION 18개</span><span class="metric">복기 불확실 19문항 구분</span><span class="metric">정리본 1–14쪽 기준</span></div>
 <p class="notice">수업 정리본 내용을 우선하고, 확인 가능한 고전·학술 참고문헌은 별도 표시했습니다. 물음표·복기 불확실 표시는 확정 답안이 아닙니다. 인쇄 시 모든 정답과 해설이 포함됩니다. 아이패드에서는 상단 ‘인쇄 / PDF 저장’을 눌러 프린트 미리보기를 PDF로 저장하세요.</p></header>
@@ -705,4 +713,33 @@ body.hide-answers .answer-box,body.hide-answers .summary-evidence,body.hide-answ
    window.print();
  });
 })();
+</script><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
+import {getAuth,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+import {getFirestore,doc,getDoc} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
+import {firebaseConfig} from './firebase-config.js';
+const gate=document.getElementById('printAuthGate');
+const names=['고세현','석주형','홍대진','안선웅','박준영','김지원'];
+const nameUid=name=>'student-'+[...new TextEncoder().encode(name)].map(b=>b.toString(16).padStart(2,'0')).join('');
+function denied(message){
+ gate.replaceChildren();
+ const strong=document.createElement('strong');strong.textContent='학습 자료 접근 제한';
+ const p=document.createElement('p');p.textContent=message;
+ const a=document.createElement('a');a.href='./';a.textContent='기존 시험공부 사이트에서 로그인하기';
+ gate.append(strong,p,a);
+}
+try{
+ const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+ onAuthStateChanged(auth,async user=>{
+  if(!user){denied('승인된 계정으로 로그인하신 뒤 다시 열어 주세요.');return;}
+  try{
+    const name=names.find(n=>nameUid(n)+'-first@example.com'===user.email);
+    if(!name)throw new Error('unapproved');
+    const profile=await getDoc(doc(db,'profiles',nameUid(name)));
+    if(!profile.exists()||profile.data().name!==name||!profile.data().approved||!profile.data().active)throw new Error('unapproved');
+    document.documentElement.classList.remove('print-auth-check');
+    gate.remove();
+  }catch(e){denied('가입 승인 상태를 확인할 수 없습니다. 시험공부 사이트에서 로그인해 주세요.');}
+ });
+}catch(e){denied('로그인 서버에 연결되지 않았습니다. 인터넷 연결을 확인해 주세요.');}
 </script></body></html>
