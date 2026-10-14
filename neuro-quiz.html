@@ -658,6 +658,8 @@ onAuthStateChanged(auth,async user=>{
    if(cloud.exists()&&cloud.data().payload){
     const data=typeof cloud.data().payload==='string'?JSON.parse(cloud.data().payload):cloud.data().payload;
     if(data&&typeof data==='object'&&!Array.isArray(data))window.__neuroInitialRecords=data;
+   }
+   if(cloud.exists()){
      const ss=cloud.data().session;
      if(ss){try{window.__neuroInitialSession=typeof ss==='string'?JSON.parse(ss):ss;}catch(e){console.warn('세트 진행 기록 복원 실패',e);}}
    }
