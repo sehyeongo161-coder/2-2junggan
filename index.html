@@ -421,7 +421,7 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-prev-next-refresh-v12';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261014-neuro-quiz-list-fix-v13';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
@@ -474,7 +474,7 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
    }
    if(e.data?.type==='neuro-quiz-size'){
      const height=Number(e.data.height);
-     if(Number.isFinite(height)&&height>=550&&height<=20000)frame.style.height=(height+16)+'px';
+     if(Number.isFinite(height)&&height>=550&&height<=150000)frame.style.height=(height+24)+'px';
    }
  });
 })();
