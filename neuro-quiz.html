@@ -35,7 +35,7 @@
 .mobileFilters .pillbox{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
 .mobileFilters .pillbox button{padding:9px 4px}
 .mobileFilters .side-divider,.mobileFilters .warn{display:none}
-.mobileFilters #reshuffle{width:auto!important;margin-top:11px}
+.session-stage{font-weight:750;font-size:12px;color:#a14474;line-height:1.6;margin:12px 0}.session-complete{text-align:center;padding:45px 20px}.session-complete h2{color:#a14474;font-size:23px}.session-complete p{color:#6d7280;margin:10px 0 23px}.mobileFilters #reshuffle{width:auto!important;margin-top:11px}
 .mobileFilters>.panel:last-child{padding:7px 14px}
 .mobileFilters>.panel:last-child .section-label{display:none}
 .main{width:100%;min-width:0}
@@ -160,15 +160,15 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,.answerinput:foc
 <body><div id="neuro-auth-overlay" role="status">로그인 계정과 학습 기록을 확인하고 있습니다…</div>
 <header class="top"><div class="top-inner"><div class="logo">신경정신과 · 족보<small>20·21·22학번 중간고사 · 계정별 학습 기록</small></div></div></header>
 <div class="layout"><aside class="aside">
-<section class="panel"><div class="section-label">학습 현황</div><div class="statgrid"><div class="statbox"><div class="value" id="totalCount">60</div><div class="unit">전체 문항</div></div><div class="statbox"><div class="value" id="doneCount">0</div><div class="unit">채점 완료</div></div><div class="statbox"><div class="value" id="rightCount">0</div><div class="unit">현재 정답</div></div><div class="statbox"><div class="value" id="wrongCount">0</div><div class="unit">현재 오답</div></div></div><div class="progress"><span id="progressBar"></span></div><div class="savehint">◦ <span id="saveText">학습 기록을 브라우저에 저장합니다.</span></div></section>
-<details class="mobileFilters" id="mobileFilters"><summary>출제 범위 · 오답 필터 설정</summary><section class="panel"><div class="section-label">출제 범위</div><div class="aside-forms"><div><label class="selectlabel" for="year">학번</label><select id="year" class="select"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select></div><div><label class="selectlabel" for="topic">주제</label><select id="topic" class="select"><option value="all">전체 주제</option></select></div><div class="whole"><label class="selectlabel">풀이 상태</label><div class="pillbox" id="statuses"><button data-filter="all" class="active">전체</button><button data-filter="new">미풀이</button><button data-filter="wrong">오답만</button><button data-filter="right">정답만</button></div></div><div class="whole"><label class="selectlabel" for="order">문제 순서</label><select class="select" id="order"><option value="shuffle">무작위</option><option value="source">주제별 원본 순서</option></select></div></div><div class="side-divider"></div><button class="btn" id="reshuffle" style="width:100%">↻ 문제 순서 섞기</button><div class="warn">정답 확인만 한 문제는 정답 처리되지 않습니다. 미확정·서술형 문제는 답안을 비교한 뒤 직접 채점합니다.</div></section>
+<section class="panel"><div class="section-label">학습 현황</div><div class="statgrid"><div class="statbox"><div class="value" id="totalCount">60</div><div class="unit">전체 문항</div></div><div class="statbox"><div class="value" id="doneCount">0</div><div class="unit">1회차 채점</div></div><div class="statbox"><div class="value" id="rightCount">0</div><div class="unit">이번 세트 정답</div></div><div class="statbox"><div class="value" id="wrongCount">0</div><div class="unit">재도전 대기</div></div></div><div class="progress"><span id="progressBar"></span></div><div id="sessionStage" class="session-stage" aria-live="polite">1회차 시작</div><button id="restartSet" type="button" class="btn" style="width:100%;margin:0 0 11px">새 세트 시작 · 60문항</button><div class="savehint">◦ <span id="saveText">학습 기록을 브라우저에 저장합니다.</span></div></section>
+<details class="mobileFilters" id="mobileFilters"><summary>문항 목록 필터 · 순서 설정</summary><section class="panel"><div class="section-label">목록 필터 · 퀴즈 순서</div><div class="aside-forms"><div><label class="selectlabel" for="year">학번</label><select id="year" class="select"><option value="all">전체 학번</option><option value="20">20학번</option><option value="21">21학번</option><option value="22">22학번</option></select></div><div><label class="selectlabel" for="topic">주제</label><select id="topic" class="select"><option value="all">전체 주제</option></select></div><div class="whole"><label class="selectlabel">풀이 상태</label><div class="pillbox" id="statuses"><button data-filter="all" class="active">전체</button><button data-filter="new">미풀이</button><button data-filter="wrong">오답만</button><button data-filter="right">정답만</button></div></div><div class="whole"><label class="selectlabel" for="order">문제 순서</label><select class="select" id="order"><option value="shuffle">무작위</option><option value="source">주제별 원본 순서</option></select></div></div><div class="side-divider"></div><button class="btn" id="reshuffle" style="width:100%">↻ 문제 순서 섞기</button><div class="warn">정답 확인만 한 문제는 정답 처리되지 않습니다. 미확정·서술형 문제는 답안을 비교한 뒤 직접 채점합니다.</div></section>
 <section class="panel"><div class="section-label">학습 기록 관리</div><button class="subtle" id="resetRecord">전체 풀이 기록 초기화</button><div class="tiny">학습 기록은 로그인한 계정에 동기화하며, 연결이 끊기면 이 브라우저에 임시 보관합니다.</div></section></details>
 </aside><main class="main">
 <div class="view-switch" role="group" aria-label="신경정신과 기출 학습 방식">
   <button id="neuro-quiz-tab" type="button" class="view-choice" aria-pressed="true">퀴즈</button>
   <button id="neuro-list-tab" type="button" class="view-choice" aria-pressed="false">목록</button>
 </div>
-<div id="quizView"><div class="main-head"><div><h1>실전 문제 풀기</h1><p>기출 원문 기준 · 자동채점 / 자기채점 구분</p></div><div class="inline-acts quiz-tools" role="group" aria-label="문제 도구">
+<div id="quizView"><div class="main-head"><div><h1>실전 문제 풀기</h1><p>60문항 한 번씩 출제 → 오답만 반복 → 전부 정답이면 새 세트</p></div><div class="inline-acts quiz-tools" role="group" aria-label="문제 도구">
 <button class="btn toolbtn" id="shuffleTop" type="button" title="60문항 순서를 다시 섞고 다른 문제로 이동" aria-label="셔플: 문제 순서 다시 섞기">⤨ <span>셔플</span></button>
 <button class="btn toolbtn" id="refreshTop" type="button" title="무작위로 새 문제를 불러옵니다 (채점 기록 유지)" aria-label="새로고침: 새 문제 불러오기">↻ <span>새로고침</span></button>
 </div></div><div id="quizActionMessage" class="quiz-action-status" role="status" aria-live="polite"></div>
@@ -439,13 +439,166 @@ function renderStats(){updateCounters();let attempts=0,everWrong=0,reviewed=0,co
  const target=$('wrongStats');target.innerHTML='';if(!mistakes.length){target.innerHTML='<p class="center-message">아직 오답 기록이 없습니다. 문제를 풀면 많이 틀린 순서로 나타납니다.</p>';return;}
  mistakes.forEach(q=>{const x=document.createElement('div');x.className='wrongmost';x.innerHTML=`<div class="desc"><b>${q.year}학번 · ${escapeHtml(q.topic)}</b><span>${escapeHtml(safeText(q.prompt))}</span></div><div class="rightpart">오답 ${rec(q.id).wrong}회 <button class="btn" type="button">다시 풀기</button></div>`;x.querySelector('button').addEventListener('click',()=>{state.year='all';state.topic='all';state.filter='all';syncFilters();goTo(q.id)});target.append(x);});
 }
+
+const sessionKey='neuro_psy_midterm_session_v3:'+window.__neuroUid;
+const sessionIds=bank.map(q=>q.id);
+const freshSession=()=>({version:3,phase:'first',order:shuffle(sessionIds),first:{},mastered:{},retry:[],current:null,waiting:false,history:[]});
+let session;
+try{session=window.__neuroInitialSession||JSON.parse(localStorage.getItem(sessionKey)||'null');}catch(e){session=null;}
+if(!session||session.version!==3||!Array.isArray(session.order)||session.order.length!==sessionIds.length||
+   !session.order.every(id=>byId.has(id))||new Set(session.order).size!==sessionIds.length||
+   !['first','retry','done'].includes(session.phase)||!session.first||!session.mastered||
+   !Array.isArray(session.retry)||!Array.isArray(session.history))session=freshSession();
+session.waiting=false;session.current=null;
+function saveSession(){
+ try{localStorage.setItem(sessionKey,JSON.stringify(session));}catch(e){storeOK=false;}
+ window.__neuroSaveSession?.(session);
+}
+function pendingSessionIds(){
+ if(session.phase==='first')return session.order.filter(id=>!Object.prototype.hasOwnProperty.call(session.first,id));
+ return session.phase==='retry'?session.retry.slice():[];
+}
+function resetRetryInput(id){
+ if(session.first[id]){delete state.responses[id];delete state.revealed[id];delete state.choiceOrders[id];}
+}
+function selectSession(id){
+ session.current=id;session.waiting=false;resetRetryInput(id);
+ session.history.push(id);if(session.history.length>150)session.history.shift();
+ state.feedback=null;state.answerMode='text';saveSession();renderQuiz();
+}
+updateCounters=function(){
+ const done=Object.keys(session.first).length,mastered=Object.keys(session.mastered).length;
+ $('totalCount').textContent=bank.length;$('doneCount').textContent=done;
+ $('rightCount').textContent=mastered;$('wrongCount').textContent=session.retry.length;
+ $('progressBar').style.width=(done/bank.length*100)+'%';
+ $('sessionStage').textContent=session.phase==='first'?
+   '1회차 · '+done+'/'+bank.length+'문항 채점 · '+(bank.length-done)+'문항 남음':
+   session.phase==='retry'?'오답 재도전 · '+session.retry.length+'문항 남음 · 정답 '+mastered+'/'+bank.length:
+   '이번 세트 완료 · '+bank.length+'문항 전부 정답';
+};
+eligible=function(){
+ let ids=pendingSessionIds();
+ if(session.waiting&&session.current&&!ids.includes(session.current))ids=[session.current,...ids];
+ if(state.previewId&&!ids.includes(state.previewId))ids=[state.previewId,...ids];
+ return ids.map(id=>byId.get(id)).filter(Boolean);
+};
+chooseCurrent=function(){
+ if(state.previewId)return byId.get(state.previewId)||null;
+ if(session.waiting&&session.current)return byId.get(session.current)||null;
+ const remaining=pendingSessionIds();
+ if(!remaining.length){session.current=null;return null;}
+ if(!remaining.includes(session.current)){
+   session.current=remaining[0];resetRetryInput(session.current);
+   session.history.push(session.current);if(session.history.length>150)session.history.shift();
+   saveSession();resetPanel();
+ }
+ return byId.get(session.current);
+};
+const previousRenderQuiz=renderQuiz;
+renderQuiz=function(){
+ if(session.phase==='done'&&!session.waiting&&!state.previewId){
+   updateCounters();
+   $('quizContainer').innerHTML='<div class="panel session-complete"><h2>이번 세트 완료</h2><p>60문항 전체와 오답 재도전을 모두 마쳤습니다.<br>누적 오답 기록은 유지됩니다.</p><button class="btn primary" id="startNextSet">새 세트 시작 · 60문항 다시 풀기</button></div>';
+   $('startNextSet').addEventListener('click',()=>restartSession(false));return;
+ }
+ previousRenderQuiz();
+ if(!state.previewId){
+   const meta=$('quizContainer').querySelector('.question-meta > span:last-child');
+   if(meta)meta.textContent=session.phase==='first'?
+      '1회차 · '+Object.keys(session.first).length+(session.waiting?'문항 채점 완료':'문항 채점'):
+      session.phase==='retry'?'오답 재도전 · '+session.retry.length+'문항 남음':'마지막 문항';
+ }
+};
+function recordSessionGrade(id,correct){
+ if(state.previewId||session.waiting||session.current!==id)return;
+ session.waiting=true;
+ if(session.phase==='first'){
+   session.first[id]=correct?'right':'wrong';
+   if(correct)session.mastered[id]=true;else if(!session.retry.includes(id))session.retry.push(id);
+   if(Object.keys(session.first).length===sessionIds.length)session.phase=session.retry.length?'retry':'done';
+ }else if(session.phase==='retry'){
+   const i=session.retry.indexOf(id);if(i>=0)session.retry.splice(i,1);
+   if(correct)session.mastered[id]=true;else session.retry.push(id);
+   if(!session.retry.length)session.phase='done';
+ }
+ saveSession();updateCounters();
+}
+function canSubmit(q){
+ if(state.previewId)return true;
+ if(!session.waiting&&session.current===q.id&&session.phase!=='done')return true;
+ const el=$('response');if(el){el.className='response note visible';el.textContent='이미 채점했습니다. 다음 문제를 눌러 주세요.';}
+ return false;
+}
+const previousGrade=grade;
+grade=function(q){
+ if(!canSubmit(q))return;
+ if(!answeredReady(q)){const el=$('response');el.className='response note visible';el.textContent='답을 먼저 입력하거나 선택해 주세요.';return;}
+ const attempts=rec(q.id).attempts||0;
+ previousGrade(q);
+ if((rec(q.id).attempts||0)>attempts)recordSessionGrade(q.id,statusOf(q.id)==='right');
+};
+const previousManual=manualGrade;
+manualGrade=function(q,correct){
+ if(!canSubmit(q))return;
+ previousManual(q,correct);recordSessionGrade(q.id,correct);
+};
+goTo=function(id){
+ if(!byId.has(id))return;
+ state.previewId=id;state.feedback=null;state.answerMode='text';switchTab('quiz');
+ requestAnimationFrame(focusQuizCard);
+};
+next=function(dir=1){
+ if(dir<0){
+   if(state.previewId)return;
+   if(session.history.length>1){state.previewId=session.history[session.history.length-2];state.feedback=null;renderQuiz();}
+   else actionNote('quiz','이전 문제가 아직 없습니다.');
+   return;
+ }
+ if(state.previewId){state.previewId=null;state.feedback=null;renderQuiz();return;}
+ if(session.waiting){session.waiting=false;session.current=null;state.feedback=null;saveSession();renderQuiz();return;}
+ const remaining=pendingSessionIds();
+ if(remaining.length<2){renderQuiz();return;}
+ const idx=remaining.indexOf(session.current);
+ selectSession(remaining[(idx+1+remaining.length)%remaining.length]);
+};
+quickNext=function(){next(1);};
+shuffleQuiz=function(){
+ if(state.tab==='list'){
+   const old=(state.listShuffled?state.listOrder:sessionIds).join('|');
+   let order=shuffle(sessionIds);if(order.join('|')===old&&order.length>1)[order[0],order[1]]=[order[1],order[0]];
+   state.listOrder=order;state.listShuffled=true;renderList();actionNote('list','목록 순서를 다시 섞었습니다.');return;
+ }
+ state.previewId=null;session.order=shuffle(sessionIds);
+ if(session.phase==='retry')session.retry=shuffle(session.retry);
+ state.order='shuffle';state.orderList=session.order.slice();
+ session.waiting=false;session.current=null;saveSession();syncFilters();renderQuiz();
+ actionNote('quiz','남은 문제 순서만 섞었습니다. 맞힌 문제는 다시 출제되지 않습니다.');
+};
+const previousRefresh=refreshCurrent;
+refreshCurrent=function(){
+ if(state.tab==='list')return previousRefresh();
+ state.previewId=null;const remaining=pendingSessionIds();
+ if(!remaining.length)return renderQuiz();
+ const other=remaining.filter(id=>id!==session.current),pool=other.length?other:remaining;
+ selectSession(pool[Math.floor(Math.random()*pool.length)]);
+ actionNote('quiz','남은 문항 중 다른 문제로 이동했습니다.');
+};
+function restartSession(ask=true){
+ if(ask&&!confirm('현재 세트를 초기화하고 60문항을 처음부터 다시 풀까요? 누적 오답 통계는 유지됩니다.'))return;
+ session=freshSession();state.previewId=null;
+ state.responses={};state.revealed={};state.choiceOrders={};state.feedback=null;
+ state.year='all';state.topic='all';state.filter='all';state.order='shuffle';
+ state.orderList=session.order.slice();saveSession();syncFilters();switchTab('quiz');
+}
+$('restartSet').addEventListener('click',()=>restartSession(true));
+
 // 탭과 설정 이벤트
 for(const b of document.querySelectorAll('[data-tab]'))b.addEventListener('click',()=>switchTab(b.dataset.tab));
 $('neuro-quiz-tab').addEventListener('click',()=>switchTab('quiz'));
 $('neuro-list-tab').addEventListener('click',()=>switchTab('list'));
 $('year').addEventListener('change',e=>{state.year=e.target.value;filterChanged();});
 $('topic').addEventListener('change',e=>{state.topic=e.target.value;filterChanged();});
-$('order').addEventListener('change',e=>{state.order=e.target.value;filterChanged();});
+$('order').addEventListener('change',e=>{state.order=e.target.value;session.order=state.order==='source'?sessionIds.slice():shuffle(sessionIds);state.orderList=session.order.slice();session.waiting=false;session.current=null;saveSession();filterChanged();});
 for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{state.filter=b.dataset.filter;syncFilters();filterChanged();});
 $('reshuffle').addEventListener('click',shuffleQuiz);
 $('shuffleTop').addEventListener('click',shuffleQuiz);
@@ -460,7 +613,7 @@ document.addEventListener('keydown',e=>{
  if(e.key!=='Enter'||e.isComposing||e.repeat||state.tab!=='quiz'||e.defaultPrevented)return;
  const active=e.target;
  if(active.closest?.('button,a,select,summary,[role="button"],[role="option"]'))return;
- if(active.tagName==='TEXTAREA'&&active.value.trim())return;
+ if(active.tagName==='TEXTAREA')return;
  const q=chooseCurrent();if(!q)return;
  e.preventDefault();
  if(q.mode==='manual'){
@@ -469,9 +622,9 @@ document.addEventListener('keydown',e=>{
  }else grade(q);
 });
 $('listSearch').addEventListener('input',e=>{state.listSearch=e.target.value;renderList();});
-$('resetRecord').addEventListener('click',()=>{if(!confirm('이 브라우저에 저장된 정답·오답·열람 기록을 모두 초기화하시겠습니까?'))return;records={};state.responses={};state.revealed={};state.feedback=null;save();updateCounters();if(state.tab==='quiz')renderQuiz();if(state.tab==='list')renderList();if(state.tab==='stats')renderStats();});
+$('resetRecord').addEventListener('click',()=>{if(!confirm('누적 정답·오답·열람 기록과 현재 세트까지 모두 초기화하시겠습니까?'))return;records={};save();restartSession(false);});
 for(const [n,title] of [...new Map(bank.map(q=>[q.topicNo,q.topic])).entries()]){const opt=document.createElement('option');opt.value=n;opt.textContent=String(n).padStart(2,'0')+' · '+title;$('topic').append(opt);}
-$('mobileFilters').open=false;state.orderList=shuffle(bank.map(q=>q.id));state.order='shuffle';state.current=null;syncFilters();renderQuiz();window.__neuroApplyMode?.(window.__neuroRequestedMode);
+$('mobileFilters').open=false;state.orderList=session.order.slice();state.order='shuffle';state.current=null;syncFilters();renderQuiz();window.__neuroApplyMode?.(window.__neuroRequestedMode);
 if(window.__neuroPendingQuestion){const id=window.__neuroPendingQuestion;window.__neuroPendingQuestion=null;window.__neuroOpenQuestion(id);}
 if(window.parent!==window)window.parent.postMessage({type:'neuro-progress-updated',uid:window.__neuroUid,records},location.origin);
 if(!storeOK)$('saveText').textContent='브라우저 저장을 사용할 수 없습니다.';
@@ -505,10 +658,12 @@ onAuthStateChanged(auth,async user=>{
    if(cloud.exists()&&cloud.data().payload){
     const data=typeof cloud.data().payload==='string'?JSON.parse(cloud.data().payload):cloud.data().payload;
     if(data&&typeof data==='object'&&!Array.isArray(data))window.__neuroInitialRecords=data;
+     const ss=cloud.data().session;
+     if(ss){try{window.__neuroInitialSession=typeof ss==='string'?JSON.parse(ss):ss;}catch(e){console.warn('세트 진행 기록 복원 실패',e);}}
    }
   }catch(err){console.warn('클라우드 기록을 읽지 못해 브라우저 기록으로 시작합니다.',err);}
   window.__neuroUid=user.uid;
-  let timer,chain=Promise.resolve();
+  let timer,sessionTimer,chain=Promise.resolve();
   window.__neuroSaveRecords=records=>{
     const snapshot=JSON.stringify(records);
     clearTimeout(timer);
@@ -518,7 +673,14 @@ onAuthStateChanged(auth,async user=>{
            .catch(err=>{console.warn('신경정신과 동기화 실패',err);const el=document.getElementById('saveText');if(el)el.textContent='계정 동기화 실패 · 브라우저 임시 저장됨';});
     },700);
   };
-  if(typeof window.startNeuroQuiz!=='function')throw Error('missing quiz initializer');
+  window.__neuroSaveSession=current=>{
+     const snapshot=JSON.stringify(current);clearTimeout(sessionTimer);
+     sessionTimer=setTimeout(()=>{
+       chain=chain.catch(()=>{}).then(()=>setDoc(storageRef,{session:snapshot,updatedAt:serverTimestamp()},{merge:true}));
+       chain.catch(err=>console.warn('세트 저장 실패 · 브라우저 기록은 보존',err));
+     },700);
+   };
+   if(typeof window.startNeuroQuiz!=='function')throw Error('missing quiz initializer');
   ready=true;window.startNeuroQuiz();document.documentElement.classList.remove('neuro-auth-pending');
   const resize=()=>{if(window.parent!==window)window.parent.postMessage({type:'neuro-quiz-size',height:Math.ceil(document.documentElement.scrollHeight)},location.origin);};
   if('ResizeObserver' in window)new ResizeObserver(resize).observe(document.body);
