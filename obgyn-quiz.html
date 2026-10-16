@@ -8,9 +8,17 @@
 *{box-sizing:border-box}body{margin:0;padding:12px 0 55px;line-height:1.67}button,input,textarea{font:inherit}button{min-height:42px;padding:10px 17px;border-radius:10px;border:1px solid #dccfd4;background:#fff;cursor:pointer;color:#293347}button:hover{background:var(--light)}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #be7c97;outline-offset:2px}button:disabled{opacity:.46;cursor:default}button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:750}button.primary:hover{filter:brightness(1.06)}[hidden]{display:none!important}
 .header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}h1{font-size:26px;letter-spacing:-.035em;line-height:1.4;margin:0}.eyebrow{color:#9b7c8b;font-size:13px;margin:0 0 4px}.summary{display:flex;flex-wrap:wrap;gap:7px}.summary span{border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px 12px;font-size:14px;white-space:nowrap}.summary b{color:var(--accent)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0}.help{color:var(--muted);font-size:13px}.round{height:44px;width:44px;border-radius:50%;padding:0;font-size:26px;line-height:1}.card{background:#fff;border:1px solid #e9e1e5;border-radius:17px;padding:25px 27px;box-shadow:0 5px 22px #63213a07}.track{height:6px;background:#f1e8ec;border-radius:9px;overflow:hidden;margin-bottom:20px}.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:#815e6e;font-size:13px}.pill{border-radius:7px;padding:3px 9px;background:var(--light);color:#a54e71;font-weight:750}.card h2{font-size:23px;line-height:1.65;letter-spacing:-.035em;margin:16px 0 19px;white-space:pre-wrap;word-break:keep-all}.options{display:grid;gap:9px}.opt{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:13px 15px;line-height:1.5;border-color:#e7dce1}.opt .num{font-weight:800;color:#93566e;min-width:25px}.opt.selected{border-color:var(--accent);background:var(--light);box-shadow:inset 0 0 0 1px var(--accent)}.opt.right{border-color:#73ac85;background:#f0f8f1}.opt.wrong{border-color:#db979b;background:#fff1f1}.answer-fields{display:grid;gap:12px}.input-row label{display:block;color:#695c67;font-size:13px;font-weight:700;margin-bottom:5px}.answer-fields input,.answer-fields textarea{display:block;width:100%;padding:12px 14px;border:1px solid #d5c8cf;background:#fff;border-radius:9px;font-size:17px;color:#293347}.answer-fields textarea{resize:vertical;min-height:90px}.actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:9px}.feedback{margin-top:20px;padding:17px 19px;border-radius:11px;border:1px solid var(--line);background:#fdf9fb}.feedback h3{margin:0 0 8px;font-size:18px}.feedback p{margin:7px 0;white-space:pre-wrap}.feedback .yes{color:#246c43}.feedback .no{color:#b04451}.caution{background:#fff8ed;border:1px solid #f1d6ad;color:#8c5b24;border-radius:9px;padding:12px 14px;font-size:13px;margin:20px 0 20px}.finish{text-align:center;padding:30px 18px}.finish h2{margin:4px 0 12px}.source{margin:18px 0 0;color:#927b86;font-size:12px}.manual-buttons{display:flex;flex-wrap:wrap;gap:8px}.manual-buttons button{flex:1}.image-note{font-size:13px;background:#f7f3f5;padding:12px 14px;border-radius:9px;color:#6c5963;margin:12px 0}#error{color:#b33e4d}
 .figure-block{margin:15px 0 18px;background:#fff;border:1px solid #e9dee3;border-radius:12px;padding:14px 13px 11px}
-.figure-block svg{display:block;width:100%;max-width:460px;height:auto;margin:0 auto;background:#fff}
+.figure-block svg{display:block;width:100%;max-width:760px;height:auto;margin:0 auto;background:#fff}
 .figure-block figcaption{text-align:center;color:#786a73;font-size:12px;line-height:1.55;margin-top:8px}
 .figure-block img{max-width:100%}
+.figure-block{min-width:0;max-width:800px;margin-left:auto;margin-right:auto}
+.figure-viewport{overflow:auto;overscroll-behavior:contain;border-radius:6px}
+.figure-viewport:focus-visible{outline:3px solid #be7c97;outline-offset:2px}
+.figure-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;color:var(--muted);font-size:12px}
+.figure-tools button{flex:none;min-height:40px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--accent)}
+.figure-viewport.is-zoomed{max-height:720px;border:1px solid var(--line)}
+.figure-viewport.is-zoomed svg{width:1520px;max-width:none;margin:0}
+@media(max-width:600px){.figure-block{padding:10px 5px}.figure-tools{padding:0 3px;gap:6px}.figure-tools span{max-width:160px}.figure-viewport.is-zoomed{max-height:520px}}
 @media(max-width:600px){body{padding-top:4px}h1{font-size:23px}.card{padding:21px 17px;border-radius:13px}.card h2{font-size:20px}.opt{padding:12px}.summary span{font-size:13px;padding:6px 9px}.actions button{flex:1}.card .actions{gap:8px}}
 
 /* 부인과학: 퀴즈 / 전체 족보 목록 */
@@ -37,7 +45,7 @@
 .paper-choice-list li{padding-left:2px;line-height:1.65;word-break:keep-all}
 .paper-detail{margin-top:10px;color:#756775;font-size:13px}
 .paper-detail summary{cursor:pointer;font-weight:650;color:#8c5f75;width:fit-content}
-.paper-detail .figure-block{max-width:500px;margin:11px 0}
+.paper-detail .figure-block{max-width:800px;margin:14px auto}
 .paper-answer{margin:12px 0 1px;padding:11px 13px;border:1px solid #dfe9e1;background:#f6faf7;color:#28583d;border-radius:9px;white-space:pre-wrap;word-break:keep-all;font-size:14px}
 .paper-answer p{margin:5px 0}
 .paper-answer .paper-note{color:#6b7780}
@@ -313,33 +321,50 @@ const FIGURE_CROPS=Object.freeze({
  glands:{y:377,h:100,label:'외음부 관련 두 샘의 염증 — 원본 이미지'},
  hsg:{y:483,h:111,label:'자궁난관조영술 영상 — 원본 자료'}
 });
+// Coordinates use the extracted image's native pixels. Mask the entire printed
+// answer/highlighter area while preserving its original anatomical leader line.
+const FIGURE_MASKS=Object.freeze({
+ pelvis:[[247,253,180,62,'①'],[1128,351,153,61,'②'],[1128,287,153,61,'']],
+ stacked_top:[[124,131,190,45,'①'],[150,180,140,44,'②'],[145,272,143,45,'③'],[145,331,143,45,'④'],[181,391,99,45,'⑤']],
+ stacked_bottom:[[124,747,192,48,'①'],[850,837,144,49,'②'],[850,897,145,46,'③'],[873,954,90,47,'④'],[1018,862,122,50,'⑤'],[1083,920,123,50,'⑥']]
+});
+function figureMasks(kind){
+ return (FIGURE_MASKS[kind]||[]).map(([x,y,w,h,label])=>
+  '<g aria-hidden="true"><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="5" fill="'+(label?'#fff7ef':'#fff')+'"'+(label?' stroke="#a84a69" stroke-width="2"':'')+'/>'+
+  (label?'<text x="'+(x+w/2)+'" y="'+(y+h/2)+'" dy=".35em" text-anchor="middle" font-size="34" font-weight="700" fill="#923451">'+label+'</text>':'')+'</g>').join('');
+}
+function enlargedFigure(svg,caption){
+ return '<figure class="figure-block variant-figure"><div class="figure-tools"><span>확대하면 좌우·위아래로 이동할 수 있어요.</span><button type="button" class="figure-zoom" aria-expanded="false">그림 확대</button></div>'+
+  '<div class="figure-viewport" role="region" aria-label="확대 가능한 문제 그림" tabindex="0">'+svg+'</div><figcaption>'+esc(caption)+'</figcaption></figure>';
+}
 function questionFigure(q){
  const kind=q.figureKey||FIGURES[q.id];
  if(!kind)return /그림|사진|영상/.test(q.prompt)?'<div class="image-note">해당 자료의 그림이 수록되지 않았습니다. PDF '+esc(q.page)+'쪽을 확인하세요.</div>':'';
- // Original source from the 16-page 18–22학번 PDF. On the two left-hand muscle drawings,
- // all answer-bearing labels have been masked in the separate WebP asset.
+ // Full-resolution PDF extracts; use the same vector masks in normal and zoomed views.
  if(kind==="stacked_top"||kind==="stacked_bottom"){
-  const upper=kind==="stacked_top",y=upper?0:178,h=upper?194:205;
+  const upper=kind==="stacked_top",y=upper?0:590,h=upper?590:565;
   const caption=upper?"왼쪽 위 골반근육 그림":"왼쪽 아래 회음부근육 그림";
-  return '<figure class="figure-block variant-figure"><svg role="img" aria-label="'+caption+'의 명칭 빈칸 표시 원본 그림" viewBox="0 '+y+' 360 '+h+'" xmlns="http://www.w3.org/2000/svg">'+
-   '<image href="./obgyn-variants-stacked.webp?v=20261016-masked-v1" x="0" y="0" width="360" height="383" preserveAspectRatio="xMidYMid meet"/></svg>'+
-   '<figcaption>PDF 6쪽 원본 '+caption+' · 번호가 적힌 부분의 이름을 맞히세요</figcaption></figure>';
+  return enlargedFigure('<svg role="img" aria-label="'+caption+'의 명칭 빈칸 그림" viewBox="0 '+y+' 1254 '+h+'" xmlns="http://www.w3.org/2000/svg">'+
+   '<image href="./obgyn-variants-stacked-remastered.webp?v=20261016-hd-v1" x="0" y="0" width="1254" height="1254"/>'+figureMasks(kind)+'</svg>',
+   'PDF 6쪽 원본 '+caption+' · 번호가 적힌 부분의 이름을 맞히세요');
  }
- if(kind==="pelvis"&&q.variant){
-  // Locate the already masked original PDF labels, not anatomical structures.
-  // The grey leader lines remain unchanged. Arcuate line remains excluded (unverified).
-  const mark='<rect x="20" y="60" width="34" height="17" rx="3" fill="#fff5eb" stroke="#ae4e69"/>'+
-    '<text x="37" y="73" font-size="13" font-weight="bold" fill="#a93f5f" text-anchor="middle">①</text>'+
-    '<rect x="249" y="78" width="37" height="17" rx="3" fill="#fff5eb" stroke="#ae4e69"/>'+
-    '<text x="267.5" y="91" font-size="13" font-weight="bold" fill="#a93f5f" text-anchor="middle">②</text>';
-  return '<figure class="figure-block variant-figure"><svg role="img" aria-label="PDF 5쪽 골반 뼈 구조 ①·② 명칭 빈칸 그림" viewBox="0 0 320 236" xmlns="http://www.w3.org/2000/svg">'+
-   '<image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/>'+mark+
-   '</svg><figcaption>PDF 5쪽 원본 골반 구조 · ①·② 위치를 보고 맞히세요 (궁상선 제외)</figcaption></figure>';
+ if(kind==="pelvis"){
+  return enlargedFigure('<svg role="img" aria-label="PDF 5쪽 골반 뼈 구조 ①·② 명칭 빈칸 그림" viewBox="0 0 1393 1024" xmlns="http://www.w3.org/2000/svg">'+
+   '<image href="./pelvis-variant-remastered.webp?v=20261016-hd-v1" width="1393" height="1024"/>'+figureMasks(kind)+'</svg>',
+   'PDF 5쪽 원본 골반 구조 · ①·② 위치를 보고 맞히세요 (궁상선 제외)');
  }
- const key=kind==="muscles_ae"?"muscles":kind;
- const crop=FIGURE_CROPS[key];
+ if(kind==="muscles_ae"||kind==="muscles"){
+  // The same A–E illustration from the 19–22 source compilation retains more
+  // detail than the small copy embedded in the 16-page compilation.
+  const letters=[['A',43],['B',67],['C',109],['D',139],['E',180]].map(([label,y])=>
+   '<g aria-hidden="true"><rect x="288" y="'+y+'" width="24" height="22" rx="2" fill="#f9f8f5"/><text x="300" y="'+(y+17)+'" text-anchor="middle" font-size="18" font-weight="700" fill="#344c89">'+label+'</text></g>').join('');
+  return enlargedFigure('<svg role="img" aria-label="골반저근 A부터 E까지의 명칭 빈칸 그림" viewBox="0 0 362 242" xmlns="http://www.w3.org/2000/svg">'+
+   '<image href="./muscles-ae-remastered.webp?v=20261016-hd-v1" width="362" height="242"/>'+letters+'</svg>',
+   'PDF 6쪽 오른쪽 A~E 근육 그림 · 원본 도해');
+ }
+ const crop=FIGURE_CROPS[kind];
  if(!crop)return '';
- const caption=q.variant&&kind==="muscles_ae"?"PDF 6쪽 원본 오른쪽 A~E 근육 그림":crop.label+" · PDF "+q.page+"쪽";
+ const caption=crop.label+" · PDF "+q.page+"쪽";
  return '<figure class="figure-block"><svg role="img" aria-label="'+esc(caption)+'" viewBox="0 '+crop.y+' 320 '+crop.h+'" xmlns="http://www.w3.org/2000/svg"><image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/></svg><figcaption>'+esc(caption)+'</figcaption></figure>';
 }
 function render(){
@@ -484,6 +509,7 @@ document.addEventListener('keydown',ev=>{
  if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.repeat||
     ev.shiftKey||ev.ctrlKey||ev.altKey||ev.metaKey||viewMode!=='quiz'||!s)return;
  const target=ev.target;
+ if(target?.closest?.('.figure-block'))return;
  if(s.checked){
    const inCard=target===document.body||target===document.documentElement||
       !!target?.closest?.('#stage');
@@ -500,6 +526,16 @@ document.addEventListener('keydown',ev=>{
    submit(evaluate(q),false);
  }
 },true);
+document.addEventListener('click',ev=>{
+ const button=ev.target.closest('.figure-zoom');
+ if(!button)return;
+ const viewport=button.closest('.figure-block').querySelector('.figure-viewport');
+ const zoomed=viewport.classList.toggle('is-zoomed');
+ button.setAttribute('aria-expanded',String(zoomed));
+ button.textContent=zoomed?'화면에 맞추기':'그림 확대';
+ if(!zoomed){viewport.scrollLeft=0;viewport.scrollTop=0;}
+ resize();
+});
 $('reset').onclick=reset;
 for(const b of document.querySelectorAll('#section-buttons [data-section]'))b.addEventListener('click',()=>setScope(b.dataset.section));
 for(const b of document.querySelectorAll('#variant-options [data-mode]'))b.addEventListener('click',()=>setVariantMode(b.dataset.mode));
