@@ -103,7 +103,7 @@ function render(){
  const q=getCurrent(),manual=q.type==='manual';
  const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+esc(q.years)+'학번 표기</span><span>PDF '+esc(q.page)+'쪽</span></div>';
  const img= /그림|사진|영상/.test(q.prompt)?'<div class="image-note">원본 PDF '+q.page+'쪽의 그림·영상을 함께 확인하세요. 이미지가 포함된 기출은 본문 설명만 복원되었습니다.</div>':'';
- const html='<div class="track"><i style="width:'+100*s.cursor/bank.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+bank.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">일부 선지·그림 또는 정답이 불확실한 복원 문제입니다. 임의 자동 채점 대신 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
+ const html='<div class="track"><i style="width:'+100*s.cursor/bank.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+bank.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">복원상 일부 선지·그림·정답이 불확실합니다. 자동 채점 가능한 답은 원문 복원값 기준이며, 서술형·선지 미복원 문항은 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
  let actions='';
  if(manual){
   actions=s.checked?'<button id="next" class="primary">다음 문제 →</button>':s.preview?'<div class="manual-buttons"><button id="manual-correct" class="primary">맞혔어요</button><button id="manual-wrong">틀렸어요</button></div>':'<button id="manual-reveal" class="primary">모범답안 확인</button>';
