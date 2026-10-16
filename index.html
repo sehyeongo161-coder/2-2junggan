@@ -501,7 +501,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(document.getElementById('quiz-root').hidden)return;
   active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
   document.body.dataset.subject='obgyn';selected(tab);
-  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-scrolling-autograde-ox-v14';
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-wrong-retry-ox-v15';
   if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',open,true);
@@ -523,6 +523,16 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(e.data?.type==='obgyn-size'){
    const h=Number(e.data.height);
    if(Number.isFinite(h)&&h>=350&&h<150000)frame.style.height=(h+20)+'px';
+  }
+  if(e.data?.type==='obgyn-focus-grade'&&!obgyn.hidden){
+   const offset=Number(e.data.top);
+   if(Number.isFinite(offset)&&offset>=0&&offset<150000){
+    requestAnimationFrame(()=>{
+     const absolute=window.scrollY+frame.getBoundingClientRect().top+offset;
+     const top=Math.max(0,absolute-Math.min(140,window.innerHeight*0.16));
+     window.scrollTo({top,behavior:'smooth'});
+    });
+   }
   }
  });
 })();
