@@ -165,10 +165,10 @@ const SECTIONS=Object.freeze({
 });
 const SECTION1_TOPICS=Object.freeze({"001":"범주","002":"범주","003":"황도연","004":"동의보감","006":"전란","007":"황제내경","008":"금궤요략","009":"송대","010":"부인대전양방","011":"주단계","012":"주단계","013":"경악전서","014":"부청주"});
 const MODE_CHOICES=['original','mixed','variant'];
-function supportsVariants(section){return section==='1'||section==='2';}
+function supportsVariants(section){return ['1','2','3','6'].includes(section);}
 function activeVariantModeKey(section){
  const base="midterm-2-2-2026:quiz:v1:"+uid+":obgyn-variant-mode-v1";
- return section==='2'?base+':section2':base;
+ return section==='1'?base:base+':section'+section;
 }
 function readVariantMode(section){
  const saved=host()?.__QUIZ_STORAGE.getItem(activeVariantModeKey(section));
@@ -234,7 +234,8 @@ function makeQueue(){
   const topic=id=>{
    const q=byId.get(id);
    if(scope==="2")return q?.figureKey||q?.sourceId||id;
-   return SECTION1_TOPICS[q?.sourceId||id]||id;
+   if(scope==="1")return SECTION1_TOPICS[q?.sourceId||id]||id;
+   return q?.sourceId||id;
   };
   for(let i=1;i<a.length;i++){
    if(topic(a[i])!==topic(a[i-1]))continue;
@@ -684,11 +685,11 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-section2-text-variants-v19',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-all-chapters-variants-v20',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
-  if(bank.length!==147||bank.filter(q=>q.variant).length!==91||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
+  if(bank.length!==206||bank.filter(q=>q.variant).length!==150||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
   const savedScope=p.__QUIZ_STORAGE.getItem(scopeStoreKey());
   scope=Object.hasOwn(SECTIONS,savedScope)?savedScope:'all';
   variantMode=supportsVariants(scope)?readVariantMode(scope):'mixed';
