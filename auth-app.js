@@ -195,6 +195,23 @@ async function startQuiz(user){
     }
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
+  // 104조 선해외후공리: 순서와 치료 목적을 나타내는 구절을 독립된 빈칸 후보로 추가.
+  // 기존 후보 구절은 분할하거나 제거하지 않습니다.
+  const daja104Patches=[
+    [
+      "const DAJA_READINGS = ",
+      "for(const phrase of ['先宜','解外','後以']){\n  if(!DAJA_CANDIDATES[104].includes(phrase))DAJA_CANDIDATES[104].push(phrase);\n}\nconst DAJA_READINGS = "
+    ],
+    [
+      "const DAJA_TRANSLATIONS = ",
+      "Object.assign(DAJA_READINGS,{'先宜':'선의','解外':'해외','後以':'후이'});\nconst DAJA_TRANSLATIONS = "
+    ]
+  ];
+  for(const [before,after] of daja104Patches){
+    if(patchedQuizScript.split(before).length!==2)
+      throw new Error('104조 빈칸 후보 추가를 확인할 수 없습니다. 퀴즈 코드 버전을 확인해 주세요.');
+    patchedQuizScript=patchedQuizScript.replace(before,after);
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
