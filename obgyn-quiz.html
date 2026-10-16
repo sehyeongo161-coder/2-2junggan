@@ -262,8 +262,11 @@ function loadedState(){
      old.draft=[];old.selected='';old.checked=false;old.preview=false;old.decision=null;
    }
  }
- if(old.order.length!==ids.length||old.order.some(id=>!byId.has(id)||!ids.includes(id)))return blankState();
- old.cursor=Math.max(0,Math.min(ids.length,Number(old.cursor)||0));
+ const restoringRetry=old.phase==='retry'||old.phase==='done';
+ if(!old.order.length||old.order.some(id=>!byId.has(id)||!ids.includes(id)))return blankState();
+ // The first pass contains every selected question; retry passes contain only missed IDs.
+ if(!restoringRetry&&old.order.length!==ids.length)return blankState();
+ old.cursor=Math.max(0,Math.min(old.order.length,Number(old.cursor)||0));
  old.results=old.results&&typeof old.results==='object'?old.results:{};
  old.draft=Array.isArray(old.draft)?old.draft:[];
  old.selected=String(old.selected||'');
