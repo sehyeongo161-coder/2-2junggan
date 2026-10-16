@@ -54,6 +54,42 @@ async function approveUser(user){
 }
 
 let saveTimer, saveChain=Promise.resolve(), pendingProgress=new Map();
+// 진행 기록은 먼저 이 기기에 보관하고 Firestore에 동기화합니다.
+// 서버/권한/네트워크 오류가 발생해도 현재 브라우저에서 입력한 내용은 보존합니다.
+const PROGRESS_BACKUP_PREFIX='midterm-2-2:pending-progress:v2:';
+function progressBackupKey(uid){return PROGRESS_BACKUP_PREFIX+uid;}
+function readProgressBackup(uid){
+ try{
+  const data=JSON.parse(localStorage.getItem(progressBackupKey(uid))||'[]');
+  return new Map(Array.isArray(data)?data.filter(x=>Array.isArray(x)&&typeof x[0]==='string') : []);
+ }catch{return new Map();}
+}
+function writeProgressBackup(uid,short,payload){
+ try{
+  const entries=readProgressBackup(uid);
+  entries.set(short,payload);
+  localStorage.setItem(progressBackupKey(uid),JSON.stringify([...entries]));
+  return true;
+ }catch{return false;}
+}
+function clearProgressBackup(uid,short,payload){
+ try{
+  const entries=readProgressBackup(uid);
+  if(entries.get(short)===payload){
+   entries.delete(short);
+   if(entries.size)localStorage.setItem(progressBackupKey(uid),JSON.stringify([...entries]));
+   else localStorage.removeItem(progressBackupKey(uid));
+  }
+ }catch{}
+}
+function progressErrorDescription(err){
+ const code=String(err?.code||'').replace(/^firestore\//,'');
+ if(code==='permission-denied')return 'Firebase 권한 거부(permission-denied)';
+ if(code==='resource-exhausted')return 'Firebase 사용량 제한(resource-exhausted)';
+ if(code==='unavailable'||code==='deadline-exceeded')return '네트워크·서버 연결 불안정('+code+')';
+ if(code==='unauthenticated')return '로그인 인증 만료(unauthenticated)';
+ return 'Firebase 연결 오류'+(code?' ('+code+')':'');
+}
 let activeSaves=0;
 const pendingStats=new Set();
 const failedStats=new Set();
@@ -66,8 +102,17 @@ function flushProgress(){
     for(let i=0;i<items.length;i++){
       const [key,payload]=items[i];
       try{
-        await setDoc(doc(db,'users',auth.currentUser.uid,'progress',encodeURIComponent(key)),{payload,updatedAt:serverTimestamp()});
-      }catch(e){for(const [k,v] of items.slice(i))if(!pendingProgress.has(k))pendingProgress.set(k,v);syncStatus('저장 실패 · 다시 시도');throw e;}
+        const uid=auth.currentUser?.uid;
+        if(!uid)throw Object.assign(new Error('로그인 세션이 종료되었습니다.'),{code:'unauthenticated'});
+        await setDoc(doc(db,'users',uid,'progress',encodeURIComponent(key)),{payload,updatedAt:serverTimestamp()});
+        clearProgressBackup(uid,key,payload);
+      }catch(e){
+        for(const [k,v] of items.slice(i))if(!pendingProgress.has(k))pendingProgress.set(k,v);
+        const localCopy=!!auth.currentUser&&items.slice(i).every(([k,v])=>writeProgressBackup(auth.currentUser.uid,k,v));
+        syncStatus((localCopy?'기기에 임시저장 · ':'저장 실패 · ')+progressErrorDescription(e)+' · 다시 시도');
+        console.warn('진행 기록 Firebase 저장 실패:',e?.code||e?.message||e);
+        throw e;
+      }
     }
     if(!pendingProgress.size&&activeSaves===1)syncStatus(failedStats.size?'오답 통계 저장 실패 · 새로고침 전 확인하세요':'저장됨');
   });
@@ -78,14 +123,23 @@ async function prepareProgress(user){
   const snapshots=await getDocs(collection(db,'users',user.uid,'progress'));
   const prefix='midterm-2-2-2026:quiz:v1:'+user.uid+':';
   const memory=new Map(snapshots.docs.map(x=>[decodeURIComponent(x.id),x.data().payload]));
+  // 서버 반영에 실패했던 최신 로컬 입력을 복원하고 다시 동기화합니다.
+  pendingProgress.clear();
+  for(const [short,payload] of readProgressBackup(user.uid)){
+    if(typeof payload!=='string')continue;
+    memory.set(short,payload);
+    pendingProgress.set(short,payload);
+  }
   window.__QUIZ_STORAGE={
     getItem(key){return memory.get(key.slice(prefix.length))??null;},
     setItem(key,value){
       const short=key.slice(prefix.length);memory.set(short,value);pendingProgress.set(short,value);
-      syncStatus('저장 중…');clearTimeout(saveTimer);saveTimer=setTimeout(()=>flushProgress().catch(()=>{}),700);
+      writeProgressBackup(user.uid,short,value);
+      syncStatus('저장 중…');clearTimeout(saveTimer);saveTimer=setTimeout(()=>flushProgress().catch(()=>{}),1400);
     }
   };
-  syncStatus('저장됨');
+  syncStatus(pendingProgress.size?'기기 기록 복원됨 · 서버 동기화 중':'저장됨');
+  if(pendingProgress.size)flushProgress().catch(()=>{});
 }
 window.addEventListener('beforeunload',e=>{
   if(activeSaves||failedStats.size||pendingProgress.size||pendingStats.size||$('sync-status')?.textContent==='저장 중…'){
