@@ -518,7 +518,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(document.getElementById('quiz-root').hidden)return;
   active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
   document.body.dataset.subject='obgyn';selected(tab);
-  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-wrong-retry-ox-v16';
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-universal-ox-nextfocus-v17';
   if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',open,true);
@@ -563,7 +563,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
  });
 })();
 </script>
-<script type="module" src="./auth-app.js?v=20261016-cloud-safe-universal-ox-v5"></script>
+<script type="module" src="./auth-app.js?v=20261016-cloud-safe-universal-ox-v6"></script>
 </body>
 </html>
 
