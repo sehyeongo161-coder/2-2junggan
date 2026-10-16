@@ -262,6 +262,35 @@ function loadedState(){
      old.draft=[];old.selected='';old.checked=false;old.preview=false;old.decision=null;
    }
  }
+ // 신규 제2절 변형문제를 추가해도 기존 풀이 기록은 보존합니다.
+ // 기출만/전체 모드의 저장 키와 큐는 변경하지 않습니다.
+ if(scope==='2'&&variantMode!=='original'&&old.order.length&&old.order.every(id=>ids.includes(id))){
+  const missing=ids.filter(id=>!old.order.includes(id));
+  if(missing.length){
+   for(let i=missing.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [missing[i],missing[j]]=[missing[j],missing[i]];
+   }
+   if(old.phase==='retry'||old.phase==='done'){
+    // 이전 회차에서 채점한 문제는 유지하고 신규 문제를 다음에 출제.
+    // 이전 오답은 신규 문제를 풀고 난 뒤 오답 회차에 다시 나옵니다.
+    const attempted=ids.filter(id=>!!old.results?.[id]);
+    const unattempted=ids.filter(id=>!old.results?.[id]);
+    for(let i=unattempted.length-1;i>0;i--){
+     const j=Math.floor(Math.random()*(i+1));
+     [unattempted[i],unattempted[j]]=[unattempted[j],unattempted[i]];
+    }
+    old.order=[...attempted,...unattempted];
+    old.cursor=attempted.length;
+    old.phase='first';
+    old.checked=false;old.preview=false;old.decision=null;old.draft=[];old.selected='';
+   }else{
+    // 진행 중인 현재 문제와 기존 출제 순서는 그대로 유지.
+    old.order.push(...missing);
+   }
+   host().__QUIZ_STORAGE.setItem(key(),JSON.stringify(old));
+  }
+ }
  const restoringRetry=old.phase==='retry'||old.phase==='done';
  if(!old.order.length||old.order.some(id=>!byId.has(id)||!ids.includes(id)))return blankState();
  // The first pass contains every selected question; retry passes contain only missed IDs.
@@ -655,11 +684,11 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-chapter2-image-variants-v9',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-section2-text-variants-v19',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
-  if(bank.length!==102||bank.filter(q=>q.variant).length!==46||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
+  if(bank.length!==147||bank.filter(q=>q.variant).length!==91||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
   const savedScope=p.__QUIZ_STORAGE.getItem(scopeStoreKey());
   scope=Object.hasOwn(SECTIONS,savedScope)?savedScope:'all';
   variantMode=supportsVariants(scope)?readVariantMode(scope):'mixed';
