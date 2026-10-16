@@ -273,12 +273,21 @@ function render(){
  $('stage').querySelectorAll('[data-field]').forEach(el=>{
   el.oninput=()=>{s.draft[Number(el.dataset.field)]=el.value;save()};
   el.addEventListener('keydown',ev=>{
-    if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.shiftKey)return;
+    if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.repeat||
+       ev.shiftKey||ev.ctrlKey||ev.altKey||ev.metaKey||s.checked)return;
     ev.preventDefault();
-    s.draft[Number(el.dataset.field)]=el.value;
+    const index=Number(el.dataset.field);
+    s.draft[index]=el.value;
+    save();
     if(q.type==='manual'){
       if(!s.preview){s.preview=true;save();render();}
-    }else if(!s.checked)submit(evaluate(q),false);
+      return;
+    }
+    if(q.type==='fill'&&index<q.answer.length-1){
+      $('ans-'+(index+1))?.focus();
+      return;
+    }
+    submit(evaluate(q),false);
   });
 });
  if(q.type==='ox'||q.type==='mc'){
@@ -371,17 +380,29 @@ function goTo(id){
  if(idx!==s.cursor){const item=s.order.splice(idx,1)[0];s.order.splice(s.cursor,0,item);s.checked=false;s.preview=false;s.decision=null;s.selected='';s.draft=[];save();}
  render();window.scrollTo({top:0,behavior:'instant'});
 }
-// 선택지가 클릭으로 선택된 상태에서도 Enter만 누르면 바로 채점할 수 있습니다.
+// Enter while editing: answer fields advance one by one and the last field grades.
+// Enter after grading: advance to the next question, without triggering a double click.
+// Capture lets the handler intercept the default Enter click on the "next" button.
 document.addEventListener('keydown',ev=>{
- if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.shiftKey||ev.ctrlKey||ev.altKey||ev.metaKey||viewMode!=='quiz'||!s||s.checked)return;
+ if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.repeat||
+    ev.shiftKey||ev.ctrlKey||ev.altKey||ev.metaKey||viewMode!=='quiz'||!s)return;
  const target=ev.target;
+ if(s.checked){
+   const inCard=target===document.body||target===document.documentElement||
+      !!target?.closest?.('#stage');
+   if(!inCard||s.cursor>=s.order.length)return;
+   ev.preventDefault();
+   ev.stopPropagation();
+   advanceQuestion();
+   return;
+ }
  if(target?.closest?.('input,textarea,select,button,a,summary,[role="tab"]'))return;
  const q=getCurrent();
  if(q&&(q.type==='ox'||q.type==='mc')&&s.selected){
    ev.preventDefault();
    submit(evaluate(q),false);
  }
-});
+},true);
 $('reset').onclick=reset;
 for(const b of document.querySelectorAll('#section-buttons [data-section]'))b.addEventListener('click',()=>setScope(b.dataset.section));
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string'){if(!loaded)pendingFocus=e.data.id;else goTo(e.data.id.replace(/^obgyn-/i,''));}});
