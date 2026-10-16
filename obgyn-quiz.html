@@ -230,7 +230,7 @@ function submit(correct,revealed){
 }
 function feedbackMarkup(q){
  let status=s.decision?.revealed?'정답 확인':s.decision?.correct?'정답':'오답';
- let right=Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer;
+ let right=q.displayAnswer||(Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer);
  return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
 }
 const FIGURES=Object.freeze({
@@ -300,6 +300,7 @@ function render(){
 }
 
 function listAnswerText(q){
+ if(q.displayAnswer)return q.displayAnswer;
  if(Array.isArray(q.answer))return q.answer.join(' / ');
  if(q.type==='mc'){const n=Number(q.answer)-1;return labels[n]+' '+(q.choices?.[n]||'');}
  return String(q.answer||'');
@@ -370,6 +371,17 @@ function goTo(id){
  if(idx!==s.cursor){const item=s.order.splice(idx,1)[0];s.order.splice(s.cursor,0,item);s.checked=false;s.preview=false;s.decision=null;s.selected='';s.draft=[];save();}
  render();window.scrollTo({top:0,behavior:'instant'});
 }
+// 선택지가 클릭으로 선택된 상태에서도 Enter만 누르면 바로 채점할 수 있습니다.
+document.addEventListener('keydown',ev=>{
+ if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.shiftKey||ev.ctrlKey||ev.altKey||ev.metaKey||viewMode!=='quiz'||!s||s.checked)return;
+ const target=ev.target;
+ if(target?.closest?.('input,textarea,select,button,a,summary,[role="tab"]'))return;
+ const q=getCurrent();
+ if(q&&(q.type==='ox'||q.type==='mc')&&s.selected){
+   ev.preventDefault();
+   submit(evaluate(q),false);
+ }
+});
 $('reset').onclick=reset;
 for(const b of document.querySelectorAll('#section-buttons [data-section]'))b.addEventListener('click',()=>setScope(b.dataset.section));
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string'){if(!loaded)pendingFocus=e.data.id;else goTo(e.data.id.replace(/^obgyn-/i,''));}});
