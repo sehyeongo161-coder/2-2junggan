@@ -168,7 +168,7 @@ function installLegacyGradeMarkers(){
   if(check)check.addEventListener('click',()=>{action='check';fb.dataset.gradingCycle='';},true);
   if(show)show.addEventListener('click',()=>{action='reveal';fb.dataset.gradingCycle='';},true);
   if(next)next.addEventListener('click',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>focusElement($(conf.question)))),true);
-  let busy=false;
+  let busy=false,readyForUser=false;
   function update(){
    if(busy||fb.hidden||!fb.textContent.trim())return;
    // The marker is presentation only. Never change answer evaluation.
@@ -199,11 +199,19 @@ function installLegacyGradeMarkers(){
      (verdict?'정답입니다!':action==='reveal'?'정답 확인':'오답입니다')+'</strong>';
    mark.classList.toggle('grade-right',verdict);mark.classList.toggle('grade-wrong',!verdict);
    busy=false;
-   if(action){action=null;requestAnimationFrame(()=>focusElement(fb));}
+   if(action||readyForUser){
+    action=null;
+    requestAnimationFrame(()=>{
+     const detail=fb.querySelector('.result-explanation,.explanation,.answer-explanation,p,ol,ul')||fb;
+     if(window.__QUIZ_SCROLL_GRADE)window.__QUIZ_SCROLL_GRADE({gradeNode:fb,explanationNode:detail});
+     else focusElement(fb);
+    });
+   }
   }
   const observer=new MutationObserver(update);
-  observer.observe(fb,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['hidden','class']});
+  observer.observe(fb,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['hidden','class','style']});
   update();
+  readyForUser=true;
  }
  // Any existing subject's Next button scrolls to the newly rendered question.
  document.addEventListener('click',e=>{
@@ -570,7 +578,13 @@ function reviewGrade(reveal) {
   // Do not alter the original quiz's per-mode session. Only append to Firestore stat.
   window.__QUIZ_TRACK_ATTEMPT({key:item.key,label:item.label,group:item.group,correct,revealed:!!reveal});
   $('review-next').focus({preventScroll:true});
-  requestAnimationFrame(()=>{const el=$('review-feedback');if(el&&!el.hidden){window.scrollTo({top:Math.max(0,window.scrollY+el.getBoundingClientRect().top-100),behavior:'smooth'});}});
+  requestAnimationFrame(()=>{
+   const el=$('review-feedback');
+   if(el&&!el.hidden){
+    if(window.__QUIZ_SCROLL_GRADE)window.__QUIZ_SCROLL_GRADE({gradeNode:el,explanationNode:el.querySelector('p')||el});
+    else window.scrollTo({top:Math.max(0,window.scrollY+el.getBoundingClientRect().top-100),behavior:'smooth'});
+   }
+  });
 }
 function reviewNext() {
   if(!reviewSession?.checked)return;
