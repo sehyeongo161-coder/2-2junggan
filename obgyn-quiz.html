@@ -92,8 +92,8 @@
   <button type="button" data-section="6" aria-pressed="false">제6절 <small>16</small></button>
  </div><p id="section-name" class="section-name">전체 범위 · 56문항</p>
 </div>
-<div id="variant-picker" class="variant-picker" hidden><strong>제1절 출제 유형</strong>
- <div id="variant-options" class="variant-options" role="group" aria-label="제1절 기출 및 변형문제 선택">
+<div id="variant-picker" class="variant-picker" hidden><strong id="variant-title">제1절 출제 유형</strong>
+ <div id="variant-options" class="variant-options" role="group" aria-label="절별 기출 및 변형문제 선택">
   <button type="button" data-mode="original" aria-pressed="false">기출만 · 13</button>
   <button type="button" data-mode="mixed" aria-pressed="true">기출+변형 · 37</button>
   <button type="button" data-mode="variant" aria-pressed="false">변형만 · 24</button>
@@ -132,33 +132,55 @@ const SECTIONS=Object.freeze({
  6:"제6절 · 병력청취와 신체검사"
 });
 const SECTION1_TOPICS=Object.freeze({"001":"범주","002":"범주","003":"황도연","004":"동의보감","006":"전란","007":"황제내경","008":"금궤요략","009":"송대","010":"부인대전양방","011":"주단계","012":"주단계","013":"경악전서","014":"부청주"});
-function scopedBank(){
- if(scope==="all")return bank.filter(q=>!q.variant);
- if(scope!=="1")return bank.filter(q=>q.section===scope&&!q.variant);
- const part=bank.filter(q=>q.section==="1");
- return variantMode==="original"?part.filter(q=>!q.variant):variantMode==="variant"?part.filter(q=>q.variant):part;
+const MODE_CHOICES=['original','mixed','variant'];
+function supportsVariants(section){return section==='1'||section==='2';}
+function activeVariantModeKey(section){
+ const base="midterm-2-2-2026:quiz:v1:"+uid+":obgyn-variant-mode-v1";
+ return section==='2'?base+':section2':base;
 }
-function variantModeStoreKey(){return "midterm-2-2-2026:quiz:v1:"+uid+":obgyn-variant-mode-v1";}
+function readVariantMode(section){
+ const saved=host()?.__QUIZ_STORAGE.getItem(activeVariantModeKey(section));
+ return MODE_CHOICES.includes(saved)?saved:'mixed';
+}
+function scopedBank(){
+ const relevant=bank.filter(q=>q.section===scope);
+ if(scope==="all")return bank.filter(q=>!q.variant);
+ if(!supportsVariants(scope))return relevant.filter(q=>!q.variant);
+ return variantMode==="original"?relevant.filter(q=>!q.variant):
+ variantMode==="variant"?relevant.filter(q=>q.variant):relevant;
+}
 function setVariantMode(next){
- if(scope!=="1"||!["original","mixed","variant"].includes(next)||next===variantMode)return;
- variantMode=next;host().__QUIZ_STORAGE.setItem(variantModeStoreKey(),next);
+ if(!supportsVariants(scope)||!MODE_CHOICES.includes(next)||next===variantMode)return;
+ variantMode=next;host().__QUIZ_STORAGE.setItem(activeVariantModeKey(scope),next);
  s=loadedState();renderScope();if(viewMode==="list")renderList();else render();resize();
 }
 function scopeStoreKey(){return "midterm-2-2-2026:quiz:v1:"+uid+":obgyn-current-section-v1";}
 function renderScope(){
  const selected=scopedBank();
- $("variant-picker").hidden=scope!=="1";
- for(const b of document.querySelectorAll("#variant-options [data-mode]"))b.setAttribute("aria-pressed",String(b.dataset.mode===variantMode));
+ $("variant-picker").hidden=!supportsVariants(scope);
+ if(supportsVariants(scope)){
+  $("variant-title").textContent="제"+scope+"절 출제 유형";
+  const all=bank.filter(q=>q.section===scope);
+  const base=all.filter(q=>!q.variant).length;
+  const changed=all.filter(q=>q.variant).length;
+  for(const button of document.querySelectorAll("#variant-options [data-mode]")){
+   button.setAttribute("aria-pressed",String(button.dataset.mode===variantMode));
+   const m=button.dataset.mode;
+   button.textContent=(m==="original"?"기출만":m==="variant"?"변형만":"기출+변형")+
+    " · "+(m==="original"?base:m==="variant"?changed:all.length);
+  }
+ }
  for(const b of document.querySelectorAll("#section-buttons [data-section]"))
   b.setAttribute("aria-pressed",String(b.dataset.section===scope));
  $("section-name").textContent=SECTIONS[scope]+" · "+selected.length+"문항";
- $("quiz-scope-help").textContent=(scope==="all"?"전체 족보":"제"+scope+"절 족보")+(scope==="1"?" · "+({original:"기출",mixed:"기출+변형",variant:"변형"})[variantMode]:"")+" · 중복 없이 무작위 출제";
+ $("quiz-scope-help").textContent=(scope==="all"?"전체 족보":"제"+scope+"절 족보")+(supportsVariants(scope)?" · "+({original:"기출",mixed:"기출+변형",variant:"변형"})[variantMode]:"")+" · 중복 없이 무작위 출제";
  $("list-heading").firstChild.textContent=scope==="all"?"족보 전체 목록 ":"족보 제"+scope+"절 목록 ";
 }
 function setScope(next){
  if(!Object.hasOwn(SECTIONS,next)||next===scope)return;
  scope=next;
  host().__QUIZ_STORAGE.setItem(scopeStoreKey(),scope);
+ if(supportsVariants(scope))variantMode=readVariantMode(scope);
  s=loadedState();
  renderScope();
  if(viewMode==="list")renderList();else render();
@@ -172,12 +194,16 @@ function host(){
    typeof p.__QUIZ_TRACK_ATTEMPT==='function' ?p:null;
  }catch{return null;}
 }
-function key(){const base='midterm-2-2-2026:quiz:v1:'+uid+':obgyn-v1';return scope==='all'?base:base+':section:'+scope+(scope==='1'&&variantMode!=='original'?':mode:'+variantMode:'');}
+function key(){const base='midterm-2-2-2026:quiz:v1:'+uid+':obgyn-v1';return scope==='all'?base:base+':section:'+scope+(supportsVariants(scope)&&variantMode!=='original'?':mode:'+variantMode:'');}
 function makeQueue(){
  const a=scopedBank().map(q=>q.id);
  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
- if(scope==="1"&&variantMode!=="original"){
-  const topic=id=>SECTION1_TOPICS[byId.get(id)?.sourceId||id]||id;
+ if(supportsVariants(scope)&&variantMode!=="original"){
+  const topic=id=>{
+   const q=byId.get(id);
+   if(scope==="2")return q?.figureKey||q?.sourceId||id;
+   return SECTION1_TOPICS[q?.sourceId||id]||id;
+  };
   for(let i=1;i<a.length;i++){
    if(topic(a[i])!==topic(a[i-1]))continue;
    const j=a.findIndex((id,k)=>k>i&&topic(id)!==topic(a[i-1])&&(i===a.length-1||topic(id)!==topic(a[i+1])));
@@ -267,7 +293,7 @@ function submit(correct,revealed){
  s.decision={correct:!!correct,revealed:!!revealed};
  s.results[q.id]={correct:!!correct,revealed:!!revealed};
  const p=host();
- if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:(q.variant?'[변형] 제1절 · 원기출 '+q.sourceId:q.years)+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
+ if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:(q.variant?'[변형] 제'+q.section+'절 · 원기출 '+q.sourceId:q.years)+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
  save();
  if(q.type==='manual'&&!revealed){advanceQuestion();return;}
  render();
@@ -383,7 +409,7 @@ function renderList(){
    }).join('')+'</ol>';
   }
   // 그림 문제에서 원본 자료의 그림을 확인할 수 있도록 펼침 영역을 둡니다.
-  const figure=FIGURES[q.id]?'<details class="paper-detail"><summary>문제 그림 보기</summary>'+questionFigure(q)+'</details>':'';
+  const figure=(FIGURES[q.id]||q.figureKey)?'<details class="paper-detail"><summary>문제 그림 보기</summary>'+questionFigure(q)+'</details>':'';
   let answer='';
   if(listAnswersShown){
    answer='<div class="paper-answer"><p class="paper-answer-key"><strong>정답</strong> · '+esc(listAnswerText(q))+'</p>'+
@@ -419,9 +445,11 @@ function reset(){s=blankState();save();render();window.scrollTo({top:0,behavior:
 function goTo(id){
  if(!byId.has(id))return;
  const requested=byId.get(id);
- if(requested.variant){if(scope!=='1')setScope('1');if(variantMode==='original')setVariantMode('mixed');}
- else if(scope!=='all'&&requested.section!==scope)setScope(requested.section);
- if(scope==='1'&&variantMode==='variant'&&!requested.variant)setVariantMode('mixed');
+ if(requested.variant){
+  if(scope!==requested.section)setScope(requested.section);
+  if(variantMode==='original')setVariantMode('mixed');
+ }else if(scope!=='all'&&requested.section!==scope)setScope(requested.section);
+ if(supportsVariants(scope)&&variantMode==='variant'&&!requested.variant)setVariantMode('mixed');
  const idx=s.order.indexOf(id);
  if(idx<0)return;
  if(idx!==s.cursor){const item=s.order.splice(idx,1)[0];s.order.splice(s.cursor,0,item);s.checked=false;s.preview=false;s.decision=null;s.selected='';s.draft=[];save();}
@@ -458,15 +486,14 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-chapter1-variants-v8',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-chapter2-image-variants-v9',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
-  if(bank.length!==80||bank.filter(q=>q.variant).length!==24||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
+  if(bank.length!==102||bank.filter(q=>q.variant).length!==46||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
   const savedScope=p.__QUIZ_STORAGE.getItem(scopeStoreKey());
   scope=Object.hasOwn(SECTIONS,savedScope)?savedScope:'all';
-  const savedMode=p.__QUIZ_STORAGE.getItem(variantModeStoreKey());
-  variantMode=['original','mixed','variant'].includes(savedMode)?savedMode:'mixed';
+  variantMode=supportsVariants(scope)?readVariantMode(scope):'mixed';
   s=loadedState();loaded=true;renderScope();
   $('study').hidden=false;render();if(pendingFocus){goTo(pendingFocus.replace(/^obgyn-/i,''));pendingFocus=null;}
  }catch(e){$('error').hidden=false;$('error').textContent=e.message;resize();}
