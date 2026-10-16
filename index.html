@@ -501,7 +501,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(document.getElementById('quiz-root').hidden)return;
   active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
   document.body.dataset.subject='obgyn';selected(tab);
-  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-auto-next-v2';
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-source-figures-v3';
   if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',open,true);
