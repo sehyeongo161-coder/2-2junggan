@@ -91,6 +91,23 @@
 .variant-options button[aria-pressed="true"]{border-color:var(--accent);background:var(--light);color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .variant-note{font-size:12px;color:var(--muted);margin:8px 0 0}.paper-variant{background:#fff4ea;color:#98613b;border-radius:6px;font-weight:750;padding:3px 7px}
 @media(max-width:600px){.variant-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.variant-options button{padding:8px 3px;font-size:12px}}
+
+/* 세트: 1차 전 문항 → 오답만 재출제 → 모두 정답이면 완료 */
+.retry-stage{margin:0 0 14px;padding:12px 14px;border-radius:11px;background:#fff8ed;border:1px solid #f0d7b8;color:#8e5c32;font-size:14px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.retry-stage strong{color:#995573}
+.grade-feedback{margin:15px 0 12px;border-width:2px;scroll-margin-top:18px}
+.grade-feedback.correct{border-color:#78b68e;background:#f4fbf5}
+.grade-feedback.incorrect{border-color:#d99aa3;background:#fff6f6}
+.grade-head{display:flex;align-items:flex-start;gap:14px}
+.grade-mark{display:grid;place-items:center;flex:none;border-radius:50%;width:72px;height:72px;font-size:46px;font-weight:850;line-height:1;border:4px solid currentColor}
+.grade-feedback.correct .grade-mark,.grade-feedback.correct .grade-title{color:#23834b}
+.grade-feedback.incorrect .grade-mark,.grade-feedback.incorrect .grade-title{color:#c34356}
+.grade-title{font-size:22px;font-weight:800;margin:0 0 4px}
+.grade-question{font-size:14px;font-weight:650;line-height:1.6;color:#3e4c5c;margin:0!important;word-break:keep-all}
+.grade-body{margin-top:13px;padding-top:11px;border-top:1px solid #e9e0e2;font-size:14px}
+.grade-body p{line-height:1.75}
+.card.grade-checked>.actions{margin-top:12px}
+@media(max-width:600px){.grade-head{gap:10px}.grade-mark{width:56px;height:56px;font-size:37px;border-width:3px}.grade-title{font-size:19px}.grade-question{font-size:13px}}
 </style>
 </head>
 <body>
@@ -227,7 +244,7 @@ function makeQueue(){
  }
  return a;
 }
-function blankState(){return {order:makeQueue(),cursor:0,draft:[],selected:'',checked:false,preview:false,decision:null,results:{}};}
+function blankState(){return {order:makeQueue(),cursor:0,draft:[],selected:'',checked:false,preview:false,decision:null,results:{},phase:'first',retryRound:0};}
 function getCurrent(){return byId.get(s.order[s.cursor]);}
 function save(){if(!host())return;host().__QUIZ_STORAGE.setItem(key(),JSON.stringify(s));}
 function loadedState(){
@@ -251,12 +268,36 @@ function loadedState(){
  old.draft=Array.isArray(old.draft)?old.draft:[];
  old.selected=String(old.selected||'');
  old.checked=!!old.checked;
+ old.phase=old.phase==='retry'||old.phase==='done'?old.phase:'first';
+ old.retryRound=Math.max(0,Number(old.retryRound)||0);
+ if(old.checked&&!old.decision){const id=old.order[old.cursor];old.decision=old.results[id]||null;}
  return old;
 }
 function answered(){return Object.values(s.results).length;}
+function pendingWrongIds(){
+ return scopedBank().filter(q=>s.results[q.id]&&!s.results[q.id].correct).map(q=>q.id);
+}
+function clearCurrentAnswer(){
+ s.checked=false;s.preview=false;s.decision=null;s.draft=[];s.selected='';
+}
+function prepareNextRound(){
+ if(s.cursor<s.order.length)return;
+ const wrong=pendingWrongIds();
+ if(!wrong.length){s.phase='done';save();return;}
+ s.phase='retry';s.retryRound=(s.retryRound||0)+1;
+ // An unanswered question cannot enter this round: all originals were attempted first.
+ for(let i=wrong.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));[wrong[i],wrong[j]]=[wrong[j],wrong[i]];
+ }
+ s.order=wrong;s.cursor=0;clearCurrentAnswer();save();
+}
 function updateHeader(){
- const v=Object.values(s.results),right=v.filter(x=>x.correct).length,wrong=v.filter(x=>!x.correct&&!x.revealed).length;
- $('summary').innerHTML='<span>전체 <b>'+scopedBank().length+'</b></span><span>완료 <b>'+answered()+'</b></span><span>정답 <b>'+right+'</b></span><span>오답 <b>'+wrong+'</b></span>';
+ const v=Object.values(s.results);
+ const right=v.filter(x=>x.correct).length;
+ const wrong=v.filter(x=>!x.correct).length;
+ const total=scopedBank().length;
+ $('summary').innerHTML='<span>전체 <b>'+total+'</b></span><span>1차 풀이 <b>'+Math.min(total,answered())+'</b></span>'+
+  '<span>최종 정답 <b>'+right+'</b></span><span>남은 오답 <b>'+wrong+'</b></span>';
 }
 function resize(){try{parent.postMessage({type:'obgyn-size',height:Math.ceil(document.documentElement.scrollHeight)},location.origin);}catch{}}
 function normalize(v){return String(v??'').normalize('NFKC').toLowerCase().replace(/[\s\u200b\ufeff,.，、。·\-_/()（）]/g,'');}
@@ -324,8 +365,9 @@ function entryMarkup(q){
  return '<div class="answer-fields">'+rows.join('')+'</div>';
 }
 function advanceQuestion(){
- s.cursor++;s.checked=false;s.preview=false;s.decision=null;s.draft=[];s.selected='';
- save();render();window.scrollTo({top:0,behavior:'instant'});
+ s.cursor++;clearCurrentAnswer();
+ if(s.cursor>=s.order.length)prepareNextRound();else save();
+ render();window.scrollTo({top:0,behavior:'instant'});
 }
 function submit(correct,revealed){
  if(s.checked||!getCurrent())return;
@@ -337,11 +379,23 @@ function submit(correct,revealed){
  save();
  if(q.type==='manual'&&!revealed){advanceQuestion();return;}
  render();
+ const result=$('grade-result');
+ if(result){
+  const rect=result.getBoundingClientRect();
+  // Parent page scrolls, not the unusually tall auto-sized iframe itself.
+  try{parent.postMessage({type:'obgyn-focus-grade',top:rect.top},location.origin);}catch{}
+ }
 }
 function feedbackMarkup(q){
- let status=s.decision?.revealed?'정답 확인':s.decision?.correct?'정답':'오답';
- let right=q.displayAnswer||(Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer);
- return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.explanation?'<p><b>해설:</b> '+esc(q.explanation)+'</p>':'')+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
+ const correct=!!s.decision?.correct&&!s.decision?.revealed;
+ const status=correct?'정답입니다!':s.decision?.revealed?'정답 확인 · 다음에 재출제':'오답입니다 · 다음에 재출제';
+ const right=q.displayAnswer||(Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer);
+ return '<div id="grade-result" class="feedback grade-feedback '+(correct?'correct':'incorrect')+'" role="status" aria-live="polite">'+
+  '<div class="grade-head"><span class="grade-mark" aria-hidden="true">'+(correct?'O':'X')+'</span>'+
+  '<div><h3 class="grade-title">'+status+'</h3><p class="grade-question">'+esc(q.prompt)+'</p></div></div>'+
+  '<div class="grade-body"><p><b>정답:</b> '+esc(right)+'</p>'+
+  (q.explanation?'<p><b>해설:</b> '+esc(q.explanation)+'</p>':'')+
+  (q.note?'<p>'+esc(q.note)+'</p>':'')+'</div></div>';
 }
 const FIGURES=Object.freeze({
  '018':'pelvis','019':'pelvis','020':'pelvis','021':'pelvis',
@@ -401,23 +455,32 @@ function questionFigure(q){
 }
 function render(){
  if(!s)return;
+ if(s.cursor>=s.order.length)prepareNextRound();
  updateHeader();
  if(s.cursor>=s.order.length){
-  const results=Object.values(s.results),n=results.filter(x=>x.correct).length;
-  $('stage').innerHTML='<div class="finish"><p class="pill">한 회차 완료</p><h2>선택한 범위의 모든 문제를 한 번씩 풀었습니다.</h2><p>'+s.order.length+'문항 중 정답 '+n+'문항 · 오답/정답 확인 '+(s.order.length-n)+'문항</p><button id="again" class="primary">전체 문제 다시 풀기 ↻</button></div>';
+  $('stage').innerHTML='<div class="finish"><p class="pill">한 세트 완료</p><h2>전체 문제와 오답 재도전을 모두 맞혔습니다.</h2>'+
+  '<p>'+scopedBank().length+'문항 최종 정답 · 오답 재출제 '+(s.retryRound||0)+'회차</p>'+
+  '<button id="again" class="primary">새 세트 시작하기 ↻</button></div>';
   $('again').onclick=reset;resize();return;
  }
  const q=getCurrent(),manual=q.type==='manual';
  const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+(q.variant?'<span class="paper-variant">변형문제</span> · 원기출 '+esc(q.sourceId):esc(q.years)+'학번 표기')+'</span><span>PDF '+esc(q.page)+'쪽</span></div>';
  const img=questionFigure(q);
- const html='<div class="track"><i style="width:'+100*s.cursor/s.order.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+s.order.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">복원상 일부 선지·그림·정답이 불확실합니다. 자동 채점 가능한 답은 원문 복원값 기준이며, 서술형·선지 미복원 문항은 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
+ const stageHeading=s.phase==='retry'?
+   '<div class="retry-stage"><strong>오답 재도전 · '+s.retryRound+'회차</strong><span>현재 남은 오답 '+pendingWrongIds().length+'문항</span></div>':
+   '<div class="retry-stage"><strong>1차 출제</strong><span>모든 문제를 한 번씩 푼 뒤 오답을 다시 풀어요.</span></div>';
+ const html='<div class="track"><i style="width:'+100*s.cursor/s.order.length+'%"></i></div>'+stageHeading+
+  '<div class="meta"><b>'+(s.phase==='retry'?'오답 ':'문제 ')+(s.cursor+1)+' / '+s.order.length+'</b><span>· '+answered()+'문항 풀이</span></div>'+
+  '<h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">복원상 일부 선지·그림·정답이 불확실합니다. 자동 채점 가능한 답은 원문 복원값 기준이며, 서술형·선지 미복원 문항은 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
  let actions='';
  if(manual){
   actions=s.checked?'<button id="next" class="primary">다음 문제 →</button>':s.preview?'<div class="manual-buttons"><button id="manual-correct" class="primary">맞혔어요</button><button id="manual-wrong">틀렸어요</button></div>':'<button id="manual-reveal" class="primary">모범답안 확인</button>';
  }else{
   actions=s.checked?'<button id="next" class="primary">다음 문제 →</button>':'<button id="check" class="primary">채점하기</button><button id="show-answer">정답 보기</button>';
  }
- $('stage').innerHTML=html+'<div class="actions">'+actions+'</div>'+(s.checked?feedbackMarkup(q):manual&&s.preview?'<div class="feedback"><h3>자료에 적힌 답안</h3><p>'+esc(Array.isArray(q.answer)?q.answer.join(' / '):q.answer)+'</p><p>'+esc(q.note||'자신의 답안과 비교해서 채점해 주세요.')+'</p></div>':'');
+ $('stage').classList.toggle('grade-checked',!!s.checked);
+ $('stage').innerHTML=html+(s.checked?feedbackMarkup(q):manual&&s.preview?'<div class="feedback"><h3>자료에 적힌 답안</h3><p>'+esc(Array.isArray(q.answer)?q.answer.join(' / '):q.answer)+'</p><p>'+esc(q.note||'자신의 답안과 비교해서 채점해 주세요.')+'</p></div>':'')+
+  '<div class="actions">'+actions+'</div>';
  $('stage').querySelectorAll('[data-opt]').forEach(b=>b.onclick=()=>{s.selected=b.dataset.opt;save();render()});
  $('stage').querySelectorAll('[data-field]').forEach(el=>{
   el.oninput=()=>{s.draft[Number(el.dataset.field)]=el.value;save()};
