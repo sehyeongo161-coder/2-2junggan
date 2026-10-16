@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>본과 2-2 중간고사</title>
-<meta name="description" content="상한론·방제학 암기 퀴즈와 신경정신과 중간고사 기출 실전 퀴즈">
+<meta name="description" content="상한론·방제학·신경정신과·부인과학 중간고사 학습 퀴즈">
 <link rel="canonical" href="https://sehyeongo161-coder.github.io/2-2junggan/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sehyeongo161-coder.github.io/2-2junggan/">
 <meta property="og:site_name" content="본과 2-2 중간고사">
 <meta property="og:title" content="본과 2-2 중간고사">
-<meta property="og:description" content="상한론 · 방제학 · 신경정신과">
+<meta property="og:description" content="상한론 · 방제학 · 신경정신과 · 부인과학">
 <meta property="og:image" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <meta property="og:image:secure_url" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <meta property="og:image:type" content="image/png">
@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="본과 2-2 중간고사">
-<meta name="twitter:description" content="상한론 · 방제학 · 신경정신과">
+<meta name="twitter:description" content="상한론 · 방제학 · 신경정신과 · 부인과학">
 <meta name="twitter:image" content="https://sehyeongo161-coder.github.io/2-2junggan/preview-20261012-v2.png">
 <style>
 :root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#243244;background:#f5f6f8;line-height:1.6;color-scheme:light;--accent:#365f96;--tint:#eaf0f8;--line:#d4dfed;--muted:#65758b}
@@ -204,6 +204,11 @@ body[data-subject="neuro"] #neuro-subtabs button[aria-selected="true"]{color:#b3
 body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
 #neuro-frame{display:block;width:100%;height:1200px;border:0;border-radius:12px;background:#fcf8fa}
 @media(max-width:600px){body[data-subject="neuro"] #quiz-root{padding:25px 15px 40px}#neuro-panel{margin:0}#neuro-frame{border-radius:10px;min-height:1100px}}
+
+body[data-subject="obgyn"]{--accent:#a84a69;--tint:#fbeef3;--line:#eadde3;--muted:#8b6b7a;background:#fcf9fa}
+body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84a69}
+#obgyn-frame{width:100%;display:block;min-height:1100px;height:1200px;border:0;border-radius:12px;background:#fcf9fa}
+@media(max-width:680px){.subject-tabs{width:100%;flex-wrap:wrap}.subject-tabs button{flex:1 1 calc(50% - 6px);min-width:0;padding:10px 8px;font-size:14px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -284,6 +289,7 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
 <button id="tab-sanghan" role="tab" aria-selected="true" aria-controls="panel" data-subject="sanghan">상한론</button>
 <button id="tab-bangjae" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1" data-subject="bangjae">방제학</button>
 <button id="tab-neuro" role="tab" aria-selected="false" aria-controls="neuro-panel" tabindex="-1">신경정신과</button>
+<button id="tab-obgyn" role="tab" aria-selected="false" aria-controls="obgyn-panel" tabindex="-1">부인과학</button>
 </nav>
 <section id="panel" role="tabpanel" aria-labelledby="tab-sanghan">
 <nav id="sanghan-tabs" class="subtabs" role="tablist" aria-label="상한론 학습 유형">
@@ -390,6 +396,9 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
 <iframe id="neuro-frame" title="신경정신과 족보 · 암기표" referrerpolicy="same-origin"></iframe>
 </div>
 </section>
+<section id="obgyn-panel" role="tabpanel" aria-labelledby="tab-obgyn" hidden>
+<iframe id="obgyn-frame" title="부인과학 18~22학번 랜덤 족보 퀴즈" referrerpolicy="same-origin"></iframe>
+</section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
 
@@ -479,7 +488,46 @@ body[data-subject="neuro"] .site-header .eyebrow{color:#936f81}
  });
 })();
 </script>
-<script type="module" src="./auth-app.js?v=20261014-unseen-first-v10"></script>
+<script>
+/* 18~22학번 부인과학 랜덤 퀴즈 · 다른 과목 및 기존 로그인 엔진 유지 */
+(()=>{
+ const tab=document.getElementById('tab-obgyn'),panel=document.getElementById('panel');
+ const neuro=document.getElementById('neuro-panel'),obgyn=document.getElementById('obgyn-panel');
+ const frame=document.getElementById('obgyn-frame');
+ const others=['tab-sanghan','tab-bangjae','tab-neuro'].map(id=>document.getElementById(id));
+ let active=false,pending=null;
+ function selected(target){for(const b of [...others,tab]){const on=b===target;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}}
+ function open(){
+  if(document.getElementById('quiz-root').hidden)return;
+  active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
+  document.body.dataset.subject='obgyn';selected(tab);
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-bank57-v1';
+  if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
+ }
+ tab.addEventListener('click',open,true);
+ for(const b of others)b.addEventListener('click',()=>{
+  if(!active)return;
+  active=false;obgyn.hidden=true;
+  if(b.id==='tab-neuro'){panel.hidden=true;neuro.hidden=false;document.body.dataset.subject='neuro';}
+  else{neuro.hidden=true;panel.hidden=false;document.body.dataset.subject=b.dataset.subject;}
+  selected(b);
+ },true);
+ window.__OPEN_OBGYN_QUESTION=id=>{
+  if(typeof id!=='string'||!/^obgyn-\d{3}$/.test(id)||document.getElementById('quiz-root').hidden)return;
+  pending=id;if(!active)open();
+  frame.contentWindow?.postMessage({type:'obgyn-open-question',id},location.origin);
+ };
+ frame.addEventListener('load',()=>{if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);});
+ window.addEventListener('message',e=>{
+  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
+  if(e.data?.type==='obgyn-size'){
+   const h=Number(e.data.height);
+   if(Number.isFinite(h)&&h>=350&&h<150000)frame.style.height=(h+20)+'px';
+  }
+ });
+})();
+</script>
+<script type="module" src="./auth-app.js?v=20261016-obgyn-stat-v1"></script>
 </body>
 </html>
 
