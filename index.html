@@ -217,6 +217,14 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 .universal-grade-head.grade-wrong{color:#bd4355}
 #feedback,#daja-feedback,#review-feedback{scroll-margin-top:110px}
 @media(max-width:600px){.universal-grade-mark{width:52px;height:52px;font-size:36px;border-width:3px}.universal-grade-head{font-size:19px;gap:9px}}
+
+/* Self-graded questions advance immediately, so their O/X briefly stays on screen. */
+.quick-grade-toast{position:fixed;left:50%;top:13%;transform:translateX(-50%);min-width:160px;z-index:9999;
+ display:flex;justify-content:center;align-items:center;gap:10px;padding:15px 24px;background:#fff;
+ border:3px solid;border-radius:18px;box-shadow:0 14px 50px #26324840;font-size:21px;font-weight:850;pointer-events:none}
+.quick-grade-toast.correct{border-color:#55a476;color:#1b8245}
+.quick-grade-toast.wrong{border-color:#d47e8a;color:#bd4054}
+.quick-grade-toast b{font-size:42px;line-height:1}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -409,6 +417,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 </section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
+<div id="quick-grade-toast" class="quick-grade-toast" role="status" aria-live="polite" hidden></div>
 
 
 <script>
@@ -518,7 +527,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(document.getElementById('quiz-root').hidden)return;
   active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
   document.body.dataset.subject='obgyn';selected(tab);
-  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-universal-ox-nextfocus-v17';
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-universal-ox-nextfocus-v18';
   if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',open,true);
@@ -540,6 +549,17 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(e.data?.type==='obgyn-size'){
    const h=Number(e.data.height);
    if(Number.isFinite(h)&&h>=350&&h<150000)frame.style.height=(h+20)+'px';
+  }
+  if(e.data?.type==='obgyn-flash-verdict'&&!obgyn.hidden){
+    const toast=document.getElementById('quick-grade-toast');
+    clearTimeout(window.__obgynVerdictTimer);
+    const correct=e.data.correct===true;
+    toast.className='quick-grade-toast '+(correct?'correct':'wrong');
+    toast.textContent='';
+    const symbol=document.createElement('b');symbol.textContent=correct?'O':'X';
+    toast.append(symbol,document.createTextNode(correct?' 정답':' 오답'));
+    toast.hidden=false;
+    window.__obgynVerdictTimer=setTimeout(()=>{toast.hidden=true;},1100);
   }
   if(e.data?.type==='obgyn-focus-question'&&!obgyn.hidden){
     const offset=Number(e.data.top);
