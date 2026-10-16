@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><title>부인과학 족보 퀴즈</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#293347;background:#fcf9fa;--accent:#a84a69;--light:#fbeef3;--muted:#7a6a74;--line:#eadde3}
+*{box-sizing:border-box}body{margin:0;padding:12px 0 55px;line-height:1.67}button,input,textarea{font:inherit}button{min-height:42px;padding:10px 17px;border-radius:10px;border:1px solid #dccfd4;background:#fff;cursor:pointer;color:#293347}button:hover{background:var(--light)}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #be7c97;outline-offset:2px}button:disabled{opacity:.46;cursor:default}button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:750}button.primary:hover{filter:brightness(1.06)}[hidden]{display:none!important}
+.header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}h1{font-size:26px;letter-spacing:-.035em;line-height:1.4;margin:0}.eyebrow{color:#9b7c8b;font-size:13px;margin:0 0 4px}.summary{display:flex;flex-wrap:wrap;gap:7px}.summary span{border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px 12px;font-size:14px;white-space:nowrap}.summary b{color:var(--accent)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0}.help{color:var(--muted);font-size:13px}.round{height:44px;width:44px;border-radius:50%;padding:0;font-size:26px;line-height:1}.card{background:#fff;border:1px solid #e9e1e5;border-radius:17px;padding:25px 27px;box-shadow:0 5px 22px #63213a07}.track{height:6px;background:#f1e8ec;border-radius:9px;overflow:hidden;margin-bottom:20px}.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:#815e6e;font-size:13px}.pill{border-radius:7px;padding:3px 9px;background:var(--light);color:#a54e71;font-weight:750}.card h2{font-size:23px;line-height:1.65;letter-spacing:-.035em;margin:16px 0 19px;white-space:pre-wrap;word-break:keep-all}.options{display:grid;gap:9px}.opt{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:13px 15px;line-height:1.5;border-color:#e7dce1}.opt .num{font-weight:800;color:#93566e;min-width:25px}.opt.selected{border-color:var(--accent);background:var(--light);box-shadow:inset 0 0 0 1px var(--accent)}.opt.right{border-color:#73ac85;background:#f0f8f1}.opt.wrong{border-color:#db979b;background:#fff1f1}.answer-fields{display:grid;gap:12px}.input-row label{display:block;color:#695c67;font-size:13px;font-weight:700;margin-bottom:5px}.answer-fields input,.answer-fields textarea{display:block;width:100%;padding:12px 14px;border:1px solid #d5c8cf;background:#fff;border-radius:9px;font-size:17px;color:#293347}.answer-fields textarea{resize:vertical;min-height:90px}.actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:9px}.feedback{margin-top:20px;padding:17px 19px;border-radius:11px;border:1px solid var(--line);background:#fdf9fb}.feedback h3{margin:0 0 8px;font-size:18px}.feedback p{margin:7px 0;white-space:pre-wrap}.feedback .yes{color:#246c43}.feedback .no{color:#b04451}.caution{background:#fff8ed;border:1px solid #f1d6ad;color:#8c5b24;border-radius:9px;padding:12px 14px;font-size:13px;margin:0 0 14px}.finish{text-align:center;padding:30px 18px}.finish h2{margin:4px 0 12px}.source{margin:18px 0 0;color:#927b86;font-size:12px}.manual-buttons{display:flex;flex-wrap:wrap;gap:8px}.manual-buttons button{flex:1}.image-note{font-size:13px;background:#f7f3f5;padding:12px 14px;border-radius:9px;color:#6c5963;margin:12px 0}#error{color:#b33e4d}
+@media(max-width:600px){body{padding-top:4px}h1{font-size:23px}.card{padding:21px 17px;border-radius:13px}.card h2{font-size:20px}.opt{padding:12px}.summary span{font-size:13px;padding:6px 9px}.actions button{flex:1}.card .actions{gap:8px}}
+</style>
+</head>
+<body>
+<div class="header"><div><p class="eyebrow">본과 2학년 2학기 · 18~22학번</p><h1>부인과학 족보 퀴즈</h1></div><div id="summary" class="summary"></div></div>
+<p id="error" role="status" hidden></p>
+<div id="study" hidden>
+<div class="toolbar"><span class="help">전체 족보 · 중복 없이 무작위 출제</span><button id="reset" class="round" title="이번 회차 초기화·전체 문제 다시 섞기" aria-label="전체 문제 다시 시작">↻</button></div>
+<div id="stage" class="card"></div>
+<p class="source">출처: 18~22학번 부인과 족보 모음(16쪽). 복원 불확실 문항은 '자가채점'으로 표기합니다. 이미지가 필요한 문제는 원본 PDF 쪽수를 함께 표시합니다.</p>
+</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const TYPES={ox:'O/X',mc:'객관식',fill:'빈칸',short:'단답형',manual:'복원불완전·서술형'};
+const labels=['①','②','③','④','⑤','⑥'];
+let bank=[],byId=new Map(),s=null,uid=null,loaded=false;
+function host(){
+ try{
+  const p=window.parent;
+  return p!==window && p.location.origin===location.origin &&
+   typeof p.__QUIZ_USER_ID==='string' && p.__QUIZ_STORAGE &&
+   typeof p.__QUIZ_TRACK_ATTEMPT==='function' ?p:null;
+ }catch{return null;}
+}
+function key(){return 'midterm-2-2-2026:quiz:v1:'+uid+':obgyn-v1';}
+function makeQueue(){const a=bank.map(q=>q.id);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function blankState(){return {order:makeQueue(),cursor:0,draft:[],selected:'',checked:false,preview:false,decision:null,results:{}};}
+function getCurrent(){return byId.get(s.order[s.cursor]);}
+function save(){if(!host())return;host().__QUIZ_STORAGE.setItem(key(),JSON.stringify(s));}
+function loadedState(){
+ let old=null;try{old=JSON.parse(host().__QUIZ_STORAGE.getItem(key())||'null');}catch{}
+ const ids=bank.map(x=>x.id);
+ if(!old||!Array.isArray(old.order)||old.order.length!==ids.length||new Set(old.order).size!==ids.length||old.order.some(id=>!byId.has(id)))return blankState();
+ old.cursor=Math.max(0,Math.min(ids.length,Number(old.cursor)||0));
+ old.results=old.results&&typeof old.results==='object'?old.results:{};
+ old.draft=Array.isArray(old.draft)?old.draft:[];
+ old.selected=String(old.selected||'');
+ old.checked=!!old.checked;
+ return old;
+}
+function answered(){return Object.values(s.results).length;}
+function updateHeader(){
+ const v=Object.values(s.results),right=v.filter(x=>x.correct).length,wrong=v.filter(x=>!x.correct&&!x.revealed).length;
+ $('summary').innerHTML='<span>전체 <b>'+bank.length+'</b></span><span>완료 <b>'+answered()+'</b></span><span>정답 <b>'+right+'</b></span><span>오답 <b>'+wrong+'</b></span>';
+}
+function resize(){try{parent.postMessage({type:'obgyn-size',height:Math.ceil(document.documentElement.scrollHeight)},location.origin);}catch{}}
+function normalize(v){return String(v??'').normalize('NFKC').toLowerCase().replace(/[\s,.，、。·\-_/()（）]/g,'');}
+function accept(v,expected,aliases=[]){return [expected,...aliases].some(x=>normalize(x)===normalize(v));}
+function evaluate(q){
+ if(q.type==='ox'||q.type==='mc')return s.selected===String(q.answer);
+ if(q.type==='short')return accept(s.draft[0],q.answer,q.accept||[]);
+ if(q.type==='fill')return q.answer.every((a,i)=>accept(s.draft[i],a,q.aliases?.[i]||[]));
+ return false;
+}
+function optionMarkup(q){
+ const opts=q.type==='ox'?['O','X']:q.choices;
+ return '<div class="options">'+opts.map((v,i)=>{
+  const token=q.type==='ox'?v:String(i+1),chosen=s.selected===token;
+  const cls=chosen?' selected':'';
+  const graded=s.checked?(token===q.answer?' right':chosen?' wrong':''):'';
+  return '<button type="button" class="opt'+cls+graded+'" data-opt="'+esc(token)+'" aria-pressed="'+String(chosen)+'" '+(s.checked?'disabled':'')+'><span class="num">'+(q.type==='ox'?esc(v):labels[i])+'</span><span>'+esc(q.type==='ox'?'':v)+'</span></button>';
+ }).join('')+'</div>';
+}
+function entryMarkup(q){
+ const num=q.type==='fill'?q.answer.length:1;
+ const values=Array.from({length:num},(_,i)=>s.draft[i]||'');
+ return '<div class="answer-fields">'+values.map((v,i)=>'<div class="input-row"><label for="ans-'+i+'">'+(q.type==='fill'?'빈칸 '+(i+1):'답안 입력')+'</label>'+(q.type==='manual'?'<textarea id="ans-'+i+'" data-field="'+i+'" '+(s.checked?'disabled':'')+' placeholder="기억나는 답안을 적어 보세요">'+esc(v)+'</textarea>':'<input id="ans-'+i+'" data-field="'+i+'" autocomplete="off" spellcheck="false" '+(s.checked?'disabled':'')+' value="'+esc(v)+'" placeholder="정답 입력">')+'</div>').join('')+'</div>';
+}
+function submit(correct,revealed){
+ if(s.checked||!getCurrent())return;
+ const q=getCurrent();s.checked=true;s.preview=true;
+ s.decision={correct:!!correct,revealed:!!revealed};
+ s.results[q.id]={correct:!!correct,revealed:!!revealed};
+ const p=host();
+ if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:q.years+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
+ save();render();
+}
+function feedbackMarkup(q){
+ let status=s.decision?.revealed?'정답 확인':s.decision?.correct?'정답':'오답';
+ let right=Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer;
+ return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
+}
+function render(){
+ if(!s)return;
+ updateHeader();
+ if(s.cursor>=s.order.length){
+  const results=Object.values(s.results),n=results.filter(x=>x.correct).length;
+  $('stage').innerHTML='<div class="finish"><p class="pill">한 회차 완료</p><h2>전체 문제를 한 번씩 풀었습니다.</h2><p>'+bank.length+'문항 중 정답 '+n+'문항 · 오답/정답 확인 '+(bank.length-n)+'문항</p><button id="again" class="primary">전체 문제 다시 풀기 ↻</button></div>';
+  $('again').onclick=reset;resize();return;
+ }
+ const q=getCurrent(),manual=q.type==='manual';
+ const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+esc(q.years)+'학번 표기</span><span>PDF '+esc(q.page)+'쪽</span></div>';
+ const img= /그림|사진|영상/.test(q.prompt)?'<div class="image-note">원본 PDF '+q.page+'쪽의 그림·영상을 함께 확인하세요. 이미지가 포함된 기출은 본문 설명만 복원되었습니다.</div>':'';
+ const html='<div class="track"><i style="width:'+100*s.cursor/bank.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+bank.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">일부 선지·그림 또는 정답이 불확실한 복원 문제입니다. 임의 자동 채점 대신 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
+ let actions='';
+ if(manual){
+  actions=s.checked?'<button id="next" class="primary">다음 문제 →</button>':s.preview?'<div class="manual-buttons"><button id="manual-correct" class="primary">맞혔어요</button><button id="manual-wrong">틀렸어요</button></div>':'<button id="manual-reveal" class="primary">모범답안 확인</button>';
+ }else{
+  actions=s.checked?'<button id="next" class="primary">다음 문제 →</button>':'<button id="check" class="primary">채점하기</button><button id="show-answer">정답 보기</button>';
+ }
+ $('stage').innerHTML=html+'<div class="actions">'+actions+'</div>'+(s.checked?feedbackMarkup(q):manual&&s.preview?'<div class="feedback"><h3>자료에 적힌 답안</h3><p>'+esc(Array.isArray(q.answer)?q.answer.join(' / '):q.answer)+'</p><p>'+esc(q.note||'자신의 답안과 비교해서 채점해 주세요.')+'</p></div>':'');
+ $('stage').querySelectorAll('[data-opt]').forEach(b=>b.onclick=()=>{s.selected=b.dataset.opt;save();render()});
+ $('stage').querySelectorAll('[data-field]').forEach(el=>el.oninput=()=>{s.draft[Number(el.dataset.field)]=el.value;save()});
+ if($('check'))$('check').onclick=()=>submit(evaluate(q),false);
+ if($('show-answer'))$('show-answer').onclick=()=>submit(false,true);
+ if($('manual-reveal'))$('manual-reveal').onclick=()=>{s.preview=true;save();render()};
+ if($('manual-correct'))$('manual-correct').onclick=()=>submit(true,false);
+ if($('manual-wrong'))$('manual-wrong').onclick=()=>submit(false,false);
+ if($('next'))$('next').onclick=()=>{s.cursor++;s.checked=false;s.preview=false;s.decision=null;s.draft=[];s.selected='';save();render();window.scrollTo({top:0,behavior:'instant'})};
+ resize();
+}
+function reset(){s=blankState();save();render();window.scrollTo({top:0,behavior:'instant'});}
+function goTo(id){
+ if(!byId.has(id))return;
+ const idx=s.order.indexOf(id);
+ if(idx<0)return;
+ if(idx!==s.cursor){const item=s.order.splice(idx,1)[0];s.order.splice(s.cursor,0,item);s.checked=false;s.preview=false;s.decision=null;s.selected='';s.draft=[];save();}
+ render();window.scrollTo({top:0,behavior:'instant'});
+}
+$('reset').onclick=reset;
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string')goTo(e.data.id.replace(/^obgyn-/i,''));});
+(async()=>{
+ try{
+  const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
+  uid=p.__QUIZ_USER_ID;
+  const res=await fetch('./obgyn-bank.json?v=20261016-all57-v1',{cache:'no-cache'});
+  if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
+  bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
+  byId=new Map(bank.map(x=>[x.id,x]));s=loadedState();loaded=true;
+  $('study').hidden=false;render();
+ }catch(e){$('error').hidden=false;$('error').textContent=e.message;resize();}
+})();
+})();
+</script>
+</body>
+</html>
