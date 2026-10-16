@@ -25,7 +25,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const TYPES={ox:'O/X',mc:'객관식',fill:'빈칸',short:'단답형',manual:'복원불완전·서술형'};
 const labels=['①','②','③','④','⑤','⑥'];
-let bank=[],byId=new Map(),s=null,uid=null,loaded=false;
+let bank=[],byId=new Map(),s=null,uid=null,loaded=false,pendingFocus=null;
 function host(){
  try{
   const p=window.parent;
@@ -130,7 +130,7 @@ function goTo(id){
  render();window.scrollTo({top:0,behavior:'instant'});
 }
 $('reset').onclick=reset;
-window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string')goTo(e.data.id.replace(/^obgyn-/i,''));});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string'){if(!loaded)pendingFocus=e.data.id;else goTo(e.data.id.replace(/^obgyn-/i,''));}});
 (async()=>{
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
@@ -139,7 +139,7 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));s=loadedState();loaded=true;
-  $('study').hidden=false;render();
+  $('study').hidden=false;render();if(pendingFocus){goTo(pendingFocus.replace(/^obgyn-/i,''));pendingFocus=null;}
  }catch(e){$('error').hidden=false;$('error').textContent=e.message;resize();}
 })();
 })();
