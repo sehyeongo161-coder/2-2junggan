@@ -43,6 +43,21 @@
 .paper-answer .paper-note{color:#6b7780}
 .paper-restoration{display:inline-block;margin-top:7px;font-size:12px;color:#986b36}
 @media(max-width:600px){.view-switch{display:flex;width:100%}.view-switch button{flex:1}.paper-item{padding:15px 13px}.paper-prompt{font-size:15px}.list-top{align-items:flex-start}.paper-choice-list{font-size:13px}}
+
+/* 족보 목록 정답·해설: 기출 원문과 근거, 객관식 선지별 이유 구분 */
+.paper-answer{background:#faf8fa;border-color:#eadde3;color:#26374b;padding:13px 15px}
+.paper-answer-key{color:#255c40;font-size:15px;font-weight:650}
+.paper-explanation{margin-top:12px;border-top:1px solid #e6dde2;padding-top:11px;line-height:1.8;color:#3c495b;font-size:14px}
+.paper-explanation>strong{font-size:13px;color:#9b526d}
+.paper-explanation p{margin:6px 0 1px;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere}
+.paper-note{margin-top:10px!important;color:#806b77!important;font-size:12px;line-height:1.75}
+.paper-choice{padding:5px 0;border-bottom:1px solid #f1ecf0}
+.paper-choice:last-child{border:0}
+.choice-reason{font-size:13px;line-height:1.7;margin:5px 0 0 25px;word-break:keep-all}
+.choice-reason.no{color:#b54b55}
+.choice-reason.yes{color:#27734b}
+.choice-reason b{display:inline-block;min-width:12px}
+@media(max-width:600px){.paper-explanation{font-size:13px}.choice-reason{margin-left:18px}}
 </style>
 </head>
 <body>
@@ -59,7 +74,7 @@
 </section>
 <section id="list-view" role="tabpanel" aria-labelledby="view-list" hidden>
  <div class="list-top">
-  <div><h2>족보 전체 목록 <span id="list-count" class="paper-labels"></span></h2><p>PDF 순서대로 전체 문항 · 정답은 버튼으로 표시</p></div>
+  <div><h2>족보 전체 목록 <span id="list-count" class="paper-labels"></span></h2><p>PDF 순서대로 전체 문항 · 정답과 해설을 함께 확인</p></div>
   <button id="list-toggle-answers" class="list-answer-toggle" type="button" aria-pressed="false">정답 보기</button>
  </div>
  <div id="list-items" class="past-paper-items"></div>
@@ -74,7 +89,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'
 const TYPES={ox:'O/X',mc:'객관식',fill:'빈칸',short:'단답형',manual:'복원불완전·서술형'};
 const labels=['①','②','③','④','⑤','⑥'];
 let bank=[],byId=new Map(),s=null,uid=null,loaded=false,pendingFocus=null;
-let viewMode="quiz",listAnswersShown=false;
+let viewMode="quiz",listAnswersShown=true;
 function host(){
  try{
   const p=window.parent;
@@ -204,7 +219,7 @@ function renderList(){
  const area=$('list-items');
  area.replaceChildren();
  $('list-count').textContent='· '+bank.length+'문항';
- $('list-toggle-answers').textContent=listAnswersShown?'정답 가리기':'정답 보기';
+ $('list-toggle-answers').textContent=listAnswersShown?'정답·해설 가리기':'정답·해설 보기';
  $('list-toggle-answers').setAttribute('aria-pressed',String(listAnswersShown));
  const frag=document.createDocumentFragment();
  for(let i=0;i<bank.length;i++){
@@ -216,13 +231,19 @@ function renderList(){
   const meta='<div class="paper-top"><div class="paper-labels"><span class="paper-number">'+String(i+1).padStart(2,'0')+'</span><span>'+esc(TYPES[q.type]||q.type)+'</span><span>기출 '+esc(q.years)+'</span><span>PDF '+esc(q.page)+'쪽</span></div><span class="paper-status '+statusClass+'">'+status+'</span></div>';
   let options='';
   if(q.type==='mc'&&Array.isArray(q.choices)){
-   options='<ol class="paper-choice-list">'+q.choices.map((v,j)=>'<li>'+labels[j]+' '+esc(v)+'</li>').join('')+'</ol>';
+   options='<ol class="paper-choice-list">'+q.choices.map((v,j)=>{
+     const good=String(q.answer)===String(j+1);
+     const reason=listAnswersShown&&q.choiceExplanations?.[j]?'<div class="choice-reason '+(good?'yes':'no')+'"><b>'+(good?'O':'X')+'</b> · '+esc(q.choiceExplanations[j])+'</div>':'';
+     return '<li class="paper-choice"><span>'+labels[j]+' '+esc(v)+'</span>'+reason+'</li>';
+   }).join('')+'</ol>';
   }
   // 그림 문제에서 원본 자료의 그림을 확인할 수 있도록 펼침 영역을 둡니다.
   const figure=FIGURES[q.id]?'<details class="paper-detail"><summary>문제 그림 보기</summary>'+questionFigure(q)+'</details>':'';
   let answer='';
   if(listAnswersShown){
-   answer='<div class="paper-answer"><p><strong>정답</strong> · '+esc(listAnswerText(q))+'</p>'+(q.note?'<p class="paper-note">'+esc(q.note)+'</p>':'')+'</div>';
+   answer='<div class="paper-answer"><p class="paper-answer-key"><strong>정답</strong> · '+esc(listAnswerText(q))+'</p>'+
+     '<div class="paper-explanation"><strong>해설</strong><p>'+esc(q.explanation||'원본 족보에서 해설을 확인할 수 없습니다.')+'</p></div>'+
+     (q.note?'<p class="paper-note">원본 주의사항 · '+esc(q.note)+'</p>':'')+'</div>';
   }
   item.innerHTML=meta+'<p class="paper-prompt">'+esc(q.prompt)+'</p>'+options+figure+(q.uncertain?'<span class="paper-restoration">※ 일부 내용 복원 불완전</span>':'')+answer;
   frag.append(item);
@@ -263,7 +284,7 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-all57-v1',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-explanations-v2',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));s=loadedState();loaded=true;
