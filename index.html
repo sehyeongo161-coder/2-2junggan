@@ -513,7 +513,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   selected(b);
  },true);
  window.__OPEN_OBGYN_QUESTION=id=>{
-  if(typeof id!=='string'||!/^obgyn-(?:\\d{3}|V\\d{3})$/.test(id)||document.getElementById('quiz-root').hidden)return;
+  if(typeof id!=='string'||!/^obgyn-(?:\d{3}|V\d{3})$/.test(id)||document.getElementById('quiz-root').hidden)return;
   pending=id;if(!active)open();
   frame.contentWindow?.postMessage({type:'obgyn-open-question',id},location.origin);
  };
