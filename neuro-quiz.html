@@ -395,7 +395,9 @@ function grade(q){const r=responseFor(q.id);const signature=q.mode==='blanks'?q.
  else{return;}
  mark(q.id,result,false);state.feedback={id:q.id,correct:result,message:result?'정답입니다. 풀이 기록에 반영했습니다.':`오답입니다.${partial?' '+partial+'.':''} 다시 풀거나 정답·해설을 확인해 보세요.`};
  showFeedback(result,state.feedback.message);
- if(result)reveal(q,false);
+ // 정답·오답 모두 원문 해설을 펼칩니다. 정답 공개는 추가 채점으로 기록하지 않습니다.
+ reveal(q,false);
+ requestAnimationFrame(()=>requestAnimationFrame(focusGradingExplanation));
 }
 function showFeedback(right,message){
  const r=$('response');if(!r)return;
@@ -404,17 +406,37 @@ function showFeedback(right,message){
  r.innerHTML='<div class="neuro-grade-head"><span class="neuro-grade-mark" aria-hidden="true">'+mark+'</span>'+
   '<strong class="neuro-grade-label">'+title+'</strong></div>'+
   '<div class="neuro-grade-copy">'+escapeHtml(message)+'</div>';
- try{
-  if(window.parent!==window){
-   const top=Math.max(0,Math.round(r.getBoundingClientRect().top+window.scrollY));
-   window.parent.postMessage({type:'neuro-focus-grade',top},location.origin);
-  }
- }catch{}
 }
-function reveal(q,withSeen){state.revealed[q.id]=true;if(withSeen)seen(q.id);displayReveal(q);}
+// 채점 결과와 바로 아래 정답·해설이 함께 보이도록 화면을 옮깁니다.
+// 다른 문항을 단순 재표시할 때는 자동 스크롤하지 않습니다.
+function focusGradingExplanation(){
+ const answer=$('reveal');
+ const feedback=$('response');
+ const explanation=answer?.classList.contains('visible')?answer:null;
+ const verdict=feedback?.classList.contains('visible')&&feedback.classList.contains('right')||
+               feedback?.classList.contains('visible')&&feedback.classList.contains('wrong')?feedback:null;
+ const anchor=verdict||explanation;
+ if(!anchor)return;
+ const top=Math.round(anchor.getBoundingClientRect().top);
+ const explanationTop=Math.round((explanation||anchor).getBoundingClientRect().top);
+ if(window.parent===window){
+  const start=window.scrollY+top;
+  const end=window.scrollY+explanationTop;
+  const target=Math.max(start-90,end-window.innerHeight*0.55);
+  window.scrollTo({top:Math.max(0,target),behavior:'smooth'});
+ }else{
+  window.parent.postMessage({type:'neuro-focus-grade',top,explanationTop},location.origin);
+ }
+}
+function reveal(q,withSeen){
+ state.revealed[q.id]=true;
+ if(withSeen)seen(q.id);
+ displayReveal(q);
+ if(withSeen)requestAnimationFrame(()=>requestAnimationFrame(focusGradingExplanation));
+}
 function displayReveal(q){const el=$('reveal');if(!el)return;el.classList.add('visible');if(q.mode==='manual'){
  const mr=$('markRight'),mw=$('markWrong');if(mr)mr.addEventListener('click',()=>manualGrade(q,true));if(mw)mw.addEventListener('click',()=>manualGrade(q,false));}}
-function manualGrade(q,correct){mark(q.id,correct,true);state.feedback={id:q.id,correct,message:correct?'자기채점: 정답으로 기록했습니다.':'자기채점: 오답으로 기록했습니다.'};showFeedback(correct,state.feedback.message);const rr=$('reveal');rr.querySelector('.rubric')?.querySelectorAll('button').forEach(b=>{b.disabled=true;});}
+function manualGrade(q,correct){mark(q.id,correct,true);state.feedback={id:q.id,correct,message:correct?'자기채점: 정답으로 기록했습니다.':'자기채점: 오답으로 기록했습니다.'};showFeedback(correct,state.feedback.message);const rr=$('reveal');rr.querySelector('.rubric')?.querySelectorAll('button').forEach(b=>{b.disabled=true;});requestAnimationFrame(()=>requestAnimationFrame(focusGradingExplanation));}
 function syncFilters(){$('year').value=state.year;$('topic').value=state.topic;$('order').value=state.order;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===state.filter));}
 function renderList(){
  updateCounters();
