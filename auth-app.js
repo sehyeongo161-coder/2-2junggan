@@ -149,6 +149,66 @@ window.addEventListener('beforeunload',e=>{
 window.addEventListener('online',()=>{if(pendingProgress.size)flushProgress().catch(()=>{});});
 $('sync-status').onclick=async()=>{try{await retryStats();await flushProgress();}catch{syncStatus('저장 실패 · 다시 시도');}};
 
+// 기존 상한론/방제학 문제은행은 Firebase의 보호된 퀴즈 스크립트에서 렌더됩니다.
+// 채점 결과 DOM만 관찰하므로 저장된 답/채점 로직을 변경하지 않습니다.
+function installLegacyGradeMarkers(){
+ const configs=[
+  {id:'feedback',check:'check',reveal:'show',next:'next',question:'question-title'},
+  {id:'daja-feedback',check:'daja-check',reveal:'daja-reveal',next:'daja-next',question:'daja-title'}
+ ];
+ const focusElement=el=>{
+  if(!el)return;
+  const y=window.scrollY+el.getBoundingClientRect().top-Math.min(125,window.innerHeight*0.14);
+  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+ };
+ for(const conf of configs){
+  const fb=$(conf.id);if(!fb)continue;
+  let action=null;
+  const check=$(conf.check),show=$(conf.reveal),next=$(conf.next);
+  if(check)check.addEventListener('click',()=>{action='check';fb.dataset.gradingCycle='';},true);
+  if(show)show.addEventListener('click',()=>{action='reveal';fb.dataset.gradingCycle='';},true);
+  if(next)next.addEventListener('click',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>focusElement($(conf.question)))),true);
+  let busy=false;
+  function update(){
+   if(busy||fb.hidden||!fb.textContent.trim())return;
+   // The marker is presentation only. Never change answer evaluation.
+   const header=fb.querySelector('h3,h4,.result-title');
+   const heading=String(header?.textContent||'').trim();
+   const ownText=String(fb.textContent||'').replace(/^[OX]\s*(?:정답|오답)\s*/,'');
+   const wrongCount=fb.querySelectorAll('.wrong,.incorrect,.miss,.extra,[aria-invalid="true"]').length;
+   const correctCount=fb.querySelectorAll('.correct,.right,.yes').length;
+   let verdict;
+   if(action==='reveal')verdict=false;
+   else if(wrongCount>0||/오답|틀렸|불일치|다시\s*풀|부족|미일치/.test(heading))verdict=false;
+   else if(correctCount>0||/정답입니다|모두\s*(?:정답|맞)|맞혔습니다|정확합니다/.test(heading))verdict=true;
+   else if(/오답|틀렸|불일치|빠뜨린\s*약재|추가\s*입력/.test(ownText))verdict=false;
+   else if(/정답입니다|모두\s*(?:정답|맞)|맞혔습니다|정확히/.test(ownText))verdict=true;
+   else if(action==='check'&&!$(conf.next)?.hidden&&$(conf.next))verdict=true;
+   else return; // Unknown presentation: avoid showing an incorrect O/X.
+   const value=verdict?'O':'X';
+   if(fb.dataset.gradingCycle===value&&fb.querySelector('.universal-grade-head'))return;
+   fb.dataset.gradingCycle=value;
+   busy=true;
+   let mark=fb.querySelector('.universal-grade-head');
+   if(!mark){mark=document.createElement('div');mark.className='universal-grade-head';fb.prepend(mark);}
+   mark.innerHTML='<span class="universal-grade-mark" aria-hidden="true">'+value+'</span><strong>'+
+     (verdict?'정답입니다!':action==='reveal'?'정답 확인':'오답입니다')+'</strong>';
+   mark.classList.toggle('grade-right',verdict);mark.classList.toggle('grade-wrong',!verdict);
+   busy=false;
+   if(action){action=null;requestAnimationFrame(()=>focusElement(fb));}
+  }
+  const observer=new MutationObserver(update);
+  observer.observe(fb,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['hidden','class']});
+  update();
+ }
+ // Any existing subject's Next button scrolls to the newly rendered question.
+ document.addEventListener('click',e=>{
+  const btn=e.target?.closest?.('#next,#daja-next,#review-next');
+  if(!btn||btn.id==='review-next')return;
+  const anchor=btn.id==='daja-next'?'daja-title':'question-title';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>focusElement($(anchor))));
+ },true);
+}
 async function startQuiz(user){
   // 공개 index.html 에는 정답/문제/quiz JS가 없습니다. 보안 규칙 통과 후에만 내려받습니다.
   if(appLoaded)return;
@@ -274,6 +334,7 @@ async function startQuiz(user){
     document.body.appendChild(bridge);
   });
   if(!window.__QUIZ_REVIEW_API)throw new Error('REVIEW_BRIDGE_INIT_FAILED');
+  installLegacyGradeMarkers();
   appLoaded=true;
 }
 
@@ -492,6 +553,10 @@ function reviewGrade(reveal) {
   $('review-check').hidden=true;$('review-reveal').hidden=true;$('review-next').hidden=false;
   $('review-next').textContent=s.index===s.items.length-1?'복습 결과 보기 →':'다음 문제 →';
   const fb=$('review-feedback');fb.hidden=false;
+  const banner=document.createElement('div');banner.className='universal-grade-head '+(correct?'grade-right':'grade-wrong');
+  const mark=document.createElement('span');mark.className='universal-grade-mark';mark.textContent=correct?'O':'X';mark.setAttribute('aria-hidden','true');
+  const status=document.createElement('strong');status.textContent=correct?'정답입니다!':reveal?'정답 확인':'오답입니다';
+  banner.append(mark,status);fb.append(banner);
   const h=document.createElement('h4');h.className=correct?'correct':'wrong';
   h.textContent=correct?'정답입니다.':reveal?'정답을 확인했습니다.':'오답입니다.';fb.append(h);
   const ans=document.createElement('p');ans.textContent=`정답: ${item.accepted||item.answer}`;fb.append(ans);
@@ -500,12 +565,18 @@ function reviewGrade(reveal) {
   if(result.extra?.length){const extra=document.createElement('p');extra.textContent='추가 입력: '+result.extra.join(' · ');fb.append(extra);}
   // Do not alter the original quiz's per-mode session. Only append to Firestore stat.
   window.__QUIZ_TRACK_ATTEMPT({key:item.key,label:item.label,group:item.group,correct,revealed:!!reveal});
-  $('review-next').focus();
+  $('review-next').focus({preventScroll:true});
+  requestAnimationFrame(()=>{const el=$('review-feedback');if(el&&!el.hidden){window.scrollTo({top:Math.max(0,window.scrollY+el.getBoundingClientRect().top-100),behavior:'smooth'});}});
 }
 function reviewNext() {
   if(!reviewSession?.checked)return;
   reviewSession.index++;reviewSession.checked=false;reviewSession.revealed=false;
   renderReview();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const el=$('review-position');if(el&&!$('review-question').hidden){
+      window.scrollTo({top:Math.max(0,window.scrollY+el.getBoundingClientRect().top-95),behavior:'smooth'});
+    }
+  }));
 }
 async function exitReview() {
   reviewSession=null;$('review-panel').hidden=true;
