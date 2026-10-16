@@ -19,11 +19,11 @@
 .figure-block figcaption{text-align:center;color:#786a73;font-size:12px;line-height:1.55;margin-top:8px}
 .figure-block img{max-width:100%}
 .figure-block{min-width:0;max-width:800px;margin-left:auto;margin-right:auto}
-.figure-viewport{overflow:auto;overscroll-behavior:contain;border-radius:6px}
+.figure-viewport{overflow:visible;overscroll-behavior:auto;border-radius:6px;touch-action:auto}
 .figure-viewport:focus-visible{outline:3px solid #be7c97;outline-offset:2px}
 .figure-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;color:var(--muted);font-size:12px}
 .figure-tools button{flex:none;min-height:40px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--accent)}
-.figure-viewport.is-zoomed{max-height:720px;border:1px solid var(--line)}
+.figure-viewport.is-zoomed{overflow:auto;overscroll-behavior:auto;touch-action:pan-x pan-y;max-height:720px;border:1px solid var(--line)}
 .figure-viewport.is-zoomed svg{width:1520px;max-width:none;margin:0}
 @media(max-width:600px){.figure-block{padding:10px 5px}.figure-tools{padding:0 3px;gap:6px}.figure-tools span{max-width:160px}.figure-viewport.is-zoomed{max-height:520px}}
 @media(max-width:600px){body{padding-top:4px}h1{font-size:23px}.card{padding:21px 17px;border-radius:13px}.card h2{font-size:20px}.opt{padding:12px}.summary span{font-size:13px;padding:6px 9px}.actions button{flex:1}.card .actions{gap:8px}}
@@ -278,7 +278,26 @@ function accept(v,expected,aliases=[]){
  const candidates=[expected,...aliases];
  return candidates.some(x=>normalize(x)===normalize(v)||normalize(HANGUL_READINGS[x]||'§NOMATCH§')===normalize(v));
 }
+const UTERUS_SYNONYMS=Object.freeze([
+ ['子臟','자장'],['胞宮','포궁'],['女子胞','여자포'],
+ ['胞門','포문'],['子處','자처'],['血臟','혈장']
+]);
+function gradeUterusNames(raw){
+ const lookup=new Map(UTERUS_SYNONYMS.flatMap(([hanja,reading],i)=>[
+  [normalize(hanja),i],[normalize(reading),i]
+ ]));
+ const chunks=String(raw??'').split(/[,，、;；\/\n·]+/).map(x=>x.trim()).filter(Boolean);
+ const answers=chunks.flatMap(chunk=>{
+  if(lookup.has(normalize(chunk)))return [chunk];
+  return chunk.split(/\s+/).map(x=>x.trim()).filter(Boolean);
+ });
+ if(answers.length<3)return false;
+ const ids=answers.map(x=>lookup.get(normalize(x)));
+ // Unknown names and duplicated names are not counted as three separate answers.
+ return ids.every(x=>x!==undefined)&&new Set(ids).size>=3;
+}
 function evaluate(q){
+ if(q.id==='040')return gradeUterusNames(s.draft[0]);
  if(q.type==='ox'||q.type==='mc')return s.selected===String(q.answer);
  if(q.type==='short')return accept(s.draft[0],q.answer,q.accept||[]);
  if(q.type==='fill')return q.answer.every((a,i)=>accept(s.draft[i],a,q.aliases?.[i]||[]));
@@ -296,7 +315,7 @@ function optionMarkup(q){
 function entryMarkup(q){
  const num=q.type==='fill'?q.answer.length:1;
  const values=Array.from({length:num},(_,i)=>s.draft[i]||'');
- const rows=values.map((v,i)=>'<div class="input-row"><label for="ans-'+i+'">'+(q.type==='fill'?'빈칸 '+(i+1):'답안 입력')+'</label>'+(q.type==='manual'?'<textarea id="ans-'+i+'" data-field="'+i+'" '+(s.checked?'disabled':'')+' placeholder="기억나는 답안을 적어 보세요">'+esc(v)+'</textarea>':'<input id="ans-'+i+'" data-field="'+i+'" autocomplete="off" spellcheck="false" '+(s.checked?'disabled':'')+' value="'+esc(v)+'" placeholder="정답 입력">')+'</div>');
+ const rows=values.map((v,i)=>'<div class="input-row"><label for="ans-'+i+'">'+(q.type==='fill'?'빈칸 '+(i+1):'답안 입력')+'</label>'+(q.type==='manual'||q.id==='040'?'<textarea id="ans-'+i+'" data-field="'+i+'" '+(s.checked?'disabled':'')+' placeholder="기억나는 답안을 적어 보세요">'+esc(v)+'</textarea>':'<input id="ans-'+i+'" data-field="'+i+'" autocomplete="off" spellcheck="false" '+(s.checked?'disabled':'')+' value="'+esc(v)+'" placeholder="정답 입력">')+'</div>');
  if(q.id==='037'&&q.type==='fill'){
   const groups=[['외부생식기 2개',0,2],['내부생식기 3개',2,5]];
   return '<div class="answer-fields answer-groups">'+groups.map(([label,start,end])=>
