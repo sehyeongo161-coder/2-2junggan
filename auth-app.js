@@ -172,6 +172,29 @@ async function startQuiz(user){
     }
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
+  // 상한론 대자 설정: 5개를 선택했는데 기존 3개 세션이 남아 있는 문제 해결.
+  // 63·65조는 기존 후보가 각 4개뿐이므로, 원문에 실재하는 표현만 추가·분리합니다.
+  const dajaDensityFixes=[
+    [
+      "const hits=DAJA_CANDIDATES[q.num].flatMap((phrase,idx)=>{",
+      "const stored=DAJA_CANDIDATES[q.num]||[];\n const phrases=q.num===63?[...stored,'發汗後']:q.num===65?[...stored.filter(p=>p!=='欲作奔豚'),'欲作','奔豚']:stored;\n const hits=phrases.flatMap((phrase,idx)=>{"
+    ],
+    [
+      "if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};",
+      "if(!s.checked&&s.current?.num===num&&s.current.blanks?.length<Math.max(s.density,(s.retryBlanks[num]||[]).length)){\n   s.current=null;s.drafts=[];\n }\n if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};"
+    ],
+    [
+      "if(!s.checked){s.current=null;s.drafts=[];}\n   dajaSave();dajaRender();\n };",
+      "if(!s.checked){s.current=null;s.drafts=[];}\n   else toast('채점한 현재 조문은 유지하고, 다음 조문부터 '+s.density+'개 빈칸을 적용합니다.');\n   dajaSave();dajaRender();\n };"
+    ]
+  ];
+  for(const [before,after] of dajaDensityFixes){
+    if(patchedQuizScript.split(before).length!==2){
+      console.warn('상한론 대자 빈칸 수 개선을 적용하지 못했습니다:',before.slice(0,70));
+      continue;
+    }
+    patchedQuizScript=patchedQuizScript.replace(before,after);
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
