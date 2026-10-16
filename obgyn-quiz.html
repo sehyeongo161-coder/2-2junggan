@@ -69,6 +69,13 @@
 .section-buttons button small{font-size:11px;opacity:.8;margin-left:3px}
 .section-name{margin:10px 0 0;color:#8c6474;font-size:13px}
 @media(max-width:600px){.section-selector{padding:12px}.section-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.section-buttons button{min-height:41px;padding:7px 3px;font-size:13px}.section-buttons button small{display:block;font-size:10px;margin:0}}
+.variant-picker{margin:0 0 17px;padding:13px 14px;border:1px solid #eadce2;background:#fff;border-radius:12px}
+.variant-picker strong{display:block;font-size:14px;margin-bottom:8px;color:#655661}
+.variant-options{display:flex;gap:7px;flex-wrap:wrap}
+.variant-options button{font-size:14px;font-weight:650;min-height:38px;border-radius:9px;padding:7px 14px;border:1px solid #dfced6;background:#fff;color:#826d78}
+.variant-options button[aria-pressed="true"]{border-color:var(--accent);background:var(--light);color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.variant-note{font-size:12px;color:var(--muted);margin:8px 0 0}.paper-variant{background:#fff4ea;color:#98613b;border-radius:6px;font-weight:750;padding:3px 7px}
+@media(max-width:600px){.variant-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.variant-options button{padding:8px 3px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -84,6 +91,13 @@
   <button type="button" data-section="3" aria-pressed="false">제3절 <small>1</small></button>
   <button type="button" data-section="6" aria-pressed="false">제6절 <small>16</small></button>
  </div><p id="section-name" class="section-name">전체 범위 · 56문항</p>
+</div>
+<div id="variant-picker" class="variant-picker" hidden><strong>제1절 출제 유형</strong>
+ <div id="variant-options" class="variant-options" role="group" aria-label="제1절 기출 및 변형문제 선택">
+  <button type="button" data-mode="original" aria-pressed="false">기출만 · 13</button>
+  <button type="button" data-mode="mixed" aria-pressed="true">기출+변형 · 37</button>
+  <button type="button" data-mode="variant" aria-pressed="false">변형만 · 24</button>
+ </div><p class="variant-note">변형문제는 기출에 기반한 새 연습문제로, 실제 기출과 구분하여 표시합니다.</p>
 </div>
 <nav class="view-switch" role="tablist" aria-label="부인과학 학습 화면">
   <button type="button" id="view-quiz" role="tab" aria-selected="true" aria-controls="quiz-view">퀴즈</button>
@@ -110,21 +124,35 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'
 const TYPES={ox:'O/X',mc:'객관식',fill:'빈칸',short:'단답형',manual:'복원불완전·서술형'};
 const labels=['①','②','③','④','⑤','⑥'];
 let bank=[],byId=new Map(),s=null,uid=null,loaded=false,pendingFocus=null;
-let viewMode="quiz",listAnswersShown=true,scope="all";
+let viewMode="quiz",listAnswersShown=true,scope="all",variantMode="mixed";
 const SECTIONS=Object.freeze({
  all:"전체 범위",1:"제1절 · 한의 여성의학의 기원과 발전",
  2:"제2절 · 여성의학 임상을 위한 인체 구조의 이해",
  3:"제3절 · 심신의학과 여성질환",
  6:"제6절 · 병력청취와 신체검사"
 });
-function scopedBank(){return scope==="all"?bank:bank.filter(q=>q.section===scope);}
+const SECTION1_TOPICS=Object.freeze({"001":"범주","002":"범주","003":"황도연","004":"동의보감","006":"전란","007":"황제내경","008":"금궤요략","009":"송대","010":"부인대전양방","011":"주단계","012":"주단계","013":"경악전서","014":"부청주"});
+function scopedBank(){
+ if(scope==="all")return bank.filter(q=>!q.variant);
+ if(scope!=="1")return bank.filter(q=>q.section===scope&&!q.variant);
+ const part=bank.filter(q=>q.section==="1");
+ return variantMode==="original"?part.filter(q=>!q.variant):variantMode==="variant"?part.filter(q=>q.variant):part;
+}
+function variantModeStoreKey(){return "midterm-2-2-2026:quiz:v1:"+uid+":obgyn-variant-mode-v1";}
+function setVariantMode(next){
+ if(scope!=="1"||!["original","mixed","variant"].includes(next)||next===variantMode)return;
+ variantMode=next;host().__QUIZ_STORAGE.setItem(variantModeStoreKey(),next);
+ s=loadedState();renderScope();if(viewMode==="list")renderList();else render();resize();
+}
 function scopeStoreKey(){return "midterm-2-2-2026:quiz:v1:"+uid+":obgyn-current-section-v1";}
 function renderScope(){
  const selected=scopedBank();
+ $("variant-picker").hidden=scope!=="1";
+ for(const b of document.querySelectorAll("#variant-options [data-mode]"))b.setAttribute("aria-pressed",String(b.dataset.mode===variantMode));
  for(const b of document.querySelectorAll("#section-buttons [data-section]"))
   b.setAttribute("aria-pressed",String(b.dataset.section===scope));
  $("section-name").textContent=SECTIONS[scope]+" · "+selected.length+"문항";
- $("quiz-scope-help").textContent=(scope==="all"?"전체 족보":"제"+scope+"절 족보")+" · 중복 없이 무작위 출제";
+ $("quiz-scope-help").textContent=(scope==="all"?"전체 족보":"제"+scope+"절 족보")+(scope==="1"?" · "+({original:"기출",mixed:"기출+변형",variant:"변형"})[variantMode]:"")+" · 중복 없이 무작위 출제";
  $("list-heading").firstChild.textContent=scope==="all"?"족보 전체 목록 ":"족보 제"+scope+"절 목록 ";
 }
 function setScope(next){
@@ -144,8 +172,20 @@ function host(){
    typeof p.__QUIZ_TRACK_ATTEMPT==='function' ?p:null;
  }catch{return null;}
 }
-function key(){const base='midterm-2-2-2026:quiz:v1:'+uid+':obgyn-v1';return scope==='all'?base:base+':section:'+scope;}
-function makeQueue(){const a=scopedBank().map(q=>q.id);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function key(){const base='midterm-2-2-2026:quiz:v1:'+uid+':obgyn-v1';return scope==='all'?base:base+':section:'+scope+(scope==='1'&&variantMode!=='original'?':mode:'+variantMode:'');}
+function makeQueue(){
+ const a=scopedBank().map(q=>q.id);
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+ if(scope==="1"&&variantMode!=="original"){
+  const topic=id=>SECTION1_TOPICS[byId.get(id)?.sourceId||id]||id;
+  for(let i=1;i<a.length;i++){
+   if(topic(a[i])!==topic(a[i-1]))continue;
+   const j=a.findIndex((id,k)=>k>i&&topic(id)!==topic(a[i-1])&&(i===a.length-1||topic(id)!==topic(a[i+1])));
+   if(j>i)[a[i],a[j]]=[a[j],a[i]];
+  }
+ }
+ return a;
+}
 function blankState(){return {order:makeQueue(),cursor:0,draft:[],selected:'',checked:false,preview:false,decision:null,results:{}};}
 function getCurrent(){return byId.get(s.order[s.cursor]);}
 function save(){if(!host())return;host().__QUIZ_STORAGE.setItem(key(),JSON.stringify(s));}
@@ -223,7 +263,7 @@ function submit(correct,revealed){
  s.decision={correct:!!correct,revealed:!!revealed};
  s.results[q.id]={correct:!!correct,revealed:!!revealed};
  const p=host();
- if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:q.years+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
+ if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:(q.variant?'[변형] 제1절 · 원기출 '+q.sourceId:q.years)+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
  save();
  if(q.type==='manual'&&!revealed){advanceQuestion();return;}
  render();
@@ -231,7 +271,7 @@ function submit(correct,revealed){
 function feedbackMarkup(q){
  let status=s.decision?.revealed?'정답 확인':s.decision?.correct?'정답':'오답';
  let right=q.displayAnswer||(Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer);
- return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
+ return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.explanation?'<p><b>해설:</b> '+esc(q.explanation)+'</p>':'')+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
 }
 const FIGURES=Object.freeze({
  '018':'pelvis','019':'pelvis','020':'pelvis','021':'pelvis',
@@ -255,11 +295,11 @@ function render(){
  updateHeader();
  if(s.cursor>=s.order.length){
   const results=Object.values(s.results),n=results.filter(x=>x.correct).length;
-  $('stage').innerHTML='<div class="finish"><p class="pill">한 회차 완료</p><h2>선택한 범위의 모든 문제를 한 번씩 풀었습니다.</h2><p>'+s.order.length+'문항 중 정답 '+n+'문항 · 오답/정답 확인 '+(bank.length-n)+'문항</p><button id="again" class="primary">전체 문제 다시 풀기 ↻</button></div>';
+  $('stage').innerHTML='<div class="finish"><p class="pill">한 회차 완료</p><h2>선택한 범위의 모든 문제를 한 번씩 풀었습니다.</h2><p>'+s.order.length+'문항 중 정답 '+n+'문항 · 오답/정답 확인 '+(s.order.length-n)+'문항</p><button id="again" class="primary">전체 문제 다시 풀기 ↻</button></div>';
   $('again').onclick=reset;resize();return;
  }
  const q=getCurrent(),manual=q.type==='manual';
- const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+esc(q.years)+'학번 표기</span><span>PDF '+esc(q.page)+'쪽</span></div>';
+ const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+(q.variant?'<span class="paper-variant">변형문제</span> · 원기출 '+esc(q.sourceId):esc(q.years)+'학번 표기')+'</span><span>PDF '+esc(q.page)+'쪽</span></div>';
  const img=questionFigure(q);
  const html='<div class="track"><i style="width:'+100*s.cursor/s.order.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+s.order.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">복원상 일부 선지·그림·정답이 불확실합니다. 자동 채점 가능한 답은 원문 복원값 기준이며, 서술형·선지 미복원 문항은 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
  let actions='';
@@ -329,7 +369,7 @@ function renderList(){
   const statusClass=outcome?(outcome.revealed?'revealed':outcome.correct?'correct':'wrong'):'';
   const item=document.createElement('article');
   item.className='paper-item'+(statusClass?' is-'+statusClass:'');
-  const meta='<div class="paper-top"><div class="paper-labels"><span class="paper-number">'+String(i+1).padStart(2,'0')+'</span><span>'+esc(TYPES[q.type]||q.type)+'</span><span>기출 '+esc(q.years)+'</span><span>PDF '+esc(q.page)+'쪽</span></div><span class="paper-status '+statusClass+'">'+status+'</span></div>';
+  const meta='<div class="paper-top"><div class="paper-labels"><span class="paper-number">'+String(i+1).padStart(2,'0')+'</span><span>'+esc(TYPES[q.type]||q.type)+'</span><span>'+(q.variant?'<span class="paper-variant">변형 · 원기출 '+esc(q.sourceId)+'</span>':'기출 '+esc(q.years))+'</span><span>PDF '+esc(q.page)+'쪽</span></div><span class="paper-status '+statusClass+'">'+status+'</span></div>';
   let options='';
   if(q.type==='mc'&&Array.isArray(q.choices)){
    options='<ol class="paper-choice-list">'+q.choices.map((v,j)=>{
@@ -374,7 +414,10 @@ window.addEventListener('resize',()=>requestAnimationFrame(resize));
 function reset(){s=blankState();save();render();window.scrollTo({top:0,behavior:'instant'});}
 function goTo(id){
  if(!byId.has(id))return;
- if(scope!=='all'&&byId.get(id).section!==scope)setScope(byId.get(id).section);
+ const requested=byId.get(id);
+ if(requested.variant){if(scope!=='1')setScope('1');if(variantMode==='original')setVariantMode('mixed');}
+ else if(scope!=='all'&&requested.section!==scope)setScope(requested.section);
+ if(scope==='1'&&variantMode==='variant'&&!requested.variant)setVariantMode('mixed');
  const idx=s.order.indexOf(id);
  if(idx<0)return;
  if(idx!==s.cursor){const item=s.order.splice(idx,1)[0];s.order.splice(s.cursor,0,item);s.checked=false;s.preview=false;s.decision=null;s.selected='';s.draft=[];save();}
@@ -405,18 +448,21 @@ document.addEventListener('keydown',ev=>{
 },true);
 $('reset').onclick=reset;
 for(const b of document.querySelectorAll('#section-buttons [data-section]'))b.addEventListener('click',()=>setScope(b.dataset.section));
+for(const b of document.querySelectorAll('#variant-options [data-mode]'))b.addEventListener('click',()=>setVariantMode(b.dataset.mode));
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='obgyn-open-question'&&typeof e.data.id==='string'){if(!loaded)pendingFocus=e.data.id;else goTo(e.data.id.replace(/^obgyn-/i,''));}});
 (async()=>{
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-enter-pron-v7',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-chapter1-variants-v8',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
-  if(bank.length!==56||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
+  if(bank.length!==80||bank.filter(q=>q.variant).length!==24||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
   const savedScope=p.__QUIZ_STORAGE.getItem(scopeStoreKey());
   scope=Object.hasOwn(SECTIONS,savedScope)?savedScope:'all';
+  const savedMode=p.__QUIZ_STORAGE.getItem(variantModeStoreKey());
+  variantMode=['original','mixed','variant'].includes(savedMode)?savedMode:'mixed';
   s=loadedState();loaded=true;renderScope();
   $('study').hidden=false;render();if(pendingFocus){goTo(pendingFocus.replace(/^obgyn-/i,''));pendingFocus=null;}
  }catch(e){$('error').hidden=false;$('error').textContent=e.message;resize();}
