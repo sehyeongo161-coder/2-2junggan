@@ -7,6 +7,10 @@
 :root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#293347;background:#fcf9fa;--accent:#a84a69;--light:#fbeef3;--muted:#7a6a74;--line:#eadde3}
 *{box-sizing:border-box}body{margin:0;padding:12px 0 55px;line-height:1.67}button,input,textarea{font:inherit}button{min-height:42px;padding:10px 17px;border-radius:10px;border:1px solid #dccfd4;background:#fff;cursor:pointer;color:#293347}button:hover{background:var(--light)}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #be7c97;outline-offset:2px}button:disabled{opacity:.46;cursor:default}button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:750}button.primary:hover{filter:brightness(1.06)}[hidden]{display:none!important}
 .header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}h1{font-size:26px;letter-spacing:-.035em;line-height:1.4;margin:0}.eyebrow{color:#9b7c8b;font-size:13px;margin:0 0 4px}.summary{display:flex;flex-wrap:wrap;gap:7px}.summary span{border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px 12px;font-size:14px;white-space:nowrap}.summary b{color:var(--accent)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0}.help{color:var(--muted);font-size:13px}.round{height:44px;width:44px;border-radius:50%;padding:0;font-size:26px;line-height:1}.card{background:#fff;border:1px solid #e9e1e5;border-radius:17px;padding:25px 27px;box-shadow:0 5px 22px #63213a07}.track{height:6px;background:#f1e8ec;border-radius:9px;overflow:hidden;margin-bottom:20px}.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:#815e6e;font-size:13px}.pill{border-radius:7px;padding:3px 9px;background:var(--light);color:#a54e71;font-weight:750}.card h2{font-size:23px;line-height:1.65;letter-spacing:-.035em;margin:16px 0 19px;white-space:pre-wrap;word-break:keep-all}.options{display:grid;gap:9px}.opt{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:13px 15px;line-height:1.5;border-color:#e7dce1}.opt .num{font-weight:800;color:#93566e;min-width:25px}.opt.selected{border-color:var(--accent);background:var(--light);box-shadow:inset 0 0 0 1px var(--accent)}.opt.right{border-color:#73ac85;background:#f0f8f1}.opt.wrong{border-color:#db979b;background:#fff1f1}.answer-fields{display:grid;gap:12px}.input-row label{display:block;color:#695c67;font-size:13px;font-weight:700;margin-bottom:5px}.answer-fields input,.answer-fields textarea{display:block;width:100%;padding:12px 14px;border:1px solid #d5c8cf;background:#fff;border-radius:9px;font-size:17px;color:#293347}.answer-fields textarea{resize:vertical;min-height:90px}.actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:9px}.feedback{margin-top:20px;padding:17px 19px;border-radius:11px;border:1px solid var(--line);background:#fdf9fb}.feedback h3{margin:0 0 8px;font-size:18px}.feedback p{margin:7px 0;white-space:pre-wrap}.feedback .yes{color:#246c43}.feedback .no{color:#b04451}.caution{background:#fff8ed;border:1px solid #f1d6ad;color:#8c5b24;border-radius:9px;padding:12px 14px;font-size:13px;margin:0 0 14px}.finish{text-align:center;padding:30px 18px}.finish h2{margin:4px 0 12px}.source{margin:18px 0 0;color:#927b86;font-size:12px}.manual-buttons{display:flex;flex-wrap:wrap;gap:8px}.manual-buttons button{flex:1}.image-note{font-size:13px;background:#f7f3f5;padding:12px 14px;border-radius:9px;color:#6c5963;margin:12px 0}#error{color:#b33e4d}
+.figure-block{margin:15px 0 18px;background:#fff;border:1px solid #e9dee3;border-radius:12px;padding:14px 13px 11px}
+.figure-block svg{display:block;width:100%;max-width:460px;height:auto;margin:0 auto;background:#fff}
+.figure-block figcaption{text-align:center;color:#786a73;font-size:12px;line-height:1.55;margin-top:8px}
+.figure-block img{max-width:100%}
 @media(max-width:600px){body{padding-top:4px}h1{font-size:23px}.card{padding:21px 17px;border-radius:13px}.card h2{font-size:20px}.opt{padding:12px}.summary span{font-size:13px;padding:6px 9px}.actions button{flex:1}.card .actions{gap:8px}}
 </style>
 </head>
@@ -98,6 +102,23 @@ function feedbackMarkup(q){
  let right=Array.isArray(q.answer)?q.answer.join(' / '):q.type==='mc'?labels[Number(q.answer)-1]+' '+q.choices[Number(q.answer)-1]:q.answer;
  return '<div class="feedback" role="status"><h3 class="'+(s.decision?.correct?'yes':'no')+'">'+status+'</h3><p><b>정답:</b> '+esc(right)+'</p>'+(q.note?'<p>'+esc(q.note)+'</p>':'')+'</div>';
 }
+const FIGURES=Object.freeze({
+ '018':'pelvis','019':'pelvis','020':'pelvis','021':'pelvis',
+ '024':'muscles','048':'glands','053':'hsg','054':'hsg','055':'hsg'
+});
+const FIGURE_CROPS=Object.freeze({
+ pelvis:{y:0,h:236,label:'골반 구조 — 대상 구조 명칭을 가린 원본 도해'},
+ muscles:{y:242,h:130,label:'골반저근 A~E — 원본 도해'},
+ glands:{y:377,h:100,label:'외음부 관련 두 샘의 염증 — 원본 이미지'},
+ hsg:{y:483,h:111,label:'자궁난관조영술 영상 — 원본 자료'}
+});
+function questionFigure(q){
+ const kind=FIGURES[q.id];
+ if(!kind) return /그림|사진|영상/.test(q.prompt)?'<div class="image-note">해당 자료의 그림은 수록되지 않은 문제입니다. PDF '+esc(q.page)+'쪽을 확인하세요.</div>':'';
+ const a=FIGURE_CROPS[kind];
+ // 원본 첨부 PDF에서 추출. 골반 명칭은 정답 노출 방지를 위해 가렸습니다.
+ return '<figure class="figure-block"><svg role="img" aria-label="'+esc(a.label)+'" viewBox="0 '+a.y+' 320 '+a.h+'" xmlns="http://www.w3.org/2000/svg"><image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/></svg><figcaption>'+esc(a.label)+' · PDF '+q.page+'쪽</figcaption></figure>';
+}
 function render(){
  if(!s)return;
  updateHeader();
@@ -108,7 +129,7 @@ function render(){
  }
  const q=getCurrent(),manual=q.type==='manual';
  const title='<div class="meta"><span class="pill">'+esc(TYPES[q.type]||q.type)+'</span><span>'+esc(q.years)+'학번 표기</span><span>PDF '+esc(q.page)+'쪽</span></div>';
- const img= /그림|사진|영상/.test(q.prompt)?'<div class="image-note">원본 PDF '+q.page+'쪽의 그림·영상을 함께 확인하세요. 이미지가 포함된 기출은 본문 설명만 복원되었습니다.</div>':'';
+ const img=questionFigure(q);
  const html='<div class="track"><i style="width:'+100*s.cursor/bank.length+'%"></i></div><div class="meta"><b>문제 '+(s.cursor+1)+' / '+bank.length+'</b><span>· 완료 '+answered()+'</span></div><h2>'+esc(q.prompt)+'</h2>'+title+img+(q.uncertain?'<div class="caution">복원상 일부 선지·그림·정답이 불확실합니다. 자동 채점 가능한 답은 원문 복원값 기준이며, 서술형·선지 미복원 문항은 자가채점합니다.</div>':'')+(q.type==='ox'||q.type==='mc'?optionMarkup(q):entryMarkup(q));
  let actions='';
  if(manual){
