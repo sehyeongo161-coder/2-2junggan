@@ -78,6 +78,10 @@ function entryMarkup(q){
  const values=Array.from({length:num},(_,i)=>s.draft[i]||'');
  return '<div class="answer-fields">'+values.map((v,i)=>'<div class="input-row"><label for="ans-'+i+'">'+(q.type==='fill'?'빈칸 '+(i+1):'답안 입력')+'</label>'+(q.type==='manual'?'<textarea id="ans-'+i+'" data-field="'+i+'" '+(s.checked?'disabled':'')+' placeholder="기억나는 답안을 적어 보세요">'+esc(v)+'</textarea>':'<input id="ans-'+i+'" data-field="'+i+'" autocomplete="off" spellcheck="false" '+(s.checked?'disabled':'')+' value="'+esc(v)+'" placeholder="정답 입력">')+'</div>').join('')+'</div>';
 }
+function advanceQuestion(){
+ s.cursor++;s.checked=false;s.preview=false;s.decision=null;s.draft=[];s.selected='';
+ save();render();window.scrollTo({top:0,behavior:'instant'});
+}
 function submit(correct,revealed){
  if(s.checked||!getCurrent())return;
  const q=getCurrent();s.checked=true;s.preview=true;
@@ -85,7 +89,9 @@ function submit(correct,revealed){
  s.results[q.id]={correct:!!correct,revealed:!!revealed};
  const p=host();
  if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:q.years+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
- save();render();
+ save();
+ if(q.type==='manual'&&!revealed){advanceQuestion();return;}
+ render();
 }
 function feedbackMarkup(q){
  let status=s.decision?.revealed?'정답 확인':s.decision?.correct?'정답':'오답';
@@ -118,7 +124,7 @@ function render(){
  if($('manual-reveal'))$('manual-reveal').onclick=()=>{s.preview=true;save();render()};
  if($('manual-correct'))$('manual-correct').onclick=()=>submit(true,false);
  if($('manual-wrong'))$('manual-wrong').onclick=()=>submit(false,false);
- if($('next'))$('next').onclick=()=>{s.cursor++;s.checked=false;s.preview=false;s.decision=null;s.draft=[];s.selected='';save();render();window.scrollTo({top:0,behavior:'instant'})};
+ if($('next'))$('next').onclick=advanceQuestion;
  resize();
 }
 function reset(){s=blankState();save();render();window.scrollTo({top:0,behavior:'instant'});}
