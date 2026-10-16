@@ -172,20 +172,20 @@ async function startQuiz(user){
     }
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
-  // 상한론 대자 설정: 5개를 선택했는데 기존 3개 세션이 남아 있는 문제 해결.
-  // 63·65조는 기존 후보가 각 4개뿐이므로, 원문에 실재하는 표현만 추가·분리합니다.
+  // 대자 빈칸 수는 후보 구절 수를 초과하지 않습니다. 원래 하나인 구절은 나누지 않습니다.
   const dajaDensityFixes=[
     [
-      "const hits=DAJA_CANDIDATES[q.num].flatMap((phrase,idx)=>{",
-      "const stored=DAJA_CANDIDATES[q.num]||[];\n const phrases=q.num===63?[...stored,'發汗後']:q.num===65?[...stored.filter(p=>p!=='欲作奔豚'),'欲作','奔豚']:stored;\n const hits=phrases.flatMap((phrase,idx)=>{"
-    ],
-    [
       "if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};",
-      "if(!s.checked&&s.current?.num===num&&s.current.blanks?.length<Math.max(s.density,(s.retryBlanks[num]||[]).length)){\n   s.current=null;s.drafts=[];\n }\n if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};"
+      "if(!s.checked&&s.current?.num===num&&s.current.blanks?.length<Math.min(s.density,DAJA_CANDIDATES[num].length)){\n   s.current=null;s.drafts=[];\n }\n if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};"
     ],
     [
       "if(!s.checked){s.current=null;s.drafts=[];}\n   dajaSave();dajaRender();\n };",
-      "if(!s.checked){s.current=null;s.drafts=[];}\n   else toast('채점한 현재 조문은 유지하고, 다음 조문부터 '+s.density+'개 빈칸을 적용합니다.');\n   dajaSave();dajaRender();\n };"
+      "if(!s.checked){s.current=null;s.drafts=[];}\n   else toast('채점한 현재 조문은 유지하고, 다음 조문부터 '+s.density+'개 이내로 빈칸을 출제합니다.');\n   dajaSave();dajaRender();\n };"
+    ],
+    [
+      "const q=DAJA_DATA.find(x=>x.num===num);\n if((num===65",
+      // 이전 버전에서 원래 한 구절인 欲作奔豚을 분리하여 만든 저장 기록 복구.
+      "const q=DAJA_DATA.find(x=>x.num===num);\n if(num===65&&Array.isArray(s.retryBlanks[num])){\n   const broken=s.retryBlanks[num].some(b=>b.text==='欲作'||b.text==='奔豚');\n   if(broken){\n     const start=q.original.indexOf('欲作奔豚');\n     s.retryBlanks[num]=s.retryBlanks[num].filter(b=>b.text!=='欲作'&&b.text!=='奔豚');\n     if(start>=0&&!s.retryBlanks[num].some(b=>b.text==='欲作奔豚'))s.retryBlanks[num].push({start,end:start+4,text:'欲作奔豚'});\n     dajaSave();\n   }\n }\n if(num===63&&Array.isArray(s.retryBlanks[num])){\n   const clean=s.retryBlanks[num].filter(b=>b.text!=='發汗後');\n   if(clean.length!==s.retryBlanks[num].length){s.retryBlanks[num]=clean;dajaSave();}\n }\n if(s.current?.num===num&&s.current.blanks?.some(b=>(num===65&&(b.text==='欲作'||b.text==='奔豚'))||(num===63&&b.text==='發汗後'))){\n   s.current=null;s.drafts=[];s.checked=false;s.revealed=false;s.lastOK=false;dajaSave();\n }\n if((num===65"
     ]
   ];
   for(const [before,after] of dajaDensityFixes){
