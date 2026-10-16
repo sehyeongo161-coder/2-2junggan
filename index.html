@@ -447,7 +447,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261016-grade-explanation-v24';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261016-grade-explanation-v25';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
@@ -602,7 +602,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  }));
 };
 </script>
-<script type="module" src="./auth-app.js?v=20261016-explanation-scroll-v8"></script>
+<script type="module" src="./auth-app.js?v=20261016-explanation-scroll-v9"></script>
 </body>
 </html>
 
