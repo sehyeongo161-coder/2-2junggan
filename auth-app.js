@@ -175,7 +175,11 @@ function installLegacyGradeMarkers(){
    const header=fb.querySelector('h3,h4,.result-title');
    const heading=String(header?.textContent||'').trim();
    const ownText=String(fb.textContent||'').replace(/^[OX]\s*(?:정답|오답)\s*/,'');
-   const wrongCount=fb.querySelectorAll('.wrong,.incorrect,.miss,.extra,[aria-invalid="true"]').length;
+   // A partly wrong answer can show the correct words in green in the explanation.
+   // Therefore inspect the question's actual checked blanks/inputs before counting any green answers.
+   const questionRoot=fb.closest('.card')||fb.parentElement;
+   const inputErrors=questionRoot?.querySelectorAll('.blank.wrong, input[aria-invalid="true"], input.incorrect, textarea.incorrect')?.length||0;
+   const wrongCount=fb.querySelectorAll('.wrong,.incorrect,.miss,.extra,[aria-invalid="true"]').length+inputErrors;
    const correctCount=fb.querySelectorAll('.correct,.right,.yes').length;
    let verdict;
    if(action==='reveal')verdict=false;
