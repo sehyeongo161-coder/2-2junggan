@@ -447,7 +447,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
    if(document.getElementById('quiz-root').hidden)return;
    neuroActive=true;panel.hidden=true;neuroPanel.hidden=false;
    document.body.dataset.subject='neuro';selectSubject(neuroTab);
-   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261016-ox-advance-v23';
+   if(!frame.getAttribute('src'))frame.src='./neuro-quiz.html?v=20261016-grade-explanation-v24';
    syncNeuroMode(neuroMode);
  },true);
  for(const [mode,button] of Object.entries(subs))button.addEventListener('click',()=>{
@@ -499,13 +499,9 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
      requestAnimationFrame(()=>requestAnimationFrame(scrollToNeuroQuestion));
    }
    if(e.data?.type==='neuro-focus-grade'&&neuroActive&&!neuroPanel.hidden){
-     const offset=Number(e.data.top);
-     if(Number.isFinite(offset)&&offset>=0&&offset<150000){
-       requestAnimationFrame(()=>{
-         const top=frame.getBoundingClientRect().top+window.scrollY+offset-Math.min(135,window.innerHeight*0.15);
-         window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
-       });
-     }
+     window.__QUIZ_SCROLL_GRADE?.({
+       frame,top:Number(e.data.top),explanationTop:Number(e.data.explanationTop)
+     });
    }
    if(e.data?.type==='neuro-quiz-size'){
      const height=Number(e.data.height);
@@ -527,7 +523,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
   if(document.getElementById('quiz-root').hidden)return;
   active=true;panel.hidden=true;neuro.hidden=true;obgyn.hidden=false;
   document.body.dataset.subject='obgyn';selected(tab);
-  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-all-chapters-variants-v20';
+  if(!frame.getAttribute('src'))frame.src='./obgyn-quiz.html?v=20261016-grade-explanation-v21';
   if(pending)frame.contentWindow?.postMessage({type:'obgyn-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',open,true);
@@ -571,19 +567,42 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
     }
   }
   if(e.data?.type==='obgyn-focus-grade'&&!obgyn.hidden){
-   const offset=Number(e.data.top);
-   if(Number.isFinite(offset)&&offset>=0&&offset<150000){
-    requestAnimationFrame(()=>{
-     const absolute=window.scrollY+frame.getBoundingClientRect().top+offset;
-     const top=Math.max(0,absolute-Math.min(140,window.innerHeight*0.16));
-     window.scrollTo({top,behavior:'smooth'});
-    });
-   }
+   window.__QUIZ_SCROLL_GRADE?.({
+     frame,top:Number(e.data.top),explanationTop:Number(e.data.explanationTop)
+   });
   }
  });
 })();
 </script>
-<script type="module" src="./auth-app.js?v=20261016-cloud-safe-universal-ox-v7"></script>
+<script>
+// 모든 과목에서 사용되는 채점 후 이동 규칙: O/X와 정답·해설 시작 부분이
+// 같은 화면에 나타나도록 스크롤합니다. 향후 추가되는 퀴즈에서도 재사용합니다.
+window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explanationNode=null}={})=>{
+ const viewport=Math.max(320,window.visualViewport?.height||window.innerHeight);
+ let gradeY,explainY;
+ if(frame){
+  if(!Number.isFinite(top)||top<0||top>150000)return;
+  const frameY=window.scrollY+frame.getBoundingClientRect().top;
+  gradeY=frameY+top;
+  explainY=Number.isFinite(explanationTop)&&explanationTop>=top&&explanationTop<150000
+    ?frameY+explanationTop:gradeY;
+ }else{
+  if(!gradeNode||!gradeNode.isConnected||gradeNode.closest('[hidden]'))return;
+  gradeY=window.scrollY+gradeNode.getBoundingClientRect().top;
+  explainY=explanationNode?.isConnected
+    ?window.scrollY+explanationNode.getBoundingClientRect().top:gradeY;
+ }
+ if(!Number.isFinite(gradeY)||!Number.isFinite(explainY))return;
+ // 일반적인 경우 큰 O/X부터 보여 주고, 해설이 길어 아래로 밀리면
+ // 해설 시작점을 화면 상반부로 끌어올립니다.
+ const target=Math.max(0,gradeY-Math.min(96,viewport*0.13),explainY-viewport*0.55);
+ const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  window.scrollTo({top:target,behavior:reduce?'instant':'smooth'});
+ }));
+};
+</script>
+<script type="module" src="./auth-app.js?v=20261016-explanation-scroll-v8"></script>
 </body>
 </html>
 
