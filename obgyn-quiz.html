@@ -367,10 +367,18 @@ function entryMarkup(q){
  }
  return '<div class="answer-fields">'+rows.join('')+'</div>';
 }
+function focusNewQuestion(){
+ try{
+  const anchor=$('stage');
+  const top=anchor?Math.max(0,Math.round(anchor.getBoundingClientRect().top+window.scrollY)):0;
+  parent.postMessage({type:'obgyn-focus-question',top},location.origin);
+ }catch{}
+}
 function advanceQuestion(){
  s.cursor++;clearCurrentAnswer();
  if(s.cursor>=s.order.length)prepareNextRound();else save();
- render();window.scrollTo({top:0,behavior:'instant'});
+ render();
+ requestAnimationFrame(()=>requestAnimationFrame(focusNewQuestion));
 }
 function submit(correct,revealed){
  if(s.checked||!getCurrent())return;
