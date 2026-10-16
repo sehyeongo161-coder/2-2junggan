@@ -434,7 +434,7 @@ function reveal(q,withSeen){
  displayReveal(q);
  if(withSeen)requestAnimationFrame(()=>requestAnimationFrame(focusGradingExplanation));
 }
-function displayReveal(q){const el=$('reveal');if(!el)return;el.classList.add('visible');if(q.mode==='manual'){
+function displayReveal(q){const el=$('reveal');if(!el)return;el.classList.add('visible');const study=el.querySelector('details.study');if(study){study.open=true;const title=study.querySelector('summary');if(title)title.textContent='주제 해설 · 학습 내용 (눌러서 접기)';}if(q.mode==='manual'){
  const mr=$('markRight'),mw=$('markWrong');if(mr)mr.addEventListener('click',()=>manualGrade(q,true));if(mw)mw.addEventListener('click',()=>manualGrade(q,false));}}
 function manualGrade(q,correct){mark(q.id,correct,true);state.feedback={id:q.id,correct,message:correct?'자기채점: 정답으로 기록했습니다.':'자기채점: 오답으로 기록했습니다.'};showFeedback(correct,state.feedback.message);const rr=$('reveal');rr.querySelector('.rubric')?.querySelectorAll('button').forEach(b=>{b.disabled=true;});requestAnimationFrame(()=>requestAnimationFrame(focusGradingExplanation));}
 function syncFilters(){$('year').value=state.year;$('topic').value=state.topic;$('order').value=state.order;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===state.filter));}
