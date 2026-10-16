@@ -78,12 +78,12 @@
 <div class="section-selector" aria-label="부인과학 절별 출제 범위">
  <div class="section-heading"><strong>출제 범위</strong><span class="section-subtitle">선택한 절 안에서 랜덤 출제</span></div>
  <div id="section-buttons" class="section-buttons" role="group" aria-label="출제할 절 선택">
-  <button type="button" data-section="all" aria-pressed="true">전체 <small>57</small></button>
-  <button type="button" data-section="1" aria-pressed="false">1절 <small>14</small></button>
+  <button type="button" data-section="all" aria-pressed="true">전체 <small>56</small></button>
+  <button type="button" data-section="1" aria-pressed="false">1절 <small>13</small></button>
   <button type="button" data-section="2" aria-pressed="false">2절 <small>26</small></button>
   <button type="button" data-section="3" aria-pressed="false">3절 <small>1</small></button>
   <button type="button" data-section="6" aria-pressed="false">6절 <small>16</small></button>
- </div><p id="section-name" class="section-name">전체 범위 · 57문항</p>
+ </div><p id="section-name" class="section-name">전체 범위 · 56문항</p>
 </div>
 <nav class="view-switch" role="tablist" aria-label="부인과학 학습 화면">
   <button type="button" id="view-quiz" role="tab" aria-selected="true" aria-controls="quiz-view">퀴즈</button>
@@ -151,8 +151,20 @@ function getCurrent(){return byId.get(s.order[s.cursor]);}
 function save(){if(!host())return;host().__QUIZ_STORAGE.setItem(key(),JSON.stringify(s));}
 function loadedState(){
  let old=null;try{old=JSON.parse(host().__QUIZ_STORAGE.getItem(key())||'null');}catch{}
- const ids=scopedBank().map(x=>x.id);
- if(!old||!Array.isArray(old.order)||old.order.length!==ids.length||new Set(old.order).size!==ids.length||old.order.some(id=>!byId.has(id)))return blankState();
+ const ids=scopedBank().map(q=>q.id);
+ if(!old||!Array.isArray(old.order)||new Set(old.order).size!==old.order.length)return blankState();
+ // 005번(복원되지 않은 동의보감 문제)만 기존 회차에서 제외하고, 나머지 풀이 진행 상황은 보존합니다.
+ if(old.order.includes('005')){
+   const position=old.order.indexOf('005');
+   const originalCursor=Math.max(0,Math.min(old.order.length,Number(old.cursor)||0));
+   old.order.splice(position,1);
+   old.cursor=originalCursor-(position<originalCursor?1:0);
+   if(old.results&&typeof old.results==='object')delete old.results['005'];
+   if(position===originalCursor){
+     old.draft=[];old.selected='';old.checked=false;old.preview=false;old.decision=null;
+   }
+ }
+ if(old.order.length!==ids.length||old.order.some(id=>!byId.has(id)||!ids.includes(id)))return blankState();
  old.cursor=Math.max(0,Math.min(ids.length,Number(old.cursor)||0));
  old.results=old.results&&typeof old.results==='object'?old.results:{};
  old.draft=Array.isArray(old.draft)?old.draft:[];
@@ -166,8 +178,21 @@ function updateHeader(){
  $('summary').innerHTML='<span>전체 <b>'+scopedBank().length+'</b></span><span>완료 <b>'+answered()+'</b></span><span>정답 <b>'+right+'</b></span><span>오답 <b>'+wrong+'</b></span>';
 }
 function resize(){try{parent.postMessage({type:'obgyn-size',height:Math.ceil(document.documentElement.scrollHeight)},location.origin);}catch{}}
-function normalize(v){return String(v??'').normalize('NFKC').toLowerCase().replace(/[\s,.，、。·\-_/()（）]/g,'');}
-function accept(v,expected,aliases=[]){return [expected,...aliases].some(x=>normalize(x)===normalize(v));}
+function normalize(v){return String(v??'').normalize('NFKC').toLowerCase().replace(/[\s\u200b\ufeff,.，、。·\-_/()（）]/g,'');}
+const HANGUL_READINGS=Object.freeze({
+ '經':'경','帶':'대','胎':'태','産':'산',
+ '胞門':'포문','婦人門':'부인문',
+ '甘麥大棗湯':'감맥대조탕','桂枝茯苓丸':'계지복령환',
+ '當歸芍藥散':'당귀작약산','桂枝加龍骨牡蠣湯':'계지가용골모려탕',
+ '苓桂朮甘湯':'영계출감탕','溫經湯':'온경탕',
+ '宋代':'송대','婦人大全良方':'부인대전양방',
+ '朱丹溪':'주단계','景岳全書':'경악전서',
+ '瘀血病機':'어혈병기','血':'혈','不營則痛':'불영즉통','不通則痛':'불통즉통'
+});
+function accept(v,expected,aliases=[]){
+ const candidates=[expected,...aliases];
+ return candidates.some(x=>normalize(x)===normalize(v)||normalize(HANGUL_READINGS[x]||'§NOMATCH§')===normalize(v));
+}
 function evaluate(q){
  if(q.type==='ox'||q.type==='mc')return s.selected===String(q.answer);
  if(q.type==='short')return accept(s.draft[0],q.answer,q.accept||[]);
@@ -245,7 +270,26 @@ function render(){
  }
  $('stage').innerHTML=html+'<div class="actions">'+actions+'</div>'+(s.checked?feedbackMarkup(q):manual&&s.preview?'<div class="feedback"><h3>자료에 적힌 답안</h3><p>'+esc(Array.isArray(q.answer)?q.answer.join(' / '):q.answer)+'</p><p>'+esc(q.note||'자신의 답안과 비교해서 채점해 주세요.')+'</p></div>':'');
  $('stage').querySelectorAll('[data-opt]').forEach(b=>b.onclick=()=>{s.selected=b.dataset.opt;save();render()});
- $('stage').querySelectorAll('[data-field]').forEach(el=>el.oninput=()=>{s.draft[Number(el.dataset.field)]=el.value;save()});
+ $('stage').querySelectorAll('[data-field]').forEach(el=>{
+  el.oninput=()=>{s.draft[Number(el.dataset.field)]=el.value;save()};
+  el.addEventListener('keydown',ev=>{
+    if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||ev.shiftKey)return;
+    ev.preventDefault();
+    s.draft[Number(el.dataset.field)]=el.value;
+    if(q.type==='manual'){
+      if(!s.preview){s.preview=true;save();render();}
+    }else if(!s.checked)submit(evaluate(q),false);
+  });
+});
+ if(q.type==='ox'||q.type==='mc'){
+   const currentOptions=$('stage').querySelectorAll('[data-opt]');
+   currentOptions.forEach(el=>el.addEventListener('keydown',ev=>{
+     if(ev.key!=='Enter'||ev.isComposing||ev.keyCode===229||s.checked)return;
+     if(s.selected!==el.dataset.opt)return; // First Enter selects; next Enter submits.
+     ev.preventDefault();
+     submit(evaluate(q),false);
+   }));
+ }
  if($('check'))$('check').onclick=()=>submit(evaluate(q),false);
  if($('show-answer'))$('show-answer').onclick=()=>submit(false,true);
  if($('manual-reveal'))$('manual-reveal').onclick=()=>{s.preview=true;save();render()};
@@ -333,11 +377,11 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261016-sections-v3',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261016-enter-pron-v7',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
-  if(bank.length!==57||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
+  if(bank.length!==56||bank.some(q=>!Object.hasOwn(SECTIONS,q.section)))throw new Error('문항의 절 구분 데이터가 올바르지 않습니다.');
   const savedScope=p.__QUIZ_STORAGE.getItem(scopeStoreKey());
   scope=Object.hasOwn(SECTIONS,savedScope)?savedScope:'all';
   s=loadedState();loaded=true;renderScope();
