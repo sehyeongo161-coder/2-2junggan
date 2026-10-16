@@ -314,11 +314,33 @@ const FIGURE_CROPS=Object.freeze({
  hsg:{y:483,h:111,label:'자궁난관조영술 영상 — 원본 자료'}
 });
 function questionFigure(q){
- const kind=FIGURES[q.id];
- if(!kind) return /그림|사진|영상/.test(q.prompt)?'<div class="image-note">해당 자료의 그림은 수록되지 않은 문제입니다. PDF '+esc(q.page)+'쪽을 확인하세요.</div>':'';
- const a=FIGURE_CROPS[kind];
- // 원본 첨부 PDF에서 추출. 골반 명칭은 정답 노출 방지를 위해 가렸습니다.
- return '<figure class="figure-block"><svg role="img" aria-label="'+esc(a.label)+'" viewBox="0 '+a.y+' 320 '+a.h+'" xmlns="http://www.w3.org/2000/svg"><image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/></svg><figcaption>'+esc(a.label)+' · PDF '+q.page+'쪽</figcaption></figure>';
+ const kind=q.figureKey||FIGURES[q.id];
+ if(!kind)return /그림|사진|영상/.test(q.prompt)?'<div class="image-note">해당 자료의 그림이 수록되지 않았습니다. PDF '+esc(q.page)+'쪽을 확인하세요.</div>':'';
+ // Original source from the 16-page 18–22학번 PDF. On the two left-hand muscle drawings,
+ // all answer-bearing labels have been masked in the separate WebP asset.
+ if(kind==="stacked_top"||kind==="stacked_bottom"){
+  const upper=kind==="stacked_top",y=upper?0:178,h=upper?194:205;
+  const caption=upper?"왼쪽 위 골반근육 그림":"왼쪽 아래 회음부근육 그림";
+  return '<figure class="figure-block variant-figure"><svg role="img" aria-label="'+caption+'의 명칭 빈칸 표시 원본 그림" viewBox="0 '+y+' 360 '+h+'" xmlns="http://www.w3.org/2000/svg">'+
+   '<image href="./obgyn-variants-stacked.webp?v=20261016-masked-v1" x="0" y="0" width="360" height="383" preserveAspectRatio="xMidYMid meet"/></svg>'+
+   '<figcaption>PDF 6쪽 원본 '+caption+' · 번호가 적힌 부분의 이름을 맞히세요</figcaption></figure>';
+ }
+ if(kind==="pelvis"&&q.variant){
+  // Locate the already masked original PDF labels, not anatomical structures.
+  // The grey leader lines remain unchanged. Arcuate line remains excluded (unverified).
+  const mark='<rect x="20" y="60" width="34" height="17" rx="3" fill="#fff5eb" stroke="#ae4e69"/>'+
+    '<text x="37" y="73" font-size="13" font-weight="bold" fill="#a93f5f" text-anchor="middle">①</text>'+
+    '<rect x="249" y="78" width="37" height="17" rx="3" fill="#fff5eb" stroke="#ae4e69"/>'+
+    '<text x="267.5" y="91" font-size="13" font-weight="bold" fill="#a93f5f" text-anchor="middle">②</text>';
+  return '<figure class="figure-block variant-figure"><svg role="img" aria-label="PDF 5쪽 골반 뼈 구조 ①·② 명칭 빈칸 그림" viewBox="0 0 320 236" xmlns="http://www.w3.org/2000/svg">'+
+   '<image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/>'+mark+
+   '</svg><figcaption>PDF 5쪽 원본 골반 구조 · ①·② 위치를 보고 맞히세요 (궁상선 제외)</figcaption></figure>';
+ }
+ const key=kind==="muscles_ae"?"muscles":kind;
+ const crop=FIGURE_CROPS[key];
+ if(!crop)return '';
+ const caption=q.variant&&kind==="muscles_ae"?"PDF 6쪽 원본 오른쪽 A~E 근육 그림":crop.label+" · PDF "+q.page+"쪽";
+ return '<figure class="figure-block"><svg role="img" aria-label="'+esc(caption)+'" viewBox="0 '+crop.y+' 320 '+crop.h+'" xmlns="http://www.w3.org/2000/svg"><image href="./obgyn-figures-sprite.webp?v=20261016-original-figures-v1" x="0" y="0" width="320" height="600" preserveAspectRatio="xMidYMid meet"/></svg><figcaption>'+esc(caption)+'</figcaption></figure>';
 }
 function render(){
  if(!s)return;
