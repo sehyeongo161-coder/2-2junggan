@@ -108,7 +108,7 @@ function flushProgress(){
         clearProgressBackup(uid,key,payload);
       }catch(e){
         for(const [k,v] of items.slice(i))if(!pendingProgress.has(k))pendingProgress.set(k,v);
-        const localCopy=!!auth.currentUser&&items.slice(i).every(([k,v])=>writeProgressBackup(auth.currentUser.uid,k,v));
+        const localCopy=!!auth.currentUser&&items.slice(i).every(([k,v])=>writeProgressBackup(auth.currentUser.uid,k,pendingProgress.get(k)??v));
         syncStatus((localCopy?'기기에 임시저장 · ':'저장 실패 · ')+progressErrorDescription(e)+' · 다시 시도');
         console.warn('진행 기록 Firebase 저장 실패:',e?.code||e?.message||e);
         throw e;
