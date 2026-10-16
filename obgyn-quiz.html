@@ -425,12 +425,23 @@ function submit(correct,revealed){
   advanceQuestion();return;
  }
  render();
- const result=$('grade-result');
- if(result){
-  const rect=result.getBoundingClientRect();
-  // Parent page scrolls, not the unusually tall auto-sized iframe itself.
-  try{parent.postMessage({type:'obgyn-focus-grade',top:rect.top},location.origin);}catch{}
- }
+ // 부모 페이지의 스크롤을 O/X와 해설 시작점 사이로 이동합니다.
+ // iframe 자동 높이 조정과 DOM 레이아웃 적용이 끝난 다음 위치를 읽습니다.
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  const result=$('grade-result');
+  if(!result)return;
+  const body=result.querySelector('.grade-body')||result;
+  const top=Math.round(result.getBoundingClientRect().top);
+  const explanationTop=Math.round(body.getBoundingClientRect().top);
+  try{
+   if(window.parent!==window)
+    parent.postMessage({type:'obgyn-focus-grade',top,explanationTop},location.origin);
+   else{
+    const a=window.scrollY+top,b=window.scrollY+explanationTop;
+    window.scrollTo({top:Math.max(0,a-95,b-window.innerHeight*.52),behavior:'smooth'});
+   }
+  }catch{}
+ }));
 }
 function feedbackMarkup(q){
  const correct=!!s.decision?.correct&&!s.decision?.revealed;
