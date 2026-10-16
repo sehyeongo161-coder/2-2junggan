@@ -12,14 +12,58 @@
 .figure-block figcaption{text-align:center;color:#786a73;font-size:12px;line-height:1.55;margin-top:8px}
 .figure-block img{max-width:100%}
 @media(max-width:600px){body{padding-top:4px}h1{font-size:23px}.card{padding:21px 17px;border-radius:13px}.card h2{font-size:20px}.opt{padding:12px}.summary span{font-size:13px;padding:6px 9px}.actions button{flex:1}.card .actions{gap:8px}}
+
+/* 부인과학: 퀴즈 / 전체 족보 목록 */
+.view-switch{display:inline-flex;align-items:center;gap:3px;margin:2px 0 17px;padding:4px;background:#f2e9ed;border-radius:12px}
+.view-switch button{border:0;border-radius:9px;background:transparent;color:#836e79;font-size:15px;font-weight:700;min-height:40px;padding:9px 23px}
+.view-switch button[aria-selected="true"]{background:#fff;color:var(--accent);box-shadow:0 1px 6px #52243a12}
+.list-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:2px 0 14px}
+.list-top h2{font-size:19px;margin:0;letter-spacing:-.025em}
+.list-top p{margin:0;color:var(--muted);font-size:13px}
+.list-answer-toggle{border:1px solid #d5c1cb;color:var(--accent);background:#fff;font-weight:700;font-size:13px;min-height:39px;padding:7px 14px}
+.past-paper-items{display:grid;gap:11px}
+.paper-item{background:#fff;border:1px solid #e8dde2;border-radius:13px;padding:17px 19px;box-shadow:0 4px 12px #63213a05}
+.paper-item.is-correct{border-color:#c4dbc9}
+.paper-item.is-wrong{border-color:#eed3d4}
+.paper-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.paper-labels{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:12px;color:#7b6b76}
+.paper-number{font-weight:800;color:var(--accent);font-size:14px}
+.paper-status{font-size:12px;font-weight:700;padding:3px 9px;border-radius:7px;background:#f1eff1;color:#726a75;white-space:nowrap}
+.paper-status.correct{color:#286d46;background:#eaf6ed}
+.paper-status.wrong{color:#a34c4e;background:#fff0f0}
+.paper-status.revealed{color:#8c6240;background:#fff6e7}
+.paper-prompt{font-size:16px;font-weight:650;line-height:1.75;white-space:pre-wrap;word-break:keep-all;margin:11px 0 4px;overflow-wrap:anywhere}
+.paper-choice-list{margin:10px 0 1px;padding:0;list-style:none;color:#536075;font-size:14px;display:grid;gap:6px}
+.paper-choice-list li{padding-left:2px;line-height:1.65;word-break:keep-all}
+.paper-detail{margin-top:10px;color:#756775;font-size:13px}
+.paper-detail summary{cursor:pointer;font-weight:650;color:#8c5f75;width:fit-content}
+.paper-detail .figure-block{max-width:500px;margin:11px 0}
+.paper-answer{margin:12px 0 1px;padding:11px 13px;border:1px solid #dfe9e1;background:#f6faf7;color:#28583d;border-radius:9px;white-space:pre-wrap;word-break:keep-all;font-size:14px}
+.paper-answer p{margin:5px 0}
+.paper-answer .paper-note{color:#6b7780}
+.paper-restoration{display:inline-block;margin-top:7px;font-size:12px;color:#986b36}
+@media(max-width:600px){.view-switch{display:flex;width:100%}.view-switch button{flex:1}.paper-item{padding:15px 13px}.paper-prompt{font-size:15px}.list-top{align-items:flex-start}.paper-choice-list{font-size:13px}}
 </style>
 </head>
 <body>
 <div class="header"><div><p class="eyebrow">본과 2학년 2학기 · 18~22학번</p><h1>부인과학 족보 퀴즈</h1></div><div id="summary" class="summary"></div></div>
 <p id="error" role="status" hidden></p>
 <div id="study" hidden>
+<nav class="view-switch" role="tablist" aria-label="부인과학 학습 화면">
+  <button type="button" id="view-quiz" role="tab" aria-selected="true" aria-controls="quiz-view">퀴즈</button>
+  <button type="button" id="view-list" role="tab" aria-selected="false" aria-controls="list-view" tabindex="-1">목록</button>
+</nav>
+<section id="quiz-view" role="tabpanel" aria-labelledby="view-quiz">
 <div class="toolbar"><span class="help">전체 족보 · 중복 없이 무작위 출제</span><button id="reset" class="round" title="이번 회차 초기화·전체 문제 다시 섞기" aria-label="전체 문제 다시 시작">↻</button></div>
 <div id="stage" class="card"></div>
+</section>
+<section id="list-view" role="tabpanel" aria-labelledby="view-list" hidden>
+ <div class="list-top">
+  <div><h2>족보 전체 목록 <span id="list-count" class="paper-labels"></span></h2><p>PDF 순서대로 전체 문항 · 정답은 버튼으로 표시</p></div>
+  <button id="list-toggle-answers" class="list-answer-toggle" type="button" aria-pressed="false">정답 보기</button>
+ </div>
+ <div id="list-items" class="past-paper-items"></div>
+</section>
 <p class="source">출처: 18~22학번 부인과 족보 모음(16쪽). 복원 불확실 문항은 '자가채점'으로 표기합니다. 이미지가 필요한 문제는 원본 PDF 쪽수를 함께 표시합니다.</p>
 </div>
 <script>
@@ -30,6 +74,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'
 const TYPES={ox:'O/X',mc:'객관식',fill:'빈칸',short:'단답형',manual:'복원불완전·서술형'};
 const labels=['①','②','③','④','⑤','⑥'];
 let bank=[],byId=new Map(),s=null,uid=null,loaded=false,pendingFocus=null;
+let viewMode="quiz",listAnswersShown=false;
 function host(){
  try{
   const p=window.parent;
@@ -148,6 +193,62 @@ function render(){
  if($('next'))$('next').onclick=advanceQuestion;
  resize();
 }
+
+function listAnswerText(q){
+ if(Array.isArray(q.answer))return q.answer.join(' / ');
+ if(q.type==='mc'){const n=Number(q.answer)-1;return labels[n]+' '+(q.choices?.[n]||'');}
+ return String(q.answer||'');
+}
+function renderList(){
+ if(!s)return;
+ const area=$('list-items');
+ area.replaceChildren();
+ $('list-count').textContent='· '+bank.length+'문항';
+ $('list-toggle-answers').textContent=listAnswersShown?'정답 가리기':'정답 보기';
+ $('list-toggle-answers').setAttribute('aria-pressed',String(listAnswersShown));
+ const frag=document.createDocumentFragment();
+ for(let i=0;i<bank.length;i++){
+  const q=bank[i],outcome=s.results[q.id];
+  const status=outcome?(outcome.revealed?'정답 보기':outcome.correct?'정답':'오답'):'미응시';
+  const statusClass=outcome?(outcome.revealed?'revealed':outcome.correct?'correct':'wrong'):'';
+  const item=document.createElement('article');
+  item.className='paper-item'+(statusClass?' is-'+statusClass:'');
+  const meta='<div class="paper-top"><div class="paper-labels"><span class="paper-number">'+String(i+1).padStart(2,'0')+'</span><span>'+esc(TYPES[q.type]||q.type)+'</span><span>기출 '+esc(q.years)+'</span><span>PDF '+esc(q.page)+'쪽</span></div><span class="paper-status '+statusClass+'">'+status+'</span></div>';
+  let options='';
+  if(q.type==='mc'&&Array.isArray(q.choices)){
+   options='<ol class="paper-choice-list">'+q.choices.map((v,j)=>'<li>'+labels[j]+' '+esc(v)+'</li>').join('')+'</ol>';
+  }
+  // 그림 문제에서 원본 자료의 그림을 확인할 수 있도록 펼침 영역을 둡니다.
+  const figure=FIGURES[q.id]?'<details class="paper-detail"><summary>문제 그림 보기</summary>'+questionFigure(q)+'</details>':'';
+  let answer='';
+  if(listAnswersShown){
+   answer='<div class="paper-answer"><p><strong>정답</strong> · '+esc(listAnswerText(q))+'</p>'+(q.note?'<p class="paper-note">'+esc(q.note)+'</p>':'')+'</div>';
+  }
+  item.innerHTML=meta+'<p class="paper-prompt">'+esc(q.prompt)+'</p>'+options+figure+(q.uncertain?'<span class="paper-restoration">※ 일부 내용 복원 불완전</span>':'')+answer;
+  frag.append(item);
+ }
+ area.append(frag);
+ resize();
+}
+function selectView(mode){
+ viewMode=mode==='list'?'list':'quiz';
+ const quiz=viewMode==='quiz';
+ $('quiz-view').hidden=!quiz;
+ $('list-view').hidden=quiz;
+ $('view-quiz').setAttribute('aria-selected',String(quiz));
+ $('view-list').setAttribute('aria-selected',String(!quiz));
+ $('view-quiz').tabIndex=quiz?0:-1;
+ $('view-list').tabIndex=quiz?-1:0;
+ updateHeader();
+ if(quiz)render();else renderList();
+ requestAnimationFrame(resize);
+}
+$('view-quiz').onclick=()=>selectView('quiz');
+$('view-list').onclick=()=>selectView('list');
+$('list-toggle-answers').onclick=()=>{listAnswersShown=!listAnswersShown;renderList();};
+$('list-items').addEventListener('toggle',()=>requestAnimationFrame(resize),true);
+window.addEventListener('resize',()=>requestAnimationFrame(resize));
+
 function reset(){s=blankState();save();render();window.scrollTo({top:0,behavior:'instant'});}
 function goTo(id){
  if(!byId.has(id))return;
