@@ -292,7 +292,7 @@ function renderStatRows() {
     const bottom=document.createElement('div');bottom.className='analytics-row-bottom';
     bottom.append(detail);
     const candidate=items.find(entry=>entry.stat.id===row.id);
-    if(candidate || row.neuroId){
+    if(candidate || row.neuroId || String(row.id).startsWith('obgyn-')){
       const action=document.createElement('button');action.type='button';
       action.className='analytics-practice';action.textContent='이 문제 풀기';
       action.setAttribute('aria-label',`${row.label} 다시 풀기`);
@@ -300,6 +300,9 @@ function renderStatRows() {
         if(row.neuroId){
           navigateToQuiz();
           requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_NEURO_QUESTION?.(row.neuroId)));
+        }else if(String(row.id).startsWith('obgyn-')){
+          navigateToQuiz();
+          requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_OBGYN_QUESTION?.(row.id)));
         }else startReview(candidate);
       };
       bottom.append(action);
