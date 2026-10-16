@@ -388,7 +388,12 @@ function submit(correct,revealed){
  const p=host();
  if(p)p.__QUIZ_TRACK_ATTEMPT({key:'obgyn-'+q.id,label:(q.variant?'[변형] 제'+q.section+'절 · 원기출 '+q.sourceId:q.years)+' · '+q.prompt.slice(0,110),group:'부인과학',correct:!!correct,revealed:!!revealed});
  save();
- if(q.type==='manual'&&!revealed){advanceQuestion();return;}
+ if(q.type==='manual'&&!revealed){
+  // Self-marked answers intentionally advance immediately; show a brief verdict
+  // in the parent viewport so their O/X can still be seen.
+  try{parent.postMessage({type:'obgyn-flash-verdict',correct:!!correct},location.origin);}catch{}
+  advanceQuestion();return;
+ }
  render();
  const result=$('grade-result');
  if(result){
