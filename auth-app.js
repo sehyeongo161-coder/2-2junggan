@@ -307,7 +307,7 @@ async function startQuiz(user){
   const dajaDensityFixes=[
     [
       "if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};",
-      "if(!s.checked&&s.current?.num===num&&s.current.blanks?.length<Math.min(s.density,DAJA_CANDIDATES[num].length)){\n   s.current=null;s.drafts=[];\n }\n if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};"
+      "const densityControl=$('daja-density');\n const displayedDensity=Number(densityControl?.value);\n if(!s.checked&&[2,3,5].includes(displayedDensity)&&s.density!==displayedDensity){\n  s.density=displayedDensity;s.current=null;s.drafts=[];dajaSave();\n }\n if(!s.checked&&s.current?.num===num){\n  const expected=dajaPick(q,s.density,s.retryBlanks[num]||[]);\n  const stale=s.current.blanks.length<expected.length||s.current.blanks.some(b=>/[者也矣爾]/.test(b.text));\n  if(stale){s.current=null;s.drafts=[];}\n }\n if(!s.current||s.current.num!==num){\n   s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};"
     ],
     [
       "if(!s.checked){s.current=null;s.drafts=[];}\n   dajaSave();dajaRender();\n };",
@@ -343,34 +343,19 @@ async function startQuiz(user){
       throw new Error('104조 빈칸 후보 추가를 확인할 수 없습니다. 퀴즈 코드 버전을 확인해 주세요.');
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
-  // 99조: 5개를 선택해도 기존 빈칸 후보가 적어 3개만 나오던 현상 보완.
-  // 원문의 완결된 구절만 추가하고, 기존 빈칸 후보는 절대 분할하지 않습니다.
-  const daja99PoolAnchor="const DAJA_READINGS = ";
-  const daja99PoolCode=[
-    "const source99=DAJA_DATA.find(q=>Number(q.num)===99)?.original||'';",
-    "if(Array.isArray(DAJA_CANDIDATES[99])){",
-    " for(const re of [/(?:傷|伤)寒四五日/,/身[熱热][惡恶]風/,/手足[溫温]而渴者/]){",
-    "  const fullPhrase=source99.match(re)?.[0];",
-    "  if(fullPhrase&&!DAJA_CANDIDATES[99].includes(fullPhrase))DAJA_CANDIDATES[99].push(fullPhrase);",
-    " }",
-    "}",
-    "const DAJA_READINGS = "
-  ].join('\n');
-  if(patchedQuizScript.split(daja99PoolAnchor).length!==2)
-    throw new Error('99조 빈칸 후보 확장 패치가 퀴즈 코드와 일치하지 않습니다.');
-  patchedQuizScript=patchedQuizScript.replace(daja99PoolAnchor,daja99PoolCode);
-  const daja99ReadingAnchor="const DAJA_TRANSLATIONS = ";
-  const daja99ReadingCode=[
-    "const source99ForRead=DAJA_DATA.find(q=>Number(q.num)===99)?.original||'';",
-    "for(const [re,reading] of [[/(?:傷|伤)寒四五日/,'상한사오일'],[/身[熱热][惡恶]風/,'신열오풍'],[/手足[溫温]而渴者/,'수족온이갈자']]){",
-    " const phrase=source99ForRead.match(re)?.[0];",
-    " if(phrase&&!DAJA_READINGS[phrase])DAJA_READINGS[phrase]=reading;",
-    "}",
-    "const DAJA_TRANSLATIONS = "
-  ].join('\n');
-  if(patchedQuizScript.split(daja99ReadingAnchor).length!==2)
-    throw new Error('99조 빈칸 독음 패치가 퀴즈 코드와 일치하지 않습니다.');
-  patchedQuizScript=patchedQuizScript.replace(daja99ReadingAnchor,daja99ReadingCode);
+  // Reconcile the visible blank-count setting and search globally for the maximum
+  // number of non-overlapping intact candidate phrases, not random greedy subsets.
+  const dajaPickStart='function dajaPick(q,count,locked=[]) {';
+  const dajaPickEnd='\nfunction dajaCurrent(){';
+  const dajaPickAt=patchedQuizScript.indexOf(dajaPickStart);
+  const dajaEndAt=patchedQuizScript.indexOf(dajaPickEnd,dajaPickAt);
+  if(dajaPickAt<0||dajaEndAt<0)throw new Error('대자 출제 함수 코드 버전이 일치하지 않습니다.');
+  const improvedDajaPick="function dajaPick(q,count,locked=[]){\n const hits=(DAJA_CANDIDATES[q.num]||[]).flatMap((phrase,idx)=>{\n  const start=q.original.indexOf(phrase);\n  return start<0?[]:[{start,end:start+phrase.length,text:phrase,idx}];\n });\n const selected=[];\n for(const old of locked){\n  const best=hits.find(h=>h.start===old.start&&h.text===old.text)||\n             hits.find(h=>h.start>=old.start&&h.end<=old.end);\n  if(best&&selected.every(x=>best.end<=x.start||best.start>=x.end))selected.push(best);\n }\n const options=shuffle(hits.filter(h=>selected.every(x=>h.end<=x.start||h.start>=x.end)));\n function find(from,need,chosen){\n  if(need===0)return chosen;\n  if(options.length-from<need)return null;\n  for(let i=from;i<options.length;i++){\n   const h=options[i];\n   if(!chosen.every(x=>h.end<=x.start||h.start>=x.end))continue;\n   const found=find(i+1,need-1,[...chosen,h]);\n   if(found)return found;\n  }\n  return null;\n }\n const remaining=Math.max(0,Number(count)||0,selected.length)-selected.length;\n for(let target=Math.min(remaining,options.length);target>=0;target--){\n  const picked=find(0,target,[]);\n  if(picked)return [...selected,...picked].sort((x,y)=>x.start-y.start);\n }\n return selected.sort((x,y)=>x.start-y.start);\n}";
+  patchedQuizScript=patchedQuizScript.slice(0,dajaPickAt)+improvedDajaPick+patchedQuizScript.slice(dajaEndAt);
+  const grammarAnchor='const DAJA_TRANSLATIONS = ';
+  const particleSafeCode="// 대자 빈칸에서는 者·也·矣·爾 같은 어조사를 원문에 남깁니다.\nconst DAJA_PARTICLES=/[者也矣爾]/;\nconst DAJA_HANZI=/[\\u3400-\\u9fff\\uf900-\\ufaff]/;\nfor(const [number,source] of Object.entries(DAJA_CANDIDATES)){\n const sanitized=[];\n for(const phrase of source){\n  if(!DAJA_PARTICLES.test(phrase)){sanitized.push(phrase);continue;}\n  const bits=[];let start=0;\n  for(let pos=0;pos<=phrase.length;pos++){\n   if(pos<phrase.length&&!DAJA_PARTICLES.test(phrase[pos]))continue;\n   const chunk=phrase.slice(start,pos).trim();\n   const length=[...chunk].filter(c=>DAJA_HANZI.test(c)).length;\n   if(length>=2)bits.push({chunk,start,length});\n   start=pos+1;\n  }\n  bits.sort((a,b)=>b.length-a.length||a.start-b.start);\n  if(!bits.length)continue;\n  const best=bits[0],reading=DAJA_READINGS[phrase];\n  if(reading&&!DAJA_READINGS[best.chunk]){\n   const syllables=[...reading.replace(/\\s/g,'')];\n   const wholeLen=[...phrase].filter(c=>DAJA_HANZI.test(c)).length;\n   const prefixLen=[...phrase.slice(0,best.start)].filter(c=>DAJA_HANZI.test(c)).length;\n   if(syllables.length===wholeLen)\n    DAJA_READINGS[best.chunk]=syllables.slice(prefixLen,prefixLen+best.length).join('');\n  }\n  sanitized.push(best.chunk);\n }\n DAJA_CANDIDATES[number]=[...new Set(sanitized)];\n}\n";
+  if(patchedQuizScript.split(grammarAnchor).length!==2)throw new Error('대자 어조사 필터 코드를 찾지 못했습니다.');
+  patchedQuizScript=patchedQuizScript.replace(grammarAnchor,particleSafeCode+grammarAnchor);
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
