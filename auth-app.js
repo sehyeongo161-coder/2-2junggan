@@ -343,6 +343,34 @@ async function startQuiz(user){
       throw new Error('104조 빈칸 후보 추가를 확인할 수 없습니다. 퀴즈 코드 버전을 확인해 주세요.');
     patchedQuizScript=patchedQuizScript.replace(before,after);
   }
+  // 99조: 5개를 선택해도 기존 빈칸 후보가 적어 3개만 나오던 현상 보완.
+  // 원문의 완결된 구절만 추가하고, 기존 빈칸 후보는 절대 분할하지 않습니다.
+  const daja99PoolAnchor="const DAJA_READINGS = ";
+  const daja99PoolCode=[
+    "const source99=DAJA_DATA.find(q=>Number(q.num)===99)?.original||'';",
+    "if(Array.isArray(DAJA_CANDIDATES[99])){",
+    " for(const re of [/(?:傷|伤)寒四五日/,/身[熱热][惡恶]風/,/手足[溫温]而渴者/]){",
+    "  const fullPhrase=source99.match(re)?.[0];",
+    "  if(fullPhrase&&!DAJA_CANDIDATES[99].includes(fullPhrase))DAJA_CANDIDATES[99].push(fullPhrase);",
+    " }",
+    "}",
+    "const DAJA_READINGS = "
+  ].join('\n');
+  if(patchedQuizScript.split(daja99PoolAnchor).length!==2)
+    throw new Error('99조 빈칸 후보 확장 패치가 퀴즈 코드와 일치하지 않습니다.');
+  patchedQuizScript=patchedQuizScript.replace(daja99PoolAnchor,daja99PoolCode);
+  const daja99ReadingAnchor="const DAJA_TRANSLATIONS = ";
+  const daja99ReadingCode=[
+    "const source99ForRead=DAJA_DATA.find(q=>Number(q.num)===99)?.original||'';",
+    "for(const [re,reading] of [[/(?:傷|伤)寒四五日/,'상한사오일'],[/身[熱热][惡恶]風/,'신열오풍'],[/手足[溫温]而渴者/,'수족온이갈자']]){",
+    " const phrase=source99ForRead.match(re)?.[0];",
+    " if(phrase&&!DAJA_READINGS[phrase])DAJA_READINGS[phrase]=reading;",
+    "}",
+    "const DAJA_TRANSLATIONS = "
+  ].join('\n');
+  if(patchedQuizScript.split(daja99ReadingAnchor).length!==2)
+    throw new Error('99조 빈칸 독음 패치가 퀴즈 코드와 일치하지 않습니다.');
+  patchedQuizScript=patchedQuizScript.replace(daja99ReadingAnchor,daja99ReadingCode);
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
