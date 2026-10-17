@@ -225,6 +225,11 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 .quick-grade-toast.correct{border-color:#55a476;color:#1b8245}
 .quick-grade-toast.wrong{border-color:#d47e8a;color:#bd4054}
 .quick-grade-toast b{font-size:42px;line-height:1}
+/* 방제학 순서대로: 모두 맞힌 뒤 완료 안내 */
+#bangjae-ordered-complete{margin-top:14px;border-color:#bddbc9;background:linear-gradient(150deg,#fff,#f0faf3)}
+#bangjae-ordered-complete h3{color:#215c42;font-size:25px}
+#bangjae-ordered-complete p{font-size:15px;line-height:1.7}
+@media(max-width:600px){#bangjae-ordered-complete h3{font-size:21px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -346,6 +351,12 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 <p id="input-help" class="help"></p>
 <div class="actions"><button id="prev" hidden>← 이전 문제</button><button id="check" class="primary">채점하기</button><button id="show">정답 보기</button><button id="retry-current" hidden>다시 풀기 ↻</button><button id="next" hidden>다음 문제 →</button></div>
 <div id="feedback" class="result" role="status" aria-live="polite" hidden></div>
+</section>
+<section id="bangjae-ordered-complete" class="card complete" hidden aria-live="polite">
+  <span class="badge">학습 완료</span>
+  <h3>방제학 순서대로 한 세트 완료!</h3>
+  <p id="bangjae-ordered-complete-summary">26~60번 처방을 모두 맞혔습니다. 수고하셨습니다!</p>
+  <div class="actions"><button id="bangjae-ordered-restart" type="button" class="primary">26번부터 다시 시작하기 ↻</button></div>
 </section>
 <section id="finish" class="card complete" hidden><span class="badge">학습 완료</span><h3>모든 문제를 맞히셨습니다.</h3><p id="finish-summary"></p><div class="actions"><button id="again" class="primary">다시 풀기</button></div></section>
 <details id="rules"><summary>채점 기준과 자료 안내</summary><div id="rule-text"></div></details>
