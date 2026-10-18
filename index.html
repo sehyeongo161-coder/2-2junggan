@@ -638,7 +638,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
    host.hidden=false;
    for(const b of [...subOld,past,match]){const is=(name==='quiz'?b===past:b===match);b.setAttribute('aria-selected',String(is));b.tabIndex=is?0:-1;}
    const send=()=>iframe.contentWindow?.postMessage({type:'shanghan-switch-mode',mode:name},location.origin);
-   if(!iframe.getAttribute('src')){iframe.addEventListener('load',send,{once:true});iframe.src='./shanghan-quiz.html?v=20261018-past-matching-autograde-v3';}
+   if(!iframe.getAttribute('src')){iframe.addEventListener('load',send,{once:true});iframe.src='./shanghan-quiz.html?v=20261018-inferred-answers-v4';}
    else send();
  }
  past.addEventListener('click',()=>select('quiz'));
