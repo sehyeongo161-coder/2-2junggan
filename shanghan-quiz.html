@@ -58,8 +58,9 @@ if(q.type==='mc'&&key===null)question+='<div class="warning">복원이 불완전
 if(checked){let result=state.results[q.id],correct=!!result?.correct;question+='<div class="separate"><div class="status '+(correct?'right':'wrong')+'">'+(correct?'정답입니다':'오답입니다')+(result?.inferred?' · 복기 추정 기준':'')+'</div>'+explainMarkup(q)+'</div>';}
 else if(revealed){question+='<div class="separate">'+explainMarkup(q)+'</div>';}
 const cannotGrade=q.status==='불가'||q.status==='충돌'||(q.type==='mc'&&key===null);
+const maySelfMark=q.type==='fill'||(q.type==='ox'&&key===null);
 const btn=checked?'<button id="next" class="primary">다음 문제 →</button>':
- revealed?(cannotGrade?'<button id="next" class="primary">다음 문제 →</button>':
+ revealed?(!maySelfMark||cannotGrade?'<button id="next" class="primary">다음 문제 →</button>':
   '<button id="manual-yes" class="primary">맞혔어요</button><button id="manual-no">틀렸어요</button><button id="next" type="button">건너뛰기</button>'):
  (key!==null?'<button id="check" class="primary">채점하기</button><button id="reveal">정답 보기</button>':
   '<button id="reveal" class="primary">정답·해설 확인</button><button id="next">건너뛰기</button>');
