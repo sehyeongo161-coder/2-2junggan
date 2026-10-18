@@ -27,22 +27,57 @@ for(const n of ['quiz','list','match'])$('tab-'+n).onclick=()=>changeTab(n);
 function seededShuffle(a){let copy=[...a];for(let i=copy.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function makeQueue(keep=false){let relevant=Q.filter(q=>q.playable&&(lecture==='all'||q.lecture===lecture)&&(!retryOnly||state.results[q.id]&&!state.results[q.id].correct));const oldId=keep?queue[cursor]:null;queue=relevant.map(q=>q.id);if(orderMode==='random')queue=seededShuffle(queue);cursor=oldId&&queue.includes(oldId)?queue.indexOf(oldId):0;checked=false;revealed=false;selected='';draft='';renderQuiz();}
 $('lecture').onchange=ev=>{lecture=ev.target.value;makeQueue();};$('shuffle').onclick=()=>{orderMode='random';retryOnly=false;makeQueue();};$('ordered').onclick=()=>{orderMode='ordered';retryOnly=false;makeQueue();};$('retry').onclick=()=>{retryOnly=!retryOnly;makeQueue();};
+/* 복기 원문에 정답 번호가 있고 한 개로 추정 가능한 경우에만 학습용 자동 채점.
+   복기가 충돌하거나 선지 자체가 핵심 부분에서 복원되지 않은 문제는 채점하지 않습니다. */
+function autoAnswer(q){
+ if(q.safeAuto && q.answer!==null && q.answer!==undefined && q.answer!=='')return String(q.answer);
+ if(q.type!=='mc'||!['확정','추정'].includes(q.status))return null;
+ const found=String(q.answerDisplay||'').match(/^\s*([①②③④⑤⑥])/);
+ if(!found)return null;
+ const blocked=/정답 확정 불가|조건부 추정|복원 실패|확정 불가|불확실|핵심 선지 미복원|관련 문구 미복원/;
+ if(blocked.test(q.answerDisplay))return null;
+ const n=['①','②','③','④','⑤','⑥'].indexOf(found[1])+1;
+ if(!n||!Array.isArray(q.choices)||!q.choices[n-1]||String(q.choices[n-1]).trim()==='?')return null;
+ return String(n);
+}
+function advanceQuestion(){
+ if(!queue.length)return;
+ cursor=(cursor+1)%queue.length;
+ checked=false;revealed=false;selected='';draft='';
+ renderQuiz();
+ try{window.scrollTo({top:0,behavior:'smooth'});}catch{}
+}
 function renderQuiz(){let total=queue.length, correct=Object.values(state.results).filter(r=>r.correct).length;$('mode-label').textContent=(orderMode==='random'?'무작위':'수업 순서')+(retryOnly?' · 오답만':'')+' · 누적 정답 '+correct;let q=Q.find(q=>q.id===queue[cursor]);$('progress-label').textContent=total?(cursor+1)+' / '+total+' · '+q.lecture+' · '+q.id:'현재 조건에 해당하는 문제가 없습니다.';$('bar').style.width=total?((cursor+1)/total*100).toFixed(1)+'%':'0%';if(!q){$('question-card').innerHTML='<p>현재 조건에서 풀 문제가 없습니다. 전체 강의를 선택하거나 오답 필터를 해제하세요.</p>';resize();return;}
+let key=autoAnswer(q), isInferred=q.type==='mc'&&!q.safeAuto&&key!==null;
 let types={mc:'객관식',ox:'O/X',fill:'빈칸·대자'};let question='<div class="meta"><span class="pill">'+esc(types[q.type]||q.kind)+'</span><span>'+esc(q.lecture)+' 강의</span><strong>'+esc(q.id)+'</strong><span class="muted">'+esc(q.topic)+'</span></div><h2 class="question-title">'+esc(q.prompt)+'</h2>';
 if(q.type==='mc'&&q.choices.length){question+='<div role="radiogroup" aria-label="정답 선택">'+q.choices.map((o,i)=>'<label class="choice"><input type="radio" name="choice" value="'+(i+1)+'" '+(selected===String(i+1)?'checked':'')+' '+(checked?'disabled':'')+'><span>'+mark[i]+' '+esc(o)+'</span></label>').join('')+'</div>';}
 else if(q.type==='ox'){question+='<div class="row" role="radiogroup">'+['O','X'].map(c=>'<label class="choice"><input type="radio" name="choice" value="'+c+'" '+(selected===c?'checked':'')+' '+(checked?'disabled':'')+'><span>'+c+'</span></label>').join('')+'</div>';}
 else{question+='<label for="free" class="muted">직접 답을 적어보세요. 답이 미복원된 문제는 참고·자가채점만 지원합니다.</label><textarea id="free" class="text-answer" placeholder="정답 입력" '+(checked?'disabled':'')+'>'+esc(draft)+'</textarea>';}
-if(checked){let result=state.results[q.id],correct=!!result?.correct;question+='<div class="separate"><div class="status '+(correct?'right':'wrong')+'">'+(revealed?'정답·해설 확인':correct?'정답입니다':'오답 또는 자가채점')+'</div>'+explainMarkup(q)+'</div>';}
+if(isInferred)question+='<div class="warning">GPT 복기 추정 정답을 기준으로 자동 채점합니다. 실제 시험의 확정 정답이라는 뜻은 아닙니다.</div>';
+if(q.type==='mc'&&key===null)question+='<div class="warning">복원이 불완전하거나 충돌하여 정답 번호를 확정할 수 없습니다. 이 문제는 자동채점과 오답 통계에서 제외됩니다.</div>';
+if(checked){let result=state.results[q.id],correct=!!result?.correct;question+='<div class="separate"><div class="status '+(correct?'right':'wrong')+'">'+(correct?'정답입니다':'오답입니다')+(result?.inferred?' · 복기 추정 기준':'')+'</div>'+explainMarkup(q)+'</div>';}
 else if(revealed){question+='<div class="separate">'+explainMarkup(q)+'</div>';}
-const btn=checked?'<button id="next" class="primary">다음 문제 →</button>':revealed?(q.status==='불가'?'<button id="next" class="primary">다음 문제 →</button>':'<button id="manual-yes" class="primary">맞혔어요</button><button id="manual-no">틀렸어요</button><button id="next" type="button">건너뛰기</button>'):(q.safeAuto?'<button id="check" class="primary">채점하기</button><button id="reveal">정답 보기</button>':'<button id="reveal" class="primary">정답·해설 확인</button><button id="next">건너뛰기</button>');
+const cannotGrade=q.status==='불가'||q.status==='충돌'||(q.type==='mc'&&key===null);
+const btn=checked?'<button id="next" class="primary">다음 문제 →</button>':
+ revealed?(cannotGrade?'<button id="next" class="primary">다음 문제 →</button>':
+  '<button id="manual-yes" class="primary">맞혔어요</button><button id="manual-no">틀렸어요</button><button id="next" type="button">건너뛰기</button>'):
+ (key!==null?'<button id="check" class="primary">채점하기</button><button id="reveal">정답 보기</button>':
+  '<button id="reveal" class="primary">정답·해설 확인</button><button id="next">건너뛰기</button>');
 question+='<div class="actionbar"><button id="prev" '+(cursor===0?'disabled':'')+'>← 이전</button>'+btn+'</div>';$('question-card').innerHTML=question;
 for(const e of $('question-card').querySelectorAll('input[name="choice"]'))e.onchange=()=>selected=e.value;let free=$('free');if(free)free.oninput=()=>draft=free.value;
-function advance(){cursor=(cursor+1)%queue.length;checked=false;revealed=false;selected='';draft='';renderQuiz();try{window.scrollTo({top:0,behavior:'smooth'});}catch{}};
+function advance(){advanceQuestion();}
 let prev=$('prev');if(prev)prev.onclick=()=>{cursor--;checked=false;revealed=false;selected='';draft='';renderQuiz();};let next=$('next');if(next)next.onclick=advance;
-let reveal=$('reveal');if(reveal)reveal.onclick=()=>{revealed=true;renderQuiz();};let check=$('check');if(check)check.onclick=()=>{let a=q.answer;if(!selected&&q.type!=='fill'){alert('답을 선택해 주세요.');return;}let correct=q.type==='fill'?normalize(draft)===normalize(a):String(selected)===String(a);markAttempt(q,correct,false);};let yes=$('manual-yes');if(yes)yes.onclick=()=>markAttempt(q,true,true);let no=$('manual-no');if(no)no.onclick=()=>markAttempt(q,false,true);
+let reveal=$('reveal');if(reveal)reveal.onclick=()=>{revealed=true;renderQuiz();};let check=$('check');if(check)check.onclick=()=>{if(!selected&&q.type!=='fill'){alert('답을 선택해 주세요.');return;}if(key===null)return;let correct=q.type==='fill'?normalize(draft)===normalize(key):String(selected)===String(key);markAttempt(q,correct,false,isInferred);};let yes=$('manual-yes');if(yes)yes.onclick=()=>markAttempt(q,true,true);let no=$('manual-no');if(no)no.onclick=()=>markAttempt(q,false,true);
 resize();}
 function normalize(v){return String(v||'').replace(/[\s.,，。·ㆍ()（）]/g,'').toLowerCase();}
-function markAttempt(q,correct,self){state.results[q.id]={correct,manual:self,date:Date.now()};put(saveKey,state);track('past-'+q.id,q.id+' '+q.prompt,correct,self);checked=true;revealed=true;renderQuiz();}
+function markAttempt(q,correct,self,inferred=false){
+ state.results[q.id]={correct,manual:self,inferred,date:Date.now()};
+ put(saveKey,state);
+ // 추정 정답으로 채점한 결과는 사용자별 오답 통계를 오염시키지 않음.
+ if(!inferred)track('past-'+q.id,q.id+' '+q.prompt,correct,false);
+ if(self){advanceQuestion();return;}
+ checked=true;revealed=true;renderQuiz();
+}
 function explainMarkup(q){let s='';if(q.guess)s+='<div class="guess"><strong>GPT 복기 추정 · '+esc(q.status)+'</strong>\n'+esc(q.guess)+'</div>';s+='<div class="info" style="margin-top:9px"><strong>해설</strong>\n'+esc(q.explanation||'복기 또는 강의 내용이 부족하여 해설이 제한됩니다.')+'</div><div class="answer"><strong>정답</strong> · '+esc(q.answerDisplay||'미복원')+'</div>';if(q.status==='불가'||q.status==='추정')s+='<div class="muted">복기 불완전 · 확실하지 않은 답은 자동채점하지 않습니다.</div>';return s;}
 $('list-lecture').onchange=e=>{listLecture=e.target.value;renderList();};$('list-toggle').onclick=()=>{listAnswers=!listAnswers;$('list-toggle').textContent=listAnswers?'정답·해설 가리기':'정답·해설 보기';renderList();};
 function renderList(){let items=Q.filter(q=>listLecture==='all'||q.lecture===listLecture);$('list-items').innerHTML='<div class="row-space"><b>전체 족보 '+items.length+'개 항목</b><span class="muted">검정: 원문 · 주황: 복기 추정 · 하늘: 해설 · 빨강: 답</span></div>'+items.map(q=>{let result=state.results[q.id],label=result?(result.correct?'정답':'오답'):'미응시';let opts=q.choices.length?'<p class="muted">'+q.choices.map((o,i)=>mark[i]+' '+esc(o)).join(' · ')+'</p>':'';return '<article class="list-item"><div class="row-space"><button data-open="'+esc(q.id)+'"><b>'+esc(q.id)+'</b> · '+esc(q.topic)+' · '+esc(q.kind)+(q.playable?'':' · 미복원')+'</button><span class="muted">'+label+'</span></div><div class="muted">'+esc(q.prompt)+'</div>'+opts+(listAnswers?explainMarkup(q):'')+'</article>';}).join('');for(const b of $('list-items').querySelectorAll('[data-open]'))b.onclick=()=>{let q=Q.find(x=>x.id===b.dataset.open);if(!q?.playable){listAnswers=true;renderList();return;}lecture='all';$('lecture').value='all';retryOnly=false;orderMode='ordered';makeQueue();let i=queue.indexOf(q.id);if(i>=0)cursor=i;changeTab('quiz');};resize();}
