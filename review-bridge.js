@@ -5,6 +5,14 @@
  */
 (() => {
   'use strict';
+  // Display suffix is computed from the existing question IDs and their stable
+  // source order. Never change question IDs or the user's stored statistics.
+  function bangjaeDisplayNumber(q) {
+    const candidates=CONFIG['bangjae-herbs'].data.filter(x=>x.num===q.num);
+    if(candidates.length<=1)return String(q.num);
+    const index=candidates.findIndex(x=>x.id===q.id);
+    return String(q.num)+'-'+(index+1);
+  }
   function makeFromStat(stat) {
     if (!stat || typeof stat.id !== 'string') return null;
     let key;
@@ -38,14 +46,14 @@
         accepted: answer, reading: dajaAcceptedReadings(answer)
       };
     }
-    for (const mode of ['sanghan-herbs-core', 'sanghan-herbs-reference', 'bangjae-herbs']) {
+    for (const mode of ['sanghan-herbs-core', 'sanghan-herbs-reference', 'bangjae-herbs-ordered', 'bangjae-herbs']) {
       const prefix = mode + '-';
       if (!key.startsWith(prefix)) continue;
-      const q = CONFIG[mode].data.find(x => prefix + x.id === key);
+      const q = CONFIG[mode]?.data.find(x => prefix + x.id === key);
       if (!q) return null;
       return {
         key, group: stat.group, label: stat.label, type: 'herbs',
-        title: q.name, hanja: q.hanja || '', source: q.source || '',
+        title: mode.startsWith('bangjae-herbs') ? `${bangjaeDisplayNumber(q)}번 · ${q.name} · ${q.source==='첨부 자료'?'출전: 첨부 자료':`《${q.source}》`}` : q.name, hanja: q.hanja || '', source: q.source || '',
         answer: q.herbs.join(' · '), mode, question: q
       };
     }
@@ -63,5 +71,5 @@
     }
     return { ok: false };
   }
-  window.__QUIZ_REVIEW_API = Object.freeze({resolve: makeFromStat, grade: evaluateReview});
+  window.__QUIZ_REVIEW_API = Object.freeze({resolve: makeFromStat, grade: evaluateReview, bangjaeDisplayNumber});
 })();
