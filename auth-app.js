@@ -375,6 +375,20 @@ async function startQuiz(user){
   const dajaCountFrom="s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};s.drafts=[];s.checked=false;s.revealed=false;s.lastOK=false;dajaSave();";
   if(patchedQuizScript.split(dajaCountFrom).length!==2)throw new Error('대자 실제 출제 노출도 패치 오류');
   patchedQuizScript=patchedQuizScript.replace(dajaCountFrom,"s.current={num,blanks:dajaPick(q,s.density,s.retryBlanks[num]||[])};\ns.dajaExposure ||= {};s.dajaExposure[num] ||= {};\nfor(const b of s.current.blanks)s.dajaExposure[num][b.text]=(s.dajaExposure[num][b.text]||0)+1;\ns.drafts=[];s.checked=false;s.revealed=false;s.lastOK=false;dajaSave();");
+  // Existing IDs stay untouched. Only presentation and per-source navigation change.
+  const bangjaeIdentityAnchor='const STORAGE_PREFIX=';
+  if(patchedQuizScript.split(bangjaeIdentityAnchor).length!==2)throw new Error('방제학 출전별 번호 헬퍼 설치 실패');
+  patchedQuizScript=patchedQuizScript.replace(bangjaeIdentityAnchor,"function bangjaeDisplayNumber(q){\n const same=CONFIG['bangjae-herbs-ordered'].data.filter(x=>x.num===q.num);\n if(same.length<=1)return String(q.num);\n const position=same.findIndex(x=>x.id===q.id);\n return String(q.num)+'-'+(position+1);\n}\n"+bangjaeIdentityAnchor);
+  const bangjaeBarStart="function renderBangjaeNumberBar(){";
+  const bangjaeBarEnd="\n// 새로고침은 기록을 보존합니다.";
+  const barAt=patchedQuizScript.indexOf(bangjaeBarStart);
+  const afterBar=patchedQuizScript.indexOf(bangjaeBarEnd,barAt);
+  if(barAt<0||afterBar<0)throw new Error('방제학 번호 이동표 출전별 분리 실패');
+  patchedQuizScript=patchedQuizScript.slice(0,barAt)+"function renderBangjaeNumberBar(){\n const isOrdered=active==='bangjae-herbs-ordered';\n const outer=$('bangjae-number-bar');outer.hidden=!isOrdered;\n if(!isOrdered)return;\n const current=question(),s=loadSession(active),data=CONFIG[active].data;\n const track=$('bangjae-number-track');track.replaceChildren();\n data.forEach((q,index)=>{\n  const selected=!!current&&current.id===q.id;\n  const status=s.orderedResults?.[q.id]||'unseen';\n  const label=bangjaeDisplayNumber(q);\n  const btn=el('button',{type:'button',className:'bangjae-number-tick'+(selected?' current':'')+' status-'+status});\n  btn.append(el('span',{className:'tick-number'},label),el('span',{className:'tick-mark'},({correct:'✓',wrong:'×',revealed:'?'})[status]||''));\n  btn.setAttribute('aria-label',label+'번 '+q.name+' '+q.source+' · '+({correct:'정답',wrong:'오답',revealed:'정답 보기',unseen:'미응시'})[status]);\n  if(selected)btn.setAttribute('aria-current','step');\n  btn.title=label+'번 · '+q.name+' · '+q.source+' · 해당 문제로 이동';\n  btn.onclick=()=>navigateBangjaeTo(index);\n  track.append(btn);\n });\n $('bangjae-number-caption').textContent=current\n  ?'현재 '+bangjaeDisplayNumber(current)+'번 · '+current.name+' · '+current.source\n  :'26~60번 · 출전별 40문항';\n}\n"+patchedQuizScript.slice(afterBar);
+  for(const [before,after,desc] of [["else heading.append(document.createTextNode(q.name),el('span',{className:'hanja'},q.hanja));","else heading.append(document.createTextNode(active.startsWith('bangjae-herbs')?`${bangjaeDisplayNumber(q)}번 · ${q.name}`:q.name),el('span',{className:'hanja'},q.hanja));","full list numbering"],["document.createTextNode(active.startsWith('sanghan-herbs-')?q.name:(q.source==='첨부 자료'?q.name:q.source==='동원'?`동원 ${q.name}`:`《${q.source}》 ${q.name}`))","document.createTextNode(active.startsWith('sanghan-herbs-')?q.name:`${bangjaeDisplayNumber(q)}번 · ${q.source==='첨부 자료'?q.name:q.source==='동원'?`동원 ${q.name}`:`《${q.source}》 ${q.name}`}`)","main question numbering"]]){
+   if(patchedQuizScript.split(before).length!==2)throw new Error('방제학 출전별 '+desc+' 적용 실패');
+   patchedQuizScript=patchedQuizScript.replace(before,after);
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
@@ -406,6 +420,16 @@ async function handleAuthenticated(user){
 }
 
 function metric(label,value){const item=document.createElement('div');item.className='analytics-metric';const count=document.createElement('b');count.textContent=String(value);const title=document.createElement('span');title.textContent=label;item.append(count,title);return item;}
+function updateBangjaeStatLabels(){
+ const api=window.__QUIZ_REVIEW_API;
+ if(!api)return;
+ for(const row of currentStats){
+  const item=api.resolve(row);
+  if(item?.type==='herbs'&&item.mode?.startsWith('bangjae-herbs')){
+   row.label=item.title;
+  }
+ }
+}
 function renderStats(){updateStatControls();}
 // 공통 오답 통계에서 기존 신경정신과 progress 문서를 읽어 함께 표시합니다.
 async function loadNeuroStatistics(){
@@ -444,6 +468,7 @@ async function showAnalytics(){
     const snapshots=await getDocs(collection(db,'users',authenticatedUid,'errorStats'));
     const neuroStats=await loadNeuroStatistics();
     currentStats=[...snapshots.docs.map(x=>({id:x.id,...x.data()})),...neuroStats];
+    updateBangjaeStatLabels();
     const sel=$('analytics-filter');
     const last=sel.value;sel.replaceChildren();
     for(const v of ['all',...new Set(currentStats.map(x=>x.group))]){
