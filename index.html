@@ -230,6 +230,10 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 #bangjae-ordered-complete h3{color:#215c42;font-size:25px}
 #bangjae-ordered-complete p{font-size:15px;line-height:1.7}
 @media(max-width:600px){#bangjae-ordered-complete h3{font-size:21px}}
+
+/* 상한론 족보 / 매칭 연습: 기존 퀴즈와 완전히 분리된 화면 */
+#shanghan-past-frame{display:block;width:100%;min-height:1100px;height:1200px;border:0;border-radius:12px;background:#f7f9fd}
+@media(max-width:650px){#shanghan-past-frame{min-height:1250px;border-radius:10px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -317,6 +321,8 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 <button id="tab-names" role="tab" aria-selected="true" aria-controls="module" data-mode="sanghan-names">처방명</button>
 <button id="tab-daja" role="tab" aria-selected="false" aria-controls="daja-panel" tabindex="-1" data-mode="sanghan-daja">대자</button>
 <button id="tab-herbs" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="sanghan-herbs">처방 구성</button>
+<button id="tab-shanghan-past" type="button" role="tab" aria-selected="false" aria-controls="shanghan-past-panel" tabindex="-1">족보 문제</button>
+<button id="tab-shanghan-match" type="button" role="tab" aria-selected="false" aria-controls="shanghan-past-panel" tabindex="-1">매칭 연습</button>
 </nav>
 <nav id="sanghan-herb-groups" class="group-tabs" role="tablist" aria-label="상한론 처방 구성 분류" hidden>
 <button id="tab-herbs-core" role="tab" aria-selected="true" aria-controls="module" data-mode="sanghan-herbs-core">① 핵심처방 · 24개</button>
@@ -412,6 +418,9 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
     <p>빈칸은 기출 복기와 개인 연습자료를 참고하여 조문별 핵심 증상·병기·판단 기준·처방명 후보 중 랜덤 선택합니다. 생성된 모든 빈칸이 실제 기출이었다는 뜻은 아닙니다.</p>
     <p>틀린 조문과 정답을 본 조문은 다른 조문을 모두 푼 뒤 다시 나옵니다. 한 번 틀린 빈칸은 맞힐 때까지 같은 위치로 유지되고, 새 빈칸은 나머지 자리에서 랜덤으로 출제됩니다. 학습 기록은 같은 브라우저에 저장됩니다.</p>
   </details>
+</section>
+<section id="shanghan-past-panel" hidden aria-label="상한론 족보 문제 및 매칭 연습">
+<iframe id="shanghan-past-frame" title="상한론 20·21·22학번 족보 문제 및 매칭 연습" referrerpolicy="same-origin"></iframe>
 </section>
 </section>
 <section id="neuro-panel" role="tabpanel" aria-labelledby="tab-neuro" hidden>
@@ -612,6 +621,60 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
   window.scrollTo({top:target,behavior:reduce?'instant':'smooth'});
  }));
 };
+</script>
+<script>
+/* 상한론 기존 처방명·대자·처방 구성은 변경하지 않고 족보·매칭 전용 iframe을 추가합니다. */
+(()=>{
+ const byId=id=>document.getElementById(id);
+ const subOld=['tab-names','tab-daja','tab-herbs'].map(byId);
+ const past=byId('tab-shanghan-past'),match=byId('tab-shanghan-match');
+ const iframe=byId('shanghan-past-frame'),host=byId('shanghan-past-panel');
+ const mod=byId('module'),daja=byId('daja-panel'),pending=byId('pending'),herbs=byId('sanghan-herb-groups');
+ let active=null;
+ function select(name){
+   if(byId('quiz-root').hidden)return;
+   active=name;
+   mod.hidden=true;daja.hidden=true;if(pending)pending.hidden=true;if(herbs)herbs.hidden=true;
+   host.hidden=false;
+   for(const b of [...subOld,past,match]){const is=(name==='quiz'?b===past:b===match);b.setAttribute('aria-selected',String(is));b.tabIndex=is?0:-1;}
+   const send=()=>iframe.contentWindow?.postMessage({type:'shanghan-switch-mode',mode:name},location.origin);
+   if(!iframe.getAttribute('src')){iframe.addEventListener('load',send,{once:true});iframe.src='./shanghan-quiz.html?v=20261018-past-matching-v1';}
+   else send();
+ }
+ past.addEventListener('click',()=>select('quiz'));
+ match.addEventListener('click',()=>select('match'));
+ for(const b of subOld)b.addEventListener('click',()=>{
+   if(!active)return;
+   active=null;host.hidden=true;
+   requestAnimationFrame(()=>{
+     if(b.id==='tab-daja'){daja.hidden=false;mod.hidden=true;}
+     else{mod.hidden=false;daja.hidden=true;}
+   });
+ },true);
+ for(const id of ['tab-bangjae','tab-neuro','tab-obgyn','tab-sanghan']){
+   const b=byId(id);if(!b)continue;
+   b.addEventListener('click',()=>{
+     if(!active)return;
+     active=null;host.hidden=true;
+     if(id==='tab-sanghan'){mod.hidden=false;daja.hidden=true;}
+   },true);
+ }
+ window.__OPEN_SHANGHAN_QUESTION=(id)=>{
+   if(typeof id!=='string'||!/^shanghan-past-(?:20|21|22)-/.test(id))return;
+   if(byId('quiz-root').hidden)return;
+   byId('tab-sanghan').click();
+   select('quiz');
+   const send=()=>iframe.contentWindow?.postMessage({type:'shanghan-open-question',id},location.origin);
+   if(iframe.contentWindow)send();else iframe.addEventListener('load',send,{once:true});
+ };
+ window.addEventListener('message',e=>{
+   if(e.origin!==location.origin||e.source!==iframe.contentWindow)return;
+   if(e.data?.type==='shanghan-past-height'){
+     const h=Number(e.data.height);
+     if(Number.isFinite(h)&&h>=500&&h<=100000)iframe.style.height=(h+16)+'px';
+   }
+ });
+})();
 </script>
 <script type="module" src="./auth-app.js?v=20261018-daja63-grade-stable-audit-v19"></script>
 </body>
