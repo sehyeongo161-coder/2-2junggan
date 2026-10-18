@@ -92,6 +92,23 @@ main{max-width:940px;margin:0 auto;padding:42px 24px 60px}.site-header{margin-bo
 @media(max-width:600px){.view-switch{display:flex;width:100%;margin:-5px 0 19px}.view-choice{flex:1;padding:9px 12px}.exam-info{margin-top:0}.exam-flag{font-size:12px;padding:7px 10px;gap:6px}.exam-flag strong{font-size:13px}.overview-item{padding:14px 13px}.overview-title{font-size:16px}.overview-content.clause{font-size:15px}.full-list-heading strong{font-size:19px}}
 
 /* 대자 랜덤 빈칸 */
+.daja-answer-modes{display:flex;gap:4px;flex-wrap:wrap;border:1px solid #d4dce7;background:#f2f5f9;border-radius:10px;padding:3px}
+.daja-answer-mode{min-height:35px;padding:6px 11px;border:0;border-radius:7px;background:transparent;color:#586a80;font-size:13px;font-weight:760}
+.daja-answer-mode[aria-pressed="true"]{background:#fff;color:#275d48;box-shadow:0 1px 4px #16322321}
+.daja-write-tip{margin:11px 0 15px;padding:12px 15px;border-left:3px solid #4b8d74;border-radius:7px;background:#eff7f2;color:#315a48;line-height:1.65;font-size:14px}
+.daja-paper-actions{flex-wrap:wrap;gap:9px}
+#daja-paper-wrong{border:1px solid #deb5af;color:#923c31;background:#fff5f1;font-weight:750}
+.daja-paper-key{margin:18px 0;padding:16px 18px;border:1px solid #d6e1d9;border-radius:12px;background:#f9fbf9}
+.daja-paper-key h4{margin:0 0 12px;font-size:16px;font-weight:800;color:#2c5740}
+.daja-paper-item{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid #e5eee8}
+.daja-paper-item:last-of-type{border-bottom:0}
+.daja-paper-item .number{color:#67816f;font-size:13px;font-weight:700;min-width:50px}
+.daja-paper-item .hanzi{font-family:"Noto Serif CJK KR","Batang",serif;font-size:21px;font-weight:800;color:#273c33}
+.daja-paper-item .reading{font-size:13px;color:#587368}
+.daja-paper-interpretation{margin:14px 0 0;border-top:1px solid #dce7df;padding-top:12px;line-height:1.7;color:#425c51;font-size:14px}
+#daja-write-tip[hidden],#daja-typing-actions[hidden],#daja-paper-actions[hidden],#daja-paper-key[hidden],#daja-inputs[hidden],.daja-paper-actions button[hidden]{display:none!important}
+@media(max-width:600px){.daja-answer-modes{order:3;width:100%}.daja-answer-mode{flex:1;padding:8px 7px}.daja-paper-item .hanzi{font-size:19px}}
+
 .daja-preferences,.daja-tools{display:flex;align-items:center;gap:8px}
 .daja-preferences label{font-size:13px;color:var(--muted);font-weight:700}
 .daja-preferences select{border:1px solid #cdd9e8;border-radius:9px;background:white;color:#294367;min-height:38px;padding:5px 9px}
@@ -390,6 +407,10 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
     <div class="daja-preferences"><label for="daja-density">한 조문당 빈칸</label>
       <select id="daja-density"><option value="2">2개</option><option value="3" selected>3개</option><option value="5">5개</option></select>
     </div>
+    <div class="daja-answer-modes" role="group" aria-label="대자 답안 작성 방식">
+      <button type="button" id="daja-type-mode" class="daja-answer-mode selected" aria-pressed="true">타자로 풀기</button>
+      <button type="button" id="daja-paper-mode" class="daja-answer-mode" aria-pressed="false">✍ 한자 직접 써보기</button>
+    </div>
     <div class="daja-tools">
       <button id="daja-shuffle" class="shuffle" aria-label="남은 조문 섞기 및 빈칸 변경" title="남은 조문과 빈칸 섞기"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h3c4 0 8 12 12 12h3M17 14l4 4-4 4M3 18h3c1.8 0 3.5-2.4 5.2-5M13 8.7C14.7 6.8 16.2 6 18 6h3M17 2l4 4-4 4"/></svg></button>
       <button id="daja-reset" class="reset" aria-label="진행 초기화" title="진행 초기화"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.6L4 9"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.5 4.6L20 15"/><path d="M20 20v-5h-5"/></svg></button>
@@ -402,8 +423,15 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
     <h3 id="daja-title"></h3>
     <div id="daja-exam-tags" class="exam-info" hidden></div>
     <div id="daja-passage" class="passage" lang="zh-Hant"></div>
+    <p id="daja-write-tip" class="daja-write-tip" hidden>종이에 빈칸 한자를 직접 써보세요. 다 쓰셨다면 <strong>답 보기</strong>로 정답과 독음을 확인하고 맞음·틀림을 선택하세요.</p>
     <div id="daja-inputs" class="answer-list"></div>
-    <div class="actions"><button id="daja-check" class="primary">채점하기</button><button id="daja-reveal">정답 보기</button><button id="daja-next" hidden>다음 조문 →</button></div>
+    <div id="daja-paper-key" class="daja-paper-key" role="status" aria-live="polite" hidden></div>
+    <div id="daja-typing-actions" class="actions"><button id="daja-check" class="primary">채점하기</button><button id="daja-reveal">정답 보기</button><button id="daja-next" hidden>다음 조문 →</button></div>
+    <div id="daja-paper-actions" class="actions daja-paper-actions" hidden>
+      <button type="button" id="daja-paper-reveal" class="primary">답 보기</button>
+      <button type="button" id="daja-paper-correct" class="primary" hidden>맞음 ✓ · 다음 조문</button>
+      <button type="button" id="daja-paper-wrong" hidden>틀림 ✕ · 다음 조문</button>
+    </div>
     <div id="daja-feedback" class="result" role="status" aria-live="polite" hidden></div>
   </section>
   <section id="daja-finish" class="card complete" hidden><span class="badge">학습 완료</span><h3>모든 조문을 맞히셨습니다.</h3><p id="daja-summary"></p><div class="actions"><button id="daja-again" class="primary">다시 풀기</button></div></section>
