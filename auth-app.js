@@ -389,6 +389,13 @@ async function startQuiz(user){
    if(patchedQuizScript.split(before).length!==2)throw new Error('방제학 출전별 '+desc+' 적용 실패');
    patchedQuizScript=patchedQuizScript.replace(before,after);
   }
+  // Undo the artificial fifth blank introduced in 65; retain whole original phrase.
+  const daja65IntegrityPatches=[["const DAJA_READINGS = ","// 65조 한 덩어리: 其人臍下悸者. 5개를 맞추려고 구절을 분리하지 않습니다.\nconst daja65Original=DAJA_DATA.find(x=>Number(x.num)===65)?.original||'';\nconst daja65Intact='其人臍下悸者';\nif(!daja65Original.includes(daja65Intact))\n throw new Error('65조의 其人臍下悸者 원문이 일치하지 않습니다.');\nDAJA_CANDIDATES[65]=(DAJA_CANDIDATES[65]||[])\n .filter(x=>!['其人','臍下悸','其人臍下悸','臍下悸者'].includes(x));\nif(!DAJA_CANDIDATES[65].includes(daja65Intact))\n DAJA_CANDIDATES[65].push(daja65Intact);\nconst DAJA_READINGS = ","65 intact candidate"],["const DAJA_TRANSLATIONS = ","DAJA_READINGS['其人臍下悸者']='기인제하계자';\nconst DAJA_TRANSLATIONS = ","65 combined Hangul reading"],["const q=DAJA_DATA.find(x=>x.num===num);\n","const q=DAJA_DATA.find(x=>x.num===num);\nif(num===65){\n const full='其人臍下悸者',fullStart=q.original.indexOf(full);\n const splitWords=['其人','臍下悸','其人臍下悸','臍下悸者'];\n const previous=Array.isArray(s.retryBlanks?.[65])?s.retryBlanks[65]:[];\n if(previous.some(b=>splitWords.includes(b.text))){\n  const kept=previous.filter(b=>!splitWords.includes(b.text));\n  if(!kept.some(b=>b.text===full))kept.push({start:fullStart,end:fullStart+full.length,text:full});\n  s.retryBlanks[65]=kept.sort((a,b)=>a.start-b.start);\n  dajaSave();\n }\n if(!s.checked&&s.current?.num===65&&s.current.blanks?.some(b=>splitWords.includes(b.text))){\n  s.current=null;s.drafts=[];\n  dajaSave();\n }\n}\n","65 saved retry migration"]];
+  for(const [from,to,name] of daja65IntegrityPatches){
+   if(patchedQuizScript.split(from).length!==2)
+    throw new Error('65조 통구절 복원 '+name+' 연결 오류');
+   patchedQuizScript=patchedQuizScript.replace(from,to);
+  }
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
