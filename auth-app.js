@@ -392,7 +392,7 @@ async function startQuiz(user){
   const script=document.createElement('script');script.textContent=patchedQuizScript;document.body.appendChild(script);
   // Bridge shares the original quiz grading logic; the question bank remains in protectedContent.
   await new Promise((resolve,reject)=>{
-    const bridge=document.createElement('script');bridge.src='./review-bridge.js';
+    const bridge=document.createElement('script');bridge.src='./review-bridge.js?v=20261018-source-disambiguation-v2';
     bridge.onload=resolve;bridge.onerror=()=>reject(new Error('REVIEW_BRIDGE_LOAD_FAILED'));
     document.body.appendChild(bridge);
   });
