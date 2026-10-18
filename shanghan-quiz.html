@@ -57,6 +57,6 @@ for(const el of $('match-card').querySelectorAll('[data-pair]'))el.onchange=()=>
 $('match-reset').onclick=()=>{matchChecked=false;matchSelections={};renderMatch();};
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='shanghan-switch-mode'){changeTab(e.data.mode==='match'?'match':'quiz');}if(e.data?.type==='shanghan-open-question'&&typeof e.data.id==='string'){let id=e.data.id.replace(/^shanghan-past-/,'');let q=Q.find(q=>q.id===id);if(q){lecture='all';$('lecture').value='all';retryOnly=false;orderMode='ordered';makeQueue();cursor=queue.indexOf(id);changeTab('quiz');}}});
 window.addEventListener('resize',resize);new ResizeObserver(resize).observe(document.body);
-makeQueue();renderMatch();resize();
+if(uid==='guest'){document.querySelector('.tabs').hidden=true;document.getElementById('quiz-area').innerHTML='<div class="card"><h2>로그인이 필요합니다</h2><p>본과 2-2 중간고사 사이트에서 승인된 계정으로 로그인한 뒤 상한론 &gt; 족보 문제 또는 매칭 연습을 이용해 주세요.</p></div>';document.getElementById('list-area').hidden=true;document.getElementById('match-area').hidden=true;}else{makeQueue();renderMatch();resize();}
 })();
 </script></body></html>
