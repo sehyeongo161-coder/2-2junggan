@@ -56,7 +56,7 @@ function putPractice(){try{window.localStorage.setItem(matchKey,JSON.stringify(m
 function track(id,label,correct,revealed){if(uid==='guest')return;try{parent.__QUIZ_TRACK_ATTEMPT?.({key:'shanghan-'+id,label:label.slice(0,145),group:'상한론 족보',correct:!!correct,revealed:!!revealed});}catch{}}
 function notify(){try{if(parent!==window&&parent.location.origin===location.origin){let height=Math.ceil(document.documentElement.scrollHeight);parent.postMessage({type:'shanghan-past-height',height},location.origin);}}catch{}}
 function resize(){requestAnimationFrame(()=>requestAnimationFrame(notify));}
-function changeTab(id){activeTab=id;for(const name of ['quiz','list','match']){$('tab-'+name).setAttribute('aria-selected',String(id===name));$(name+'-area').hidden=id!==name;}if(id==='quiz')renderQuiz();else if(id==='list')renderList();else renderMatch();resize();}
+function changeTab(id){activeTab=id;for(const name of ['quiz','list','match']){$('tab-'+name).setAttribute('aria-selected',String(id===name));$(name+'-area').hidden=id!==name;}if(id==='quiz')renderQuiz();else if(id==='list')renderList();else if(!practiceOrder.length)startPractice();else renderMatch();resize();}
 for(const n of ['quiz','list','match'])$('tab-'+n).onclick=()=>changeTab(n);
 function seededShuffle(a){let copy=[...a];for(let i=copy.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function makeQueue(keep=false){let relevant=Q.filter(q=>q.playable&&(lecture==='all'||q.lecture===lecture)&&(!retryOnly||state.results[q.id]&&!state.results[q.id].correct));const oldId=keep?queue[cursor]:null;queue=relevant.map(q=>q.id);if(orderMode==='random')queue=seededShuffle(queue);cursor=oldId&&queue.includes(oldId)?queue.indexOf(oldId):0;checked=false;revealed=false;selected='';draft='';renderQuiz();}
@@ -267,6 +267,6 @@ $('match-reset').onclick=()=>startPractice();
 $('match-retry').onclick=()=>{practiceRetryOnly=!practiceRetryOnly;startPractice();};
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='shanghan-switch-mode'){changeTab(e.data.mode==='match'?'match':'quiz');}if(e.data?.type==='shanghan-open-question'&&typeof e.data.id==='string'){let id=e.data.id.replace(/^shanghan-past-/,'');let q=Q.find(q=>q.id===id);if(q){lecture='all';$('lecture').value='all';retryOnly=false;orderMode='ordered';makeQueue();cursor=queue.indexOf(id);changeTab('quiz');}}});
 window.addEventListener('resize',resize);new ResizeObserver(resize).observe(document.body);
-if(uid==='guest'){document.querySelector('.tabs').hidden=true;document.getElementById('quiz-area').innerHTML='<div class="card"><h2>로그인이 필요합니다</h2><p>본과 2-2 중간고사 사이트에서 승인된 계정으로 로그인한 뒤 상한론 &gt; 족보 문제 또는 발한 O/X · 약재 가감 연습을 이용해 주세요.</p></div>';document.getElementById('list-area').hidden=true;document.getElementById('match-area').hidden=true;}else{makeQueue();renderMatch();resize();}
+if(uid==='guest'){document.querySelector('.tabs').hidden=true;document.getElementById('quiz-area').innerHTML='<div class="card"><h2>로그인이 필요합니다</h2><p>본과 2-2 중간고사 사이트에서 승인된 계정으로 로그인한 뒤 상한론 &gt; 족보 문제 또는 발한 O/X · 약재 가감 연습을 이용해 주세요.</p></div>';document.getElementById('list-area').hidden=true;document.getElementById('match-area').hidden=true;}else{makeQueue();startPractice();resize();}
 })();
 </script></body></html>
