@@ -87,37 +87,83 @@ function progressErrorDescription(err){
  if(code==='permission-denied')return 'Firebase 권한 거부(permission-denied)';
  if(code==='resource-exhausted')return 'Firebase 사용량 제한(resource-exhausted)';
  if(code==='unavailable'||code==='deadline-exceeded')return '네트워크·서버 연결 불안정('+code+')';
+ if(code==='auth/network-request-failed')return '인증 서버 연결 실패(auth/network-request-failed)';
  if(code==='unauthenticated')return '로그인 인증 만료(unauthenticated)';
  return 'Firebase 연결 오류'+(code?' ('+code+')':'');
 }
 let activeSaves=0;
 const pendingStats=new Set();
 const failedStats=new Set();
-async function retryStats(){for(const job of [...failedStats]){await job();failedStats.delete(job);}}
+let lastStatsError=null;
+let retrySavesTask=null;
+async function retryStats(){
+  let firstError=null;
+  for(const job of [...failedStats]){
+    try{await job();failedStats.delete(job);}
+    catch(error){firstError ||= error;}
+  }
+  lastStatsError=firstError;
+  if(firstError)throw firstError;
+}
 function syncStatus(text){$('sync-status').textContent=text;}
 function flushProgress(){
   clearTimeout(saveTimer);
   const items=[...pendingProgress];pendingProgress.clear();activeSaves++;
+  const saveUid=auth.currentUser?.uid;
   saveChain=saveChain.catch(()=>{}).then(async()=>{
-    for(let i=0;i<items.length;i++){
-      const [key,payload]=items[i];
+    let firstError=null,allBackedUp=true;
+    for(const [key,payload] of items){
       try{
-        const uid=auth.currentUser?.uid;
-        if(!uid)throw Object.assign(new Error('로그인 세션이 종료되었습니다.'),{code:'unauthenticated'});
-        await setDoc(doc(db,'users',uid,'progress',encodeURIComponent(key)),{payload,updatedAt:serverTimestamp()});
-        clearProgressBackup(uid,key,payload);
-      }catch(e){
-        for(const [k,v] of items.slice(i))if(!pendingProgress.has(k))pendingProgress.set(k,v);
-        const localCopy=!!auth.currentUser&&items.slice(i).every(([k,v])=>writeProgressBackup(auth.currentUser.uid,k,pendingProgress.get(k)??v));
-        syncStatus((localCopy?'기기에 임시저장 · ':'저장 실패 · ')+progressErrorDescription(e)+' · 다시 시도');
-        console.warn('진행 기록 Firebase 저장 실패:',e?.code||e?.message||e);
-        throw e;
+        if(!saveUid||auth.currentUser?.uid!==saveUid)
+          throw Object.assign(new Error('로그인 세션이 변경되었습니다.'),{code:'unauthenticated'});
+        await setDoc(doc(db,'users',saveUid,'progress',encodeURIComponent(key)),{payload,updatedAt:serverTimestamp()});
+        clearProgressBackup(saveUid,key,payload);
+      }catch(error){
+        firstError ||= error;
+        if(!pendingProgress.has(key))pendingProgress.set(key,payload);
+        const backedUp=!!saveUid&&writeProgressBackup(saveUid,key,pendingProgress.get(key));
+        allBackedUp=allBackedUp&&backedUp;
+        console.warn('진행 기록 Firebase 저장 실패:',error?.code||error?.message||error,'항목:',key);
+        // 한 항목의 실패가 다른 과목의 진행 기록 저장을 막지 않도록 계속합니다.
       }
     }
-    if(!pendingProgress.size&&activeSaves===1)syncStatus(failedStats.size?'오답 통계 저장 실패 · 새로고침 전 확인하세요':'저장됨');
+    if(firstError){
+      syncStatus((allBackedUp?'기기에 임시저장 · ':'저장 실패 · ')+progressErrorDescription(firstError)+' · 다시 시도');
+      throw firstError;
+    }
+    if(!pendingProgress.size&&activeSaves===1){
+      syncStatus(failedStats.size
+        ?'오답 통계 저장 실패 · '+progressErrorDescription(lastStatsError)+' · 다시 시도'
+        :pendingStats.size?'저장 중…':'저장됨');
+    }
   });
   saveChain=saveChain.finally(()=>{activeSaves--;});
   return saveChain;
+}
+function retryPendingSaves(){
+  // 재시도 연타/네트워크 복구 이벤트가 통계를 중복 증가시키지 않도록 합칩니다.
+  if(retrySavesTask)return retrySavesTask;
+  retrySavesTask=(async()=>{
+    syncStatus('다시 저장 중…');
+    try{
+      if(!auth.currentUser)throw Object.assign(new Error('로그인이 필요합니다.'),{code:'unauthenticated'});
+      await auth.currentUser.getIdToken(true);
+    }catch(error){
+      syncStatus('인증 갱신 실패 · '+progressErrorDescription(error)+' · 다시 시도');
+      console.warn('Firebase 인증 갱신 실패:',error?.code||error?.message||error);
+      throw error;
+    }
+    // 통계가 거부되어도 진행 기록은 별도로 저장합니다.
+    const results=await Promise.allSettled([retryStats(),flushProgress()]);
+    const failure=results[1].status==='rejected'?results[1]:results.find(result=>result.status==='rejected');
+    if(failure){
+      const kind=results[1].status==='rejected'?'진행 기록':'오답 통계';
+      syncStatus(kind+' 저장 실패 · '+progressErrorDescription(failure.reason)+' · 다시 시도');
+      throw failure.reason;
+    }
+    if(!pendingProgress.size&&!activeSaves&&!pendingStats.size&&!failedStats.size)syncStatus('저장됨');
+  })().finally(()=>{retrySavesTask=null;});
+  return retrySavesTask;
 }
 async function prepareProgress(user){
   const snapshots=await getDocs(collection(db,'users',user.uid,'progress'));
@@ -146,8 +192,8 @@ window.addEventListener('beforeunload',e=>{
     e.preventDefault();e.returnValue='';
   }
 });
-window.addEventListener('online',()=>{if(pendingProgress.size)flushProgress().catch(()=>{});});
-$('sync-status').onclick=async()=>{try{await retryStats();await flushProgress();}catch{syncStatus('저장 실패 · 다시 시도');}};
+window.addEventListener('online',()=>{if(pendingProgress.size||failedStats.size)retryPendingSaves().catch(()=>{});});
+$('sync-status').onclick=()=>retryPendingSaves().catch(()=>{});
 
 // 기존 상한론/방제학 문제은행은 Firebase의 보호된 퀴즈 스크립트에서 렌더됩니다.
 // 채점 결과 DOM만 관찰하므로 저장된 답/채점 로직을 변경하지 않습니다.
@@ -244,7 +290,7 @@ async function startQuiz(user){
     },{merge:true});
     const task=save();
     pendingStats.add(task);
-    task.catch(()=>{failedStats.add(save);syncStatus('오답 통계 저장 실패 · 네트워크를 확인하세요');}).finally(()=>pendingStats.delete(task));
+    task.catch(error=>{failedStats.add(save);lastStatsError=error;syncStatus('오답 통계 저장 실패 · '+progressErrorDescription(error)+' · 다시 시도');}).finally(()=>{pendingStats.delete(task);if(!pendingStats.size&&!failedStats.size&&!pendingProgress.size&&!activeSaves)syncStatus('저장됨');});
   };
   const source=document.createElement('script');source.id='quiz-data';source.type='application/json';source.textContent=dataJson;
   document.body.appendChild(source);
@@ -714,7 +760,7 @@ $('nav-quiz').onclick=navigateToQuiz;
 $('nav-stats').onclick=navigateToStats;
 $('close-analytics').onclick=navigateToQuiz;
 $('open-analytics').onclick=navigateToStats;
-$('account-signout').onclick=async()=>{try{await flushProgress();await Promise.all([...pendingStats]);await retryStats();await signOut(auth);location.reload();}catch{syncStatus('저장 실패 · 연결 후 다시 로그아웃해 주세요');}};
+$('account-signout').onclick=async()=>{try{await retryPendingSaves();await Promise.all([...pendingStats]);await retryStats();await signOut(auth);location.reload();}catch(error){syncStatus('로그아웃 전 저장 실패 · '+progressErrorDescription(error)+' · 다시 시도');}};
 
 if(firebaseConfig.apiKey.startsWith('YOUR_')||firebaseConfig.projectId==='YOUR_PROJECT_ID'){
   showMessage('Firebase 설정 전입니다. firebase-config.js에 프로젝트 설정값을 먼저 입력해 주세요.');
