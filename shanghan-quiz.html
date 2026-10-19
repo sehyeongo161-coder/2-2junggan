@@ -189,15 +189,16 @@ function gradePractice(card,details){
  track('practice-'+card.key,card.name+' · '+(card.patient||card.symptom),correct,false);
  practiceMarked=details;
  renderMatch();
- // The answer inputs are replaced by the result UI; focus the Next button so
- // the next distinct Enter press advances without requiring a mouse click.
+ // A global Enter shortcut works even if focus gets lost after DOM replacement.
  $('practice-next')?.focus({preventScroll:true});
 }
 function nextPractice(){
  practiceCursor++;practiceMarked=null;practiceMinus='';practicePlus='';
  renderMatch();
- // Prepare the next add/remove answer for keyboard-only practice.
- $('practice-minus')?.focus({preventScroll:true});
+ // The new formula card focuses its input in renderMatch(), including when
+ // entering a topic for the first time (not only after the previous answer).
+ if(activeTab==='match'&&!practiceMarked)
+  $('practice-minus')?.focus({preventScroll:true});
  try{window.scrollTo({top:0,behavior:'smooth'});}catch{}
 }
 function resultMarkup(card){
@@ -210,6 +211,42 @@ function resultMarkup(card){
    +(card.note?'<p>'+esc(card.note)+'</p>':'');
  return '<div class="practice-result '+(r.correct?'ok':'bad')+'" role="status"><strong>'+head+'</strong>'+body+'</div>';
 }
+// Handle keyboard practice in one place, rather than relying on focus being
+// transferred to the transient Next button after innerHTML is rebuilt.
+let practiceComposing=false;
+function submitPracticeHerbs(){
+ if(activeTab!=='match'||practiceMarked||practiceCursor>=practiceOrder.length)return;
+ const card=practiceQuestions()[practiceOrder[practiceCursor]];
+ if(!card||card.kind!=='formula')return;
+ const minus=$('practice-minus'),plus=$('practice-plus');
+ if(!minus||!plus||minus.disabled||plus.disabled)return;
+ practiceMinus=minus.value;practicePlus=plus.value;
+ const minusOK=gradeHerbField(practiceMinus,card.minus);
+ const plusOK=gradeHerbField(practicePlus,card.plus);
+ gradePractice(card,{correct:minusOK&&plusOK,minusOK,plusOK});
+}
+document.addEventListener('compositionstart',e=>{
+ if(e.target?.matches?.('#practice-minus,#practice-plus'))practiceComposing=true;
+},true);
+document.addEventListener('compositionend',e=>{
+ if(e.target?.matches?.('#practice-minus,#practice-plus'))
+  window.setTimeout(()=>{practiceComposing=false;},0);
+},true);
+document.addEventListener('keydown',e=>{
+ if(activeTab!=='match'||e.key!=='Enter'||e.isComposing||practiceComposing||
+    e.keyCode===229||e.repeat||e.altKey||e.ctrlKey||e.metaKey||
+    !practiceOrder.length||practiceCursor>=practiceOrder.length)return;
+ const card=practiceQuestions()[practiceOrder[practiceCursor]];
+ if(!card)return;
+ // In a checked card, Enter anywhere (including a replaced/blurred input)
+ // means NEXT; before grading, Enter means GRADE, never skip ahead.
+ if(practiceMarked){
+  e.preventDefault();e.stopPropagation();nextPractice();return;
+ }
+ if(card.kind==='formula'){
+  e.preventDefault();e.stopPropagation();submitPracticeHerbs();
+ }
+},true);
 function renderMatch(){
  const qs=practiceQuestions();
  $('match-menu').innerHTML=PRACTICE_TOPICS.map(topic=>'<button type="button" data-match="'+topic.id+'" aria-pressed="'+(topic.id===matchId)+'">'+esc(topic.title)+'</button>').join('');
@@ -257,19 +294,22 @@ function renderMatch(){
  if(card.kind==='formula'&&!practiceMarked){
   const minus=$('practice-minus'),plus=$('practice-plus');
   minus.oninput=()=>practiceMinus=minus.value;plus.oninput=()=>practicePlus=plus.value;
-  $('practice-check').onclick=()=>{
-   practiceMinus=minus.value;practicePlus=plus.value;
-   const minusOK=gradeHerbField(practiceMinus,card.minus);
-   const plusOK=gradeHerbField(practicePlus,card.plus);
-   gradePractice(card,{correct:minusOK&&plusOK,minusOK,plusOK});
-  };
-  for(const input of [minus,plus])input.onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing&&e.keyCode!==229&&!e.repeat){e.preventDefault();$('practice-check').click();}};
+  $('practice-check').onclick=submitPracticeHerbs;
+  // Prefer the first writing field when the user chooses a new formula.
+  // Input events preserve the DOM, draft values and caret: no re-render on typing.
+  window.requestAnimationFrame(()=>{
+   if(activeTab==='match'&&!practiceMarked){
+    const field=$('practice-minus');
+    if(field&&!field.disabled&&document.activeElement!==field&&document.activeElement!==$('practice-plus'))
+     field.focus({preventScroll:true});
+   }
+  });
  }
  if(practiceMarked){
   const nextButton=$('practice-next');
   nextButton.onclick=nextPractice;
-  // Holding down Enter should not skip multiple questions.
-  nextButton.onkeydown=e=>{if(e.key==='Enter'&&e.repeat)e.preventDefault();};
+  // Handled by the single document key handler (no duplicate click/default).
+  nextButton.onkeydown=e=>{if(e.key==='Enter')e.preventDefault();};
  }
  resize();
 }
