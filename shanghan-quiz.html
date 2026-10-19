@@ -117,15 +117,154 @@ function markAttempt(q,correct,self,inferred=false){
 function explainMarkup(q){let s='';if(q.guess)s+='<div class="guess"><strong>GPT 복기 추정 · '+esc(q.status)+'</strong>\n'+esc(q.guess)+'</div>';s+='<div class="info" style="margin-top:9px"><strong>해설</strong>\n'+esc(q.explanation||'복기 또는 강의 내용이 부족하여 해설이 제한됩니다.')+'</div><div class="answer"><strong>정답</strong> · '+esc(q.answerDisplay||'미복원')+'</div>';if(q.status==='불가'||q.status==='추정')s+='<div class="muted">복기 불완전 · 확실하지 않은 답은 자동채점하지 않습니다.</div>';return s;}
 $('list-lecture').onchange=e=>{listLecture=e.target.value;renderList();};$('list-toggle').onclick=()=>{listAnswers=!listAnswers;$('list-toggle').textContent=listAnswers?'정답·해설 가리기':'정답·해설 보기';renderList();};
 function renderList(){let items=Q.filter(q=>listLecture==='all'||q.lecture===listLecture);$('list-items').innerHTML='<div class="row-space"><b>전체 족보 '+items.length+'개 항목</b><span class="muted">검정: 원문 · 주황: 복기 추정 · 하늘: 해설 · 빨강: 답</span></div>'+items.map(q=>{let result=state.results[q.id],label=result?(result.correct?'정답':'오답'):'미응시';let opts=q.choices.length?'<p class="muted">'+q.choices.map((o,i)=>mark[i]+' '+esc(o)).join(' · ')+'</p>':'';return '<article class="list-item"><div class="row-space"><button data-open="'+esc(q.id)+'"><b>'+esc(q.id)+'</b> · '+esc(q.topic)+' · '+esc(q.kind)+(q.playable?'':' · 미복원')+'</button><span class="muted">'+label+'</span></div><div class="muted">'+esc(q.prompt)+'</div>'+opts+(listAnswers?explainMarkup(q):'')+'</article>';}).join('');for(const b of $('list-items').querySelectorAll('[data-open]'))b.onclick=()=>{let q=Q.find(x=>x.id===b.dataset.open);if(!q?.playable){listAnswers=true;renderList();return;}lecture='all';$('lecture').value='all';retryOnly=false;orderMode='ordered';makeQueue();let i=queue.indexOf(q.id);if(i>=0)cursor=i;changeTab('quiz');};resize();}
-function chosenGroup(){return M.find(g=>g.id===matchId)||M[0];}
-function renderMatch(){let group=chosenGroup();$('match-menu').innerHTML=M.map(g=>'<button type="button" data-match="'+g.id+'" aria-pressed="'+(g.id===matchId)+'">'+esc(g.title)+'</button>').join('');for(const b of $('match-menu').querySelectorAll('button'))b.onclick=()=>{matchId=b.dataset.match;matchSelections={};matchChecked=false;renderMatch();};
-let choices=group.pairs.map(v=>v[1]);let order=group.pairs.map((v,i)=>i);if(!matchSelections._order){matchSelections={_order:seededShuffle(order),_choices:seededShuffle(choices)};}
-let html='<div class="row-space"><div><h2 style="font-size:19px;margin:0">'+esc(group.title)+'</h2><p class="muted" style="margin:0">'+esc(group.source)+' · '+group.pairs.length+'쌍</p></div><span class="pill">'+group.pairs.length+'개 짝 맞추기</span></div><p class="count">각 증상에 맞는 설명을 선택하세요.</p>';
-for(const i of matchSelections._order){let pair=group.pairs[i],value=matchSelections[i]??'';let right=matchChecked&&value===pair[1];let cls=matchChecked?(right?'correct':'wrong'):'';html+='<div class="matching-row '+cls+'"><label for="pair-'+i+'">'+esc(pair[0])+'</label><select data-pair="'+i+'" id="pair-'+i+'" '+(matchChecked?'disabled':'')+'><option value="">-- 대응 항목 선택 --</option>'+matchSelections._choices.map((x,j)=>'<option value="'+esc(x)+'" '+(value===x?'selected':'')+'>'+esc(x)+'</option>').join('')+'</select>'+(matchChecked?'<div class="grade-msg" style="color:'+(right?'#197a4c':'#bd374b')+'">'+(right?'O · 정답':'X · 정답: '+esc(pair[1]))+'</div>':'')+'</div>';}
-if(matchChecked){let n=group.pairs.filter((p,i)=>matchSelections[i]===p[1]).length;html+='<div class="separate"><div class="score">'+n+' / '+group.pairs.length+' 정답</div><div class="info">'+esc(group.note)+'</div></div>';}else html+='<div class="warning">짝을 모두 선택한 뒤 채점하세요. 오답도 항목별로 따로 기록됩니다.</div>';
-html+='<div class="actionbar">'+(matchChecked?'<button id="match-again" class="primary">같은 주제 다시 연습</button><button id="match-next">다음 주제 →</button>':'<button id="match-check" class="primary">매칭 채점하기</button>')+'</div>';$('match-card').innerHTML=html;
-for(const el of $('match-card').querySelectorAll('[data-pair]'))el.onchange=()=>{matchSelections[Number(el.dataset.pair)]=el.value;};let bt=$('match-check');if(bt)bt.onclick=()=>{if(group.pairs.some((_,i)=>!matchSelections[i])){alert('모든 항목을 선택해 주세요.');return;}matchChecked=true;group.pairs.forEach((p,i)=>{let correct=matchSelections[i]===p[1];mstate.results[group.id+'-'+i]={correct,date:Date.now()};track('match-'+group.id+'-'+i,group.title+' · '+p[0],correct,false);});put(matchKey,mstate);renderMatch();};bt=$('match-again');if(bt)bt.onclick=()=>{matchChecked=false;matchSelections={};renderMatch();};bt=$('match-next');if(bt)bt.onclick=()=>{let i=M.findIndex(g=>g.id===matchId);matchId=M[(i+1)%M.length].id;matchChecked=false;matchSelections={};renderMatch();};resize();}
-$('match-reset').onclick=()=>{matchChecked=false;matchSelections={};renderMatch();};
+/* 기존 드롭다운 매칭은 폐기: 발한 O/X와 가감 약재의 −/+ 직접 입력만 사용합니다. */
+const PRACTICE_TOPICS=[
+ {id:'sweat',title:'발한 금기 O/X',source:P.sweat.source},
+ ...P.formulas.map(f=>({id:f.id,title:f.title,source:f.source}))
+];
+const HERB_ALIASES={
+ '半夏':['반하','半夏'],'人參':['인삼','人參','人参'],
+ '栝樓實':['과루실','괄루실','栝樓實','瓜蔞實','栝楼实','瓜蒌实'],
+ '栝樓根':['과루근','괄루근','栝樓根','瓜蔞根','栝楼根','瓜蒌根'],
+ '黃芩':['황금','黃芩','黄芩'],'芍藥':['작약','芍藥','芍药'],
+ '大棗':['대조','大棗','大枣'],'牡蠣':['모려','牡蠣','牡蛎'],
+ '茯苓':['복령','茯苓'],'生薑':['생강','生薑','生姜'],
+ '五味子':['오미자','五味子'],'乾薑':['건강','乾薑','干姜'],
+ '澤瀉':['택사','澤瀉','泽泻'],'牛膝':['우슬','牛膝'],
+ '紅花':['홍화','紅花','红花'],'川椒':['천초','川椒'],
+ '白朮':['백출','白朮','白术'],'龍骨':['용골','龍骨'],
+ '甘草':['감초','甘草']
+};
+const aliasMap=new Map();
+for(const [key,names] of Object.entries(HERB_ALIASES))
+ for(const name of names)aliasMap.set(name.normalize('NFKC').toLowerCase(),key);
+const sortedAlias=[...aliasMap.keys()].sort((a,b)=>b.length-a.length);
+function herbTokens(raw){
+ const value=String(raw??'').normalize('NFKC').trim();
+ if(!value||/^(?:없음|없다|無|무|[-—×Xx])$/.test(value))return [];
+ const tokens=value.split(/[\s,，、·ㆍ+／/;；|]+/u).filter(Boolean);
+ const items=[];
+ for(const token of tokens){
+  let rest=token.toLowerCase(),found=[];
+  while(rest){
+   const alias=sortedAlias.find(x=>rest.startsWith(x));
+   if(!alias){found.push('?'+rest);break;}
+   found.push(aliasMap.get(alias));rest=rest.slice(alias.length);
+  }
+  items.push(...found);
+ }
+ return items.sort();
+}
+function gradeHerbField(input,expected){return herbTokens(input).join('|')===[...expected].sort().join('|');}
+function sweatQuestions(){
+ const pairs=P.sweat.pairs;
+ const correct=pairs.map((p,i)=>({
+  key:'sweat-'+p.id+'-o',kind:'sweat',name:P.sweat.title,
+  patient:p.patient,effect:p.effect,truth:true,explain:p.detail,expected:p.effect
+ }));
+ const incorrect=pairs.map((p,i)=>({
+  key:'sweat-'+p.id+'-x',kind:'sweat',name:P.sweat.title,
+  patient:p.patient,effect:pairs[(i+1)%pairs.length].effect,truth:false,explain:p.detail,expected:p.effect
+ }));
+ return [...correct,...incorrect];
+}
+function practiceQuestions(){
+ return matchId==='sweat'?sweatQuestions():(P.formulas.find(f=>f.id===matchId)?.items||[]).map(item=>({
+  ...item,key:matchId+'-'+item.id,kind:'formula',
+  name:P.formulas.find(f=>f.id===matchId).title
+ }));
+}
+function startPractice(shuffle=true){
+ const qs=practiceQuestions();
+ const selected=qs.map((q,i)=>({q,i})).filter(({q})=>!practiceRetryOnly||mstate.results[q.key]?.correct===false).map(x=>x.i);
+ practiceOrder=shuffle?seededShuffle(selected):selected;
+ practiceCursor=0;practiceMarked=null;practiceMinus='';practicePlus='';
+ renderMatch();
+}
+function gradePractice(card,details){
+ if(practiceMarked)return;
+ const correct=!!details.correct,prev=mstate.results[card.key];
+ mstate.results[card.key]={correct,total:(prev?.total||0)+1,wrong:(prev?.wrong||0)+(correct?0:1),date:Date.now()};
+ putPractice();
+ track('practice-'+card.key,card.name+' · '+(card.patient||card.symptom),correct,false);
+ practiceMarked=details;
+ renderMatch();
+}
+function nextPractice(){
+ practiceCursor++;practiceMarked=null;practiceMinus='';practicePlus='';
+ renderMatch();
+ try{window.scrollTo({top:0,behavior:'smooth'});}catch{}
+}
+function resultMarkup(card){
+ if(!practiceMarked)return '';
+ const r=practiceMarked, head=r.correct?'정답입니다.':'오답입니다.';
+ let body=card.kind==='sweat'
+  ?'<p>정답: <strong>'+(card.truth?'O':'X')+'</strong> · 실제 연결: <strong>'+esc(card.patient)+' → '+esc(card.expected)+'</strong></p><p>'+esc(card.explain)+'</p>'
+  :'<div class="grade-item" style="color:'+(r.minusOK?'#167442':'#b33c48')+'"><strong>− 빼는 약재 '+(r.minusOK?'O':'X')+'</strong> · '+esc(card.minus.length?card.minus.join(' · '):'없음')+'</div>'
+   +'<div class="grade-item" style="color:'+(r.plusOK?'#167442':'#b33c48')+'"><strong>+ 더하는 약재 '+(r.plusOK?'O':'X')+'</strong> · '+esc(card.plus.length?card.plus.join(' · '):'없음')+'</div>'
+   +(card.note?'<p>'+esc(card.note)+'</p>':'');
+ return '<div class="practice-result '+(r.correct?'ok':'bad')+'" role="status"><strong>'+head+'</strong>'+body+'</div>';
+}
+function renderMatch(){
+ const qs=practiceQuestions();
+ $('match-menu').innerHTML=PRACTICE_TOPICS.map(topic=>'<button type="button" data-match="'+topic.id+'" aria-pressed="'+(topic.id===matchId)+'">'+esc(topic.title)+'</button>').join('');
+ for(const b of $('match-menu').querySelectorAll('[data-match]'))b.onclick=()=>{
+  matchId=b.dataset.match;practiceRetryOnly=false;$('match-retry').setAttribute('aria-pressed','false');startPractice();
+ };
+ const source=PRACTICE_TOPICS.find(x=>x.id===matchId)?.source||'';
+ const activeCount=qs.filter(q=>mstate.results[q.key]?.correct===true).length;
+ const n=practiceOrder.length;
+ $('match-progress').textContent=(n?Math.min(practiceCursor+1,n):0)+' / '+n+
+  ' · '+source+' · 누적 정답 '+activeCount+' / '+qs.length;
+ $('match-bar').style.width=n?Math.min(practiceCursor,n)/n*100+'%':'0%';
+ $('match-retry').setAttribute('aria-pressed',String(practiceRetryOnly));
+ if(!n){$('match-card').innerHTML='<h2>선택한 범위에 틀린 문제가 없습니다.</h2><p class="muted">전체 문제를 풀거나 다른 주제를 선택하세요.</p><div class="actionbar"><button id="practice-all" class="primary">전체 문제 풀기</button></div>';const btn=$('practice-all');if(btn)btn.onclick=()=>{practiceRetryOnly=false;startPractice();};resize();return;}
+ if(practiceCursor>=n){
+  const count=practiceOrder.filter(i=>mstate.results[qs[i].key]?.correct===true).length;
+  $('match-bar').style.width='100%';
+  $('match-card').innerHTML='<div class="score">이번 회차 완료 · '+count+' / '+n+'개 정답</div><p class="muted">틀린 문제만 다시 풀거나 같은 주제를 새로 섞어 연습할 수 있습니다.</p><div class="actionbar"><button id="practice-wrong" class="primary">이번 주제 오답만 풀기</button><button id="practice-again">다시 연습하기</button></div>';
+  $('practice-wrong').onclick=()=>{practiceRetryOnly=true;startPractice();};
+  $('practice-again').onclick=()=>{practiceRetryOnly=false;startPractice();};
+  resize();return;
+ }
+ const card=qs[practiceOrder[practiceCursor]];
+ let html='<div class="meta"><span class="pill">'+(card.kind==='sweat'?'발한 금기 O/X':'처방 가감 · 입력형')+'</span><span>'+esc(source)+'</span><strong>'+(practiceCursor+1)+'번</strong></div>';
+ if(card.kind==='sweat'){
+  html+='<h2 class="question-title">다음 환자 유형과 발한 부작용·금기의 연결이 맞으면 O, 틀리면 X를 선택하세요.</h2>';
+  html+='<div class="practice-statement"><span class="patient">'+esc(card.patient)+'</span><span class="arrow">↓</span><span class="effect">'+esc(card.effect)+'</span></div>';
+  if(!practiceMarked)html+='<div class="practice-choice"><button id="practice-o" class="o" type="button">O</button><button id="practice-x" class="x" type="button">X</button></div>';
+ }else{
+  html+='<h2 class="question-title">'+esc(card.name)+'에서 다음 증상에 따른 약재 가감을 쓰세요.</h2>';
+  html+='<div class="practice-statement"><span class="patient">'+esc(card.symptom)+'</span></div>';
+  html+='<div class="gagam-grid">'+
+    '<label class="minus" for="practice-minus"><span class="sign">−</span> 빼는 약재<input id="practice-minus" type="text" autocomplete="off" spellcheck="false" placeholder="없으면 빈칸 · 여러 개는 쉼표로 구분" value="'+esc(practiceMinus)+'" '+(practiceMarked?'disabled':'')+'></label>'+
+    '<label class="plus" for="practice-plus"><span class="sign">+</span> 더하는 약재<input id="practice-plus" type="text" autocomplete="off" spellcheck="false" placeholder="여러 개는 쉼표로 구분" value="'+esc(practicePlus)+'" '+(practiceMarked?'disabled':'')+'></label></div>';
+  if(!practiceMarked)html+='<div class="actionbar"><button id="practice-check" class="primary">가감 채점하기</button></div>';
+ }
+ html+=resultMarkup(card);
+ if(practiceMarked)html+='<div class="actionbar"><button id="practice-next" class="primary">다음 문제 →</button></div>';
+ html+='<p class="practice-card-note">기준: '+esc(source)+'. 원문 정답과 관계없는 약재를 덧붙이면 틀림으로 채점합니다.</p>';
+ $('match-card').innerHTML=html;
+ if(card.kind==='sweat'&&!practiceMarked){
+  $('practice-o').onclick=()=>gradePractice(card,{correct:card.truth,chosen:'O'});
+  $('practice-x').onclick=()=>gradePractice(card,{correct:!card.truth,chosen:'X'});
+ }
+ if(card.kind==='formula'&&!practiceMarked){
+  const minus=$('practice-minus'),plus=$('practice-plus');
+  minus.oninput=()=>practiceMinus=minus.value;plus.oninput=()=>practicePlus=plus.value;
+  $('practice-check').onclick=()=>{
+   practiceMinus=minus.value;practicePlus=plus.value;
+   const minusOK=gradeHerbField(practiceMinus,card.minus);
+   const plusOK=gradeHerbField(practicePlus,card.plus);
+   gradePractice(card,{correct:minusOK&&plusOK,minusOK,plusOK});
+  };
+  for(const input of [minus,plus])input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('practice-check').click();}};
+ }
+ if(practiceMarked)$('practice-next').onclick=nextPractice;
+ resize();
+}
+$('match-reset').onclick=()=>startPractice();
+$('match-retry').onclick=()=>{practiceRetryOnly=!practiceRetryOnly;startPractice();};
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='shanghan-switch-mode'){changeTab(e.data.mode==='match'?'match':'quiz');}if(e.data?.type==='shanghan-open-question'&&typeof e.data.id==='string'){let id=e.data.id.replace(/^shanghan-past-/,'');let q=Q.find(q=>q.id===id);if(q){lecture='all';$('lecture').value='all';retryOnly=false;orderMode='ordered';makeQueue();cursor=queue.indexOf(id);changeTab('quiz');}}});
 window.addEventListener('resize',resize);new ResizeObserver(resize).observe(document.body);
 if(uid==='guest'){document.querySelector('.tabs').hidden=true;document.getElementById('quiz-area').innerHTML='<div class="card"><h2>로그인이 필요합니다</h2><p>본과 2-2 중간고사 사이트에서 승인된 계정으로 로그인한 뒤 상한론 &gt; 족보 문제 또는 발한 O/X · 약재 가감 연습을 이용해 주세요.</p></div>';document.getElementById('list-area').hidden=true;document.getElementById('match-area').hidden=true;}else{makeQueue();renderMatch();resize();}
