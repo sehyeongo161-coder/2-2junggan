@@ -116,7 +116,7 @@ function record(q,correct,self){
  if(marked)return;
  const old=state.results[q.id]||{total:0,wrong:0};
  state.results[q.id]={correct:!!correct,total:(old.total||0)+1,wrong:(old.wrong||0)+(correct?0:1),manual:!!self,updated:Date.now()};
- try{if(uid!=='guest'&&parent!==window&&parent.location.origin===origin)parent.__QUIZ_TRACK_ATTEMPT?.({key:q.id,label:q.topic+' · '+q.prompt.slice(0,100),group:'방제학 족보',correct:!!correct,revealed:!!self});}catch{}
+ try{if(uid!=='guest'&&parent!==window&&parent.location.origin===origin)parent.__QUIZ_TRACK_ATTEMPT?.({key:q.id,label:q.topic+' · '+q.prompt.slice(0,100),group:'방제학 족보',correct:!!correct,revealed:false});}catch{}
  marked={correct:!!correct};put();
 }
 function grade(){
