@@ -744,7 +744,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  function openPast(){
   if($('quiz-root').hidden||document.body.dataset.subject!=='bangjae')return;
   syncTabs(true);
-  if(!frame.getAttribute('src'))frame.src='./bangjae-past.html?v=20261020-exam-72-v1';
+  if(!frame.getAttribute('src'))frame.src='./bangjae-past.html?v=20261020-typed-answers-hidden-topics-v2';
  }
  past.addEventListener('click',openPast);
  for(const b of [ordered,random])b.addEventListener('click',()=>{if(!on)return;syncTabs(false);});
