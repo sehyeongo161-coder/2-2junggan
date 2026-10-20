@@ -251,6 +251,15 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 /* 상한론 족보 / 매칭 연습: 기존 퀴즈와 완전히 분리된 화면 */
 #shanghan-past-frame{display:block;width:100%;min-height:1100px;height:1200px;border:0;border-radius:12px;background:#f7f9fd}
 @media(max-width:650px){#shanghan-past-frame{min-height:1250px;border-radius:10px}}
+.bangjae-write-modes{width:max-content;max-width:100%;margin:-2px 0 20px}
+#bangjae-write-panel{margin-top:16px}
+#bangjae-write-key .daja-paper-item{align-items:center}
+#bangjae-write-key .daja-paper-item .number{min-width:24px}
+#bangjae-write-key .daja-paper-item .hanzi{font-size:23px}
+#bangjae-write-key .daja-paper-item .reading{font-size:15px}
+#bangjae-write-wrong{border:1px solid #deb5af;background:#fff5f1;color:#923c31;font-weight:750}
+.bangjae-unmapped{font-size:12px;color:#9b473a;margin:15px 0 0;line-height:1.6}
+@media(max-width:600px){.bangjae-write-modes{display:flex;width:100%}.bangjae-write-modes button{flex:1}#bangjae-write-key .daja-paper-item .hanzi{font-size:20px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -351,6 +360,10 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 </nav>
 <div id="module" role="tabpanel" aria-labelledby="tab-names">
 <div class="module-header"><h2 id="module-title">상한론 처방명</h2><span class="badge" id="module-count">45개 조문 · 58개 빈칸</span></div>
+<div id="bangjae-write-modes" class="daja-answer-modes bangjae-write-modes" role="group" aria-label="방제학 답안 작성 방식" hidden>
+  <button type="button" id="bangjae-write-type" class="daja-answer-mode" aria-pressed="true">타자로 풀기</button>
+  <button type="button" id="bangjae-write-paper" class="daja-answer-mode" aria-pressed="false">✍ 한자 직접 써보기</button>
+</div>
 <section id="bangjae-number-bar" class="bangjae-number-bar" aria-label="방제학 순서대로 시작 번호 선택" hidden>
   <div class="bangjae-number-heading"><strong>처방 번호</strong><span id="bangjae-number-caption">26~60번 · 시작할 번호를 선택하세요</span></div>
   <div id="bangjae-number-scroll" class="bangjae-number-scroll" tabindex="0" aria-label="26번부터 60번까지 처방 번호 탐색">
@@ -374,6 +387,11 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 <p id="input-help" class="help"></p>
 <div class="actions"><button id="prev" hidden>← 이전 문제</button><button id="check" class="primary">채점하기</button><button id="show">정답 보기</button><button id="retry-current" hidden>다시 풀기 ↻</button><button id="next" hidden>다음 문제 →</button></div>
 <div id="feedback" class="result" role="status" aria-live="polite" hidden></div>
+<div id="bangjae-write-panel" hidden>
+  <p class="daja-write-tip">처방에 들어가는 <strong>모든 약재를 한자로 종이에 직접 써보세요.</strong> 다 쓰셨으면 답 보기로 한자와 독음을 확인한 뒤, 맞음·틀림을 선택하세요. 약재 순서는 무관하며 출전별 구성은 각각 출제됩니다.</p>
+  <div id="bangjae-write-key" class="daja-paper-key" role="status" aria-live="polite" hidden></div>
+  <div class="actions daja-paper-actions"><button type="button" id="bangjae-write-reveal" class="primary">답 보기</button><button type="button" id="bangjae-write-correct" class="primary" hidden>맞음 ✓ · 다음 처방</button><button type="button" id="bangjae-write-wrong" hidden>틀림 ✕ · 다음 처방</button></div>
+</div>
 </section>
 <section id="bangjae-ordered-complete" class="card complete" hidden aria-live="polite">
   <span class="badge">학습 완료</span>
@@ -704,6 +722,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  });
 })();
 </script>
+<script src="./bangjae-handwrite.js?v=20261020-paper-hanja-v1" defer></script>
 <script type="module" src="./auth-app.js?v=20261019-sync-recovery-v22"></script>
 </body>
 </html>
