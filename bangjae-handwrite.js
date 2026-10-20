@@ -77,6 +77,8 @@
       if (Array.isArray(data) && typeof data[index] === 'string' && naturalHanja(data[index])) return data[index];
       if (data && typeof data === 'object' && typeof data[raw] === 'string' && naturalHanja(data[raw])) return data[raw];
     }
+    const inline = raw.match(/[（(]([\u3400-\u9fff\uf900-\ufaff]+)[）)]/);
+    if (inline) return inline[1];
     if (naturalHanja(raw)) return raw;
     const tight = raw.replace(/\s+/g,'');
     if (characters[tight]) return characters[tight];
@@ -105,6 +107,9 @@
   }
   function setMode(value) {
     if (!bangjaeActive() || handwrite === value) return;
+    if (value) {
+      try { if (typeof loadSession === 'function' && loadSession(active).done) $('next')?.click(); } catch {}
+    }
     handwrite = value;
     try { localStorage.setItem(storageKey(),value ? 'paper' : 'type'); } catch {}
     clearAnswer();
@@ -161,7 +166,6 @@
       const q = getQuestion();
       const key = q ? String(active) + ':' + String(q.id) : '';
       if (key !== currentKey) { currentKey = key; clearAnswer(); }
-      const visible = paper && !!q && !$('quiz').hidden && !$('full-list').hidden === false;
       // 목록·완료 화면에는 원래 퀴즈 패널을 그대로 숨깁니다.
       const showPaper = paper && !!q && !$('quiz').hidden && $('full-list').hidden;
       setHidden($('bangjae-write-panel'),!showPaper);
@@ -206,6 +210,13 @@
     input.dispatchEvent(new Event('input',{bubbles:true}));
     input.dispatchEvent(new Event('change',{bubbles:true}));
     check.click();
+    // 실제 채점 완료를 확인하기 전에는 다음 문제로 이동하지 않습니다.
+    try {
+      if (typeof loadSession === 'function' && !loadSession(active).done) {
+        alert('기존 채점이 완료되지 않았습니다. 타자로 풀기에서 현재 문제를 확인해 주세요.');
+        return;
+      }
+    } catch {}
     // 실제 채점 버튼을 사용해 정답/오답과 다음 문제의 저장 규칙을 그대로 따릅니다.
     requestAnimationFrame(() => {
       if (getQuestion()?.id === originalId) $('next')?.click();
