@@ -260,6 +260,10 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 #bangjae-write-wrong{border:1px solid #deb5af;background:#fff5f1;color:#923c31;font-weight:750}
 .bangjae-unmapped{font-size:12px;color:#9b473a;margin:15px 0 0;line-height:1.6}
 @media(max-width:600px){.bangjae-write-modes{display:flex;width:100%}.bangjae-write-modes button{flex:1}#bangjae-write-key .daja-paper-item .hanzi{font-size:20px}}
+#bangjae-past-frame{display:block;width:100%;min-height:800px;border:0;border-radius:10px;background:transparent}
+#bangjae-past-panel{margin-top:-11px}
+#bangjae-order-modes #tab-bangjae-past[aria-selected="true"]{border-color:#2c624e;background:#eaf2ed;color:#2c624e}
+@media(max-width:600px){#bangjae-order-modes{gap:6px}#bangjae-order-modes button{flex:1;padding:8px 7px;font-size:13px}}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -357,6 +361,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 <nav id="bangjae-order-modes" class="group-tabs" role="tablist" aria-label="방제학 출제 순서" hidden>
 <button id="tab-bangjae-ordered" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="bangjae-herbs-ordered">순서대로</button>
 <button id="tab-bangjae-random" role="tab" aria-selected="false" aria-controls="module" tabindex="-1" data-mode="bangjae-herbs">무작위</button>
+<button id="tab-bangjae-past" type="button" role="tab" aria-selected="false" aria-controls="bangjae-past-panel" tabindex="-1">족보 문제</button>
 </nav>
 <div id="module" role="tabpanel" aria-labelledby="tab-names">
 <div class="module-header"><h2 id="module-title">상한론 처방명</h2><span class="badge" id="module-count">45개 조문 · 58개 빈칸</span></div>
@@ -415,6 +420,7 @@ body[data-subject="obgyn"] .subject-tabs button[aria-selected="true"]{color:#a84
 </div>
 <section id="pending" class="card empty" hidden><span class="badge">준비 중</span><h3>상한론 처방 구성</h3><p>처방 구성 자료를 반영할 공간입니다.</p></section>
 </div>
+<section id="bangjae-past-panel" hidden role="tabpanel" aria-labelledby="tab-bangjae-past"><iframe id="bangjae-past-frame" title="방제학 중간고사 기출 문제 · 2026 족보 정리" referrerpolicy="same-origin"></iframe></section>
 <section id="daja-panel" hidden aria-label="상한론 대자 랜덤 빈칸">
   <div class="module-header"><h2>상한론 대자</h2><span class="badge">20개 조문 · 랜덤 빈칸</span></div>
   <div class="view-switch" role="group" aria-label="대자 학습 방식">
@@ -723,6 +729,42 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
 })();
 </script>
 <script src="./bangjae-handwrite.js?v=20261020-user-spelling-shingok-nabokja-v5" defer></script>
+<script>
+/* 방제학: 기존 순서대로/무작위 처방 구성 유지하며 족보 전용 iframe을 연결합니다. */
+(()=>{
+ const $=id=>document.getElementById(id);
+ const past=$('tab-bangjae-past'),ordered=$('tab-bangjae-ordered'),random=$('tab-bangjae-random');
+ const panel=$('bangjae-past-panel'),frame=$('bangjae-past-frame'),module=$('module');
+ let on=false;
+ function syncTabs(open){
+  on=open;panel.hidden=!open;module.hidden=open;
+  past.setAttribute('aria-selected',String(open));past.tabIndex=open?0:-1;
+  if(open){for(const tab of [ordered,random]){tab.setAttribute('aria-selected','false');tab.tabIndex=-1;}}
+ }
+ function openPast(){
+  if($('quiz-root').hidden||document.body.dataset.subject!=='bangjae')return;
+  syncTabs(true);
+  if(!frame.getAttribute('src'))frame.src='./bangjae-past.html?v=20261020-exam-72-v1';
+ }
+ past.addEventListener('click',openPast);
+ for(const b of [ordered,random])b.addEventListener('click',()=>{if(!on)return;syncTabs(false);});
+ for(const id of ['tab-sanghan','tab-neuro','tab-obgyn'])$(id).addEventListener('click',()=>{if(on)syncTabs(false);});
+ $('tab-bangjae').addEventListener('click',()=>{if(on)syncTabs(false);});
+ window.addEventListener('message',event=>{
+  if(event.origin!==location.origin||event.source!==frame.contentWindow)return;
+  if(event.data?.type==='bangjae-past-height'){
+   const height=Number(event.data.height);
+   if(Number.isFinite(height)&&height>=350&&height<=150000)frame.style.height=(height+12)+'px';
+  }
+  if(event.data?.type==='bangjae-past-focus'&&!panel.hidden){
+   requestAnimationFrame(()=>{
+    const top=frame.getBoundingClientRect().top+window.scrollY-95;
+    window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+   });
+  }
+ });
+})();
+</script>
 <script type="module" src="./auth-app.js?v=20261019-sync-recovery-v22"></script>
 </body>
 </html>
