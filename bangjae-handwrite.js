@@ -88,6 +88,10 @@
   const naturalHanja = text => /[\u3400-\u9fff\uf900-\ufaff]/.test(text);
   function findHanja(label, q, index) {
     const raw = String(label || '').normalize('NFC').trim();
+    // 처방별 원문 표기 차이를 보존합니다: PDF p.11~13.
+    if (raw === '나복자' && Number(q.num) === 49) return '蘿葍子';
+    if (raw === '신곡' && [43,49,50].includes(Number(q.num))) return '神麴';
+    if (raw === '빈랑' && Number(q.num) === 40) return '檳瑯';
     const candidates = [q.herbsHanja,q.herbHanja,q.hanjaHerbs,q.ingredientsHanja];
     for (const data of candidates) {
       if (Array.isArray(data) && typeof data[index] === 'string' && naturalHanja(data[index])) return data[index];
