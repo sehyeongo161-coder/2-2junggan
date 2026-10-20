@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>방제학 족보 문제 · 본과 2-2 중간고사</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.65;color:#24352d;background:#f8fbf9;--dark:#245c43;--faint:#e9f3ed;--line:#dce7df}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;padding:6px 2px 30px;background:transparent}button,select,input{font:inherit}button{min-height:41px;padding:9px 15px;border:1px solid #ccdacf;border-radius:10px;background:white;color:#264938;cursor:pointer}button:hover{background:#edf5ef}button:disabled{opacity:.5;cursor:default}.primary{background:var(--dark);color:white;border-color:var(--dark);font-weight:750}.primary:hover{background:#357252}.shell{max-width:940px;margin:0 auto}.header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 18px}.header h1{font-size:25px;letter-spacing:-.6px;margin:0}.badge{display:inline-flex;padding:3px 10px;border-radius:30px;color:#326e4c;background:#e5f4e9;font-size:12px;font-weight:730;border:1px solid #d0e6d5}.subtitle{color:#60786b;font-size:13px;margin:4px 0 0}.viewbar{display:flex;gap:4px;border-radius:11px;background:#e7eee9;padding:4px;width:fit-content;margin-bottom:15px}.viewbar button{border:0;background:transparent;font-weight:750;color:#698173}.viewbar button.selected{background:white;color:#245e42;box-shadow:0 1px 5px #293d281c}.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;border:1px solid var(--line);background:white;padding:17px 18px;border-radius:14px;margin-bottom:14px}.toolbar label{font-size:12px;color:#5e7366;display:grid;gap:4px;font-weight:700}.toolbar select{padding:8px 10px;min-height:39px;border:1px solid #cfdad2;border-radius:9px;background:#fff;color:#273d2d;max-width:100%}.toolbar .check{display:flex;align-items:center;gap:7px;font-size:13px;color:#2d5a40;padding-bottom:8px}.toolbar .check input{accent-color:var(--dark);width:17px;height:17px}.toolbar .push{margin-left:auto}.toolbar .tiny{font-size:12px;padding:7px 11px}.status{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin:15px 0;color:#637e6c;font-size:13px}.status strong{color:#284638}.bar{height:6px;border-radius:6px;background:#e8eeea;overflow:hidden;margin:8px 0 17px}.bar div{height:100%;background:#40895a;transition:width .2s}.card{border:1px solid var(--line);border-radius:17px;padding:25px 26px;background:white;box-shadow:0 6px 24px #19432408}.qmeta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:12px;color:#61786a}.pill{background:#eff5ef;border-radius:6px;padding:3px 8px;font-weight:750}.flag{border:1px solid #f0dfbe;background:#fff8ed;color:#97611c}.title{font-size:24px;line-height:1.4;margin:15px 0 12px;letter-spacing:-.025em}.prompt{font-size:17px;line-height:1.95;white-space:pre-line;overflow-wrap:anywhere;margin:0 0 22px;word-break:keep-all}.choices{display:grid;gap:10px;margin:5px 0 16px}.choice{display:flex;text-align:left;align-items:center;gap:13px;width:100%;padding:12px 15px;font-size:16px;line-height:1.6;border-radius:11px;min-height:56px}.choice .square{width:23px;height:23px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #b9c9bb;border-radius:50%;color:#fff;font-weight:750;font-size:13px}.choice.multi .square{border-radius:6px}.choice.picked{border-color:#559975;background:#edf7ef;color:#215539}.choice.picked .square{background:#2f7350;border-color:#2f7350}.choice.right{border-color:#38845b;background:#eaf6ee}.choice.wrong{border-color:#c9857e;background:#fff0ee}.explain{padding:18px 20px;border:1px solid #dce6df;border-radius:11px;background:#f7faf7;margin-top:18px}.explain h3{margin:0 0 8px;font-size:17px}.explain p{margin:8px 0;line-height:1.85;white-space:pre-line;word-break:keep-all;font-size:15px}.correct{color:#237445}.incorrect{color:#b4483c}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.actions button{font-weight:720}.manual-note{background:#f2f7f3;color:#456955;font-size:14px;border-left:3px solid #6a9d76;padding:11px 13px;border-radius:7px}.manual-grade{display:flex;gap:8px;margin-top:16px}.manual-grade button{flex:1;font-weight:780;min-height:51px}.manual-grade .bad{color:#a53b38;background:#fff7f6;border:1px solid #e4b8b0}.empty{padding:48px 18px;text-align:center;color:#6c8172;border:1px dashed #bccfbf;border-radius:14px;background:white}.empty h3{font-size:22px;color:#344e3a;margin:0 0 9px}.items{display:grid;gap:10px}.item{border:1px solid var(--line);border-radius:12px;background:white;padding:15px 17px}.itemheader{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.itemheader strong{font-size:16px}.item p{font-size:14px;margin:9px 0 8px;color:#465d4e;white-space:pre-line;line-height:1.6}.item .answer{background:#f1f8f3;padding:11px 13px;border-radius:8px;font-size:14px;margin-bottom:10px;line-height:1.8}.item button{min-height:35px;font-size:13px;padding:4px 12px}.muted{font-size:12px;color:#748578}.key{font-size:12px;font-weight:750;color:#667d6c}.gradestrong{font-size:19px;font-weight:800}.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);border-radius:30px;background:#273e2f;color:white;padding:9px 16px;font-size:13px;box-shadow:0 3px 14px #182f2740;max-width:92vw;z-index:20}.foot{font-size:12px;color:#788c7d;margin-top:16px;line-height:1.65}@media(max-width:650px){.header h1{font-size:23px}.card{padding:20px 16px}.title{font-size:21px}.prompt{font-size:16px}.toolbar{padding:13px;gap:9px}.toolbar label{flex:1;min-width:115px}.toolbar .push{margin-left:0}.choice{font-size:15px;padding:11px}.manual-grade button{font-size:14px;padding:9px}.itemheader{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style></head>
+<body><div class="shell">
+<div class="header"><div><h1>방제학 족보 문제</h1><p class="subtitle">2026 족보 정리본 · 해표제 / 사하제 / 화해제 · 원문 및 해설 기반</p></div><span class="badge" id="total-label">자료 불러오는 중</span></div>
+<div class="viewbar" role="group" aria-label="학습 화면 선택"><button id="view-quiz" class="selected" aria-pressed="true">퀴즈</button><button id="view-list" aria-pressed="false">전체 목록</button></div>
+<div class="toolbar">
+<label>단원<select id="scope"><option value="all">전체</option><option>해표제</option><option>사하제</option><option>화해제</option></select></label>
+<label>출제 순서<select id="order"><option value="ordered">자료 순서대로</option><option value="random">무작위</option></select></label>
+<label class="check"><input id="retry" type="checkbox">틀린 문제만</label>
+<button class="tiny push" id="reorder" title="현재 조건으로 문제 순서를 다시 설정">새로 섞기 ↻</button>
+<button class="tiny" id="reset" title="이 족보 퀴즈의 기록만 초기화">기록 초기화</button>
+</div>
+<div id="quiz-screen">
+ <div class="status"><strong id="progress-label"></strong><span id="result-label"></span></div>
+ <div class="bar"><div id="progress-bar"></div></div>
+ <article id="card" class="card" hidden>
+  <div class="qmeta"><span id="loc" class="pill"></span><span id="format" class="pill"></span><span id="quality" class="pill flag" hidden></span></div>
+  <h2 id="topic" class="title"></h2><div id="prompt" class="prompt"></div>
+  <div id="choices" class="choices" hidden></div>
+  <div id="manual-area" hidden><p class="manual-note">먼저 종이나 머릿속으로 답한 뒤 모범답안을 열어 직접 채점하세요.</p></div>
+  <div class="actions" id="action-row">
+    <button class="primary" id="grade" hidden>채점하기</button>
+    <button class="primary" id="show-answer" hidden>모범답안 보기</button>
+    <button class="primary" id="next" hidden>다음 문제 →</button>
+  </div>
+  <div id="explain" class="explain" hidden></div>
+  <div class="manual-grade" id="self-grade" hidden><button id="self-correct" class="primary">맞췄어요 ✓</button><button id="self-wrong" class="bad">틀렸어요 ✕</button></div>
+ </article>
+ <div id="done" class="empty" hidden><h3 id="done-title">학습 완료</h3><p id="done-summary"></p><button class="primary" id="restart">다시 풀기</button></div>
+</div>
+<section id="list-screen" hidden><div class="status"><strong id="list-count"></strong><button id="list-toggle">정답 표시</button></div><div id="items" class="items"></div></section>
+<p class="foot">출처: 첨부된 「2026 방제학 중간고사 족보 정리 (해표제~화해제_주형)」 1~8쪽. 복기에서 정답이나 선지가 빠진 문제는 자동 채점하지 않습니다. 별도 표시된 불확실한 문제는 자료의 정답이 확정되지 않았다는 의미입니다.</p>
+</div>
+<div id="toast" class="toast" hidden></div>
+<script src="./bangjae-past-data.js?v=20261020-source-72-v1"></script>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const Q=Array.isArray(window.BANGJAE_PAST_QUESTIONS)?window.BANGJAE_PAST_QUESTIONS:[];
+const lookup=Object.fromEntries(Q.map(q=>[q.id,q]));
+const origin=location.origin;
+let uid='guest';try{if(parent!==window&&parent.location.origin===origin&&typeof parent.__QUIZ_USER_ID==='string')uid=parent.__QUIZ_USER_ID}catch{}
+let storage=window.localStorage;try{if(parent!==window&&parent.location.origin===origin&&parent.__QUIZ_STORAGE)storage=parent.__QUIZ_STORAGE}catch{}
+const key='midterm-2-2-2026:quiz:v1:'+uid+':bangjae-past-v1';
+const defaults=()=>({results:{},queue:[],cursor:0,scope:'all',order:'ordered',retry:false,view:'quiz',showListAnswers:false});
+let state=defaults();
+try{const saved=JSON.parse(storage.getItem(key)||'null');if(saved&&typeof saved==='object'){state={...defaults(),...saved};if(!state.results||typeof state.results!=='object')state.results={};}}catch{}
+const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function put(){try{storage.setItem(key,JSON.stringify(state))}catch{}}
+const shuffle=x=>{const arr=x.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
+const relevant=()=>Q.filter(q=>(state.scope==='all'||state.scope===q.section)&&(!state.retry||state.results[q.id]?.correct===false));
+function refreshQueue(){let qs=relevant().map(q=>q.id);if(state.order==='random')qs=shuffle(qs);state.queue=qs;state.cursor=0;marked=null;selected.clear();answerVisible=false;put();render();}
+function checkQueue(){state.queue=Array.isArray(state.queue)?state.queue.filter(id=>lookup[id]):[];if(state.cursor>state.queue.length)state.cursor=0;if(!state.queue.length&&Q.length)state.queue=relevant().map(x=>x.id);if(state.cursor<0)state.cursor=0;}
+let marked=null,selected=new Set(),answerVisible=false,toastTimer=null;
+function toast(message){const node=$('toast');node.textContent=message;node.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>node.hidden=true,1500);}
+function pageSize(){try{if(parent!==window&&parent.location.origin===origin)parent.postMessage({type:'bangjae-past-height',height:Math.ceil(document.documentElement.scrollHeight+25)},origin);}catch{}}
+function scrollStart(){try{parent!==window&&parent.location.origin===origin?parent.postMessage({type:'bangjae-past-focus'},origin):window.scrollTo({top:0,behavior:'smooth'});}catch{}}
+const countStatus=(list=Q)=>{let correct=0,wrong=0,unseen=0;list.forEach(q=>{const r=state.results[q.id];if(!r)unseen++;else if(r.correct)correct++;else wrong++;});return {correct,wrong,unseen};};
+function question(){return lookup[state.queue[state.cursor]]||null;}
+function label(q){return q.form==='single'?'객관식 · 한 개':q.form==='multi'?'객관식 · 모두 선택':'서술·단답 · 자가채점';}
+function intro(){for(const [id,value] of [['scope',state.scope],['order',state.order]])$(id).value=value;$('retry').checked=!!state.retry;$('total-label').textContent=Q.length+'문항 · 객관식 '+Q.filter(q=>q.form!=='manual').length+' · 자가채점 '+Q.filter(q=>q.form==='manual').length;}
+function render(){
+ intro();
+ const list=state.view==='list';
+ $('view-quiz').classList.toggle('selected',!list);$('view-list').classList.toggle('selected',list);
+ $('view-quiz').setAttribute('aria-pressed',String(!list));$('view-list').setAttribute('aria-pressed',String(list));
+ $('quiz-screen').hidden=list;$('list-screen').hidden=!list;
+ if(list){renderList();pageSize();return;}
+ const q=question(),scopeQuestions=Q.filter(x=>state.scope==='all'||x.section===state.scope),cnt=countStatus(scopeQuestions);
+ $('progress-label').textContent=state.queue.length?'문제 '+Math.min(state.cursor+1,state.queue.length)+' / '+state.queue.length:'해당 문제 없음';
+ $('result-label').textContent='정답 '+cnt.correct+' · 오답 '+cnt.wrong+' · 미응시 '+cnt.unseen;
+ $('progress-bar').style.width=(state.queue.length?100*Math.min(state.cursor,state.queue.length)/state.queue.length:0)+'%';
+ $('card').hidden=!q;$('done').hidden=!!q;
+ if(!q){$('done-title').textContent=state.queue.length?'한 세트 완료!':'출제할 문제가 없습니다';$('done-summary').textContent=cnt.wrong?'오답 '+cnt.wrong+'개가 있습니다. ‘틀린 문제만’으로 복습하세요.':Q.length?'범위와 복습 조건을 조정하거나 ‘다시 풀기’를 누르세요.':'족보 문제를 불러오지 못했습니다.';pageSize();return;}
+ $('loc').textContent=q.section+' · 자료 '+q.page+'쪽 · '+(state.cursor+1)+'번';
+ $('format').textContent=label(q);$('quality').textContent=q.quality;$('quality').hidden=q.quality==='확인';
+ $('topic').textContent=q.topic;$('prompt').textContent=q.prompt;
+ $('choices').hidden=q.form==='manual';$('manual-area').hidden=q.form!=='manual';$('choices').replaceChildren();
+ $('grade').hidden= q.form!=='multi'||!!marked; $('show-answer').hidden=q.form!=='manual'||answerVisible;
+ $('next').hidden=!marked;$('explain').hidden=!(marked||answerVisible);$('self-grade').hidden=q.form!=='manual'||!answerVisible;
+ if(q.form!=='manual'){
+   q.choices.forEach((choice,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='choice'+(q.form==='multi'?' multi':'');
+    btn.disabled=!!marked;
+    btn.setAttribute('aria-pressed',String(selected.has(i)));
+    const square=document.createElement('span');square.className='square';square.textContent=selected.has(i)?'✓':'';
+    const body=document.createElement('span');body.textContent=choice;
+    btn.append(square,body);
+    if(selected.has(i))btn.classList.add('picked');
+    if(marked){const good=q.correct.includes(i),picked=selected.has(i);if(good)btn.classList.add('right');if(picked&&!good)btn.classList.add('wrong');}
+    btn.onclick=()=>{
+      if(marked)return;
+      if(q.form==='single'){selected=new Set([i]);grade();}
+      else{selected.has(i)?selected.delete(i):selected.add(i);render();}
+    };
+    $('choices').append(btn);
+   });
+ }
+ if(marked||answerVisible){
+   const good=marked?.correct===true,manual=q.form==='manual';
+   $('explain').innerHTML=(marked?'<h3 class="'+(good?'correct':'incorrect')+'">'+(good?'O 정답입니다':'X 오답입니다')+'</h3>':'<h3>모범답안</h3>')+
+    '<p><strong>정답</strong> · '+E(q.answer)+'</p>'+
+    (q.note?'<p><strong>해설·복기 참고</strong> · '+E(q.note)+'</p>':'')+
+    (q.quality==='정답 미확인'?'<p class="incorrect">복기 정답이 불확실합니다. 원문을 그대로 표시하므로 정답 확정으로 간주하지 마세요.</p>':'');
+ }
+ pageSize();
+}
+function record(q,correct,self){
+ if(marked)return;
+ const old=state.results[q.id]||{total:0,wrong:0};
+ state.results[q.id]={correct:!!correct,total:(old.total||0)+1,wrong:(old.wrong||0)+(correct?0:1),manual:!!self,updated:Date.now()};
+ try{if(uid!=='guest'&&parent!==window&&parent.location.origin===origin)parent.__QUIZ_TRACK_ATTEMPT?.({key:q.id,label:q.topic+' · '+q.prompt.slice(0,100),group:'방제학 족보',correct:!!correct,revealed:!!self});}catch{}
+ marked={correct:!!correct};put();
+}
+function grade(){
+ const q=question();if(!q||marked||q.form==='manual')return;
+ if(!selected.size){toast('선지를 선택해주세요.');return;}
+ const correct=selected.size===q.correct.length&&q.correct.every(i=>selected.has(i));
+ record(q,correct,false);render();
+ if($('next'))$('next').focus({preventScroll:true});
+}
+function advance(){
+ const q=question();if(!q)return;
+ if(marked&&!marked.correct&&!state.retry&&state.queue.filter(id=>id===q.id).length<4)state.queue.push(q.id);
+ state.cursor++;marked=null;answerVisible=false;selected.clear();put();render();scrollStart();
+}
+function manualGrade(correct){
+ const q=question();if(!q||q.form!=='manual'||!answerVisible||marked)return;
+ record(q,correct,true);advance();
+}
+function renderList(){
+ const target=relevant(),cnt=countStatus(target);
+ $('list-count').textContent='전체 '+target.length+'문항 · 완료 '+(cnt.correct+cnt.wrong)+' · 오답 '+cnt.wrong;
+ $('list-toggle').textContent=state.showListAnswers?'정답 가리기':'정답 표시';
+ const root=$('items');root.replaceChildren();
+ target.forEach(q=>{
+  const item=document.createElement('article');item.className='item';
+  const r=state.results[q.id],stateLabel=r?(r.correct?'✓ 맞음':'✕ 틀림'):'미응시';
+  item.innerHTML='<div class="itemheader"><strong>'+E(q.topic)+'</strong><span class="key">'+E(q.section)+' / '+q.page+'쪽 / '+E(stateLabel)+'</span></div>'+
+   '<p>'+E(q.prompt)+'</p>'+
+   (state.showListAnswers?'<div class="answer"><strong>정답</strong> · '+E(q.answer)+(q.note?'<p>'+E(q.note)+'</p>':'')+'</div>':'')+
+   '<button type="button" class="list-open">이 문제 풀기</button>'+(q.quality!=='확인'?' <span class="pill flag">'+E(q.quality)+'</span>':'');
+  item.querySelector('button').onclick=()=>{
+   // 목록에서 연 문제도 원래 퀴즈 순서를 보존하며, 현재 위치를 해당 문제로 이동시킵니다.
+   state.view='quiz';
+   let pos=state.queue.indexOf(q.id);
+   if(pos<0){state.queue.splice(state.cursor,0,q.id);pos=state.cursor;}
+   state.cursor=pos;marked=null;answerVisible=false;selected.clear();put();render();scrollStart();
+  };
+  root.append(item);
+ });
+ if(!target.length)root.innerHTML='<div class="empty">목록에 표시할 문제가 없습니다.</div>';
+}
+$('view-quiz').onclick=()=>{state.view='quiz';put();render();};$('view-list').onclick=()=>{state.view='list';put();render();};
+$('scope').onchange=e=>{state.scope=e.target.value;refreshQueue();};
+$('order').onchange=e=>{state.order=e.target.value;refreshQueue();};
+$('retry').onchange=e=>{state.retry=e.target.checked;refreshQueue();};
+$('reorder').onclick=()=>{refreshQueue();toast('현재 조건으로 다시 시작합니다.');};
+$('reset').onclick=()=>{if(!confirm('방제학 족보 학습 기록만 초기화하시겠습니까? 다른 퀴즈 기록은 유지됩니다.'))return;state=defaults();refreshQueue();toast('방제학 족보 기록이 초기화되었습니다.');};
+$('restart').onclick=()=>refreshQueue();
+$('grade').onclick=grade;
+$('show-answer').onclick=()=>{const q=question();if(!q||q.form!=='manual')return;answerVisible=true;render();};
+$('self-correct').onclick=()=>manualGrade(true);$('self-wrong').onclick=()=>manualGrade(false);
+$('next').onclick=advance;
+$('list-toggle').onclick=()=>{state.showListAnswers=!state.showListAnswers;put();renderList();pageSize();};
+document.addEventListener('keydown',e=>{
+ if(e.key!=='Enter'||e.isComposing||e.keyCode===229||e.repeat||e.altKey||e.ctrlKey||e.metaKey||state.view!=='quiz')return;
+ const activeEl=document.activeElement;
+ if(activeEl?.tagName==='SELECT'||activeEl?.tagName==='INPUT')return;
+ if(activeEl?.tagName==='BUTTON'&&activeEl!==$('next'))return;
+ const q=question();if(!q)return;
+ if(marked){e.preventDefault();advance();}
+ else if(q.form==='multi'&&selected.size){e.preventDefault();grade();}
+ else if(q.form==='manual'&&!answerVisible){e.preventDefault();$('show-answer').click();}
+});
+checkQueue();intro();render();
+new ResizeObserver(pageSize).observe(document.body);
+window.addEventListener('load',pageSize);
+})();
+</script></body></html>
