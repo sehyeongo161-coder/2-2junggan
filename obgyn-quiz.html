@@ -371,6 +371,11 @@ function gradeUterusNames(raw){
  return ids.every(x=>x!==undefined)&&new Set(ids).size>=3;
 }
 function evaluate(q){
+ if(q.id==='037')return [[0,2],[2,5]].every(([start,end])=>{
+  const answers=q.answer.slice(start,end);
+  const matches=answers.map((_,i)=>answers.findIndex((a,j)=>accept(s.draft[start+i],a,q.aliases?.[start+j]||[])));
+  return matches.every(i=>i>=0)&&new Set(matches).size===answers.length;
+ });
  if(q.id==='040')return gradeUterusNames(s.draft[0]);
  if(q.type==='ox'||q.type==='mc')return s.selected===String(q.answer);
  if(q.type==='short')return accept(s.draft[0],q.answer,q.accept||[]);
@@ -700,7 +705,7 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
  try{
   const p=host();if(!p)throw new Error('로그인 후 부인과학 탭에서 열어주세요.');
   uid=p.__QUIZ_USER_ID;
-  const res=await fetch('./obgyn-bank.json?v=20261021-jingui-any-two-v21',{cache:'no-cache'});
+  const res=await fetch('./obgyn-bank.json?v=20261021-genital-order-free-v22',{cache:'no-cache'});
   if(!res.ok)throw new Error('부인과학 문제 데이터를 불러올 수 없습니다.');
   bank=await res.json();if(!Array.isArray(bank)||!bank.length)throw new Error('문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(x=>[x.id,x]));
