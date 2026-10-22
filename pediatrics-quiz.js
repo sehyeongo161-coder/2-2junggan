@@ -28,7 +28,15 @@ function loadedState(){
   if(!valid.has(pending))Object.assign(old,{draft:[],selected:[],optionOrder:[],checked:false,preview:false,decision:null});
  }
  if(!old.order.length){old.order=ids;old.cursor=ids.length;}
- if(old.phase!=='retry'&&old.phase!=='done'&&old.order.length!==ids.length)return blankState();
+ const missing=ids.filter(id=>!old.order.includes(id));
+ if(old.phase!=='retry'&&old.phase!=='done')old.order.push(...shuffle(missing));
+ else if(missing.some(id=>!old.results?.[id])){
+  const pending=old.order.slice(old.cursor),pendingSet=new Set(pending);
+  const completed=ids.filter(id=>old.results?.[id]&&!pendingSet.has(id));
+  const remaining=ids.filter(id=>!pendingSet.has(id)&&!completed.includes(id));
+  old.order=[...completed,...pending,...shuffle(remaining)];old.cursor=completed.length;old.phase='first';
+  if(!pending.length)Object.assign(old,{draft:[],selected:[],optionOrder:[],checked:false,preview:false,decision:null});
+ }
  old.cursor=Math.max(0,Math.min(old.order.length,Number(old.cursor)||0));
  old.draft=Array.isArray(old.draft)?old.draft.map(String):[];
  old.selected=Array.isArray(old.selected)?old.selected.map(String):[];
@@ -63,7 +71,7 @@ function activateMode(next){
  if(!banks[next])return;
  if(s)save();
  mode=next;const data=banks[mode];bank=data.questions;categories=data.categories;byId=data.byId;
- SCOPES=mode==='memory'?{all:'21·22학번 전체 암기'}:mode==='recent'?{all:'21·22학번 전체 족보'}:PAST_SCOPES;scope='all';topic='all';
+ SCOPES=mode==='memory'?{all:'시험범위 전체 암기'}:mode==='recent'?{all:'21·22학번 전체 족보'}:PAST_SCOPES;scope='all';topic='all';
  if(mode==='memory')migrateMemory();
  let selection;try{selection=JSON.parse(host().__QUIZ_STORAGE.getItem(prefix()+':selection')||'null');}catch{}
  if(selection&&Object.hasOwn(SCOPES,selection.scope)){scope=selection.scope;topic=String(selection.topic||'all');}
@@ -71,13 +79,13 @@ function activateMode(next){
  for(const b of document.querySelectorAll('[data-bank]')){const on=b.dataset.bank===mode;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
  $('learning-content').setAttribute('aria-labelledby','bank-'+mode);
  $('study-title').textContent=mode==='memory'?'소아과학 답치기 암기':mode==='recent'?'소아과학 21·22학번 족보':'소아과학 족보 퀴즈';
- $('study-eyebrow').textContent=mode==='memory'?'21·22학번 기준 · 대근육 운동까지 · '+bank.length+'문제':mode==='recent'?'21·22학번만 · 대근육 운동까지 · '+bank.length+'항목':'본과 2학년 2학기 · 16~22학번 족보';
+ $('study-eyebrow').textContent=mode==='memory'?'전체 학번 기반 · 대근육 운동까지 · '+bank.length+'문제':mode==='recent'?'21·22학번만 · 대근육 운동까지 · '+bank.length+'항목':'본과 2학년 2학기 · 16~22학번 족보';
  $('section-buttons').hidden=mode!=='past';$('memory-note').hidden=mode!=='memory';$('recent-note').hidden=mode!=='recent';
  $('section-title').textContent=mode==='memory'?'암기 범주':mode==='recent'?'21·22학번 범주':'출제 범위';
- $('section-subtitle').textContent=mode!=='past'?'Word 01~15 범주 · 대근육 운동까지':'선택한 범위 안에서 랜덤 출제';
+ $('section-subtitle').textContent=mode==='memory'?'학번과 관계없이 범위 안의 내용 연습':mode==='recent'?'Word 01~15 범주 · 대근육 운동까지':'선택한 범위 안에서 랜덤 출제';
  $('view-list').textContent=mode==='memory'?'정답·해설 목록':mode==='recent'?'21·22 족보 목록':'전체 족보 목록';
- $('source-note').textContent=mode==='memory'?'21·22학번 족보 24항목을 위한 암기용 변형 '+bank.length+'문제입니다. Word의 01~15 범주를 따르며 대근육 운동까지 포함합니다.':mode==='recent'?'21·22학번 족보 중 대근육 운동까지의 '+bank.length+'항목입니다. 공통 문항은 한 번 수록하고 학번·문항 번호와 정답·해설을 함께 표시합니다.':'대근육 운동까지의 족보 '+bank.length+'항목입니다. 주형 해설집·통합족보·학번별 복기·수업자료의 답과 간단 해설을 수록했습니다. 선지·그림이 불완전한 항목은 자료 확인으로 표시합니다.';
- renderScope();s=loadedState();selectView('quiz');
+ $('source-note').textContent=mode==='memory'?'전체 학번 족보를 바탕으로 한 시험범위 암기 '+bank.length+'문제입니다. 대근육 운동까지 포함하며, 21·22학번에 없는 범위 내 내용도 연습합니다. 해설 아래에 주형 해설집 PDF 쪽수를 표시합니다.':mode==='recent'?'21·22학번 족보 중 대근육 운동까지의 '+bank.length+'항목입니다. 공통 문항은 한 번 수록하고 학번·문항 번호와 정답·해설을 함께 표시합니다.':'대근육 운동까지의 족보 '+bank.length+'항목입니다. 주형 해설집·통합족보·학번별 복기·수업자료의 답과 간단 해설을 수록했습니다. 선지·그림이 불완전한 항목은 자료 확인으로 표시합니다.';
+ renderScope();s=loadedState();save();selectView('quiz');
 }
 function current(){return byId.get(s.order[s.cursor]);}
 function clearAnswer(){Object.assign(s,{draft:[],selected:[],optionOrder:[],checked:false,preview:false,decision:null});}
@@ -129,7 +137,7 @@ function renderScope(){
   b.querySelector('small').textContent=n;b.hidden=n===0;
  }
  const allowed=new Set(broadBank().map(q=>q.category));
- $('category-filter').innerHTML='<option value="all">선택 범위의 모든 범주</option>'+Object.entries(categories).filter(([id])=>allowed.has(id)).map(([id,title])=>'<option value="'+id+'">'+(Number(id)<=21?id.padStart(2,'0'):'부록 '+(Number(id)-21))+' · '+esc(title)+'</option>').join('');
+ $('category-filter').innerHTML='<option value="all">선택 범위의 모든 범주</option>'+Object.entries(categories).filter(([id])=>allowed.has(id)).map(([id,title])=>'<option value="'+id+'">'+(/^\d+$/.test(id)?(Number(id)<=21?id.padStart(2,'0'):'부록 '+(Number(id)-21)):'보충')+' · '+esc(title)+'</option>').join('');
  if(topic!=='all'&&!allowed.has(topic))topic='all';
  $('category-filter').value=topic;
  const name=topic==='all'?SCOPES[scope]:categories[topic];
@@ -139,7 +147,7 @@ function renderScope(){
 }
 function setScope(next,nextTopic='all'){
  if(!Object.hasOwn(SCOPES,next))return;
- scope=next;topic=nextTopic;renderScope();saveScope();s=loadedState();
+ scope=next;topic=nextTopic;renderScope();saveScope();s=loadedState();save();
  if(viewMode==='list')renderList();else render();resize();
 }
 function updateHeader(){
@@ -253,14 +261,14 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
 (async()=>{
  try{
   const p=host();if(!p)throw Error('로그인 후 소아과학 탭에서 열어주세요.');uid=p.__QUIZ_USER_ID;
-  const [r,c,m,recentResponse]=await Promise.all([fetch('./pediatrics-bank.json?v=20261022-pediatrics-juheong-pages-v7',{cache:'no-cache'}),fetch('./pediatrics-categories.json?v=20261022-pediatrics-juheong-pages-v7',{cache:'no-cache'}),fetch('./pediatrics-memory-bank.json?v=20261022-pediatrics-juheong-pages-v7',{cache:'no-cache'}),fetch('./pediatrics-recent-bank.json?v=20261022-pediatrics-juheong-pages-v7',{cache:'no-cache'})]);
+  const [r,c,m,recentResponse]=await Promise.all([fetch('./pediatrics-bank.json?v=20261023-pediatrics-restored-v8',{cache:'no-cache'}),fetch('./pediatrics-categories.json?v=20261023-pediatrics-restored-v8',{cache:'no-cache'}),fetch('./pediatrics-memory-bank.json?v=20261023-pediatrics-restored-v8',{cache:'no-cache'}),fetch('./pediatrics-recent-bank.json?v=20261023-pediatrics-restored-v8',{cache:'no-cache'})]);
   if(!r.ok||!c.ok||!m.ok||!recentResponse.ok)throw Error('소아과 문제 데이터를 불러올 수 없습니다.');
   bank=await r.json();categories=await c.json();
   if(!Array.isArray(bank)||bank.length!==86||new Set(bank.map(q=>q.id)).size!==bank.length||bank.filter(q=>q.inScope).length!==86||bank.some(q=>!Object.hasOwn(categories,q.category)))throw Error('소아과 문제 데이터 형식이 올바르지 않습니다.');
   const memory=await m.json();
-  if(!Array.isArray(memory.questions)||memory.version!==2||memory.questions.length!==memory.questionCount||Object.keys(memory.categories).length!==15||memory.wordQuestionIds?.length!==24||new Set(memory.questions.map(q=>q.id)).size!==memory.questionCount||memory.questions.some(q=>q.type!=='mc'||q.choices?.length!==4||!q.juheongReference||!q.juheongPages?.length||q.juheongPages.some(n=>!Number.isInteger(n)||n<1||n>67)||!q.sourceIds?.length||q.sourceIds.some(id=>!memory.wordQuestionIds.includes(id))||!Object.hasOwn(memory.categories,q.category)||q.choices[Number(q.answer)-1]!==q.displayAnswer))throw Error('암기 문제 데이터 형식이 올바르지 않습니다.');
+  if(!Array.isArray(memory.questions)||memory.version!==2||memory.questions.length!==memory.questionCount||Object.keys(memory.categories).length!==19||memory.wordQuestionIds?.length!==24||new Set(memory.questions.map(q=>q.id)).size!==memory.questionCount||memory.questions.some(q=>q.type!=='mc'||q.choices?.length!==4||!q.juheongReference||(!q.juheongPages?.length&&!q.juheongUnavailable)||q.juheongPages.some(n=>!Number.isInteger(n)||n<1||n>67)||!q.sourceIds?.length||q.sourceIds.some(id=>!memory.sourceQuestionIds?.includes(id)||!bank.some(past=>past.id===id))||!Object.hasOwn(memory.categories,q.category)||q.choices[Number(q.answer)-1]!==q.displayAnswer))throw Error('암기 문제 데이터 형식이 올바르지 않습니다.');
   const recent=await recentResponse.json();
-  if(recent.version!==1||recent.questionCount!==24||recent.questions?.length!==24||new Set(recent.questions.map(q=>q.id)).size!==24||JSON.stringify(recent.categories)!==JSON.stringify(memory.categories)||recent.questions.some(q=>!q.id.startsWith('R2122-')||q.sourceIds?.length!==1||!memory.wordQuestionIds.includes(q.sourceIds[0])||!Object.hasOwn(recent.categories,q.category)))throw Error('21·22학번 족보 데이터 형식이 올바르지 않습니다.');
+  if(recent.version!==1||recent.questionCount!==24||recent.questions?.length!==24||new Set(recent.questions.map(q=>q.id)).size!==24||Object.entries(recent.categories).some(([id,name])=>memory.categories[id]!==name)||recent.questions.some(q=>!q.id.startsWith('R2122-')||q.sourceIds?.length!==1||!memory.wordQuestionIds.includes(q.sourceIds[0])||!Object.hasOwn(recent.categories,q.category)))throw Error('21·22학번 족보 데이터 형식이 올바르지 않습니다.');
   banks={recent:{questions:recent.questions,categories:recent.categories,byId:new Map(recent.questions.map(q=>[q.id,q]))},past:{questions:bank,categories,byId:new Map(bank.map(q=>[q.id,q]))},memory:{questions:memory.questions,categories:memory.categories,legacyQuestionSources:memory.legacyQuestionSources,byId:new Map(memory.questions.map(q=>[q.id,q]))}};
   const previous=p.__QUIZ_STORAGE.getItem('midterm-2-2-2026:quiz:v1:'+uid+':pediatrics-active-bank-v1');
   loaded=true;$('study').hidden=false;activateMode(Object.hasOwn(banks,previous)?previous:'recent');if(pending){goTo(pending);pending=null;}
