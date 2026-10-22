@@ -228,6 +228,10 @@ body[data-subject="pediatrics"]{--accent:#946500;--tint:#fff5c7;--line:#e8dba9;-
 body[data-subject="pediatrics"] .subject-tabs{background:#fff2bc}
 body[data-subject="pediatrics"] .subject-tabs button[aria-selected="true"]{color:#684b00;background:#ffe48a}
 body[data-subject="pediatrics"] .site-header .eyebrow{color:#84713c}
+body[data-subject="wenbing"]{--accent:#b65324;--tint:#ffead9;--line:#ecd8c9;--muted:#8b6b57;background:#fffaf6}
+body[data-subject="wenbing"] .subject-tabs{background:#ffead9}
+body[data-subject="wenbing"] .subject-tabs button[aria-selected="true"]{color:#a4481c;background:#ffdbc1}
+#wenbing-frame{width:100%;display:block;min-height:650px;height:1200px;border:0;border-radius:12px;background:#fffaf6}
 #pediatrics-frame{width:100%;display:block;min-height:650px;height:1200px;border:0;border-radius:12px;background:#fffdf4}
 #obgyn-frame{width:100%;display:block;min-height:1100px;height:1200px;border:0;border-radius:12px;background:#fcf9fa}
 @media(max-width:680px){.subject-tabs{width:100%;flex-wrap:wrap}.subject-tabs button{flex:1 1 calc(50% - 6px);min-width:0;padding:10px 8px;font-size:14px}}
@@ -351,6 +355,7 @@ body[data-subject="pediatrics"] .site-header .eyebrow{color:#84713c}
 <button id="tab-neuro" role="tab" aria-selected="false" aria-controls="neuro-panel" tabindex="-1">신경정신과</button>
 <button id="tab-obgyn" role="tab" aria-selected="false" aria-controls="obgyn-panel" tabindex="-1">부인과학</button>
 <button id="tab-pediatrics" role="tab" aria-selected="false" aria-controls="pediatrics-panel" tabindex="-1">소아과학</button>
+<button id="tab-wenbing" role="tab" aria-selected="false" aria-controls="wenbing-panel" tabindex="-1" data-subject="wenbing">온병학</button>
 </nav>
 <section id="panel" role="tabpanel" aria-labelledby="tab-sanghan">
 <nav id="sanghan-tabs" class="subtabs" role="tablist" aria-label="상한론 학습 유형">
@@ -494,6 +499,7 @@ body[data-subject="pediatrics"] .site-header .eyebrow{color:#84713c}
 <iframe id="obgyn-frame" title="부인과학 18~22학번 랜덤 족보 퀴즈" referrerpolicy="same-origin"></iframe>
 </section>
 <section id="pediatrics-panel" role="tabpanel" aria-labelledby="tab-pediatrics" hidden><iframe id="pediatrics-frame" title="소아과학 족보 퀴즈 및 전체 목록" referrerpolicy="same-origin"></iframe></section>
+<section id="wenbing-panel" role="tabpanel" aria-labelledby="tab-wenbing" hidden><iframe id="wenbing-frame" title="온병학 족보·족보 변형·개념확인 퀴즈 및 해설 목록" referrerpolicy="same-origin"></iframe></section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
 <div id="quick-grade-toast" class="quick-grade-toast" role="status" aria-live="polite" hidden></div>
@@ -503,7 +509,7 @@ body[data-subject="pediatrics"] .site-header .eyebrow{color:#84713c}
 /* 상한론의 하위탭처럼 신경정신과도 '족보 / 암기표'로 구분합니다. */
 (()=>{
  const neuroTab=document.getElementById('tab-neuro');
- const oldTabs=[document.getElementById('tab-sanghan'),document.getElementById('tab-bangjae'),document.getElementById('tab-pediatrics')];
+ const oldTabs=[document.getElementById('tab-sanghan'),document.getElementById('tab-bangjae'),document.getElementById('tab-pediatrics'),document.getElementById('tab-wenbing')];
  const allTabs=[...oldTabs,neuroTab];
  const panel=document.getElementById('panel'),neuroPanel=document.getElementById('neuro-panel');
  const frame=document.getElementById('neuro-frame'),neuroContent=document.getElementById('neuro-content');
@@ -595,7 +601,7 @@ body[data-subject="pediatrics"] .site-header .eyebrow{color:#84713c}
  const tab=document.getElementById('tab-obgyn'),panel=document.getElementById('panel');
  const neuro=document.getElementById('neuro-panel'),obgyn=document.getElementById('obgyn-panel');
  const frame=document.getElementById('obgyn-frame');
- const others=['tab-sanghan','tab-bangjae','tab-neuro','tab-pediatrics'].map(id=>document.getElementById(id));
+ const others=['tab-sanghan','tab-bangjae','tab-neuro','tab-pediatrics','tab-wenbing'].map(id=>document.getElementById(id));
  let active=false,pending=null;
  function selected(target){for(const b of [...others,tab]){const on=b===target;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}}
  function open(){
@@ -710,7 +716,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
      else{mod.hidden=false;daja.hidden=true;}
    });
  },true);
- for(const id of ['tab-bangjae','tab-neuro','tab-obgyn','tab-pediatrics','tab-sanghan']){
+ for(const id of ['tab-bangjae','tab-neuro','tab-obgyn','tab-pediatrics','tab-wenbing','tab-sanghan']){
    const b=byId(id);if(!b)continue;
    b.addEventListener('click',()=>{
      if(!active)return;
@@ -755,7 +761,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  }
  past.addEventListener('click',openPast);
  for(const b of [ordered,random])b.addEventListener('click',()=>{if(!on)return;syncTabs(false);});
- for(const id of ['tab-sanghan','tab-neuro','tab-obgyn','tab-pediatrics'])$(id).addEventListener('click',()=>{if(on)syncTabs(false);});
+ for(const id of ['tab-sanghan','tab-neuro','tab-obgyn','tab-pediatrics','tab-wenbing'])$(id).addEventListener('click',()=>{if(on)syncTabs(false);});
  $('tab-bangjae').addEventListener('click',()=>{if(on)syncTabs(false);});
  window.addEventListener('message',event=>{
   if(event.origin!==location.origin||event.source!==frame.contentWindow)return;
@@ -808,7 +814,43 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  });
 })();
 </script>
-<script type="module" src="./auth-app.js?v=20261022-pediatrics-v1"></script>
+<script>
+/* 온병학: 기존 계정 저장·통계·채점 이동을 공유합니다. */
+(()=>{
+ const tab=document.getElementById('tab-wenbing'),panel=document.getElementById('wenbing-panel'),frame=document.getElementById('wenbing-frame');
+ const others=['tab-sanghan','tab-bangjae','tab-neuro','tab-obgyn','tab-pediatrics'].map(id=>document.getElementById(id));
+ let pending=null,timer;
+ function open(){
+  if(document.getElementById('quiz-root').hidden)return;
+  for(const id of ['panel','neuro-panel','obgyn-panel','pediatrics-panel'])document.getElementById(id).hidden=true;
+  panel.hidden=false;document.body.dataset.subject='wenbing';
+  for(const b of [...others,tab]){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
+  if(!frame.getAttribute('src'))frame.src='./wenbing-quiz.html?v=20261022-wenbing-v1';
+  if(pending)frame.contentWindow?.postMessage({type:'wenbing-open-question',id:pending},location.origin);
+ }
+ tab.addEventListener('click',e=>{e.stopImmediatePropagation();open();},true);
+ document.addEventListener('click',e=>{if(!others.some(b=>b===e.target.closest?.('.subject-tabs button')))return;panel.hidden=true;tab.setAttribute('aria-selected','false');tab.tabIndex=-1;},true);
+ window.__OPEN_WENBING_QUESTION=id=>{
+  if(typeof id!=='string'||!/^wenbing-[A-Za-z0-9가-힣-]+$/.test(id)||document.getElementById('quiz-root').hidden)return;
+  pending=id;tab.click();
+ };
+ frame.addEventListener('load',()=>{if(pending)frame.contentWindow?.postMessage({type:'wenbing-open-question',id:pending},location.origin);});
+ window.addEventListener('message',e=>{
+  if(e.origin!==location.origin||e.source!==frame.contentWindow)return;
+  if(e.data?.type==='wenbing-size'){const h=Number(e.data.height);if(Number.isFinite(h)&&h>=350&&h<150000)frame.style.height=(h+30)+'px';}
+  if(panel.hidden)return;
+  if(e.data?.type==='wenbing-focus-question'){
+   pending=null;const offset=Number(e.data.top);if(Number.isFinite(offset)&&offset>=0&&offset<150000)requestAnimationFrame(()=>window.scrollTo({top:Math.max(0,frame.getBoundingClientRect().top+scrollY+offset-Math.min(105,innerHeight*.12)),behavior:'smooth'}));
+  }
+  if(e.data?.type==='wenbing-focus-grade')window.__QUIZ_SCROLL_GRADE?.({frame,top:Number(e.data.top),explanationTop:Number(e.data.explanationTop)});
+  if(e.data?.type==='wenbing-flash-verdict'){
+   const toast=document.getElementById('quick-grade-toast'),correct=e.data.correct===true;clearTimeout(timer);
+   toast.className='quick-grade-toast '+(correct?'correct':'wrong');const mark=document.createElement('b');mark.textContent=correct?'O':'X';toast.replaceChildren(mark,document.createTextNode(correct?' 정답':' 오답'));toast.hidden=false;timer=setTimeout(()=>toast.hidden=true,1100);
+  }
+ });
+})();
+</script>
+<script type="module" src="./auth-app.js?v=20261022-wenbing-v1"></script>
 </body>
 </html>
 

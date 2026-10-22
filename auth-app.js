@@ -549,7 +549,7 @@ function renderStatRows() {
   const area = $('analytics-list');area.replaceChildren();
   const rows = statRows();
   const items = reviewCandidates();
-  $('analytics-review-count').textContent = `공통 복습 가능 ${items.length}문항 · 신경정신과·부인과학·소아과학은 개별 문항 풀기`;
+  $('analytics-review-count').textContent = `공통 복습 가능 ${items.length}문항 · 신경정신과·부인과학·소아과학·온병학은 개별 문항 풀기`;
   $('start-review').disabled = !items.length;
   if (!rows.length) {
     const empty = document.createElement('div');empty.className='analytics-empty';
@@ -567,7 +567,7 @@ function renderStatRows() {
     const bottom=document.createElement('div');bottom.className='analytics-row-bottom';
     bottom.append(detail);
     const candidate=items.find(entry=>entry.stat.id===row.id);
-    if(candidate || row.neuroId || String(row.id).startsWith('obgyn-') || String(row.id).startsWith('shanghan-past-') || String(row.id).startsWith('pediatrics-')){
+    if(candidate || row.neuroId || String(row.id).startsWith('obgyn-') || String(row.id).startsWith('shanghan-past-') || String(row.id).startsWith('pediatrics-') || String(row.id).startsWith('wenbing-')){
       const action=document.createElement('button');action.type='button';
       action.className='analytics-practice';action.textContent='이 문제 풀기';
       action.setAttribute('aria-label',`${row.label} 다시 풀기`);
@@ -578,6 +578,9 @@ function renderStatRows() {
         }else if(String(row.id).startsWith('obgyn-')){
           navigateToQuiz();
           requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_OBGYN_QUESTION?.(row.id)));
+        }else if(String(row.id).startsWith('wenbing-')){
+          navigateToQuiz();
+          requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_WENBING_QUESTION?.(row.id)));
         }else if(String(row.id).startsWith('pediatrics-')){
           navigateToQuiz();
           requestAnimationFrame(()=>requestAnimationFrame(()=>window.__OPEN_PEDIATRICS_QUESTION?.(row.id)));
