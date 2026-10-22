@@ -1,0 +1,1005 @@
+{
+  "version": 1,
+  "basis": "21·22학번 Word 족보",
+  "questionCount": 34,
+  "categories": {
+    "1": "소아과학의 개념과 역사",
+    "2": "소아기의 분류",
+    "3": "소아의 생리와 병리적 특징",
+    "4": "진단 개요와 연령별 진단법",
+    "5": "망진",
+    "6": "문진 聞診과 청진",
+    "7": "절진",
+    "8": "성장 발달 개요와 성장 패턴",
+    "9": "체중 신장 신체 비례",
+    "10": "천문과 두위",
+    "11": "뇌의 성장과 정상반사",
+    "12": "치아의 발달",
+    "13": "소화기계와 대변",
+    "14": "감각 발달",
+    "15": "운동발달 원칙과 대근육 운동",
+    "16": "소근육 운동과 배변훈련",
+    "17": "정서 사회성 수면과 복합 발달",
+    "18": "청소년기와 성 성숙",
+    "19": "유전과 대사 질환"
+  },
+  "questions": [
+    {
+      "id": "R2122-Q5",
+      "type": "mc",
+      "prompt": "저자와 저서가 올바르게 연결된 것을 고르시오.",
+      "originalBody": "저자와 저서가 올바르게 연결된 것을 고르시오.\n①趙廷俊(조정준) – 及幼方(급유방)\n②(기타 선지 복기 안 됨)",
+      "years": "21학번 2번 · 22학번 2번",
+      "category": "1",
+      "categoryName": "소아과학의 개념과 역사",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "1",
+      "displayAnswer": "① 趙廷俊(조정준) – 《及幼方(급유방)》",
+      "explanation": "조정준–급유방이 맞습니다. 헷갈리는 연결은 유방–유유신서, 진복정–유유집성, 최규헌–소아의방입니다.",
+      "source": "21학번 2번 · 22학번 2번 · 21·22학번 Word 족보 · 수업자료 14, 16쪽 · 써머리 8, 10쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "趙廷俊(조정준) – 及幼方(급유방)",
+        "(기타 선지 복기 안 됨)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q5"
+      ]
+    },
+    {
+      "id": "R2122-Q6",
+      "type": "mc",
+      "prompt": "인물과 이론을 연결한 것으로 알맞은 것을 고르시오.",
+      "originalBody": "인물과 이론을 연결한 것으로 알맞은 것을 고르시오.\n①錢乙(전을) – 易虛(이허), 易實(이실), 易寒(이한), 易熱(이열)\n②萬全(만전) – (복기 안 됨)\n③朱丹溪(주단계) – \"大槪小兒病者純陽(대개소아병자순양), 熱多冷少也(열다랭소야).\"\n④(인물 복기 안 됨) – \"養生當論食補(양생당론식보), 治病當論藥攻(치병당론약공)\"\n⑤崔奎憲(최규헌) – (복기 안 됨)",
+      "years": "21학번 1번 · 22학번 1번",
+      "category": "1",
+      "categoryName": "소아과학의 개념과 역사",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "1",
+      "displayAnswer": "① 錢乙(전을) – 易虛易實(이허이실), 易寒易熱(이한이열)",
+      "explanation": "전을은 오장한열허실 변증과 이허이실·이한이열을 강조했습니다. ③의 순양·열다냉소는 유하간, ④의 식보·약공은 장자화입니다. 주단계는 양상유여·음상부족과 자음을 연결합니다.",
+      "source": "21학번 1번 · 22학번 1번 · 21·22학번 Word 족보 · 수업자료 9, 11, 12, 13쪽 · 써머리 3, 5, 6, 7쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "錢乙(전을) – 易虛(이허), 易實(이실), 易寒(이한), 易熱(이열)",
+        "萬全(만전) – (복기 안 됨)",
+        "朱丹溪(주단계) – \"大槪小兒病者純陽(대개소아병자순양), 熱多冷少也(열다랭소야).\"",
+        "(인물 복기 안 됨) – \"養生當論食補(양생당론식보), 治病當論藥攻(치병당론약공)\"",
+        "崔奎憲(최규헌) – (복기 안 됨)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q6"
+      ]
+    },
+    {
+      "id": "R2122-Q7",
+      "type": "short",
+      "prompt": "송대 이전의 소아과 관련 학술을 집대성한 당시의 가장 완비된 소아과 전문서는?",
+      "originalBody": "송대 이전의 소아과 관련 학술을 집대성한 당시의 가장 완비된 소아과 전문서는?",
+      "years": "21학번 서술형 1번",
+      "category": "1",
+      "categoryName": "소아과학의 개념과 역사",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "幼幼新書",
+      "displayAnswer": "《幼幼新書(유유신서)》 — 劉昉(유방), 송대",
+      "explanation": "‘송대 이전 학술 집대성’이라는 표현이면 유방의 유유신서입니다. ‘최초 소아과 전문서’ 노신경, ‘우리나라 최초’ 급유방과 나누어 외웁니다.",
+      "source": "21학번 서술형 1번 · 21·22학번 Word 족보 · 수업자료 10쪽 · 써머리 4쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "accept": [
+        "유유신서"
+      ],
+      "sourceIds": [
+        "Q7"
+      ]
+    },
+    {
+      "id": "R2122-Q11",
+      "type": "manual",
+      "prompt": "소아기의 분류로 알맞지 않은 것은?\n①배아기는 8주까지로, 약물, X-선, 감염병 등의 영향이 큰 시기이다.\n②신생아기의 생리적 변화는 몇 시간 ~ 줄어든다. (복기 불완전)\n③영아기는 영양장애도 생기기 쉽고 사망률도 높다.\n④(복기 안 됨)\n⑤학령기에는 보행, 언어 등의 발달이 왕성하다.",
+      "originalBody": "소아기의 분류로 알맞지 않은 것은?\n①배아기는 8주까지로, 약물, X-선, 감염병 등의 영향이 큰 시기이다.\n②신생아기의 생리적 변화는 몇 시간 ~ 줄어든다. (복기 불완전)\n③영아기는 영양장애도 생기기 쉽고 사망률도 높다.\n④(복기 안 됨)\n⑤학령기에는 보행, 언어 등의 발달이 왕성하다.",
+      "years": "21학번 3번 · 22학번 3번",
+      "category": "2",
+      "categoryName": "소아기의 분류",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "⑤ — 보행·언어 발달이 왕성한 것은 유아기(학령전기)의 특징",
+      "displayAnswer": "⑤ — 보행·언어 발달이 왕성한 것은 유아기(학령전기)의 특징",
+      "explanation": "① 배아기 8주까지와 ③ 영아기의 영양장애·높은 사망률은 자료와 일치합니다. ⑤ 보행·언어 발달이 왕성한 것은 학령기(6~10년)가 아니라 유아기(2~5년)입니다.",
+      "source": "21학번 3번 · 22학번 3번 · 21·22학번 Word 족보 · 수업자료 18, 19쪽 · 써머리 12, 13쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "sourceIds": [
+        "Q11"
+      ]
+    },
+    {
+      "id": "R2122-Q13",
+      "type": "fill",
+      "prompt": "소아의 각 기관의 발육이 부전하고 취약한 것과 형체와 기능이 완전하지 못한 것을 의미하는 것은?",
+      "originalBody": "소아의 각 기관의 발육이 부전하고 취약한 것과 형체와 기능이 완전하지 못한 것을 의미하는 것은?",
+      "years": "21학번 서술형 2번",
+      "category": "3",
+      "categoryName": "소아의 생리와 병리적 특징",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": [
+        "臟腑嬌嫩",
+        "形氣未充"
+      ],
+      "displayAnswer": "臟腑嬌嫩(장부교눈)·形氣未充(형기미충)",
+      "explanation": "장부교눈은 ‘기관의 발육 부전·취약’, 형기미충은 ‘형체와 기능이 완전하지 못함’에 대응합니다. 치음·치양 역시 물질적 기초와 생리기능이 모두 미성숙함을 가리킵니다.",
+      "source": "21학번 서술형 2번 · 21·22학번 Word 족보 · 수업자료 20쪽 · 써머리 14쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "aliases": [
+        [
+          "장부교눈",
+          "장부교연"
+        ],
+        [
+          "형기미충"
+        ]
+      ],
+      "fieldLabels": [],
+      "unordered": true,
+      "groups": [],
+      "sourceIds": [
+        "Q13"
+      ]
+    },
+    {
+      "id": "R2122-Q15",
+      "type": "mc",
+      "prompt": "소아기의 병리적 특징으로 알맞지 않은 것은?",
+      "originalBody": "소아기의 병리적 특징으로 알맞지 않은 것은?\n①脾常不足(비상부족), 肺常不足(폐상부족), 腎氣未盛(신기미성)으로 인한 질환이 나타난다.\n②전변이 빨라 실증이 허증으로, 표증이 리증으로 변하기 쉽다.\n③生機旺盛(생기왕성), 發育迅速(발육신속)\n④질병 발생 시 빨리 회복한다.\n⑤易于發病(이우발병), 易于變化(이우변화), 易于康復(이우강복)",
+      "years": "21학번 4번 · 22학번 4번",
+      "category": "3",
+      "categoryName": "소아의 생리와 병리적 특징",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "3",
+      "displayAnswer": "③ 生機旺盛(생기왕성), 發育迅速(발육신속) — 이것은 생리적 특징",
+      "explanation": "③의 생기왕성·발육신속은 생리적 특징의 제목입니다. ④의 ‘빨리 회복’은 이우강복에 해당하므로 병리적 특징에 포함됩니다. 두 표현이 비슷해도 분류를 구별합니다.",
+      "source": "21학번 4번 · 22학번 4번 · 21·22학번 Word 족보 · 수업자료 20, 21, 22, 24, 25쪽 · 써머리 14, 15, 16, 18, 19쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "脾常不足(비상부족), 肺常不足(폐상부족), 腎氣未盛(신기미성)으로 인한 질환이 나타난다.",
+        "전변이 빨라 실증이 허증으로, 표증이 리증으로 변하기 쉽다.",
+        "生機旺盛(생기왕성), 發育迅速(발육신속)",
+        "질병 발생 시 빨리 회복한다.",
+        "易于發病(이우발병), 易于變化(이우변화), 易于康復(이우강복)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q15"
+      ]
+    },
+    {
+      "id": "R2122-Q18",
+      "type": "manual",
+      "prompt": "소아의 연령에 따른 진단법으로 옳은 것을 고르시오.\n[전체 선지 미복기]",
+      "originalBody": "소아의 연령에 따른 진단법으로 옳은 것을 고르시오.\n[전체 선지 미복기]",
+      "years": "21학번 5번",
+      "category": "4",
+      "categoryName": "진단 개요와 연령별 진단법",
+      "chapter": "recent",
+      "inScope": true,
+      "displayAnswer": "7~13세: 1指(지)로 移指三部脈(이지삼부맥)",
+      "explanation": "21학번 원본에 이 연결이 정답으로 명시되어 있습니다. 생후 12개월까지 액맥진, 1~6세 호구삼관맥·인영기구맥, 7~13세 이지삼부맥, 14세 이상 성인과 같은 진단법입니다.",
+      "source": "21학번 5번 · 21·22학번 Word 족보 · 수업자료 47쪽 · 써머리 41쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "전체 선지가 복기되지 않아 Word 원문과 답안을 확인한 뒤 자가채점합니다.",
+      "sourceIds": [
+        "Q18"
+      ]
+    },
+    {
+      "id": "R2122-Q21",
+      "type": "mc",
+      "prompt": "額脈診斷(액맥진단)에 관한 내용으로 옳은 것을 고르시오.",
+      "originalBody": "額脈診斷(액맥진단)에 관한 내용으로 옳은 것을 고르시오.\n①(대상을 바꿔서 낸 틀린 지문)\n②눈썹 위 이마로부터 髮際(발제) 이하 사이에 三指(삼지)(拇指(무지), 食指(식지), 中指(중지))를 접촉한다.\n③三指俱冷(삼지구랭) : 寒邪(한사) 感染(감염), 聲粗(성조)\n④三指俱熱(삼지구열) : 吐瀉(토사), 臟不安(장불안)\n⑤無名指熱(무명지열) : 難乳消(난유소)",
+      "years": "21학번 7번 · 22학번 7번",
+      "category": "4",
+      "categoryName": "진단 개요와 연령별 진단법",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "5",
+      "displayAnswer": "⑤ 無名指熱(무명지열) : 難乳消(난유소)",
+      "explanation": "⑤ 무명지열–난유소만 맞습니다. ②는 식지·중지·무명지로 고치고, ③·④는 삼지구랭과 삼지구열의 증상을 서로 바꾼 선지입니다. 대상은 초생아~12개월입니다.",
+      "source": "21학번 7번 · 22학번 7번 · 21·22학번 Word 족보 · 수업자료 49쪽 · 써머리 43쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "(대상을 바꿔서 낸 틀린 지문)",
+        "눈썹 위 이마로부터 髮際(발제) 이하 사이에 三指(삼지)(拇指(무지), 食指(식지), 中指(중지))를 접촉한다.",
+        "三指俱冷(삼지구랭) : 寒邪(한사) 感染(감염), 聲粗(성조)",
+        "三指俱熱(삼지구열) : 吐瀉(토사), 臟不安(장불안)",
+        "無名指熱(무명지열) : 難乳消(난유소)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q21"
+      ]
+    },
+    {
+      "id": "R2122-Q23",
+      "type": "manual",
+      "prompt": "虎口三關脈法(호구삼관맥법)과 관련된 것으로 옳은 것은?\n복기된 선지\n- 풍관에서 명관까지 직통하면 死證(사증)이다.\n- 정상지문은 紅紫色(홍자색)을 띠며 은은하고, 風關(풍관) 이상까지 드러나지 않는다.\n- 浮沈分表裏(부침분표리), 紅紫辨寒熱(홍자변한열)을 변형한 선지 [정확한 표현 미복기]\n- 남아는 右手(우수), 여아는 左手(좌수)로 본다.",
+      "originalBody": "虎口三關脈法(호구삼관맥법)과 관련된 것으로 옳은 것은?\n복기된 선지\n- 풍관에서 명관까지 직통하면 死證(사증)이다.\n- 정상지문은 紅紫色(홍자색)을 띠며 은은하고, 風關(풍관) 이상까지 드러나지 않는다.\n- 浮沈分表裏(부침분표리), 紅紫辨寒熱(홍자변한열)을 변형한 선지 [정확한 표현 미복기]\n- 남아는 右手(우수), 여아는 左手(좌수)로 본다.",
+      "years": "21학번 6번 · 22학번 6번",
+      "category": "4",
+      "categoryName": "진단 개요와 연령별 진단법",
+      "chapter": "recent",
+      "inScope": true,
+      "displayAnswer": "첫 번째 진술인 “풍관에서 명관까지 직통하면 사증”이 유력하나 추정 답입니다. 원본 정답 미복기.",
+      "explanation": "정상지문의 홍자색은 홍황색으로 고칩니다. 원래 진단 구절은 부침분표리·홍자변한열입니다. 명관까지 드러나면 중증·불치로 설명되어 첫 진술이 유력하지만, 실제 변형 문구와 공식 정답이 없어 확정하지 않습니다.",
+      "source": "21학번 6번 · 22학번 6번 · 21·22학번 Word 족보 · 수업자료 50, 52쪽 · 써머리 44, 46쪽",
+      "referenceOnly": false,
+      "countStats": false,
+      "note": "정확한 선지와 정답이 확정되지 않은 문항입니다. Word에 수록한 복기 내용과 추정 답을 확인하며, 누적 정답 통계에서는 제외합니다.",
+      "sourceIds": [
+        "Q23"
+      ]
+    },
+    {
+      "id": "R2122-Q30",
+      "type": "mc",
+      "prompt": "舌苔(설태)에 관련된 선지로 틀린 것은?",
+      "originalBody": "舌苔(설태)에 관련된 선지로 틀린 것은?\n①舌苔白色(설태백색) : 寒(한), 表(표)\n②舌苔白膩(설태백니) : 寒濕內滯(한습내체)\n③熱病苔剝(열병태박) : 傷陰(상음)\n④舌苔色黃(설태색황) : 熱(열), 裏(이)\n⑤無苔(무태) : 濕熱內滯(습열내체)",
+      "years": "21학번 8번",
+      "category": "5",
+      "categoryName": "망진",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "5",
+      "displayAnswer": "⑤ — 無苔(무태)는 正氣不足(정기부족). 濕熱內滯(습열내체)는 黃膩(황니)",
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "source": "21학번 8번 · 21·22학번 Word 족보 · 수업자료 61쪽 · 써머리 55쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "舌苔白色(설태백색) : 寒(한), 表(표)",
+        "舌苔白膩(설태백니) : 寒濕內滯(한습내체)",
+        "熱病苔剝(열병태박) : 傷陰(상음)",
+        "舌苔色黃(설태색황) : 熱(열), 裏(이)",
+        "無苔(무태) : 濕熱內滯(습열내체)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q30"
+      ]
+    },
+    {
+      "id": "R2122-Q31",
+      "type": "short",
+      "prompt": "정상 소아의 얼굴색은?",
+      "originalBody": "정상 소아의 얼굴색은?",
+      "years": "21학번 서술형 3번",
+      "category": "5",
+      "categoryName": "망진",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "紅潤而光澤",
+      "displayAnswer": "紅潤而光澤(홍윤이광택)",
+      "explanation": "정상 소아의 얼굴색은 붉고 윤택하며 광택이 있다는 뜻의 홍윤이광택입니다. 혀의 담홍윤택과 구별합니다.",
+      "source": "21학번 서술형 3번 · 21·22학번 Word 족보 · 수업자료 55쪽 · 써머리 49쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "sourceIds": [
+        "Q31"
+      ],
+      "accept": [
+        "홍윤이광택"
+      ]
+    },
+    {
+      "id": "R2122-Q35",
+      "type": "mc",
+      "prompt": "聞診(문진)에 대한 것으로 올바른 것은?",
+      "originalBody": "聞診(문진)에 대한 것으로 올바른 것은?\n①갑자기 큰소리로 자지러지게 울 때 : 뇌막염, 중추신경장애\n②신음하는 것 같은 울음 : 장중첩증, 산통\n③날카로운 울음소리 : 호흡곤란 증후군, 폐렴\n④컹컹하는 울음(croupy cry) : 후두염\n⑤고양이가 우는 소리 같은 울음 : Cornelia de Lange 증후군",
+      "years": "21학번 9번 · 22학번 10번 · ①②③⑤ 복기자 임의 작성",
+      "category": "6",
+      "categoryName": "문진 聞診과 청진",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "4",
+      "displayAnswer": "④ 컹컹하는 울음(croupy cry) : 후두염",
+      "explanation": "④ 컹컹하는 울음–후두염이 맞습니다. ①은 장중첩증·산통, ② 신음은 호흡곤란·폐렴, ③ 날카로운 울음은 뇌막염·중추신경장애, ⑤ 고양이는 묘성증후군으로 고칩니다.",
+      "source": "21학번 9번 · 22학번 10번 · ①②③⑤ 복기자 임의 작성 · 21·22학번 Word 족보 · 수업자료 75쪽 · 써머리 69쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "갑자기 큰소리로 자지러지게 울 때 : 뇌막염, 중추신경장애",
+        "신음하는 것 같은 울음 : 장중첩증, 산통",
+        "날카로운 울음소리 : 호흡곤란 증후군, 폐렴",
+        "컹컹하는 울음(croupy cry) : 후두염",
+        "고양이가 우는 소리 같은 울음 : Cornelia de Lange 증후군"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q35"
+      ]
+    },
+    {
+      "id": "R2122-Q39",
+      "type": "manual",
+      "prompt": "切診(절진)에 관한 문제\n[구체 문항과 선지 미복기]",
+      "originalBody": "切診(절진)에 관한 문제\n[구체 문항과 선지 미복기]",
+      "years": "22학번 9번",
+      "category": "7",
+      "categoryName": "절진",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "정답 미복기",
+      "displayAnswer": "정답 미복기",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "22학번 9번 · 21·22학번 Word 족보 · 수업자료 85, 86쪽 · 써머리 79, 80쪽",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "Q39"
+      ]
+    },
+    {
+      "id": "R2122-Q44",
+      "type": "mc",
+      "prompt": "성장의 패턴(Scammon)에 대해 올바르지 않은 것은?",
+      "originalBody": "성장의 패턴(Scammon)에 대해 올바르지 않은 것은?\n①일반형은 신장, 체중, 호흡기, 소화기, 두위, 근육 및 골 전체의 무게, 혈액량 등에 해당하며 S자형의 패턴을 보이며, 영아기, 사춘기에\n급증한다.\n②신경형은 뇌, 척수, 시각기에 해당하고, 4세경에 성인의 80%에 달한다.\n③림프형은 흉선, 림프절, 편도 등에 해당하고 10~12세경에는 성인의 2배에 달했다가 점차 퇴축하고, 18세쯤에는 성인 정도가 된다.\n④생식형은 생식기, 유선, 음모, 자궁, 전립선으로, 사춘기부터 급속히 커져서 16~18세에 성인치에 도달한다.",
+      "years": "21학번 10번 · 22학번 11번",
+      "category": "8",
+      "categoryName": "성장 발달 개요와 성장 패턴",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "1",
+      "displayAnswer": "① — 두위는 일반형이 아니라 신경형",
+      "explanation": "①의 ‘두위’가 오답 포인트입니다. 두위는 뇌의 발육과 관련된 신경형으로 구분합니다. 나머지의 신경형 4세 80%, 림프형 10~12세 2배, 생식형 사춘기 급증은 자료와 일치합니다.",
+      "source": "21학번 10번 · 22학번 11번 · 21·22학번 Word 족보 · 수업자료 92쪽 · 써머리 86쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "일반형은 신장, 체중, 호흡기, 소화기, 두위, 근육 및 골 전체의 무게, 혈액량 등에 해당하며 S자형의 패턴을 보이며, 영아기, 사춘기에 급증한다.",
+        "신경형은 뇌, 척수, 시각기에 해당하고, 4세경에 성인의 80%에 달한다.",
+        "림프형은 흉선, 림프절, 편도 등에 해당하고 10~12세경에는 성인의 2배에 달했다가 점차 퇴축하고, 18세쯤에는 성인 정도가 된다.",
+        "생식형은 생식기, 유선, 음모, 자궁, 전립선으로, 사춘기부터 급속히 커져서 16~18세에 성인치에 도달한다."
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q44"
+      ]
+    },
+    {
+      "id": "R2122-Q47",
+      "type": "short",
+      "prompt": "생후 2년에는 체중이 출생 시의 몇 배가 되는가?",
+      "originalBody": "생후 2년에는 체중이 출생 시의 몇 배가 되는가?",
+      "years": "21학번 서술형 4번",
+      "category": "9",
+      "categoryName": "체중 신장 신체 비례",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "4배",
+      "displayAnswer": "4배 (약 13kg)",
+      "explanation": "수업자료의 증가배수 표는 1년 3배·10kg, 2년 4배·13kg, 4년 5배·16kg입니다. 이 문항은 2년을 묻기 때문에 4배를 고릅니다.",
+      "source": "21학번 서술형 4번 · 21·22학번 Word 족보 · 수업자료 95쪽 · 써머리 89쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "accept": [
+        "4",
+        "네배"
+      ],
+      "sourceIds": [
+        "Q47"
+      ]
+    },
+    {
+      "id": "R2122-Q49",
+      "type": "manual",
+      "prompt": "신장(키)에 관한 설명 (출제 여부 불확실 — 아래 선지를 조금씩 변형했을 것으로 추정)\n①出生時(출생시)는 머리는 크고, 동체는 길며 하지는 짧고, 팔은 다리보다 길다.\n②출생 시 몸의 중앙점은 배꼽보다 2cm 가량 위쪽에 있다.\n③사지는 동체보다 더 빨리 자란다.\n④사춘기 때 동체와 사지는 비슷한 성장 속도, 이후 동체가 약간 빨리 성장한다.\n⑤신장은 성숙이 완료될 때까지 계속 성장한다.",
+      "originalBody": "신장(키)에 관한 설명 (출제 여부 불확실 — 아래 선지를 조금씩 변형했을 것으로 추정)\n①出生時(출생시)는 머리는 크고, 동체는 길며 하지는 짧고, 팔은 다리보다 길다.\n②출생 시 몸의 중앙점은 배꼽보다 2cm 가량 위쪽에 있다.\n③사지는 동체보다 더 빨리 자란다.\n④사춘기 때 동체와 사지는 비슷한 성장 속도, 이후 동체가 약간 빨리 성장한다.\n⑤신장은 성숙이 완료될 때까지 계속 성장한다.",
+      "years": "21학번 11번",
+      "category": "9",
+      "categoryName": "체중 신장 신체 비례",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "복기된 문장은 모두 O — 실제 출제 여부·변형 선지는 불확실",
+      "displayAnswer": "복기된 문장은 모두 O — 실제 출제 여부·변형 선지는 불확실",
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "source": "21학번 11번 · 21·22학번 Word 족보 · 수업자료 96, 98쪽 · 써머리 90, 92쪽",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "Q49"
+      ]
+    },
+    {
+      "id": "R2122-Q50",
+      "type": "manual",
+      "prompt": "(그림 제시) 10개월 아기의 대천문 크기를 재고, 정상과 비교하시오.\n㉠ (　　　　)cm　㉡ (크다 / 작다)\n[원시험의 제시 그림은 복기 파일에 없음]",
+      "originalBody": "(그림 제시) 10개월 아기의 대천문 크기를 재고, 정상과 비교하시오.\n㉠ (　　　　)cm　㉡ (크다 / 작다)\n[원시험의 제시 그림은 복기 파일에 없음]",
+      "years": "21학번 서술형 5번",
+      "category": "10",
+      "categoryName": "천문과 두위",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "공식: 대천문 크기 = (마주 보는 변의 중점 사이 거리 두 개의 합) ÷ 2 21학번: ㉠ 2.5cm ㉡ 크다 (10~12개월 평균 1.0cm)",
+      "displayAnswer": "㉠ 2.5cm　㉡ 크다",
+      "explanation": "대천문 크기는 마주 보는 변의 중점 사이 거리 두 개의 평균입니다. 복기된 2.5cm는 10~12개월 평균 1.0cm보다 큽니다.",
+      "source": "21학번 서술형 5번 · 21·22학번 Word 족보 · 수업자료 102쪽 · 써머리 96쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "원시험의 제시 그림은 복기 파일에 없습니다. Word에 수록된 복기 답과 계산 방법을 확인하고 자가채점합니다.",
+      "answerImage": "data:image/png;base64,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",
+      "answerImageCaption": "해설용 대천문 크기 표 · 원시험 계측 그림과 구별",
+      "sourceIds": [
+        "Q50"
+      ]
+    },
+    {
+      "id": "R2122-Q53",
+      "type": "manual",
+      "prompt": "소아의 두부 발달과 관련된 문제 — 대천문, 소천문, 두위와 관련된 선지가 나왔고, 해당 부분이 언제, 얼마나 발달하는지에 관한\n선지로 구성됨",
+      "originalBody": "소아의 두부 발달과 관련된 문제 — 대천문, 소천문, 두위와 관련된 선지가 나왔고, 해당 부분이 언제, 얼마나 발달하는지에 관한\n선지로 구성됨",
+      "years": "22학번 15번",
+      "category": "10",
+      "categoryName": "천문과 두위",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "정답 번호 미복기",
+      "displayAnswer": "정답 번호 미복기",
+      "explanation": "관련 수치는 소천문 6~8주·대천문 14~18개월 폐쇄, 두위 출생 34cm→1년 46cm→4세 50cm입니다. 두위는 출생 시 흉위보다 크고 1년에는 비슷해집니다. 실제 선지가 없어 정답 번호는 미복기입니다.",
+      "source": "22학번 15번 · 21·22학번 Word 족보 · 수업자료 101, 103쪽 · 써머리 95, 97쪽",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "Q53"
+      ]
+    },
+    {
+      "id": "R2122-Q54",
+      "type": "fill",
+      "prompt": "다음에 해당하는 반사의 이름과 소실 시기를 쓰시오.\n\"아이의 흉복부를 검사자의 손바닥으로 떠받치면(ventral suspension) 머리를 위로 들고 몸통을 배굴하며 하지를 신전한다.\n다음에 검사자의 손으로 머리를 굴곡시키면 양하지가 굴곡하는 반응을 말한다.\"",
+      "originalBody": "다음에 해당하는 반사의 이름과 소실 시기를 쓰시오.\n\"아이의 흉복부를 검사자의 손바닥으로 떠받치면(ventral suspension) 머리를 위로 들고 몸통을 배굴하며 하지를 신전한다.\n다음에 검사자의 손으로 머리를 굴곡시키면 양하지가 굴곡하는 반응을 말한다.\"",
+      "years": "21학번 서술형 6번",
+      "category": "11",
+      "categoryName": "뇌의 성장과 정상반사",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": [
+        "Landau",
+        "1~2년"
+      ],
+      "displayAnswer": "Landau 반사, 소실 시기 1~2년",
+      "explanation": "흉복부를 손바닥으로 받치면 머리를 들고 몸통·하지를 펴며, 머리를 굽히면 양하지가 굽혀지는 Landau 반사입니다. 소실시기 표에서 1~2년으로 가장 늦은 편입니다.",
+      "source": "21학번 서술형 6번 · 21·22학번 Word 족보 · 수업자료 116, 122쪽 · 써머리 110, 116쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "aliases": [
+        [
+          "Landau반사",
+          "란다우",
+          "란다우반사",
+          "란도반사"
+        ],
+        [
+          "1~2세",
+          "12~24개월",
+          "1-2년"
+        ]
+      ],
+      "fieldLabels": [
+        "반사 이름",
+        "소실 시기"
+      ],
+      "unordered": false,
+      "groups": [],
+      "sourceIds": [
+        "Q54"
+      ]
+    },
+    {
+      "id": "R2122-Q59",
+      "type": "mc",
+      "prompt": "소아의 치아와 관련된 선지로 올바른 것은?",
+      "originalBody": "소아의 치아와 관련된 선지로 올바른 것은?\n①16개월 소아가 치아 6개 난 것은 정상이다.\n②유치 수는 월령수 – 8이다.\n③영구치 중 가장 먼저 나는 것은 내절치이다.\n④6개월부터 치아가 나기 시작한다.\n⑤(복기 안 됨)",
+      "years": "21학번 12번 · 22학번 14번 · ① 복기자 임의 작성",
+      "category": "12",
+      "categoryName": "치아의 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "4",
+      "displayAnswer": "④ 6개월부터 치아가 나기 시작한다",
+      "explanation": "④ 생후 6개월 무렵부터 치아가 나기 시작한다는 것이 족보 답입니다. ②의 유치수 공식은 월령−6으로 고치며, ③ 최초 영구치는 내절치가 아니라 제1대구치입니다. 유치는 총 20개로 2년 반 무렵 완성됩니다.",
+      "source": "21학번 12번 · 22학번 14번 · ① 복기자 임의 작성 · 21·22학번 Word 족보 · 수업자료 128, 129쪽 · 써머리 122, 123쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "16개월 소아가 치아 6개 난 것은 정상이다.",
+        "유치 수는 월령수 – 8이다.",
+        "영구치 중 가장 먼저 나는 것은 내절치이다.",
+        "6개월부터 치아가 나기 시작한다.",
+        "(복기 안 됨)"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q59"
+      ]
+    },
+    {
+      "id": "R2122-Q63",
+      "type": "mc",
+      "prompt": "소화기계에 대한 설명으로 올바르지 않은 것은?",
+      "originalBody": "소화기계에 대한 설명으로 올바르지 않은 것은?\n①위저부의 발달이 적고 원주상 또는 서양배 모양, 분문부의 폐쇄가 미완성이다.\n②生後(생후) 半年(반년) 以上(이상)이 지나면 胃底(위저)가 형성된다.\n③위용량은 신생아는 50ml이고, 성인과 비슷한 수준이 되는 것은 8세이다.\n④간은 태아기에는 조혈작용, 생후에는 신진대사에 관여한다.\n⑤신생아에서 장의 길이는 신장의 약 7배이다.",
+      "years": "21학번 13번",
+      "category": "13",
+      "categoryName": "소화기계와 대변",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "3",
+      "displayAnswer": "③ — 강의록은 '10세에 成人(성인)과 비슷한 모양'. (신생아 50ml는 맞음)",
+      "explanation": "③의 ‘8세’를 ‘10세에 성인과 비슷한 모양’으로 고칩니다. 신생아 위용량 50ml는 맞습니다. ①·②·④·⑤도 위저 미숙·반년 후 형성·간 기능·장 길이에 대한 자료와 일치합니다.",
+      "source": "21학번 13번 · 21·22학번 Word 족보 · 수업자료 135쪽 · 써머리 129쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "위저부의 발달이 적고 원주상 또는 서양배 모양, 분문부의 폐쇄가 미완성이다.",
+        "生後(생후) 半年(반년) 以上(이상)이 지나면 胃底(위저)가 형성된다.",
+        "위용량은 신생아는 50ml이고, 성인과 비슷한 수준이 되는 것은 8세이다.",
+        "간은 태아기에는 조혈작용, 생후에는 신진대사에 관여한다.",
+        "신생아에서 장의 길이는 신장의 약 7배이다."
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q63"
+      ]
+    },
+    {
+      "id": "R2122-Q64",
+      "type": "mc",
+      "prompt": "胎便(태변)에 대한 설명으로 옳지 않은 것은?",
+      "originalBody": "胎便(태변)에 대한 설명으로 옳지 않은 것은?\n①출생 후 처음 보는 대변\n②보통 출생 후 10시간쯤에 나오며, 2~3日間(일간) 계속되다 이행변을 거쳐 일반 변으로 대체\n③탈락되어 들이마신 세포, 태아의 솜털, 태지, 담즙색소 등이 섞여 있으며 암록색(알칼리성)\n④만약 48시간 내에 나오지 않으면 장폐색 의심\n⑤移行便(이행변) : 생후 4일에서 2주까지의 변. 묽고 점액성. 녹색에서 황색까지 다양",
+      "years": "21학번 14번 · 22학번 13번",
+      "category": "13",
+      "categoryName": "소화기계와 대변",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "4",
+      "displayAnswer": "④ — 24시간 내에 나오지 않으면 장폐색 의심",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "21학번 14번 · 22학번 13번 · 21·22학번 Word 족보 · 수업자료 142쪽 · 써머리 136쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "출생 후 처음 보는 대변",
+        "보통 출생 후 10시간쯤에 나오며, 2~3日間(일간) 계속되다 이행변을 거쳐 일반 변으로 대체",
+        "탈락되어 들이마신 세포, 태아의 솜털, 태지, 담즙색소 등이 섞여 있으며 암록색(알칼리성)",
+        "만약 48시간 내에 나오지 않으면 장폐색 의심",
+        "移行便(이행변) : 생후 4일에서 2주까지의 변. 묽고 점액성. 녹색에서 황색까지 다양"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q64"
+      ]
+    },
+    {
+      "id": "R2122-Q69",
+      "type": "mc",
+      "prompt": "감각의 발달에 관한 내용으로 틀린 것은?",
+      "originalBody": "감각의 발달에 관한 내용으로 틀린 것은?\n①신생아는 20~30cm 정도로 보고, 45~90˚ 정도이다.\n②4개월쯤 물체를 따라 손을 움찔거린다.\n③짠맛과 쓴맛은 4~6개월경 구별한다.\n④4세에 성인의 정상 시력에 도달한다.\n⑤촉각은 출생 시 입술, 혀를 제외하고는 미발달이다.",
+      "years": "21학번 15번",
+      "category": "14",
+      "categoryName": "감각 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "4",
+      "displayAnswer": "④ — 5~6세",
+      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다.",
+      "source": "21학번 15번 · 21·22학번 Word 족보 · 수업자료 146, 150쪽 · 써머리 140, 144쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "신생아는 20~30cm 정도로 보고, 45~90˚ 정도이다.",
+        "4개월쯤 물체를 따라 손을 움찔거린다.",
+        "짠맛과 쓴맛은 4~6개월경 구별한다.",
+        "4세에 성인의 정상 시력에 도달한다.",
+        "촉각은 출생 시 입술, 혀를 제외하고는 미발달이다."
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q69"
+      ]
+    },
+    {
+      "id": "R2122-Q71",
+      "type": "mc",
+      "prompt": "발달에 관한 설명으로 올바르지 않은 것은?",
+      "originalBody": "발달에 관한 설명으로 올바르지 않은 것은?\n①머리에서 다리로 발달한다.\n②3~4개월에 목을 가눈다.\n③2년에는 잘 뛴다.\n④7~8개월에 혼자 앉는다.\n⑤걸음마는 9~10개월에 가능하다.",
+      "years": "21학번 17번 · 22학번 17번",
+      "category": "15",
+      "categoryName": "운동발달 원칙과 대근육 운동",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "5",
+      "displayAnswer": "⑤ 걸음마는 9~10개월에 가능하다 (혼자 걷기는 12~15개월)",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "21학번 17번 · 22학번 17번 · 21·22학번 Word 족보 · 수업자료 153, 154쪽 · 써머리 147, 148쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "기존 족보의 선택답 기준입니다. 이번 발달표와 다른 수치는 해설에서 확인합니다.",
+      "choices": [
+        "머리에서 다리로 발달한다.",
+        "3~4개월에 목을 가눈다.",
+        "2년에는 잘 뛴다.",
+        "7~8개월에 혼자 앉는다.",
+        "걸음마는 9~10개월에 가능하다."
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Q71"
+      ]
+    },
+    {
+      "id": "R2122-A4",
+      "type": "manual",
+      "prompt": "다음 시기는 언제인가? \"작은 알을 엄지와 집게손가락의 끝 부분으로만 집어든다.\"",
+      "originalBody": "다음 시기는 언제인가? \"작은 알을 엄지와 집게손가락의 끝 부분으로만 집어든다.\"",
+      "years": "21학번 서술형 7번",
+      "category": "16",
+      "categoryName": "소근육 운동과 배변훈련",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "기존 족보: 9~10개월 / 수업자료: 작은 물체 집기 10개월·정확히 집기 12개월",
+      "displayAnswer": "기존 족보: 9~10개월 / 수업자료: 작은 물체 집기 10개월·정확히 집기 12개월",
+      "explanation": "표 3-10은 작은 물체를 엄지·검지로 집기를 10개월, 연령별 표 3-14는 엄지·집게손가락으로 정확히 집기를 12개월로 적습니다. ‘끝부분으로 정확히’라는 표현은 두 표와 과거 답이 달라 함께 표시했습니다.",
+      "source": "21학번 서술형 7번 · 21·22학번 Word 족보 · 수업자료 156, 171쪽",
+      "referenceOnly": false,
+      "countStats": false,
+      "note": "",
+      "sourceIds": [
+        "A4"
+      ]
+    },
+    {
+      "id": "R2122-A13",
+      "type": "short",
+      "prompt": "피아제의 아동 발달이론에서 \"까꿍놀이\"와 관련된 개념은?",
+      "originalBody": "피아제의 아동 발달이론에서 \"까꿍놀이\"와 관련된 개념은?",
+      "years": "22학번 주관식 까꿍놀이",
+      "category": "17",
+      "categoryName": "정서 사회성 수면과 복합 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "대상영속성",
+      "displayAnswer": "대상영속성 (object permanence)",
+      "explanation": "대상영속성은 눈앞에서 사라진 물체도 실제로는 계속 존재함을 아는 것입니다. 수업자료는 까꿍놀이를 반복하며 이를 알아가는 과정을 설명합니다.",
+      "source": "22학번 주관식 까꿍놀이 · 21·22학번 Word 족보 · 수업자료 166쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "accept": [
+        "objectpermanence",
+        "대상영구성"
+      ],
+      "sourceIds": [
+        "A13"
+      ]
+    },
+    {
+      "id": "R2122-A15",
+      "type": "short",
+      "prompt": "다음 시기는 언제인가? — 흘리면서 스스로 먹는다 / 단어 10개를 말한다 / 한 손을 잡고 층계를 걸어 올라간다 / 자의로 그림을\n그린다",
+      "originalBody": "다음 시기는 언제인가? — 흘리면서 스스로 먹는다 / 단어 10개를 말한다 / 한 손을 잡고 층계를 걸어 올라간다 / 자의로 그림을\n그린다",
+      "years": "21학번 서술형 8번",
+      "category": "17",
+      "categoryName": "정서 사회성 수면과 복합 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "18개월",
+      "displayAnswer": "18개월",
+      "explanation": "표 3-14의 18개월 행에 한 손 잡고 계단 오르기, 자의로 그림 그리기, 10단어 말하기, 흘리며 혼자 먹기가 함께 나옵니다. 다른 영역의 단서도 같은 행으로 묶어 답합니다.",
+      "source": "21학번 서술형 8번 · 21·22학번 Word 족보 · 수업자료 171쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "accept": [
+        "18",
+        "1년6개월",
+        "1세6개월"
+      ],
+      "sourceIds": [
+        "A15"
+      ]
+    },
+    {
+      "id": "R2122-A16",
+      "type": "manual",
+      "prompt": "소아의 발달 개월 수가 올바르게 매칭되었는지 묻는 문제\n1. 혼자 일어난다 2. 달라고 하면 장난감을 준다 3. 엄마 아빠 외의 단어를 말한다 4. 컵을 들고 마신다 5. 간단한 공놀이를 한다",
+      "originalBody": "소아의 발달 개월 수가 올바르게 매칭되었는지 묻는 문제\n1. 혼자 일어난다 2. 달라고 하면 장난감을 준다 3. 엄마 아빠 외의 단어를 말한다 4. 컵을 들고 마신다 5. 간단한 공놀이를 한다",
+      "years": "22학번 18번",
+      "category": "17",
+      "categoryName": "정서 사회성 수면과 복합 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "표 3-14 기준 5개 모두 12개월 행의 항목 (혼자 선다 / 달라고 하면 장난감을 준다 / 엄마·아빠 외의 단어 / 컵으로 마신다 / 간단한 공놀이)",
+      "displayAnswer": "표 3-14 기준 5개 모두 12개월 행의 항목 (혼자 선다 / 달라고 하면 장난감을 준다 / 엄마·아빠 외의 단어 / 컵으로 마신다 / 간단한 공놀이)",
+      "explanation": "표 3-14의 12개월 행에는 혼자 서기·달라고 하면 장난감 주기·엄마 아빠 외 단어·컵으로 마시기·간단한 공놀이가 모두 있습니다. 실제 문제의 제시 개월 수는 복기되지 않아 각 항목의 기준 나이를 적었습니다. 복기된 “혼자 일어난다”는 표의 “혼자 선다”와 대조한 것으로, 정확한 동작 표현은 원문 확인이 필요합니다.",
+      "source": "22학번 18번 · 21·22학번 Word 족보 · 수업자료 171쪽",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "A16"
+      ]
+    },
+    {
+      "id": "R2122-A17",
+      "type": "short",
+      "prompt": "정육면체 3개를 쌓을 수 있는 개월 수는?",
+      "originalBody": "정육면체 3개를 쌓을 수 있는 개월 수는?",
+      "years": "22학번 주관식 정육면체",
+      "category": "16",
+      "categoryName": "소근육 운동과 배변훈련",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "18개월",
+      "displayAnswer": "18개월 (2개 15개월, 6개 2년)",
+      "explanation": "표 3-14에서 정육면체 2개는 15개월, 3개는 18개월, 6개는 2년입니다. 별도의 소근육 표 3-10은 6개 쌓기를 22개월로 적지만, 이 문제의 ‘3개’는 18개월로 확인됩니다.",
+      "source": "22학번 주관식 정육면체 · 21·22학번 Word 족보 · 수업자료 156, 171쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "accept": [
+        "18",
+        "1년6개월",
+        "1세6개월"
+      ],
+      "sourceIds": [
+        "A17"
+      ]
+    },
+    {
+      "id": "R2122-A18",
+      "type": "manual",
+      "prompt": "소아의 수면과 관련된 문제\n[구체 문항과 선지 미복기]",
+      "originalBody": "소아의 수면과 관련된 문제\n[구체 문항과 선지 미복기]",
+      "years": "22학번 16번",
+      "category": "17",
+      "categoryName": "정서 사회성 수면과 복합 발달",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "정답 선지 미복기 / 수면 시간: 신생아 15~20시간·영아 14~16시간·2세 13시간·5세 11시간·10세 10시간·사춘기 8~9시간",
+      "displayAnswer": "정답 선지 미복기 / 수면 시간: 신생아 15~20시간·영아 14~16시간·2세 13시간·5세 11시간·10세 10시간·사춘기 8~9시간",
+      "explanation": "수업자료의 수면시간은 나이가 들수록 감소합니다. REM은 근긴장 저하·빠르고 불규칙한 호흡과 맥박·꿈, NREM은 규칙적 호흡과 맥박·야경증·몽유병으로 비교합니다.",
+      "source": "22학번 16번 · 21·22학번 Word 족보 · 수업자료 160쪽",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "A18"
+      ]
+    },
+    {
+      "id": "R2122-A23",
+      "type": "mc",
+      "prompt": "청소년기의 발달에 대한 설명으로 올바른 것은?",
+      "originalBody": "청소년기의 발달에 대한 설명으로 올바른 것은?\n① 여자에서는 유방의 발달과 음모가 기준, 남자는 성기의 변화와 음모가 기준\n② 초경은 SMR3에서 관찰\n③ SMR1은 사춘기 시작, SMR5는 성장 완료를 의미한다.\n④ 남자의 PHV는 SMR3이다.\n⑤ 사정은 SMR4에서 경험",
+      "years": "21학번 16번 · 추가 복기 선지 함께 수록",
+      "category": "18",
+      "categoryName": "청소년기와 성 성숙",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "1",
+      "displayAnswer": "① (나머지: 초경 SMR4, SMR1 = 사춘기 전, 남 PHV SMR4, 사정 SMR3, 음모도 기준에 포함)",
+      "explanation": "①은 여자 유방·음모, 남자 성기·음모로 맞습니다. ② 초경은 SMR4, ③ SMR1은 사춘기 전·SMR5는 어른 상태, ④ 남자 PHV는 SMR4, ⑤ 사정은 SMR3으로 고칩니다. 추가 복기 이미지에는 ⑤가 “음모의 여부는 사춘기 시작의 증거로 보지 않는다”로 기록되어 있으며, 이 진술도 X입니다.",
+      "source": "21학번 16번 · 추가 복기 선지 함께 수록 · 21·22학번 Word 족보 · 수업자료 183쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "여자에서는 유방의 발달과 음모가 기준, 남자는 성기의 변화와 음모가 기준",
+        "초경은 SMR3에서 관찰",
+        "SMR1은 사춘기 시작, SMR5는 성장 완료를 의미한다.",
+        "남자의 PHV는 SMR3이다.",
+        "사정은 SMR4에서 경험"
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "A23"
+      ]
+    },
+    {
+      "id": "R2122-B8",
+      "type": "manual",
+      "prompt": "NOONAN 증후군 관련 설명을 보고 해당 증후군을 고르시오.\n[제시된 설명과 전체 선지 미복기]",
+      "originalBody": "NOONAN 증후군 관련 설명을 보고 해당 증후군을 고르시오.\n[제시된 설명과 전체 선지 미복기]",
+      "years": "22학번 21번",
+      "category": "19",
+      "categoryName": "유전과 대사 질환",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "Noonan(누난) 증후군",
+      "displayAnswer": "Noonan(누난) 증후군",
+      "explanation": "해설집은 터너와 비슷한 외모이지만 정상 핵형이고 남녀 모두 생기는 점을 구별합니다. 작은 키·익상경·폐동맥판 협착·넓은 가슴·낮은 귀를 제시합니다.",
+      "source": "22학번 21번 · 21·22학번 Word 족보",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "B8"
+      ]
+    },
+    {
+      "id": "R2122-B9",
+      "type": "manual",
+      "prompt": "클라인펠터 증후군과 관련된 설명을 제시한 문제.\n복기된 선지: 정신지체가 흔하다.\n[옳은 것과 틀린 것 중 무엇을 묻는지 미복기]",
+      "originalBody": "클라인펠터 증후군과 관련된 설명을 제시한 문제.\n복기된 선지: 정신지체가 흔하다.\n[옳은 것과 틀린 것 중 무엇을 묻는지 미복기]",
+      "years": "22학번 22번",
+      "category": "19",
+      "categoryName": "유전과 대사 질환",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "복기상 선택 문장: “정신지체가 흔하다” / 옳은 것·틀린 것의 질문 방향 미복기",
+      "displayAnswer": "복기상 선택 문장: “정신지체가 흔하다” / 옳은 것·틀린 것의 질문 방향 미복기",
+      "explanation": "복기에는 ‘정신지체가 흔하다’는 선지를 골랐다고만 남아 있고 정오를 묻는 방향이 없습니다. 해설집의 관련 소견은 작은 고환·무정자증·여성형 유방·큰 키·학습/언어 문제입니다. 새 수업자료에는 이 단원이 없어 판정을 새로 확정하지 않습니다.",
+      "source": "22학번 22번 · 21·22학번 Word 족보",
+      "referenceOnly": true,
+      "countStats": false,
+      "note": "문항·선지·그림의 복기가 불완전해 정답 번호를 확정할 수 없습니다. 관련 내용과 출처를 확인합니다.",
+      "sourceIds": [
+        "B9"
+      ]
+    },
+    {
+      "id": "R2122-Y22-19변형",
+      "type": "mc",
+      "prompt": "청소년기의 발달에 대한 설명으로 올바른 것은?",
+      "originalBody": "청소년기의 발달에 대한 설명으로 올바른 것은?\n① 여자에서는 유방의 발달이, 남자는 성기의 변화가 기준\n② 초경은 SMR3에서 관찰\n③ SMR1은 사춘기 시작, SMR5는 성장 완료를 의미한다.\n④ 남자의 PHV는 SMR3이다.\n⑤ 음모의 발달은 사춘기 시작의 기준으로 보지 않는다.",
+      "years": "22학번 19번",
+      "category": "18",
+      "categoryName": "청소년기와 성 성숙",
+      "chapter": "recent",
+      "inScope": true,
+      "answer": "1",
+      "displayAnswer": "①",
+      "explanation": "①이 맞습니다. ② 초경은 SMR4, ③ SMR1은 사춘기 전, ④ 남아 PHV는 SMR4입니다. ⑤ 음모도 수업자료의 성숙도 평가 기준에 포함되므로 X입니다.",
+      "source": "22학번 19번 · 21·22학번 Word 족보 · 수업자료 183쪽",
+      "referenceOnly": false,
+      "countStats": true,
+      "note": "",
+      "choices": [
+        "여자에서는 유방의 발달이, 남자는 성기의 변화가 기준",
+        "초경은 SMR3에서 관찰",
+        "SMR1은 사춘기 시작, SMR5는 성장 완료를 의미한다.",
+        "남자의 PHV는 SMR3이다.",
+        "음모의 발달은 사춘기 시작의 기준으로 보지 않는다."
+      ],
+      "choiceLabels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ],
+      "multiple": false,
+      "sourceIds": [
+        "Y22-19변형"
+      ]
+    }
+  ]
+}
