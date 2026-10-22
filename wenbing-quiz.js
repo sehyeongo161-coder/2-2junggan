@@ -10,7 +10,7 @@ let bank=[],byId=new Map(),categories={},s=null,uid=null,loaded=false,pending=nu
 let scope='past',topic='all',viewMode='quiz',listAnswersShown=true,lastHeight=0;
 function host(){try{const p=parent;return p!==window&&p.location.origin===location.origin&&typeof p.__QUIZ_USER_ID==='string'&&p.__QUIZ_STORAGE&&typeof p.__QUIZ_TRACK_ATTEMPT==='function'?p:null;}catch{return null;}}
 function prefix(){return 'midterm-2-2-2026:quiz:v1:'+uid+':wenbing-v1';}
-function key(){return prefix()+':scope:'+scope+':topic:'+topic;}
+function key(){return prefix()+':scope:'+scope+':topic:'+topic+(['concept','all'].includes(scope)?':past-core-v2':'');}
 function save(){host()?.__QUIZ_STORAGE.setItem(key(),JSON.stringify(s));}
 function saveScope(){host()?.__QUIZ_STORAGE.setItem(prefix()+':selection',JSON.stringify({scope,topic}));}
 function inScope(q,which){return which==='all'||which==='reference'&&q.referenceOnly||q.kind===which;}
@@ -100,7 +100,11 @@ function updateHeader(){
 }
 function questionFigure(q){return q.figureSvg?'<figure class="figure-block"><div class="figure-tools"><span>문제 그림</span><button type="button" class="figure-zoom" aria-expanded="false">그림 확대</button></div><div class="figure-viewport" tabindex="0">'+q.figureSvg+'</div><figcaption>'+esc(q.figureCaption)+'</figcaption></figure>':'';}
 function answerImage(q){return q.answerImage?'<figure class="figure-block"><img src="'+esc(q.answerImage)+'" alt="'+esc(q.answerImageCaption)+'"><figcaption>'+esc(q.answerImageCaption)+'</figcaption></figure>':'';}
-function answerBody(q){const parentQ=byId.get(q.basedOn);return '<div class="grade-body"><p class="answer-key"><b>정답:</b> '+esc(q.displayAnswer)+'</p><p><b>해설:</b> '+esc(q.explanation)+'</p>'+answerImage(q)+(q.note?'<p class="paper-note">'+esc(q.note)+'</p>':'')+(parentQ?'<p class="paper-note">변형 근거: '+esc(parentQ.years)+' · '+esc(parentQ.prompt)+'</p>':'')+'<p class="paper-note">출처: '+esc(q.source)+'</p></div>';}
+function answerBody(q){
+ const papers=(q.basedOnIds||[q.basedOn]).map(id=>byId.get(id)).filter(Boolean);
+ const evidence=papers.length?'<p class="paper-note">'+(q.kind==='concept'?'족보 근거: ':'변형 근거: ')+papers.map(p=>esc(p.years)+(q.kind==='concept'?'':' · '+esc(p.prompt))).join(' / ')+'</p>':'';
+ return '<div class="grade-body"><p class="answer-key"><b>정답:</b> '+esc(q.displayAnswer)+'</p><p><b>해설:</b> '+esc(q.explanation)+'</p>'+answerImage(q)+(q.note?'<p class="paper-note">'+esc(q.note)+'</p>':'')+evidence+'<p class="paper-note">출처: '+esc(q.source)+'</p></div>';
+}
 function feedback(q){
  const yes=s.decision?.correct&&!s.decision?.revealed;
  const status=s.decision?.revealed?'정답 확인 · 다음에 재출제':yes?'정답입니다!':'오답입니다 · 다음에 재출제';
@@ -172,7 +176,10 @@ function renderList(){
 function selectView(mode){viewMode=mode==='list'?'list':'quiz';const quiz=viewMode==='quiz';$('quiz-view').hidden=!quiz;$('list-view').hidden=quiz;for(const [id,on]of [['view-quiz',quiz],['view-list',!quiz]]){$(id).setAttribute('aria-selected',String(on));$(id).tabIndex=on?0:-1;}if(quiz)render();else renderList();requestAnimationFrame(resize);}
 function reset(){s=blankState();save();render();focusQuestion();}
 function goTo(id){
- if(!byId.has(id))return;const q=byId.get(id);
+ if(!byId.has(id)){
+  if(/^C-\d{3}$/.test(id)){setScope('concept');selectView('quiz');$('quiz-scope-help').textContent='이전 개념확인 문항은 족보 핵심 62문항으로 개편되었습니다.';requestAnimationFrame(focusQuestion);}
+  return;
+ }const q=byId.get(id);
  if(!scopedBank().some(x=>x.id===id))setScope(q.kind,q.category);
  let at=s.order.indexOf(id);
  if(at<0||s.phase==='done'){s.phase='first';s.order=scopedBank().map(x=>x.id);s.cursor=0;at=s.order.indexOf(id);}
@@ -198,11 +205,12 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
 (async()=>{
  try{
   const p=host();if(!p)throw Error('로그인 후 온병학 탭에서 열어주세요.');uid=p.__QUIZ_USER_ID;
-  const [r,c]=await Promise.all([fetch('./wenbing-bank.json?v=20261022-wenbing-v1',{cache:'no-cache'}),fetch('./wenbing-categories.json?v=20261022-wenbing-v1',{cache:'no-cache'})]);
+  const [r,c]=await Promise.all([fetch('./wenbing-bank.json?v=20261023-past-core-v2',{cache:'no-cache'}),fetch('./wenbing-categories.json?v=20261023-past-core-v2',{cache:'no-cache'})]);
   if(!r.ok||!c.ok)throw Error('온병학 문제 데이터를 불러올 수 없습니다.');
   bank=await r.json();categories=await c.json();
-  if(!Array.isArray(bank)||bank.length!==263||new Set(bank.map(q=>q.id)).size!==bank.length||bank.some(q=>!Object.hasOwn(categories,q.category)||!['past','variant','concept'].includes(q.kind)||!q.prompt||!q.explanation||!q.source||!Object.hasOwn(TYPES,q.type)))throw Error('온병학 문제 데이터 형식이 올바르지 않습니다.');
+  if(!Array.isArray(bank)||bank.length!==214||new Set(bank.map(q=>q.id)).size!==bank.length||bank.some(q=>!Object.hasOwn(categories,q.category)||!['past','variant','concept'].includes(q.kind)||!q.prompt||!q.explanation||!q.source||!Object.hasOwn(TYPES,q.type)))throw Error('온병학 문제 데이터 형식이 올바르지 않습니다.');
   byId=new Map(bank.map(q=>[q.id,q]));
+  if(bank.some(q=>q.kind==='concept'&&(!q.basedOnIds?.length||q.basedOnIds.some(id=>byId.get(id)?.kind!=='past'))))throw Error('개념확인 문항의 족보 근거를 확인할 수 없습니다.');
   let selection;try{selection=JSON.parse(p.__QUIZ_STORAGE.getItem(prefix()+':selection')||'null');}catch{}
   if(selection&&Object.hasOwn(SCOPES,selection.scope)){scope=selection.scope;topic=String(selection.topic||'all');}
   renderScope();s=loadedState();loaded=true;$('study').hidden=false;render();if(pending){goTo(pending);pending=null;}

@@ -3820,586 +3820,422 @@
     "basedOn": "P-q20-40"
   },
   {
-    "id": "C-001",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "0",
-    "categoryName": "온병 진단 총론",
-    "prompt": "풍온이라는 병명만 확인한 뒤 바로 치료를 정하려고 합니다. 추가로 해야 할 것은?",
-    "explanation": "병명과 증후의 변증은 별개입니다. 관찰 자료를 모은 뒤 성질·부위를 종합합니다.",
-    "source": "9/4 · PDF 3~6쪽",
-    "inScope": true,
-    "years": "개념확인 · 온병 진단 총론",
-    "type": "mc",
-    "choices": [
-      "설태의 색만 확인",
-      "위기영혈·병변 장부·허실을 변증",
-      "서양의학 병명은 항상 생략",
-      "병명만 같으면 같은 처방 선택"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "위기영혈·병변 장부·허실을 변증"
-  },
-  {
-    "id": "C-002",
+    "id": "C2-001",
     "kind": "concept",
     "chapter": "concept",
     "category": "1",
     "categoryName": "설진",
-    "prompt": "설태와 설질이 반영하는 단계를 강의의 주된 구분에 맞게 연결한 것은?",
-    "explanation": "주된 대응입니다. 태와 설질 및 전신증상을 종합하므로 하나만으로 병위를 단정하지 않습니다.",
-    "source": "9/4 · PDF 7~9쪽",
     "inScope": true,
-    "years": "개념확인 · 설진",
+    "years": "족보 핵심 개념",
+    "prompt": "설진의 의의로 족보에서 묻는 내용을 바르게 묶은 것은?",
+    "explanation": "족보의 핵심은 병의 성질·병변의 심천·장부의 허실·진액의 존망입니다. ‘진액’을 ‘양기’로 바꾼 선지를 구별하세요.",
+    "source": "9/4 · PDF 7~9쪽 — 설진의 의의",
+    "basedOn": "P-q20-26",
+    "basedOnIds": [
+      "P-q20-26",
+      "P-q21-41"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "설태—위기분 / 설질—영혈분",
-      "설태—영혈분 / 설질—위기분",
-      "모두 위분만 반영",
-      "모두 혈분만 반영"
+      "병의 성질·심천, 장부의 허실, 진액의 존망",
+      "설태의 색과 관계없는 병명 판정",
+      "병명과 원인균의 확정",
+      "병의 성질·심천, 장부의 허실, 양기의 존망"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "설태—위기분 / 설질—영혈분"
+    "displayAnswer": "병의 성질·심천, 장부의 허실, 진액의 존망",
+    "multiple": false
   },
   {
-    "id": "C-003",
+    "id": "C2-002",
     "kind": "concept",
     "chapter": "concept",
     "category": "1",
     "categoryName": "설진",
-    "prompt": "정상 설태에 가까운 모습은?",
-    "explanation": "정상은 박백·약간 촉촉함·윤기입니다.",
-    "source": "9/4 · PDF 13~16쪽",
     "inScope": true,
-    "years": "개념확인 · 설진",
+    "years": "족보 핵심 개념",
+    "prompt": "설진할 때 주의할 점으로 맞는 것은?",
+    "explanation": "오래 내밀기·혀 말림에 따른 색 변화와 음식에 의한 염태가 반복 출제됩니다. 자연스럽게 내민 혀를 관찰한다는 기준으로 묶으세요.",
+    "source": "9/4 · PDF 10~12쪽 — 설진할 때 주의사항",
+    "basedOn": "P-q18-2",
+    "basedOnIds": [
+      "P-q18-2",
+      "P-q20-28",
+      "P-q21-42",
+      "P-q22-62"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "두껍고 마른 흑태",
-      "태가 전혀 없고 거울처럼 반들거림",
-      "박백하며 약간 촉촉하고 윤택함",
-      "곰팡이 같은 백매태"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "박백하며 약간 촉촉하고 윤택함"
-  },
-  {
-    "id": "C-004",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "백후니태와 홍강설이 함께 있습니다. 가장 적절한 해석은?",
-    "explanation": "백후니태의 습과 홍강설의 영혈열이 함께 있을 수 있습니다. 화습을 중시하고 자음제를 과용하지 않습니다.",
-    "source": "9/4 · PDF 21~24쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "홍강설이므로 습은 없음",
-      "백태이므로 반드시 표한증",
-      "태의 두께는 의미 없음",
-      "습이 막힌 채 열이 영혈까지 잠복할 가능성"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "습이 막힌 채 열이 영혈까지 잠복할 가능성"
-  },
-  {
-    "id": "C-005",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "황백상겸태가 시사하는 주된 병기 조합은?",
-    "explanation": "위기동병의 단서입니다. 설태에 백색과 황색이 섞인 의미를 단계와 연결합니다.",
-    "source": "9/4 · PDF 25~28쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "양허망양만 존재",
-      "음허만 있고 사기는 모두 물러남",
-      "위분 사기가 남으면서 기분으로 들어감",
-      "간신음액이 완전히 고갈됨"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "위분 사기가 남으면서 기분으로 들어감"
-  },
-  {
-    "id": "C-006",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "습과 열의 비율을 구분할 때 맞는 연결은?",
-    "explanation": "황니와 황활의 습열 비율을 뒤바꾸는 것이 흔한 함정입니다.",
-    "source": "9/4 · PDF 28쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "둘 다 무조건 음허",
-      "황니—습과 열 비슷 / 황활—습이 더 많음",
-      "둘 다 무조건 열이 없는 한증",
-      "황니—습이 더 많음 / 황활—습과 열 비슷"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "황니—습과 열 비슷 / 황활—습이 더 많음"
-  },
-  {
-    "id": "C-007",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "이기·소식약의 가미와 연결되는 특수 백태는?",
-    "explanation": "백함태는 내부 습탁·식체와 연결합니다. 백사태와 이름을 바꾸지 않습니다.",
-    "source": "9/4 · PDF 23~24쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "short",
-    "answer": "백함태",
-    "accept": [
-      "白鹹苔"
-    ],
-    "displayAnswer": "백함태"
-  },
-  {
-    "id": "C-008",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "위기가 극도로 손상된 위중한 설상으로 소개되는 곰팡이 같은 태는?",
-    "explanation": "백매태(白霉苔)입니다. 태의 색이 희다고 모두 가벼운 표증이 아닙니다.",
-    "source": "9/4 · PDF 23~24쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "short",
-    "answer": "백매태",
-    "accept": [
-      "白霉苔"
-    ],
-    "displayAnswer": "백매태"
-  },
-  {
-    "id": "C-009",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "건조한 흑태 중 양명부실의 두꺼운 태와 대비하여 하초 음손상·허증을 살피는 것은?",
-    "explanation": "얇고 건조한 흑태는 하초 음손상으로 기세가 꺾인 양상을 살핍니다. 두껍고 건조한 태와 구분합니다.",
-    "source": "9/4 · PDF 30쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "정상 박백태",
-      "음식에 물든 태만",
-      "윤택한 흑태만",
-      "얇고 건조한 흑태"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "얇고 건조한 흑태"
-  },
-  {
-    "id": "C-010",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "윤택한 흑태의 강의상 병기와 치료 방향은?",
-    "explanation": "회태가 활윤해진 뒤 변한 허한성 흑태를 설명합니다. 건조한 흑태와 윤조가 다릅니다.",
-    "source": "9/4 · PDF 31쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "모두 실열 → 강한 공하만",
-      "심영열독 → 개규만",
-      "심한 양허·습성 → 온양·화습이수",
-      "혈허 → 자음만"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "심한 양허·습성 → 온양·화습이수"
-  },
-  {
-    "id": "C-011",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "흑태가 있으나 설질은 담백해졌습니다. 강의가 제시한 변화는?",
-    "explanation": "열이 혈락을 손상시켜 출혈한 뒤 실증에서 허증으로 바뀐 드문 설명입니다. 설태의 윤조와 설질의 색을 구분합니다.",
-    "source": "9/4 · PDF 31쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "반드시 정상으로 회복한 소견",
-      "출혈 후 홍강설이 담백해져 혈분허증으로 변화",
-      "태가 윤택하다는 말과 완전히 같은 뜻",
-      "항상 음식 염태만 의미"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "출혈 후 홍강설이 담백해져 혈분허증으로 변화"
-  },
-  {
-    "id": "C-012",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "‘윤택한 흑태’와 ‘흑태에 담백한 설질’의 차이를 가장 정확히 설명한 것은?",
-    "explanation": "서로 다른 관찰 축이므로 하나를 다른 하나의 뜻으로 외우면 안 됩니다.",
-    "source": "9/4 · PDF 31쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "둘 다 설태의 두께만 표현",
-      "윤택은 설태의 수분·광택, 담백은 설질의 색",
-      "둘 다 설질의 색을 표현",
-      "두 말은 완전한 동의어"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "윤택은 설태의 수분·광택, 담백은 설질의 색"
-  },
-  {
-    "id": "C-013",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "혀끝이 붉고 혓바늘이 돋는 경우의 대응은?",
-    "explanation": "혀 전체가 붉고 건조하여 갈라지는 심영열독의 설명과 구분합니다.",
-    "source": "9/11 · PDF 3~6쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "short",
-    "answer": "심화상염",
-    "accept": [
-      "心火上炎"
-    ],
-    "displayAnswer": "심화상염"
-  },
-  {
-    "id": "C-014",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "강홍하며 거울처럼 반들거리는 혀와 자색이며 반들거리는 혀의 대응은?",
-    "explanation": "둘 다 반들거릴 수 있지만 색과 손상 부위를 구별합니다. 더 어두워지고 마르며 오그라드는 쇠갈도 별도로 봅니다.",
-    "source": "9/11 · PDF 7~13쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "폐음 손상 / 비신음 손상",
-      "심혈어 / 식체",
-      "위양 손상 / 폐기허",
-      "위음 손상 / 간신음 손상"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "위음 손상 / 간신음 손상"
-  },
-  {
-    "id": "C-015",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "자설에 윤기가 있고 청자색을 보이면 건조한 자설의 혈분열독과 달리 무엇을 고려하나요?",
-    "explanation": "온병 중 심한 실혈·음손상 후 양이 외탈하는 경우도 설명합니다. 모든 음허가 반드시 망양으로 간다는 뜻은 아닙니다.",
-    "source": "9/11 · PDF 11~13쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "무조건 강한 실열",
-      "한증·양기 외탈 가능성",
-      "기분 식체만",
-      "정상 설질"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "한증·양기 외탈 가능성"
-  },
-  {
-    "id": "C-016",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "홍강·건조한 혀를 제대로 움직이지 못하는 이유로 강의가 제시한 것은?",
-    "explanation": "움직임 장애의 다른 기전인 습열담탁의 경맥 저애와 비교합니다.",
-    "source": "9/11 · PDF 14~19쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "양기가 충분하므로 정상",
-      "식체만 생겨서",
-      "혀가 커진 모든 경우와 같은 주독",
-      "진액 소모로 혈맥을 자양하지 못해 간풍 유발"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "진액 소모로 혈맥을 자양하지 못해 간풍 유발"
-  },
-  {
-    "id": "C-017",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "혀의 경직에 니태가 동반될 때 살필 기전은?",
-    "explanation": "혀가 안 움직인다는 사실만으로 단정하지 않고 색·윤조·태를 함께 봅니다.",
-    "source": "9/11 · PDF 14~19쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "주독충심만",
-      "위음허만",
-      "정상 관찰 오차만",
-      "습열담탁의 경맥 저애"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "습열담탁의 경맥 저애"
-  },
-  {
-    "id": "C-018",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "혀가 말리면서 짧아지는 양상은 무엇과 연결되나요?",
-    "explanation": "오그라들고 축 늘어져 힘이 없는 간신음액쇠갈의 양상과 구별합니다.",
-    "source": "9/11 · PDF 14~19쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "short",
-    "answer": "간풍내동",
-    "accept": [
-      "肝風內動"
-    ],
-    "displayAnswer": "간풍내동"
-  },
-  {
-    "id": "C-019",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "1",
-    "categoryName": "설진",
-    "prompt": "간신음 손상과 간신음액쇠갈을 비교한 설명으로 알맞은 것은?",
-    "explanation": "자색으로 반들거리는 단계와 마르고 어두우며 오그라들고 힘없는 쇠갈 양상을 함께 비교해야 합니다.",
-    "source": "9/11 · PDF 7~19쪽",
-    "inScope": true,
-    "years": "개념확인 · 설진",
-    "type": "mc",
-    "choices": [
-      "광택이 있으면 음손상은 불가능",
-      "둘은 항상 같은 색·같은 형태로만 나타남",
-      "쇠갈은 언제나 혀가 커짐",
-      "손상 부위가 관련되어도 반들거림과 건조·위축·무력의 정도가 다를 수 있음"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "손상 부위가 관련되어도 반들거림과 건조·위축·무력의 정도가 다를 수 있음"
-  },
-  {
-    "id": "C-020",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "2",
-    "categoryName": "치아와 잇몸",
-    "prompt": "건조해도 돌처럼 광택이 남은 치아와 마른 뼈처럼 광택을 잃은 치아의 구분은?",
-    "explanation": "광조여석은 위진 손상 또는 폐위 선통 장애, 조여고골은 심한 하초 신음 손상과 연결합니다.",
-    "source": "9/11 · PDF 27~31쪽",
-    "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
-    "type": "mc",
-    "choices": [
-      "모두 실화치뉵",
-      "광조여석 / 조여고골",
-      "조여고골 / 광조여석",
-      "모두 정상"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "광조여석 / 조여고골"
-  },
-  {
-    "id": "C-021",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "2",
-    "categoryName": "치아와 잇몸",
-    "prompt": "조여고골을 위기영혈 중 한 단계로만 외워도 되나요?",
-    "explanation": "치아의 광택·건조와 전신증상을 함께 봅니다. 소견의 병리적 의미와 위기영혈 단계명을 무조건 일대일로 대응하지 않습니다.",
-    "source": "9/11 · PDF 27~31쪽",
-    "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
-    "type": "mc",
-    "choices": [
-      "하초 신음 손상의 심한 정도를 나타내므로 소견 하나만으로 단계를 고정하지 않음",
-      "조여고골은 정상 치아",
-      "조여고골은 무조건 위분",
-      "조여고골은 무조건 기분"
+      "혀를 오래 내밀거나 말리면 색이 더 진해질 수 있고 음식의 염태도 확인한다",
+      "혀를 말린 자세가 실제 색을 가장 잘 보여 준다",
+      "혀를 오래 내밀면 반드시 색이 연해진다",
+      "음식으로 물든 설태도 모두 병리적인 태로 판단한다"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "하초 신음 손상의 심한 정도를 나타내므로 소견 하나만으로 단계를 고정하지 않음"
+    "displayAnswer": "혀를 오래 내밀거나 말리면 색이 더 진해질 수 있고 음식의 염태도 확인한다",
+    "multiple": false
   },
   {
-    "id": "C-022",
+    "id": "C2-003",
     "kind": "concept",
     "chapter": "concept",
-    "category": "2",
-    "categoryName": "치아와 잇몸",
-    "prompt": "치아가 건조해도 치구가 남아 있을 때와 치구 없이 바짝 마를 때 비교하는 것은?",
-    "explanation": "치구가 남으면 위기가 남은 단서를, 치구 없이 바짝 마르면 진액쇠갈의 위중함을 살핍니다.",
-    "source": "9/11 · PDF 32~34쪽",
+    "category": "1",
+    "categoryName": "설진",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
+    "years": "족보 핵심 개념",
+    "prompt": "백후태와 황태에 관한 족보 선지를 바르게 이해한 것은?",
+    "explanation": "족보에 남아 있는 백후태—기분증, 비건조 황태—습열의 대응을 확인하는 문제입니다. 색 하나만으로 한열·진액 상태를 고정하지 않습니다.",
+    "source": "9/4 · PDF 17~24쪽 — 백태: 박백태·백후태·특수한 백태 / 9/4 · PDF 25~28쪽 — 황태: 황백상겸·황조·황니·황활 / 9/4 · PDF 29~31쪽 — 회태·흑태",
+    "basedOn": "P-q18-3",
+    "basedOnIds": [
+      "P-q18-3"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "반진의 크기만",
-      "풍한의 지속 시간만",
-      "위기의 존부와 진액 소모",
-      "대변의 횟수만"
+      "백후태는 반드시 가벼운 표한증이고 황태에는 습이 없다",
+      "백후태는 기분증과 연결되고, 건조하지 않은 황태는 열에 습을 겸한 것으로 본다",
+      "황태는 건조 여부와 관계없이 모두 진액 고갈이다",
+      "설태가 희면 병이 깊을 수 없다"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "백후태는 기분증과 연결되고, 건조하지 않은 황태는 열에 습을 겸한 것으로 본다",
+    "multiple": false
+  },
+  {
+    "id": "C2-004",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "황니태와 황활태의 습·열 비율을 바르게 연결한 것은?",
+    "explanation": "족보는 황니와 황활의 비율을 서로 바꿉니다. 황니=습열 비슷, 황활=습>열로 구분하세요.",
+    "source": "9/4 · PDF 25~28쪽 — 황태: 황백상겸·황조·황니·황활 / 9/4 · PDF 13~16쪽 — 정상 설태와 설태 관찰 기준 / 9/4 · PDF 17~24쪽 — 백태: 박백태·백후태·특수한 백태 / 9/4 · PDF 25~28쪽 — 황태: 황백상겸·황조·황니·황활 / 9/4 · PDF 23~24쪽 — 백함태·백사태·백매태의 감별 / 9/11 · PDF 3~6쪽 — 설질 총론·홍설의 허실",
+    "basedOn": "P-q20-29",
+    "basedOnIds": [
+      "P-q20-29",
+      "P-q21-44"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "황니태: 습이 더 많음 / 황활태: 습과 열이 비슷",
+      "황니태: 습과 열이 비슷 / 황활태: 습이 열보다 많음",
+      "둘 다 열이 없는 한증",
+      "둘 다 습이 없는 실열"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "황니태: 습과 열이 비슷 / 황활태: 습이 열보다 많음",
+    "multiple": false
+  },
+  {
+    "id": "C2-005",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "‘이기·소식약 가미’와 연결해야 하는 설태는?",
+    "explanation": "이기소식은 백함태입니다. 백사태는 건조하고 거칠며 단단한 태로 양명부실과 연결합니다. 족보의 ‘백사태에 이기소식’은 바뀐 연결입니다.",
+    "source": "9/4 · PDF 23~24쪽 — 백함태·백사태·백매태의 감별",
+    "basedOn": "P-q22-63",
+    "basedOnIds": [
+      "P-q22-63"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "황활태",
+      "백함태",
+      "흑태",
+      "백사태"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "백함태",
+    "multiple": false
+  },
+  {
+    "id": "C2-006",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "족보의 설질 선지에서 정상 설질로 제시된 색은?",
+    "explanation": "정상 설질은 담홍색입니다. 붉은 정도와 자색 변화는 정상 담홍색과 구분해 읽으세요.",
+    "source": "9/11 · PDF 3~6쪽 — 설질 총론·홍설의 허실 / 9/11 · PDF 7~8쪽 — 강설과 음손상의 단계",
+    "basedOn": "P-q20-30",
+    "basedOnIds": [
+      "P-q20-30"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "청자색",
+      "어두운 자색",
+      "담홍색",
+      "강홍색"
     ],
     "answer": [
       "3"
     ],
-    "multiple": false,
-    "displayAnswer": "위기의 존부와 진액 소모"
+    "displayAnswer": "담홍색",
+    "multiple": false
   },
   {
-    "id": "C-023",
+    "id": "C2-007",
     "kind": "concept",
     "chapter": "concept",
-    "category": "2",
-    "categoryName": "치아와 잇몸",
-    "prompt": "잇몸이 붓고 아프며 선명한 피가 많이 납니다. 강의의 주된 구분은?",
-    "explanation": "실화형의 종통·색·출혈량을 묶습니다. 출혈 자체만으로 허실을 판단하지 않습니다.",
-    "source": "9/11 · PDF 35~36쪽",
+    "category": "1",
+    "categoryName": "설진",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
+    "years": "족보 핵심 개념",
+    "prompt": "반들거리는 설질의 의미를 바르게 연결한 것은?",
+    "explanation": "강홍·거울 같은 혀는 위음, 자색·반들거림은 간신음입니다. 폐음·비신음으로 바꾼 선지를 구별하는 것이 핵심입니다.",
+    "source": "9/11 · PDF 7~8쪽 — 강설과 음손상의 단계 / 9/11 · PDF 3~6쪽 — 설질 총론·홍설의 허실 / 9/11 · PDF 3~6쪽 — 설질 총론·홍설의 허실 / 9/11 · PDF 7~8쪽 — 강설과 음손상의 단계 / 9/11 · PDF 7~8쪽 — 강설과 음손상의 단계",
+    "basedOn": "P-q18-4",
+    "basedOnIds": [
+      "P-q18-4",
+      "P-q20-30",
+      "P-q21-45"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "위화의 실화형 치뉵",
-      "신음손상의 허화형",
-      "음혈 치은결판만",
-      "기허치뉵만"
+      "둘 다 신음과 무관한 표증",
+      "강홍한 경면설: 위음 손상 / 자색으로 반들거림: 간신음 손상",
+      "강홍한 경면설: 간신음 손상 / 자색으로 반들거림: 위음 손상",
+      "강홍한 경면설: 폐음 손상 / 자색으로 반들거림: 비신음 손상"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "강홍한 경면설: 위음 손상 / 자색으로 반들거림: 간신음 손상",
+    "multiple": false
+  },
+  {
+    "id": "C2-008",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "혀가 커지면서 어두운 자색을 띠는 모습과 연결되는 것은?",
+    "explanation": "어두운 자색의 설종대는 주독충심과 연결합니다. 간풍내동의 ‘말리며 짧아짐’과 구분하세요.",
+    "source": "9/11 · PDF 14~19쪽 — 혀의 형태와 움직임",
+    "basedOn": "P-q18-5",
+    "basedOnIds": [
+      "P-q18-5",
+      "P-q21-43",
+      "P-q22-65"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "간신음액쇠갈에 의한 무력한 위축",
+      "정상 담홍설",
+      "간풍내동에 의한 혀의 단축",
+      "주독이 심장에 영향을 미침"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "주독이 심장에 영향을 미침",
+    "multiple": false
+  },
+  {
+    "id": "C2-009",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "혀를 제대로 움직이지 못하는 경우의 설명으로 맞는 것은?",
+    "explanation": "족보의 운동장애—습열 연결을 이해하되, 홍강·건조한 경우에는 진액 소모로 자양하지 못해 간풍이 유발된 경우도 구별합니다. 색·건조 여부를 함께 보세요.",
+    "source": "9/11 · PDF 14~19쪽 — 혀의 형태와 움직임",
+    "basedOn": "P-q22-65",
+    "basedOnIds": [
+      "P-q22-65"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "혀를 움직이지 못하면 반드시 혀가 커진다",
+      "홍강·건조하면 진액 손상과 관계없다",
+      "혀의 운동장애는 모두 간신음액쇠갈 한 가지 원인이다",
+      "습열담탁이 막힌 경우와, 홍강·건조하며 진액이 손상된 경우를 구분한다"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "습열담탁이 막힌 경우와, 홍강·건조하며 진액이 손상된 경우를 구분한다",
+    "multiple": false
+  },
+  {
+    "id": "C2-010",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "1",
+    "categoryName": "설진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "혀 형태와 병기를 바르게 연결한 것은?",
+    "explanation": "혀가 ‘짧아짐’과 ‘무력하게 늘어짐’을 같은 소견으로 외우지 마세요. 각각 간풍내동과 간신음액쇠갈의 연결이 족보의 핵심입니다.",
+    "source": "9/11 · PDF 14~19쪽 — 혀의 형태와 움직임",
+    "basedOn": "P-q22-65",
+    "basedOnIds": [
+      "P-q22-65"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "말리며 짧아짐: 간풍내동 / 오그라들고 늘어져 힘없음: 간신음액쇠갈",
+      "두 모습 모두 단순 설종대",
+      "말리며 짧아짐: 주독충심 / 늘어져 힘없음: 위열",
+      "두 모습 모두 정상적인 관찰 자세"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "위화의 실화형 치뉵"
+    "displayAnswer": "말리며 짧아짐: 간풍내동 / 오그라들고 늘어져 힘없음: 간신음액쇠갈",
+    "multiple": false
   },
   {
-    "id": "C-024",
+    "id": "C2-011",
     "kind": "concept",
     "chapter": "concept",
     "category": "2",
     "categoryName": "치아와 잇몸",
-    "prompt": "잇몸 종통이 적고 출혈량도 적으며 색이 선명하지 않습니다. 신음손상의 허화형을 치료하는 방향은?",
-    "explanation": "강의의 허화형은 신화와 연결합니다. 말기 기허치뉵이라는 다른 허증 기전도 별도로 기억합니다.",
-    "source": "9/11 · PDF 36~37쪽",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
+    "years": "족보 핵심 개념",
+    "prompt": "험치에서 관찰하는 항목을 바르게 묶은 것은?",
+    "explanation": "족보의 네 항목은 윤조, 광택, 치구(복기에서는 치석), 잇몸출혈입니다. 위진·신음 상태를 판단하는 관찰 항목으로 묶으세요.",
+    "source": "9/11 · PDF 25~26쪽 — 험치의 의의와 관찰 항목",
+    "basedOn": "P-q20-27",
+    "basedOnIds": [
+      "P-q20-27"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "신음 자양과 양혈",
-      "이습만 계속",
-      "무조건 통부공하",
-      "강한 신온발표"
+      "치아 개수와 교합만",
+      "설태의 색과 혀의 길이만",
+      "발열 시간과 한출량만",
+      "윤조·광택·치구·잇몸출혈"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "윤조·광택·치구·잇몸출혈",
+    "multiple": false
+  },
+  {
+    "id": "C2-012",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "2",
+    "categoryName": "치아와 잇몸",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "위화의 실증 치뉵과 신음 손상의 허화형 치뉵을 바르게 비교한 것은?",
+    "explanation": "실증은 붓고 아프며 선명한 피가 많이 납니다. 허화형은 종통·출혈량이 적고 색도 덜 선명합니다. ‘실증인데 출혈량이 적다’는 족보의 함정입니다.",
+    "source": "9/11 · PDF 35~36쪽 — 치뉵의 실화·허화 감별 / 9/11 · PDF 37쪽 — 특수한 기허치뉵 / 9/11 · PDF 25~26쪽 — 험치의 의의와 관찰 항목 / 9/11 · PDF 38~40쪽 — 치은결판과 출혈 흔적 / 9/11 · PDF 35~36쪽 — 치뉵의 실화·허화 감별",
+    "basedOn": "P-q21-46",
+    "basedOnIds": [
+      "P-q21-46",
+      "P-q18-6"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "실증: 종통·선명한 피·많은 양 / 허화형: 종통과 출혈량이 적고 색이 덜 선명",
+      "종통·출혈량·색은 감별에 쓰지 않음",
+      "실증: 피가 적고 색이 엷음 / 허화형: 피가 많고 선명함",
+      "둘 다 출혈량이 적어야 함"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "신음 자양과 양혈"
+    "displayAnswer": "실증: 종통·선명한 피·많은 양 / 허화형: 종통과 출혈량이 적고 색이 덜 선명",
+    "multiple": false
   },
   {
-    "id": "C-025",
+    "id": "C2-013",
     "kind": "concept",
     "chapter": "concept",
     "category": "2",
     "categoryName": "치아와 잇몸",
-    "prompt": "습온 말기 양기 손상으로 섭혈하지 못하는 잇몸출혈은?",
-    "explanation": "신음허화형의 허증 치뉵과 구분해야 하는 특수한 경우입니다. 지나친 한량약을 경계합니다.",
-    "source": "9/11 · PDF 37쪽",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
-    "type": "short",
-    "answer": "기허치뉵",
-    "accept": [
-      "氣虛齒衄"
+    "years": "족보 핵심 개념",
+    "prompt": "양기 손상으로 섭혈하지 못해 생긴 치뉵에 관한 설명으로 맞는 것은?",
+    "explanation": "허화형은 신음 손상과 연결하고, 습온 말기 양기 손상으로 섭혈하지 못하는 기허치뉵도 별도로 인정합니다. ‘허증출혈은 모두 양기 손상’이라는 일반화를 피하세요.",
+    "source": "9/11 · PDF 35~36쪽 — 치뉵의 실화·허화 감별 / 9/11 · PDF 37쪽 — 특수한 기허치뉵 / 9/11 · PDF 38~40쪽 — 치은결판과 출혈 흔적",
+    "basedOn": "P-q20-31",
+    "basedOnIds": [
+      "P-q20-31"
     ],
-    "displayAnswer": "기허치뉵"
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "모든 허증 치뉵은 반드시 양기 손상만 원인이다",
+      "양기 손상에 따른 치뉵은 강의에서 인정하지 않는다",
+      "기허치뉵의 설명이며 모든 허증 치뉵을 이 기전 하나로 묶으면 안 된다",
+      "신음 손상의 허화형과 완전히 같은 기전이다"
+    ],
+    "answer": [
+      "3"
+    ],
+    "displayAnswer": "기허치뉵의 설명이며 모든 허증 치뉵을 이 기전 하나로 묶으면 안 된다",
+    "multiple": false
   },
   {
-    "id": "C-026",
+    "id": "C2-014",
     "kind": "concept",
     "chapter": "concept",
     "category": "2",
     "categoryName": "치아와 잇몸",
-    "prompt": "출혈은 멎었지만 치아 틈에 응고된 덩이가 남아 있습니다. 이름은?",
-    "explanation": "현재 출혈 유무와 출혈 후 남은 흔적을 별개로 관찰합니다.",
-    "source": "9/11 · PDF 38~39쪽",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
+    "years": "족보 핵심 개념",
+    "prompt": "잇몸출혈은 멎었지만 치아 사이에 응고된 피 덩이가 남아 있습니다. 이 소견의 이름은?",
+    "explanation": "치은결판은 출혈 뒤 치아 사이에 남은 응어리입니다. 지금 출혈이 보이지 않아도 관찰할 수 있습니다. 복기의 ‘치흔결판’과 용어를 구분하세요.",
+    "source": "9/11 · PDF 35~36쪽 — 치뉵의 실화·허화 감별 / 9/11 · PDF 37쪽 — 특수한 기허치뉵 / 9/11 · PDF 38~40쪽 — 치은결판과 출혈 흔적",
+    "basedOn": "P-q20-31",
+    "basedOnIds": [
+      "P-q20-31"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "short",
     "answer": "치은결판",
     "accept": [
@@ -4408,360 +4244,198 @@
     "displayAnswer": "치은결판"
   },
   {
-    "id": "C-027",
+    "id": "C2-015",
     "kind": "concept",
     "chapter": "concept",
-    "category": "2",
-    "categoryName": "치아와 잇몸",
-    "prompt": "치은결판에서 짙은 자색·마른 칠 같은 양상과 누르스름한 콩부스러기 같은 양상의 대응은?",
-    "explanation": "양혈(陽血)·음혈(陰血)의 감별입니다. 피를 식히는 양혈(凉血)과 한자가 다릅니다.",
-    "source": "9/11 · PDF 38~40쪽",
+    "category": "3",
+    "categoryName": "반진",
     "inScope": true,
-    "years": "개념확인 · 치아와 잇몸",
+    "years": "족보 핵심 개념",
+    "prompt": "반과 진을 바르게 구분한 것은?",
+    "explanation": "반은 평평·압박 불퇴색, 진은 돌출·압박 시 색 변화입니다. ‘반을 누르면 색이 사라진다’가 족보의 대표 오답입니다.",
+    "source": "9/16 추석보강 · PDF 5~7쪽 — 반과 진의 형태 감별 / 9/16 추석보강 · PDF 5~7쪽 — 반과 진의 형태 감별 / 9/16 추석보강 · PDF 8~13쪽 — 반·진의 발생 기전과 병위 / 9/16 추석보강 · PDF 20~25쪽 — 반진의 순역: 색깔과 광택 / 9/16 추석보강 · PDF 27~31쪽 — 반진의 순역: 형태·분포 / 9/16 추석보강 · PDF 32~34쪽 — 반진과 전신증상 / 9/16 추석보강 · PDF 35~37쪽 — 양반·허반·음반 / 9/16 추석보강 · PDF 38~43쪽 — 반·진의 치료원칙 / 9/16 추석보강 · PDF 44~49쪽 — 반진 치료의 다섯 금기",
+    "basedOn": "P-q20-32",
+    "basedOnIds": [
+      "P-q20-32",
+      "P-q18-7"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "둘 다 정상 치구",
-      "실증 위열 / 허증 신화",
-      "둘 다 기분습열만",
-      "허증 신화 / 실증 위열"
+      "둘 다 눌렀다 떼면 색이 사라짐",
+      "반: 돌출하지 않고 압박해도 퇴색하지 않음 / 진: 돌출하고 압박 시 색이 옅어졌다 돌아옴",
+      "반만 만져지고 진은 만져지지 않음",
+      "반: 돌출하고 압박 시 퇴색 / 진: 평평하고 불퇴색"
     ],
     "answer": [
       "2"
     ],
-    "multiple": false,
-    "displayAnswer": "실증 위열 / 허증 신화"
+    "displayAnswer": "반: 돌출하지 않고 압박해도 퇴색하지 않음 / 진: 돌출하고 압박 시 색이 옅어졌다 돌아옴",
+    "multiple": false
   },
   {
-    "id": "C-028",
+    "id": "C2-016",
     "kind": "concept",
     "chapter": "concept",
     "category": "3",
     "categoryName": "반진",
-    "prompt": "피부에 돌출하지 않고 눌러도 색이 사라지지 않는 병변은?",
-    "explanation": "반(斑)은 압박 불퇴색이며, 진(疹)은 돌출하고 압박하면 색이 옅어졌다 돌아올 수 있습니다.",
-    "source": "9/16 · PDF 5~7쪽",
     "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "short",
-    "answer": "반",
-    "accept": [
-      "斑"
+    "years": "족보 핵심 개념",
+    "prompt": "족보에서 특수한 흑색 반진의 색 분포로 맞는 것은?",
+    "explanation": "중심 흑색·주변 홍색입니다. 족보는 중심과 주변을 바꾸어 출제했습니다.",
+    "source": "9/16 추석보강 · PDF 20~25쪽 — 반진의 순역: 색깔과 광택",
+    "basedOn": "P-q21-47",
+    "basedOnIds": [
+      "P-q21-47"
     ],
-    "displayAnswer": "반"
-  },
-  {
-    "id": "C-029",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "반과 진을 구별하는 핵심으로 가장 적절한 것은?",
-    "explanation": "크기뿐 아니라 돌출·퇴색·말기의 인설을 함께 봅니다.",
-    "source": "9/16 · PDF 5~7쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "크기 하나만",
-      "관찰자의 느낌만",
-      "돌출 여부와 압박 시 색 변화",
-      "갈증의 존재만"
+      "중심과 주변이 모두 담백함",
+      "중심이 검고 주변이 붉음",
+      "중심이 붉고 주변이 검음",
+      "중심이 황색이고 주변이 백색임"
     ],
     "answer": [
-      "3"
+      "2"
     ],
-    "multiple": false,
-    "displayAnswer": "돌출 여부와 압박 시 색 변화"
+    "displayAnswer": "중심이 검고 주변이 붉음",
+    "multiple": false
   },
   {
-    "id": "C-030",
+    "id": "C2-017",
     "kind": "concept",
     "chapter": "concept",
     "category": "3",
     "categoryName": "반진",
-    "prompt": "반의 주된 발생 기전을 설명한 것은?",
-    "explanation": "반은 기혈양번·기뉵과 연결하며 기혈양청을 설명합니다.",
-    "source": "9/16 · PDF 8~13쪽",
     "inScope": true,
-    "years": "개념확인 · 반진",
+    "years": "족보 핵심 개념",
+    "prompt": "백호탕에 서각·원삼을 더한 처방은?",
+    "explanation": "백호탕의 석고·지모·감초·갱미에 서각·원삼을 더한 처방이 화반탕입니다. 구성 전체를 새로 외우기보다 백호탕 + 두 약재로 연결하세요.",
+    "source": "9/16 추석보강 · PDF 38~40쪽 — 화반탕 조문·구성·방론",
+    "basedOn": "P-q18-8",
+    "basedOnIds": [
+      "P-q18-8"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "화반탕",
+    "accept": [
+      "化斑湯"
+    ],
+    "displayAnswer": "화반탕"
+  },
+  {
+    "id": "C2-018",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "3",
+    "categoryName": "반진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "반진 치료에서 변비가 있을 때의 통부와 심한 공하를 바르게 구분한 것은?",
+    "explanation": "족보의 ‘금기와 가장 거리가 먼 것’은 통부입니다. 변비가 있을 때의 가벼운 통부와 심한 공하를 구분하는 것이 핵심입니다.",
+    "source": "9/16 추석보강 · PDF 44~49쪽 — 반진 치료의 다섯 금기",
+    "basedOn": "P-q21-48",
+    "basedOnIds": [
+      "P-q21-48"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "양명위열이 혈분에 들어가 혈락을 손상",
-      "폐의 사열이 영분에 맺힌 진만",
-      "기분습열로 백배만 형성",
-      "양기가 정상인 상태의 염태"
+      "통부는 발한을 강하게 시키는 방법이다",
+      "통부와 심한 공하는 같은 뜻이므로 모두 금기이다",
+      "반진이면 변비 유무와 관계없이 심하게 공하한다",
+      "가벼운 통부는 가능하지만 심한 공하는 경계한다"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "가벼운 통부는 가능하지만 심한 공하는 경계한다",
+    "multiple": false
+  },
+  {
+    "id": "C2-019",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "3",
+    "categoryName": "반진",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "반진의 순증을 요약하는 표현은?",
+    "explanation": "순증은 홍활영윤(紅滑榮潤)입니다. 붉고 윤택하며 생기가 있는 모습과 어둡고 메마른 모습을 구분하세요.",
+    "source": "9/16 추석보강 · PDF 20~25쪽 — 반진의 순역: 색깔과 광택",
+    "basedOn": "P-q21-47",
+    "basedOnIds": [
+      "P-q21-47"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "중심 홍색·주변 흑색",
+      "홍활영윤",
+      "함몰하고 광택을 잃음",
+      "어둡고 메마름"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "홍활영윤",
+    "multiple": false
+  },
+  {
+    "id": "C2-020",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "4",
+    "categoryName": "백배",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "정배와 고배의 핵심 병기를 바르게 구분한 것은?",
+    "explanation": "정배는 습열을 풀고 기기를 소통하는 방향, 고배는 양음익기하여 부정하는 방향입니다. 두 유형의 현재 병기를 먼저 구분하세요.",
+    "source": "9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 7~8쪽 — 백배의 임상적 의의와 순역 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의",
+    "basedOn": "P-q20-33",
+    "basedOnIds": [
+      "P-q20-33"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "정배: 습열과 기기불창 / 고배: 기·액 부족",
+      "정배: 기액 고갈 / 고배: 습열이 충실함",
+      "둘 다 단순 표한",
+      "둘 다 혈분출혈만 의미"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "양명위열이 혈분에 들어가 혈락을 손상"
+    "displayAnswer": "정배: 습열과 기기불창 / 고배: 기·액 부족",
+    "multiple": false
   },
   {
-    "id": "C-031",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "진의 치료에서 선폐투진을 중시하는 근거는?",
-    "explanation": "폐위의 선통과 영열 청설을 함께 고려합니다.",
-    "source": "9/16 · PDF 8~13,38~43쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "진은 혈분 출혈과 무관하게 표한만 의미",
-      "진은 반드시 대장 부실만 의미",
-      "진은 모두 음허허탈",
-      "수태음폐경의 사열이 영분에 들어가 피부 혈락에 맺힘"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "수태음폐경의 사열이 영분에 들어가 피부 혈락에 맺힘"
-  },
-  {
-    "id": "C-032",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "검은 반진이면 광택과 전신증상을 볼 필요 없이 모두 같은 예후인가요?",
-    "explanation": "흑색이어도 윤택이 남은 경우와 메마르고 광택이 없는 경우를 다르게 봅니다.",
-    "source": "9/16 · PDF 20~34쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "예",
-      "아니요. 윤택·형태·분포·전신증상을 함께 판단"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "아니요. 윤택·형태·분포·전신증상을 함께 판단"
-  },
-  {
-    "id": "C-033",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "반진의 순증을 나타내는 네 글자는?",
-    "explanation": "붉고 매끄러우며 윤택한 모습을 요약합니다. 전신증상의 호전도 함께 판단합니다.",
-    "source": "9/16 · PDF 20~25쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "short",
-    "answer": "홍활영윤",
-    "accept": [
-      "紅滑榮潤"
-    ],
-    "displayAnswer": "홍활영윤"
-  },
-  {
-    "id": "C-034",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "드문드문 난 진이 충분히 피지 못하고 함몰하며 신혼·호흡 이상이 생겼습니다. 판단은?",
-    "explanation": "반진이 나왔다는 사실만으로 사기가 모두 빠졌다고 단정하지 않습니다.",
-    "source": "9/16 · PDF 27~34쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "태의 두께만 보면 된다",
-      "열이 피부로 나왔으므로 무조건 순증",
-      "진은 전신증상과 관계없다",
-      "역증 가능성을 살핀다"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "역증 가능성을 살핀다"
-  },
-  {
-    "id": "C-035",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "반과 진이 함께 나타날 때 강의의 치료 우선은?",
-    "explanation": "기혈양청과 선폐투진의 관계를 함께 봅니다.",
-    "source": "9/16 · PDF 38~43쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "무조건 강한 공하",
-      "진을 신온발표로만 치료",
-      "모든 양혈약 금지",
-      "반 치료를 우선하며 투진 시 동혈을 조장하지 않도록 배합"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "반 치료를 우선하며 투진 시 동혈을 조장하지 않도록 배합"
-  },
-  {
-    "id": "C-036",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "‘막 피는 진에 과한 한량약 금기’를 바르게 해석한 것은?",
-    "explanation": "지나친 한량약은 진의 투발을 방해할 수 있다는 조건부 설명입니다.",
-    "source": "9/16 · PDF 44~49쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "시기·정도에 따른 경계이며 모든 청열약 금지를 뜻하지 않음",
-      "한량약은 모든 단계에서 절대 금기",
-      "신온약은 무조건 많이 사용",
-      "진에서는 위기를 고려하지 않음"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "시기·정도에 따른 경계이며 모든 청열약 금지를 뜻하지 않음"
-  },
-  {
-    "id": "C-037",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "3",
-    "categoryName": "반진",
-    "prompt": "열성구갈·삭유력맥의 양반과 달리 담홍색·허무력맥·갈증이 심하지 않은 반은?",
-    "explanation": "허반은 기허불섭을, 음반은 양허음성·족랭·하리청곡 등을 비교합니다.",
-    "source": "9/16 · PDF 35~37쪽",
-    "inScope": true,
-    "years": "개념확인 · 반진",
-    "type": "mc",
-    "choices": [
-      "양반",
-      "백사태",
-      "허반",
-      "정배"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "허반"
-  },
-  {
-    "id": "C-038",
+    "id": "C2-021",
     "kind": "concept",
     "chapter": "concept",
     "category": "4",
     "categoryName": "백배",
-    "prompt": "백배가 주로 반영하는 병위·병사 조합은?",
-    "explanation": "반·진의 영혈분 설명과 백배의 기분습열을 구분합니다.",
-    "source": "9/18 · PDF 3~6쪽",
     "inScope": true,
-    "years": "개념확인 · 백배",
-    "type": "mc",
-    "choices": [
-      "표한만",
-      "기분의 습열",
-      "모두 혈분의 열독",
-      "신음허만"
+    "years": "족보 핵심 개념",
+    "prompt": "정배의 대표 처방으로 족보에서 묻는 것은?",
+    "explanation": "정답은 의이죽엽산입니다. ‘의이인탕’으로 바꾼 선지가 족보에 나옵니다.",
+    "source": "9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의",
+    "basedOn": "P-q21-49",
+    "basedOnIds": [
+      "P-q21-49",
+      "P-q18-9"
     ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "기분의 습열"
-  },
-  {
-    "id": "C-039",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "4",
-    "categoryName": "백배",
-    "prompt": "반짝이고 속에 진액이 충실한 백배와 마르고 쭈그러진 백배는 각각?",
-    "explanation": "정배는 습열훈증·기기불창, 고배는 기액고갈을 중심으로 설명합니다.",
-    "source": "9/18 · PDF 4~6쪽",
-    "inScope": true,
-    "years": "개념확인 · 백배",
-    "type": "mc",
-    "choices": [
-      "반 / 진",
-      "홍설 / 강설",
-      "고배 / 정배",
-      "정배 / 고배"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "정배 / 고배"
-  },
-  {
-    "id": "C-040",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "4",
-    "categoryName": "백배",
-    "prompt": "고배가 습열병에서 생겼으니 끝까지 이습만 계속하면 된다는 판단은?",
-    "explanation": "병명보다 현재 병기를 봅니다. 계속 이습하면 진액 소모를 가중할 수 있어 양음익기합니다.",
-    "source": "9/18 · PDF 12~14쪽",
-    "inScope": true,
-    "years": "개념확인 · 백배",
-    "type": "mc",
-    "choices": [
-      "맞다",
-      "틀리다. 현재 기액부족의 주된 측면을 보아야 한다"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "틀리다. 현재 기액부족의 주된 측면을 보아야 한다"
-  },
-  {
-    "id": "C-041",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "4",
-    "categoryName": "백배",
-    "prompt": "정배를 신온발표로 강하게 밀어내지 않는 이유는?",
-    "explanation": "백배를 표한의 울폐처럼 치료하지 않습니다. 기기소통·청열화습을 함께 봅니다.",
-    "source": "9/18 · PDF 9~14쪽",
-    "inScope": true,
-    "years": "개념확인 · 백배",
-    "type": "mc",
-    "choices": [
-      "백배는 땀과 무관해서",
-      "습이 풀리지 않은 채 열을 가중할 수 있음",
-      "습은 양사이므로 보음만 해야 해서",
-      "피부 병변은 모두 허증이기 때문"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "습이 풀리지 않은 채 열을 가중할 수 있음"
-  },
-  {
-    "id": "C-042",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "4",
-    "categoryName": "백배",
-    "prompt": "정배에 경청한 신량제를 쓰면서 습을 소변으로 푸는 대표 처방은?",
-    "explanation": "기분의 습열을 겉과 아래로 풀어주는 뜻을 연결합니다.",
-    "source": "9/18 · PDF 9~11쪽",
-    "inScope": true,
-    "years": "개념확인 · 백배",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "short",
     "answer": "의이죽엽산",
     "accept": [
@@ -4770,903 +4444,821 @@
     "displayAnswer": "의이죽엽산"
   },
   {
-    "id": "C-043",
+    "id": "C2-022",
     "kind": "concept",
     "chapter": "concept",
     "category": "4",
     "categoryName": "백배",
-    "prompt": "백배 치료에서 고한청심약에만 치우치지 않는 이유는?",
-    "explanation": "한 성질만으로 치료하지 않고 습·열·기기의 측면을 함께 고려합니다.",
-    "source": "9/18 · PDF 12~14쪽",
     "inScope": true,
-    "years": "개념확인 · 백배",
+    "years": "족보 핵심 개념",
+    "prompt": "고배에서 이습에 특히 주의하는 이유는?",
+    "explanation": "고배는 기액부족이 중심입니다. 습열병에서 생겼다는 이유로 계속 이습하기보다 양음익기·부정을 생각하세요.",
+    "source": "9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의 / 9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 7~8쪽 — 백배의 임상적 의의와 순역 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의",
+    "basedOn": "P-q18-9",
+    "basedOnIds": [
+      "P-q18-9",
+      "P-q20-33"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "백배는 항상 혈허라서",
-      "기분열은 절대 존재하지 않아서",
-      "습열에서 습을 풀지 못하고 비위·양기를 손상할 수 있어서",
-      "모든 고한약이 언제나 금기라서"
+      "고배는 신온발표로만 치료해야 해서",
+      "기와 액이 이미 부족하여 진액 손상을 더할 수 있어서",
+      "기액이 지나치게 충실해서",
+      "습열이 전혀 관여하지 않았던 병이어서"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "기와 액이 이미 부족하여 진액 손상을 더할 수 있어서",
+    "multiple": false
+  },
+  {
+    "id": "C2-023",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "4",
+    "categoryName": "백배",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "정배를 투발시키겠다며 신온제로 강하게 발표하는 설명이 틀린 이유는?",
+    "explanation": "정배의 기본은 경청한 신량제를 통한 청열화습·기기소통입니다. ‘기기를 소통하니 신온제를 많이 쓴다’로 바꾸지 마세요.",
+    "source": "9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 7~8쪽 — 백배의 임상적 의의와 순역 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의 / 9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 7~8쪽 — 백배의 임상적 의의와 순역 / 9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의",
+    "basedOn": "P-q20-33",
+    "basedOnIds": [
+      "P-q20-33",
+      "P-q22-67"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "신온제는 기기를 소통시키는 작용이 전혀 없어서",
+      "백배는 항상 한증이어서",
+      "습을 풀지 못한 채 열과 진액 손상을 가중할 수 있어서",
+      "정배에는 어떤 약도 쓸 수 없어서"
     ],
     "answer": [
       "3"
     ],
-    "multiple": false,
-    "displayAnswer": "습열에서 습을 풀지 못하고 비위·양기를 손상할 수 있어서"
+    "displayAnswer": "습을 풀지 못한 채 열과 진액 손상을 가중할 수 있어서",
+    "multiple": false
   },
   {
-    "id": "C-044",
+    "id": "C2-024",
     "kind": "concept",
     "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "온병 초기 오한발열을 상한과 비교한 특징은?",
-    "explanation": "초기 위분 울폐의 오한과 진행 중 다른 원인의 오한을 구별합니다.",
-    "source": "9/18 · PDF 20~21쪽",
+    "category": "4",
+    "categoryName": "백배",
     "inScope": true,
-    "years": "개념확인 · 발열",
+    "years": "족보 핵심 개념",
+    "prompt": "백배가 주로 많이 나타나는 부위는?",
+    "explanation": "족보에서 분포를 묻습니다. 목덜미·가슴·배에 많고 사지·두면부에는 거의 없다는 구분을 확인하세요.",
+    "source": "9/18 · PDF 3~6쪽 — 백배의 형태·분포·정배와 고배 / 9/18 · PDF 7~8쪽 — 백배의 임상적 의의와 순역 / 9/18 · PDF 9~12쪽 — 정배·고배 치료와 의이죽엽산 / 9/18 · PDF 12~14쪽 — 백배의 금기와 고배의 이습 주의",
+    "basedOn": "P-q22-67",
+    "basedOnIds": [
+      "P-q22-67"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "항상 사지만 차가움",
-      "발열이 전혀 없음",
-      "발열이 위주이고 오한이 짧고 약한 경향",
-      "오한이 항상 더 길고 심함"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "발열이 위주이고 오한이 짧고 약한 경향"
-  },
-  {
-    "id": "C-045",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "서온에서 고열·다한 뒤 전신이 아닌 등쪽만 오싹한 오한의 의미는?",
-    "explanation": "초기 땀 없는 위분증의 가벼운 오한과 구분합니다.",
-    "source": "9/18 · PDF 21쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "mc",
-    "choices": [
-      "서열이 정기를 손상한 양상을 살핀다",
-      "모두 하초축혈",
-      "초기 표한의 미오한과 완전히 같은 병기",
-      "항상 단순한 염태"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "서열이 정기를 손상한 양상을 살핀다"
-  },
-  {
-    "id": "C-046",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "막원에서 습 > 열·오한 > 발열이 나타날 때 함께 볼 설상은?",
-    "explanation": "기기 울폐와 잠복한 열의 단서를 함께 봅니다.",
-    "source": "9/18 · PDF 22~23쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "mc",
-    "choices": [
-      "치구 없는 고골만",
-      "백후니태와 홍강·자강설",
-      "무조건 정상 담홍설만",
-      "황활태만이면 확정"
+      "사지·두면부",
+      "목덜미·가슴·배",
+      "손바닥·발바닥만",
+      "혀와 잇몸만"
     ],
     "answer": [
       "2"
     ],
-    "multiple": false,
-    "displayAnswer": "백후니태와 홍강·자강설"
+    "displayAnswer": "목덜미·가슴·배",
+    "multiple": false
   },
   {
-    "id": "C-047",
+    "id": "C2-025",
     "kind": "concept",
     "chapter": "concept",
     "category": "5",
     "categoryName": "발열",
-    "prompt": "열이 내린 듯해도 정상까지 충분히 내려가지 않고 다시 오한·발열이 이어지는 양상은?",
-    "explanation": "주기적으로 완전히 정상으로 돌아오는 열형과 다르게 이해합니다. 습사를 흔히 겸합니다.",
-    "source": "9/18 · PDF 22~23쪽",
     "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "short",
-    "answer": "한열기복",
-    "accept": [
-      "寒熱起伏"
+    "years": "족보 핵심 개념",
+    "prompt": "막원의 한열왕래에 관한 대응으로 맞는 것은?",
+    "explanation": "막원은 습이 열보다 많고 오한이 발열보다 심한 쪽으로 묶습니다. 족보는 이 비율을 뒤집습니다.",
+    "source": "9/18 · PDF 20~23쪽 — 발열오한·한열왕래·한열기복",
+    "basedOn": "P-q18-10",
+    "basedOnIds": [
+      "P-q18-10"
     ],
-    "displayAnswer": "한열기복"
-  },
-  {
-    "id": "C-048",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "처음 만졌을 때 크게 뜨겁지 않지만 오래 대면 열감이 뚜렷한 발열은?",
-    "explanation": "습이 열을 막는 습열성 발열의 특징입니다.",
-    "source": "9/18 · PDF 31~32쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "short",
-    "answer": "신열불양",
-    "accept": [
-      "身熱不揚"
-    ],
-    "displayAnswer": "신열불양"
-  },
-  {
-    "id": "C-049",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "낮에도 열이 있지만 밤에 더 심한 것과 밤에 열이 나다가 낮에 정상인 것을 구분하면?",
-    "explanation": "밤에 심하다는 공통점만으로 두 열형을 같게 보지 않습니다.",
-    "source": "9/18 · PDF 33~36쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "야열주량 / 신열야심",
-      "신열야심 / 야열주량",
-      "모두 냉한",
-      "모두 전한"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "신열야심 / 야열주량"
-  },
-  {
-    "id": "C-050",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "가슴·배는 뜨겁고 손발은 차갑습니다. 열궐의 병기는?",
-    "explanation": "손발냉만으로 한궐을 확정하지 않고 내부 열과 전신증상을 함께 봅니다.",
-    "source": "9/18 · PDF 34쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "mc",
-    "choices": [
-      "모든 열이 완전히 사라짐",
-      "이열이 기기를 막아 양기가 사지로 퍼지지 못함",
-      "항상 혈허만",
-      "정상 땀 반응"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "이열이 기기를 막아 양기가 사지로 퍼지지 못함"
-  },
-  {
-    "id": "C-051",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "5",
-    "categoryName": "발열",
-    "prompt": "온병 후기 저열·오심번열·관홍·설홍무태가 이어지면 주로 무엇을 살피나요?",
-    "explanation": "후기 음허성 발열은 초기 실열성 발열과 치료 방향이 달라집니다.",
-    "source": "9/18 · PDF 38~40쪽",
-    "inScope": true,
-    "years": "개념확인 · 발열",
-    "type": "mc",
-    "choices": [
-      "표한울폐만",
-      "음식에 물든 설태",
-      "반의 압박퇴색",
-      "간혈·신정 등 음분 손상"
+      "열 > 습, 발열 > 오한",
+      "습 > 열, 오한은 전혀 없음",
+      "열과 습의 비율은 항상 같음",
+      "습 > 열, 오한 > 발열"
     ],
     "answer": [
       "4"
     ],
-    "multiple": false,
-    "displayAnswer": "간혈·신정 등 음분 손상"
+    "displayAnswer": "습 > 열, 오한 > 발열",
+    "multiple": false
   },
   {
-    "id": "C-052",
+    "id": "C2-026",
     "kind": "concept",
     "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "땀이 적은 두 큰 기전을 바르게 묶은 것은?",
-    "explanation": "출구·운행의 문제와 땀을 만들 음액 부족을 구별합니다.",
-    "source": "9/18 · PDF 41~42쪽",
+    "category": "5",
+    "categoryName": "발열",
     "inScope": true,
-    "years": "개념확인 · 한출",
+    "years": "족보 핵심 개념",
+    "prompt": "신열야심과 야열주량을 구분한 것은?",
+    "explanation": "낮에도 열이 남는지 구분하세요. 야열주량은 음분에 남은 사기와 관련하며 ‘2~3일 안에 끝난다’로 외우면 안 됩니다.",
+    "source": "9/18 · PDF 33쪽 — 신열야심 / 9/18 · PDF 34쪽 — 신열지궐: 열궐과 한궐 / 9/18 · PDF 35~36쪽 — 야열주량 / 9/18 · PDF 38~40쪽 — 지속적인 저열과 발열 종합 / 9/18 · PDF 35~36쪽 — 야열주량 / 9/18 · PDF 38~40쪽 — 지속적인 저열과 발열 종합",
+    "basedOn": "P-q20-34",
+    "basedOnIds": [
+      "P-q20-34",
+      "P-q21-50"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "선통·개합 장애 / 진액 소모로 원료 부족",
-      "반 / 진만",
-      "심화 / 신화만",
-      "기뉵 / 치뉵만"
+      "신열야심: 낮에도 열이 있으나 밤에 더 심함 / 야열주량: 밤에 열이 나고 낮에는 정상으로 돌아옴",
+      "둘 다 회복기의 2~3일 저열만 뜻함",
+      "신열야심: 낮에는 정상 / 야열주량: 낮에도 같은 고열",
+      "둘 다 오한만 있고 발열은 없음"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "선통·개합 장애 / 진액 소모로 원료 부족"
+    "displayAnswer": "신열야심: 낮에도 열이 있으나 밤에 더 심함 / 야열주량: 밤에 열이 나고 낮에는 정상으로 돌아옴",
+    "multiple": false
   },
   {
-    "id": "C-053",
+    "id": "C2-027",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "5",
+    "categoryName": "발열",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "열궐에서 속은 뜨거운데 손발이 찬 이유는?",
+    "explanation": "열궐은 이열이 성해 양기가 사지에 도달하지 못하는 양상입니다. 손발이 차다는 사실만으로 양허·한궐로 판단하지 마세요.",
+    "source": "9/18 · PDF 33쪽 — 신열야심 / 9/18 · PDF 34쪽 — 신열지궐: 열궐과 한궐 / 9/18 · PDF 35~36쪽 — 야열주량 / 9/18 · PDF 38~40쪽 — 지속적인 저열과 발열 종합",
+    "basedOn": "P-q20-34",
+    "basedOnIds": [
+      "P-q20-34"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "이열이 기기를 막아 양기가 사지로 퍼지지 못해서",
+      "반드시 양기가 부족한 한증이어서",
+      "위분의 가벼운 오한만 있어서",
+      "진액이 과다하여 체온이 정상보다 낮아서"
+    ],
+    "answer": [
+      "1"
+    ],
+    "displayAnswer": "이열이 기기를 막아 양기가 사지로 퍼지지 못해서",
+    "multiple": false
+  },
+  {
+    "id": "C2-028",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "5",
+    "categoryName": "발열",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "족보에서 온병 후기 저열과 연결하는 손상 부위는?",
+    "explanation": "후기의 저열은 열사로 간혈·신정이 손상된 음허성 양상과 연결합니다. 초기 실열과 구분하는 정도를 확인하면 됩니다.",
+    "source": "9/18 · PDF 33쪽 — 신열야심 / 9/18 · PDF 34쪽 — 신열지궐: 열궐과 한궐 / 9/18 · PDF 35~36쪽 — 야열주량 / 9/18 · PDF 38~40쪽 — 지속적인 저열과 발열 종합",
+    "basedOn": "P-q20-34",
+    "basedOnIds": [
+      "P-q20-34"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "위분에 갓 들어온 사기만",
+      "표부의 한사만",
+      "간혈·신정 등 음분",
+      "음식으로 물든 설태"
+    ],
+    "answer": [
+      "3"
+    ],
+    "displayAnswer": "간혈·신정 등 음분",
+    "multiple": false
+  },
+  {
+    "id": "C2-029",
     "kind": "concept",
     "chapter": "concept",
     "category": "6",
     "categoryName": "한출",
-    "prompt": "대열·대한출·홍대유력맥은 허한성 대한출과 어떻게 다른가요?",
-    "explanation": "땀이 많다는 공통점만으로 허증으로 판단하지 않습니다.",
-    "source": "9/18 · PDF 43~44쪽",
     "inScope": true,
-    "years": "개념확인 · 한출",
+    "years": "족보 핵심 개념",
+    "prompt": "온병에서 땀이 적어지는 두 큰 원인을 바르게 묶은 것은?",
+    "explanation": "땀이 나오는 통로의 문제와 땀을 만들 진액이 부족한 문제를 구분합니다. 족보에 두 기전이 함께 복기되어 있습니다.",
+    "source": "9/18 · PDF 41~42쪽 — 한출의 의의·무한과 소한 / 9/18 · PDF 43쪽 — 실열성 대한과 서온의 등쪽 다한 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 45쪽 — 유시한출",
+    "basedOn": "P-q20-35",
+    "basedOnIds": [
+      "P-q20-35"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "반드시 체온이 낮음",
-      "이열이 성하고 진액이 아직 허하지 않은 실열성 대한",
-      "항상 망양에 의한 냉한",
-      "맥미욕절만 나타남"
+      "정배 / 고배",
+      "땀구멍의 선통·개합 장애 / 진액 소모",
+      "반 / 진",
+      "실화형 치뉵 / 허화형 치뉵"
     ],
     "answer": [
       "2"
     ],
-    "multiple": false,
-    "displayAnswer": "이열이 성하고 진액이 아직 허하지 않은 실열성 대한"
+    "displayAnswer": "땀구멍의 선통·개합 장애 / 진액 소모",
+    "multiple": false
   },
   {
-    "id": "C-054",
+    "id": "C2-030",
     "kind": "concept",
     "chapter": "concept",
     "category": "6",
     "categoryName": "한출",
-    "prompt": "저온·계속되는 많은 땀·산대무력맥을 묶는 것은?",
-    "explanation": "냉한은 여기에 사지의 심한 냉감·잡히지 않을 듯한 맥 등 위급한 양상을 더 살핍니다.",
-    "source": "9/18 · PDF 44쪽",
     "inScope": true,
-    "years": "개념확인 · 한출",
+    "years": "족보 핵심 개념",
+    "prompt": "허한성 대한출의 맥상으로 족보에서 묻는 것은?",
+    "explanation": "허한성 대한출은 산대무력맥입니다. 실열성 대한출의 유력한 맥과 구별하세요.",
+    "source": "9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 46~48쪽 — 전한과 전한 이후의 경과",
+    "basedOn": "P-q18-11",
+    "basedOnIds": [
+      "P-q18-11",
+      "P-q22-68"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "위분 무한",
+      "항상 침실유력함",
+      "삭하면서 유력함",
+      "산대하면서 무력함",
+      "홍대하면서 유력함"
+    ],
+    "answer": [
+      "3"
+    ],
+    "displayAnswer": "산대하면서 무력함",
+    "multiple": false
+  },
+  {
+    "id": "C2-031",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "6",
+    "categoryName": "한출",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "많은 땀과 함께 사지가 몹시 차고 맥이 끊길 듯한 양상은?",
+    "explanation": "냉한은 양기 이탈이 심해진 위중한 양상으로 봅니다. 허한성 대한출의 산대무력맥만 외운 상태와 구분해 사지냉·맥미욕절을 확인하세요.",
+    "source": "9/18 · PDF 41~42쪽 — 한출의 의의·무한과 소한 / 9/18 · PDF 43쪽 — 실열성 대한과 서온의 등쪽 다한 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 45쪽 — 유시한출 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 46~48쪽 — 전한과 전한 이후의 경과",
+    "basedOn": "P-q20-35",
+    "basedOnIds": [
+      "P-q20-35",
+      "P-q22-68"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "냉한",
+      "실열성 대한출",
+      "기분열의 대갈",
+      "정배의 순증"
+    ],
+    "answer": [
+      "1"
+    ],
+    "displayAnswer": "냉한",
+    "multiple": false
+  },
+  {
+    "id": "C2-032",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "6",
+    "categoryName": "한출",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "전한이 주로 나타나는 시기로 맞는 것은?",
+    "explanation": "전한은 주로 기분증 후기에 정기가 회복되어 사기와 항쟁할 때 나타납니다. 족보의 ‘위분증 후기’를 ‘기분증 후기’로 바로잡으세요.",
+    "source": "9/18 · PDF 46~48쪽 — 전한과 전한 이후의 경과 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 49~51쪽 — 갈증의 기전·단계·음수 양상 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 46~48쪽 — 전한과 전한 이후의 경과",
+    "basedOn": "P-q21-51",
+    "basedOnIds": [
+      "P-q21-51",
+      "P-q22-68"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "기분증 후기",
+      "회복 후에만 나타남",
+      "온병이 생기기 전",
+      "위분증 후기"
+    ],
+    "answer": [
+      "1"
+    ],
+    "displayAnswer": "기분증 후기",
+    "multiple": false
+  },
+  {
+    "id": "C2-033",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "6",
+    "categoryName": "한출",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "유시한출의 두 작용을 바르게 연결한 것은?",
+    "explanation": "습의 저애와 열의 훈증이 함께 작용하여 땀이 났다 안 났다 하며 시원하지 않습니다. 두 작용을 모두 열의 작용으로 묶지 마세요.",
+    "source": "9/18 · PDF 41~42쪽 — 한출의 의의·무한과 소한 / 9/18 · PDF 43쪽 — 실열성 대한과 서온의 등쪽 다한 / 9/18 · PDF 44쪽 — 허한성 대한출과 냉한 / 9/18 · PDF 45쪽 — 유시한출",
+    "basedOn": "P-q20-35",
+    "basedOnIds": [
+      "P-q20-35"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "습이 기기를 막음 / 열이 훈증함",
+      "양기 외탈만으로 항상 계속 땀이 남",
+      "기액 고갈만 있고 습열은 없음",
+      "열이 기기를 막음 / 습만 훈증함"
+    ],
+    "answer": [
+      "1"
+    ],
+    "displayAnswer": "습이 기기를 막음 / 열이 훈증함",
+    "multiple": false
+  },
+  {
+    "id": "C2-034",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "6",
+    "categoryName": "한출",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "수태음서온에서 한부지·번갈이천·맥홍대유력의 조문에 들어갈 처방은?",
+    "explanation": "족보 조문의 핵심은 땀이 멎지 않고 번갈·천이 있으며 맥이 홍대유력하다는 것입니다. 이 조건의 정답은 백호탕입니다.",
+    "source": "9/18 · PDF 52쪽 — 수태음서온 제26조: 네 처방의 감별",
+    "basedOn": "P-q21-57",
+    "basedOnIds": [
+      "P-q21-57"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "백호탕",
+    "accept": [
+      "白虎湯"
+    ],
+    "displayAnswer": "백호탕"
+  },
+  {
+    "id": "C2-035",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "6",
+    "categoryName": "한출",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "한다·맥산대·천갈욕탈(汗多脈散大 喘喝欲脫)의 조문에 들어갈 처방은?",
+    "explanation": "백호탕의 홍대유력과 달리 맥산대·욕탈을 묶어 생맥산으로 연결하세요. 족보의 두 처방 조문을 감별하는 핵심입니다.",
+    "source": "9/18 · PDF 52쪽 — 수태음서온 제26조: 네 처방의 감별 / 9/18 · PDF 53~54쪽 — 생맥산의 방론·구성",
+    "basedOn": "P-q20-23",
+    "basedOnIds": [
+      "P-q20-23"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "생맥산",
+    "accept": [
+      "生脈散"
+    ],
+    "displayAnswer": "생맥산"
+  },
+  {
+    "id": "C2-036",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "7",
+    "categoryName": "갈증",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "갈증은 있지만 따뜻한 물을 찾는 경우와 연결하는 것은?",
+    "explanation": "담습 동반 갈증은 따뜻한 물을 찾을 수 있습니다. 족보의 ‘찬물을 좋아하면 담습’은 잘못 바뀐 연결입니다.",
+    "source": "9/18 · PDF 49~51쪽 — 갈증의 기전·단계·음수 양상",
+    "basedOn": "P-q18-12",
+    "basedOnIds": [
+      "P-q18-12",
+      "P-q18-20",
+      "P-q20-36"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "갈증이 전혀 없는 경우",
+      "기분열에서 찬물을 많이 마시는 경우",
+      "담습을 겸한 경우",
+      "반드시 양명부실인 경우"
+    ],
+    "answer": [
+      "3"
+    ],
+    "displayAnswer": "담습을 겸한 경우",
+    "multiple": false
+  },
+  {
+    "id": "C2-037",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "7",
+    "categoryName": "갈증",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "갈증은 있지만 물을 많이 마시지 않는 양상은 족보에서 어느 단계와 연결하나요?",
+    "explanation": "족보의 대응은 영분·혈분입니다. 갈증의 유무와 실제 음수량을 따로 구분하세요.",
+    "source": "9/18 · PDF 49~51쪽 — 갈증의 기전·단계·음수 양상",
+    "basedOn": "P-q22-69",
+    "basedOnIds": [
+      "P-q22-69"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "정상 상태만",
+      "기분열의 대갈·다음만",
+      "열이 영분·혈분으로 들어간 경우",
+      "찬물을 많이 마시는 담습만"
+    ],
+    "answer": [
+      "3"
+    ],
+    "displayAnswer": "열이 영분·혈분으로 들어간 경우",
+    "multiple": false
+  },
+  {
+    "id": "C2-038",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "혼궤불어와 쇼크에 관한 강의·족보의 구분으로 맞는 것은?",
+    "explanation": "시시섬어 악화 → 혼궤불어 → 더 악화한 내폐외탈로 구분합니다. 강의의 쇼크 설명은 식은땀·사지냉·미약맥을 겸할 수 있는 내폐외탈에 붙습니다.",
+    "source": "9/18 · PDF 57~59쪽 — 시유섬어·시시섬어 / 9/18 · PDF 60쪽 — 혼궤불어와 내폐외탈 / 9/18 · PDF 61~62쪽 — 신지혼몽 / 9/18 · PDF 63쪽 — 신지여광",
+    "basedOn": "P-q20-37",
+    "basedOnIds": [
+      "P-q20-37"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "시유섬어만 쇼크를 뜻한다",
+      "혼궤불어가 더 악화한 내폐외탈 단계에 쇼크 설명이 붙는다",
+      "혼궤불어라는 말 자체가 곧 쇼크의 정의이다",
+      "신지여광은 모두 쇼크이다"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "혼궤불어가 더 악화한 내폐외탈 단계에 쇼크 설명이 붙는다",
+    "multiple": false
+  },
+  {
+    "id": "C2-039",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "시청시매·사청사매처럼 맑은 듯 흐릿하며 담열이 심포를 막는 양상은?",
+    "explanation": "신지혼몽은 혼수가 아주 심하지 않고 맑은 듯 흐릿한 양상입니다. 혼궤불어의 더 심한 혼수와 구별하세요.",
+    "source": "9/18 · PDF 57~59쪽 — 시유섬어·시시섬어 / 9/18 · PDF 60쪽 — 혼궤불어와 내폐외탈 / 9/18 · PDF 61~62쪽 — 신지혼몽 / 9/18 · PDF 63쪽 — 신지여광 / 9/18 · PDF 64쪽 — 신지매둔 / 9/18 · PDF 61~62쪽 — 신지혼몽",
+    "basedOn": "P-q20-37",
+    "basedOnIds": [
+      "P-q20-37",
+      "P-q21-52"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
       "허한성 대한출",
+      "신지여광",
+      "내폐외탈",
+      "신지혼몽"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "신지혼몽",
+    "multiple": false
+  },
+  {
+    "id": "C2-040",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "신지매둔을 온병 후기 후유증으로 설명할 때, 해당 강의의 병명은?",
+    "explanation": "족보의 ‘춘온·습온’을 주의하세요. 해당 강의는 춘온·서온 후기라고 설명합니다. 가볍게 나타나는 매둔의 습열 유발 가능성과는 별개 구분입니다.",
+    "source": "9/18 · PDF 64쪽 — 신지매둔 / 9/18 · PDF 61~62쪽 — 신지혼몽",
+    "basedOn": "P-q21-52",
+    "basedOnIds": [
+      "P-q21-52"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "춘온·습온",
+      "상한·중풍만",
+      "풍온·습온만",
+      "춘온·서온"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "춘온·서온",
+    "multiple": false
+  },
+  {
+    "id": "C2-041",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "신지여광의 핵심 연결로 맞는 것은?",
+    "explanation": "신지여광은 온열병에서 혈분증으로 설명하며 하초축혈·열입혈실과 연결합니다. 혼몽처럼 의식이 흐릿한 양상과 구분하세요.",
+    "source": "9/18 · PDF 64쪽 — 신지매둔 / 9/18 · PDF 63쪽 — 신지여광 / 9/18 · PDF 57~59쪽 — 시유섬어·시시섬어 / 9/18 · PDF 60쪽 — 혼궤불어와 내폐외탈 / 9/18 · PDF 61~62쪽 — 신지혼몽 / 9/18 · PDF 63쪽 — 신지여광",
+    "basedOn": "P-q22-70",
+    "basedOnIds": [
+      "P-q22-70",
+      "P-q20-37"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "혈분증·하초축혈증",
+      "담습성 갈증만",
       "정배의 순증만",
-      "전형적인 실열성 장열만"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "허한성 대한출"
-  },
-  {
-    "id": "C-055",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "유시한출을 습과 열의 성질로 설명한 것은?",
-    "explanation": "땀이 났다 안 났다 하며 시원하지 않은 양상입니다. 화습·기기소통도 필요합니다.",
-    "source": "9/18 · PDF 45쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "mc",
-    "choices": [
-      "습의 기기 저애와 열의 훈증이 함께 작용",
-      "습과 열 모두 똑같이 땀구멍만 닫음",
-      "음액이 전혀 없어서 땀을 대량 생성",
-      "습은 반드시 없고 열만 존재"
+      "위분의 가벼운 오한만"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "습의 기기 저애와 열의 훈증이 함께 작용"
+    "displayAnswer": "혈분증·하초축혈증",
+    "multiple": false
   },
   {
-    "id": "C-056",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "전한이 난 뒤 땀이 났다는 사실만으로 회복을 확정할 수 있나요?",
-    "explanation": "정상적인 피로·휴식과 수족궐랭·침맥 같은 위탈 양상을 구분합니다.",
-    "source": "9/18 · PDF 46~48쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "mc",
-    "choices": [
-      "예. 땀만 나면 항상 회복",
-      "아니요. 체온·맥·호흡·사지 상태와 위탈 조짐을 함께 봄"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "아니요. 체온·맥·호흡·사지 상태와 위탈 조짐을 함께 봄"
-  },
-  {
-    "id": "C-057",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "수태음서온 조문에서 맥이 홍대하면서 규하면 연결되는 처방은?",
-    "explanation": "홍대유력은 백호탕, 홍대이규는 백호가인삼탕으로 비교합니다.",
-    "source": "9/18 · PDF 52쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "short",
-    "answer": "백호가인삼탕",
-    "accept": [
-      "白虎加人蔘湯",
-      "白虎加人參湯"
-    ],
-    "displayAnswer": "백호가인삼탕"
-  },
-  {
-    "id": "C-058",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "같은 조문에서 신중(身重)으로 습을 겸할 때 연결되는 처방은?",
-    "explanation": "백호탕의 열을 식히는 방향에 창출로 습을 다루는 의미입니다. 영혈분의 모든 후니태에 쓰는 처방으로 확대하지 않습니다.",
-    "source": "9/18 · PDF 52쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "short",
-    "answer": "백호가창출탕",
-    "accept": [
-      "白虎加蒼朮湯"
-    ],
-    "displayAnswer": "백호가창출탕"
-  },
-  {
-    "id": "C-059",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "백호탕·백호가인삼탕·백호가창출탕을 구분하는 이 조문의 큰 맥락은?",
-    "explanation": "같은 수태음서온 문맥에서 실열·진기 손상·습 동반의 조건을 구분한 처방들입니다.",
-    "source": "9/18 · PDF 52쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "mc",
-    "choices": [
-      "수태음서온에서 맥·신중 등 조건에 따른 감별",
-      "항상 혈분출혈만",
-      "모두 하초축혈만",
-      "모두 수궐음서온의 동일 조건"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "수태음서온에서 맥·신중 등 조건에 따른 감별"
-  },
-  {
-    "id": "C-060",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "생맥산의 세 약재는?",
-    "explanation": "산감화음·수음유양의 방론과 연결합니다.",
-    "source": "9/18 · PDF 53~54쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "mc",
-    "choices": [
-      "계자황·아교·담채",
-      "지모·감초·서각",
-      "인삼·맥문동·오미자",
-      "인삼·창출·석고"
-    ],
-    "answer": [
-      "3"
-    ],
-    "multiple": false,
-    "displayAnswer": "인삼·맥문동·오미자"
-  },
-  {
-    "id": "C-061",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "6",
-    "categoryName": "한출",
-    "prompt": "생맥산의 인삼을 군약으로 삼는 직접적인 이유는?",
-    "explanation": "인삼의 역할과 처방 전체의 산감화음·수음유양을 구별합니다.",
-    "source": "9/18 · PDF 53~54쪽",
-    "inScope": true,
-    "years": "개념확인 · 한출",
-    "type": "mc",
-    "choices": [
-      "폐중 원기를 보함",
-      "서각처럼 혈열만 식히기 위해",
-      "동혈을 조장하기 위해",
-      "창출처럼 조습하기 위해"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "폐중 원기를 보함"
-  },
-  {
-    "id": "C-062",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "7",
-    "categoryName": "갈증",
-    "prompt": "갈증이 있다는 말과 물을 많이 마신다는 말의 관계는?",
-    "explanation": "갈증 유무·찬물/온수 선호·실제 음수량을 각각 확인합니다.",
-    "source": "9/18 · PDF 49~51쪽",
-    "inScope": true,
-    "years": "개념확인 · 갈증",
-    "type": "mc",
-    "choices": [
-      "설상과 무관",
-      "서로 구분해야 하며 갈증이 있어도 음수량이 적을 수 있음",
-      "항상 같은 뜻",
-      "항상 정반대"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "서로 구분해야 하며 갈증이 있어도 음수량이 적을 수 있음"
-  },
-  {
-    "id": "C-063",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "7",
-    "categoryName": "갈증",
-    "prompt": "기분열의 전형적 갈증과 담습 동반 갈증의 음수 선호를 비교하면?",
-    "explanation": "일반적인 대응이며 진액 소모·기기·설상 등과 종합합니다.",
-    "source": "9/18 · PDF 49~51쪽",
-    "inScope": true,
-    "years": "개념확인 · 갈증",
-    "type": "mc",
-    "choices": [
-      "따뜻한 물만 / 찬물만",
-      "찬물·다음 / 따뜻한 물을 찾을 수 있음",
-      "둘 다 항상 무갈",
-      "둘 다 항상 물을 거부"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "찬물·다음 / 따뜻한 물을 찾을 수 있음"
-  },
-  {
-    "id": "C-064",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "7",
-    "categoryName": "갈증",
-    "prompt": "열이 영혈분에 들어가 갈증은 있으나 물을 많이 마시지 않을 때 비교할 설상은?",
-    "explanation": "담습으로 진액 수포가 막힌 후니태와 구분하는 단서입니다.",
-    "source": "9/18 · PDF 50~51쪽",
-    "inScope": true,
-    "years": "개념확인 · 갈증",
-    "type": "mc",
-    "choices": [
-      "홍강설·무태 등",
-      "정상 박백태만",
-      "음식 염태만",
-      "치은결판만"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "홍강설·무태 등"
-  },
-  {
-    "id": "C-065",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "7",
-    "categoryName": "갈증",
-    "prompt": "습이 진액의 수포를 막으면 몸 안에 수습이 있어도 갈증이 생길 수 있나요?",
-    "explanation": "진액이 있다고 해서 정상적으로 퍼지고 쓰인다는 뜻은 아닙니다. 수포 장애와 실제 소모를 구별합니다.",
-    "source": "9/18 · PDF 49~51쪽",
-    "inScope": true,
-    "years": "개념확인 · 갈증",
-    "type": "mc",
-    "choices": [
-      "예. 진액의 존재와 필요한 곳으로의 수포는 구분됨",
-      "아니요. 수습이 있으면 갈증은 절대 없음"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "예. 진액의 존재와 필요한 곳으로의 수포는 구분됨"
-  },
-  {
-    "id": "C-066",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "7",
-    "categoryName": "갈증",
-    "prompt": "심한 습열에서 갈증이 없거나 적게 느껴질 수 있다는 설명을 바르게 읽은 것은?",
-    "explanation": "강의는 습열성 갈증의 양상이 단순하지 않음을 설명합니다. 습의 저애·진액 수포·소모를 함께 보아야 합니다.",
-    "source": "9/18 · PDF 49~51쪽",
-    "inScope": true,
-    "years": "개념확인 · 갈증",
-    "type": "mc",
-    "choices": [
-      "갈증이 적다는 사실만으로 열의 존재를 부정하지 않음",
-      "모든 습열은 진액을 전혀 손상하지 않음",
-      "습열이면 언제나 반드시 대갈",
-      "갈증이 없으면 무조건 정상"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "갈증이 적다는 사실만으로 열의 존재를 부정하지 않음"
-  },
-  {
-    "id": "C-067",
+    "id": "C2-042",
     "kind": "concept",
     "chapter": "concept",
     "category": "8",
     "categoryName": "정신상태와 신지",
-    "prompt": "신지 분류 목록 전체를 경증→중증의 일직선 순서로 외우면 안 되는 이유는?",
-    "explanation": "시시섬어가 악화하여 혼궤불어·내폐외탈로 이어지는 설명과 여광·매둔·혼몽의 분류를 구별합니다.",
-    "source": "9/18 · PDF 55~64쪽",
     "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
+    "years": "족보 핵심 개념",
+    "prompt": "우황·서각 등이 포함된 구성으로 족보에서 처방명을 묻는 것은?",
+    "explanation": "해당 족보 구성의 처방명은 안궁우황환입니다. 방향개규의 작용과 함께 연결하세요.",
+    "source": "10/2 · PDF 10~14쪽 — 안궁우황환 구성·방론 / 10/2 · PDF 3~6쪽 — 신혼섬어 관련 제16조와 잘못된 발한의 병기",
+    "basedOn": "P-q18-14",
+    "basedOnIds": [
+      "P-q18-14"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "안궁우황환",
+    "accept": [
+      "安宮牛黃丸",
+      "안궁우황완"
+    ],
+    "displayAnswer": "안궁우황환"
+  },
+  {
+    "id": "C2-043",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "안궁우황환에서 방향약을 쓰는 목적은?",
+    "explanation": "족보는 방향화예탁하여 공규를 소통한다는 문장의 정오를 묻습니다. 약재별 세부 방론보다 개규의 목적을 먼저 확인하세요.",
+    "source": "10/2 · PDF 10~14쪽 — 안궁우황환 구성·방론",
+    "basedOn": "P-q21-60",
+    "basedOnIds": [
+      "P-q21-60"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "목록은 모두 후유증만 의미해서",
-      "신지는 위기영혈과 전혀 무관해서",
-      "모두 동일한 열폐심포이기 때문",
-      "서로 다른 병기와 증상 양상을 분류한 목록이기 때문"
+      "예탁을 물리치고 공규를 소통함",
+      "장을 강하게 공하함",
+      "습을 더 보태어 진액을 가둠",
+      "신온발표로 강하게 땀을 냄"
+    ],
+    "answer": [
+      "1"
+    ],
+    "displayAnswer": "예탁을 물리치고 공규를 소통함",
+    "multiple": false
+  },
+  {
+    "id": "C2-044",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "8",
+    "categoryName": "정신상태와 신지",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "수궐음서온·설백활자 불가여(手厥陰暑溫·舌白滑者不可與也)의 조문에 들어갈 처방은?",
+    "explanation": "족보의 처방은 청영탕입니다. ‘설백활’은 습이 중한 단서이므로 이 경우 유윤한 약의 사용을 주의한다는 조건까지 연결하세요.",
+    "source": "10/2 · PDF 15~18쪽 — 수궐음서온 제30조·청영탕",
+    "basedOn": "P-q21-56",
+    "basedOnIds": [
+      "P-q21-56"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "청영탕",
+    "accept": [
+      "淸營湯",
+      "清營湯"
+    ],
+    "displayAnswer": "청영탕"
+  },
+  {
+    "id": "C2-045",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "9",
+    "categoryName": "경궐과 동풍",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "경궐의 변증에서 초점을 두는 쪽은?",
+    "explanation": "경궐은 경증(痙證)에 편중됩니다. 경(痙)을 ‘가벼울 경(輕)’으로 읽지 마세요. 족보의 ‘궐에 편중’은 틀린 선지입니다.",
+    "source": "10/2 · PDF 19~21쪽 — 경·궐·계종의 개념 / 10/2 · PDF 19~21쪽 — 경·궐·계종의 개념 / 10/2 · PDF 24~25쪽 — 기분증동풍 / 10/2 · PDF 28~29쪽 — 허증동풍",
+    "basedOn": "P-q18-15",
+    "basedOnIds": [
+      "P-q18-15",
+      "P-q22-71"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "궐(厥)만이며 경은 중요하지 않음",
+      "경(痙): 근육의 강직·경련",
+      "피부의 반진만",
+      "경증(輕症): 가벼운 증상이라는 뜻"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "경(痙): 근육의 강직·경련",
+    "multiple": false
+  },
+  {
+    "id": "C2-046",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "9",
+    "categoryName": "경궐과 동풍",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "기분증 동풍에서 족보에 복기된 흔한 기전은?",
+    "explanation": "기분증 동풍에서는 폐열 → 담성 → 간풍 유발의 연결을 확인하세요. 간풍이 보인다고 원인을 간 자체의 열 하나로만 정하지 않습니다.",
+    "source": "10/2 · PDF 19~21쪽 — 경·궐·계종의 개념 / 10/2 · PDF 24~25쪽 — 기분증동풍 / 10/2 · PDF 28~29쪽 — 허증동풍",
+    "basedOn": "P-q22-71",
+    "basedOnIds": [
+      "P-q22-71"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "간신음액이 고갈된 후기 허증만",
+      "폐열로 담이 성하여 간풍을 인동함",
+      "표한이 치아에만 머묾",
+      "하초축혈만으로 혀가 커짐"
+    ],
+    "answer": [
+      "2"
+    ],
+    "displayAnswer": "폐열로 담이 성하여 간풍을 인동함",
+    "multiple": false
+  },
+  {
+    "id": "C2-047",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "9",
+    "categoryName": "경궐과 동풍",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "습열병 동풍과 온열병 동풍을 비교한 족보 선지를 바로잡으면?",
+    "explanation": "족보의 ‘습열병 동풍이 더 심하다’가 X입니다. 습열병에서는 담습이 경맥을 막는 기전도 함께 봅니다.",
+    "source": "10/2 · PDF 27쪽 — 습열병동풍",
+    "basedOn": "P-q21-53",
+    "basedOnIds": [
+      "P-q21-53"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "습열병에는 동풍이 전혀 없다",
+      "두 경우는 병기가 항상 같다",
+      "습열병 동풍이 반드시 더 심하다",
+      "습열병 동풍이 온열병보다 경미한 경향이다"
     ],
     "answer": [
       "4"
     ],
-    "multiple": false,
-    "displayAnswer": "서로 다른 병기와 증상 양상을 분류한 목록이기 때문"
+    "displayAnswer": "습열병 동풍이 온열병보다 경미한 경향이다",
+    "multiple": false
   },
   {
-    "id": "C-068",
+    "id": "C2-048",
     "kind": "concept",
     "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "기분은 낮, 영혈분은 밤에 심한 경향을 비교하며 기·영·혈분 모두에 나타날 수 있는 신지 증상은?",
-    "explanation": "어느 한 단계에만 한정하지 않습니다. 습열병에서 오래되어 건조해지면 생길 수 있는 조건도 봅니다.",
-    "source": "9/18 · PDF 55~56쪽",
+    "category": "9",
+    "categoryName": "경궐과 동풍",
     "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "번조불안",
-    "accept": [
-      "煩躁不安"
+    "years": "족보 핵심 개념",
+    "prompt": "허증동풍의 주된 원인·시기를 바르게 묶은 것은?",
+    "explanation": "허증동풍은 음허가 주원인이며 대개 후기에 나타납니다. 실열이 성할 때의 힘찬 경련과 구별하세요.",
+    "source": "10/2 · PDF 19~21쪽 — 경·궐·계종의 개념 / 10/2 · PDF 24~25쪽 — 기분증동풍 / 10/2 · PDF 28~29쪽 — 허증동풍",
+    "basedOn": "P-q22-71",
+    "basedOnIds": [
+      "P-q22-71"
     ],
-    "displayAnswer": "번조불안"
-  },
-  {
-    "id": "C-069",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "잠깐 헛소리를 하지만 맑은 시간이 더 많고 비교적 가벼운 것은?",
-    "explanation": "시시섬어의 심·심포열과 중추신경계 병변·후유증 설명보다 가벼운 양상입니다.",
-    "source": "9/18 · PDF 57~59쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "시유섬어",
-    "accept": [
-      "時有譫語"
-    ],
-    "displayAnswer": "시유섬어"
-  },
-  {
-    "id": "C-070",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "헛소리가 더 심하고 심·심포의 열이 심규를 막고 교란하는 것은?",
-    "explanation": "시유섬어를 모두 열폐심포와 동일하게 처리하지 않습니다.",
-    "source": "9/18 · PDF 57~59쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "시시섬어",
-    "accept": [
-      "時時譫語"
-    ],
-    "displayAnswer": "시시섬어"
-  },
-  {
-    "id": "C-071",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "시시섬어가 악화하여 혼수가 더 심하고 말하지 못하는 양상은?",
-    "explanation": "열폐심포를 설명하며, 더 악화하여 내폐외탈하는 단계의 식은땀·사지냉·미약맥도 구분합니다.",
-    "source": "9/18 · PDF 60쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "혼궤불어",
-    "accept": [
-      "昏憒不語"
-    ],
-    "displayAnswer": "혼궤불어"
-  },
-  {
-    "id": "C-072",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "시청시매·사청사매처럼 맑은 듯 흐릿하며 담열·후니태를 보는 양상은?",
-    "explanation": "부르면 일부 반응이 남을 수 있으며 무반응의 심한 혼수와 다릅니다.",
-    "source": "9/18 · PDF 61~62쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "신지혼몽",
-    "accept": [
-      "神志昏蒙"
-    ],
-    "displayAnswer": "신지혼몽"
-  },
-  {
-    "id": "C-073",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "온열병에서 혈분증으로 울열이 심신을 어지럽히고 하초축혈과 연결되는 것은?",
-    "explanation": "의식이 흐려지는 신혼과 광증의 양상을 구별합니다.",
-    "source": "9/18 · PDF 63쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "신지여광",
-    "accept": [
-      "神志如狂"
-    ],
-    "displayAnswer": "신지여광"
-  },
-  {
-    "id": "C-074",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "후기 후유증으로 넋이 나간 듯한 상태가 오래가는 양상은?",
-    "explanation": "춘온·서온 후기의 설명입니다. 가벼운 경우에는 습열 유발도 인정합니다.",
-    "source": "9/18 · PDF 64쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "short",
-    "answer": "신지매둔",
-    "accept": [
-      "神志呆鈍",
-      "신지매돈"
-    ],
-    "displayAnswer": "신지매둔"
-  },
-  {
-    "id": "C-075",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "안궁우황환의 네 방향약을 고른 것은?",
-    "explanation": "방향화예탁·개규와 고한청열 약군의 역할을 구별합니다.",
-    "source": "10/2 · PDF 12~14쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "황련·황금·치자·석고",
-      "인삼·맥동·오미자·복령",
-      "계자황·아교·구판·담채",
-      "울금·매편·웅황·사향"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "울금·매편·웅황·사향"
-  },
-  {
-    "id": "C-076",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "8",
-    "categoryName": "정신상태와 신지",
-    "prompt": "청영탕 조문에서 ‘설백활자 불가여’를 주의하는 이유는?",
-    "explanation": "습과 열의 비중을 함께 봅니다. 영분열이라는 말만으로 처방을 고정하지 않습니다.",
-    "source": "10/2 · PDF 15~18쪽",
-    "inScope": true,
-    "years": "개념확인 · 정신상태와 신지",
-    "type": "mc",
-    "choices": [
-      "습이 중한 상황에 유윤한 약이 적절하지 않을 수 있어서",
-      "설백활은 항상 하초음허만 뜻해서",
-      "청영탕은 모든 영분열에 절대 금기여서",
-      "백태는 전부 표한이어서"
+      "음허 / 온병 후기",
+      "습열이 충실함 / 온병 이전",
+      "표한 / 온병 초기",
+      "양명부실 / 모든 시기에 동일"
     ],
     "answer": [
       "1"
     ],
-    "multiple": false,
-    "displayAnswer": "습이 중한 상황에 유윤한 약이 적절하지 않을 수 있어서"
+    "displayAnswer": "음허 / 온병 후기",
+    "multiple": false
   },
   {
-    "id": "C-077",
+    "id": "C2-049",
     "kind": "concept",
     "chapter": "concept",
     "category": "9",
     "categoryName": "경궐과 동풍",
-    "prompt": "경(痙)과 궐(厥)을 구분한 설명으로 옳은 것은?",
-    "explanation": "경궐의 변증 초점은 경증(痙證)에 있다는 강의 표현을 이해해야 합니다.",
-    "source": "10/2 · PDF 19~21쪽",
     "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "경은 무조건 가벼움, 궐은 무조건 열 없음",
-      "경은 강직·경련, 궐은 혼궐 또는 지궐·궐랭을 살핌",
-      "경이 있으면 반드시 궐도 존재",
-      "둘은 항상 똑같은 증상"
+    "years": "족보 핵심 개념",
+    "prompt": "수지단각연동·급방경궐(手指但覺蠕動·急防痙厥)의 처방은?",
+    "explanation": "손가락이 꿈틀거리는 전조에서 경궐을 급히 예방한다는 조문입니다. 처방명을 이갑복맥탕과 연결하세요.",
+    "source": "10/2 · PDF 30~32쪽 — 이갑복맥탕 제13조·가감복맥탕과의 관계 / 9/11 · PDF 41쪽 — 이갑복맥탕 조문의 앞선 수록",
+    "basedOn": "P-q20-22",
+    "basedOnIds": [
+      "P-q20-22"
     ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "경은 강직·경련, 궐은 혼궐 또는 지궐·궐랭을 살핌"
-  },
-  {
-    "id": "C-078",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "근육의 수축과 이완이 반복되는 계종은 어떤 경향으로 소개되나요?",
-    "explanation": "경증은 실증이 많고 계종은 허증이 많은 경향입니다. 절대적인 이분법은 아닙니다.",
-    "source": "10/2 · PDF 21쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "항상 표한만",
-      "항상 실증만",
-      "정상 운동만",
-      "허증이 많음"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "허증이 많음"
-  },
-  {
-    "id": "C-079",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "폐열로 담이 성해 간풍을 인동하는 기분증동풍의 설명을 무엇이라 하나요?",
-    "explanation": "간풍이 나타나도 원인 장부는 폐·위·장 등일 수 있습니다.",
-    "source": "10/2 · PDF 24~25쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "short",
-    "answer": "금수목왕",
-    "accept": [
-      "金囚木旺",
-      "金囚木旺"
-    ],
-    "displayAnswer": "금수목왕"
-  },
-  {
-    "id": "C-080",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "고열이 가장 심할 때 힘찬 경련이 짧게 일어나는 양상과 비교할 것은?",
-    "explanation": "후기 음허성 동풍의 무력·지속·저열과 비교합니다.",
-    "source": "10/2 · PDF 22~29쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "정상적인 전한만",
-      "모두 후기 음허동풍만",
-      "음식 염태",
-      "실증동풍의 열극생풍"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "실증동풍의 열극생풍"
-  },
-  {
-    "id": "C-081",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "온병 후기 저열·오심번열·힘없는 꿈틀거림이 오래 이어질 때 살필 병기는?",
-    "explanation": "간신음액이 근맥을 자양하지 못하는 측면을 생각합니다.",
-    "source": "10/2 · PDF 28~29쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "양명부실 실열만",
-      "위분 표한만",
-      "양기가 충분한 정상 반응",
-      "음허성 허증동풍"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "음허성 허증동풍"
-  },
-  {
-    "id": "C-082",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "습열병 동풍에서 화습·청열·통락을 함께 보는 이유는?",
-    "explanation": "한량약에만 치우치지 않고 습의 저애도 고려합니다.",
-    "source": "10/2 · PDF 27쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "습은 언제나 없기 때문",
-      "담습이 경맥을 막는 기전도 있기 때문",
-      "진액은 무조건 충분해서",
-      "온열병보다 항상 더 심하기 때문"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "담습이 경맥을 막는 기전도 있기 때문"
-  },
-  {
-    "id": "C-083",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "9",
-    "categoryName": "경궐과 동풍",
-    "prompt": "수지단각연동·급방경궐의 처방명은?",
-    "explanation": "이미 심한 경궐만을 뜻하는 것이 아니라 전조에서 예방한다는 뜻을 봅니다.",
-    "source": "10/2 · PDF 30~32쪽",
-    "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "short",
     "answer": "이갑복맥탕",
     "accept": [
@@ -5676,641 +5268,389 @@
     "displayAnswer": "이갑복맥탕"
   },
   {
-    "id": "C-084",
+    "id": "C2-050",
     "kind": "concept",
     "chapter": "concept",
     "category": "9",
     "categoryName": "경궐과 동풍",
-    "prompt": "소정풍주와 대정풍주를 구분할 때 가장 직접적인 소정풍주의 조문 단서는?",
-    "explanation": "충맥 요동의 딸꾹질과 소정풍주를 묶습니다. 대정풍주는 진음고갈·설홍태소·허탈 경향과 비교합니다.",
-    "source": "10/2 · PDF 33~37쪽",
     "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
+    "years": "족보 핵심 개념",
+    "prompt": "이갑복맥탕에서 가감복맥탕에 더하는 두 약재는?",
+    "explanation": "두 갑류 약재인 생모려·생별갑입니다. 화반탕의 서각·원삼, 소정풍주의 구성과 섞지 마세요.",
+    "source": "10/2 · PDF 30~32쪽 — 이갑복맥탕 제13조·가감복맥탕과의 관계 / 9/11 · PDF 41쪽 — 이갑복맥탕 조문의 앞선 수록",
+    "basedOn": "P-q21-58",
+    "basedOnIds": [
+      "P-q21-58"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "기궐차홰·맥세이경",
-      "황활태·습성",
-      "신중·습",
-      "혈종상일·합은교산"
+      "계자황·아교",
+      "생모려·생별갑",
+      "인삼·맥문동",
+      "서각·원삼"
     ],
     "answer": [
-      "1"
+      "2"
     ],
-    "multiple": false,
-    "displayAnswer": "기궐차홰·맥세이경"
+    "displayAnswer": "생모려·생별갑",
+    "multiple": false
   },
   {
-    "id": "C-085",
+    "id": "C2-051",
     "kind": "concept",
     "chapter": "concept",
     "category": "9",
     "categoryName": "경궐과 동풍",
-    "prompt": "소정풍주의 구성으로 강의에 나오는 것은?",
-    "explanation": "소정풍주의 감한함법과 대정풍주의 산감함법도 함께 구분합니다.",
-    "source": "10/2 · PDF 33~37쪽",
     "inScope": true,
-    "years": "개념확인 · 경궐과 동풍",
-    "type": "mc",
-    "choices": [
-      "계자황·아교·생구판·동변·담채",
-      "석고·지모·생감초·갱미만",
-      "가감복맥탕에 생모려·생별갑만",
-      "인삼·맥문동·오미자"
+    "years": "족보 핵심 개념",
+    "prompt": "간액 손상으로 경궐하고 충맥 요동으로 딸꾹질하며 맥세이경한 조문의 처방은?",
+    "explanation": "기궐차홰·맥세이경을 소정풍주와 연결하세요. 족보는 이를 대정풍주로 바꿔 참·거짓을 묻습니다.",
+    "source": "10/2 · PDF 33~36쪽 — 소정풍주 제15조·방론·구성 / 10/2 · PDF 37쪽 — 대정풍주와 소정풍주의 구분 / 10/2 · PDF 33~36쪽 — 소정풍주 제15조·방론·구성",
+    "basedOn": "P-q18-16",
+    "basedOnIds": [
+      "P-q18-16",
+      "P-q20-24",
+      "P-q21-59"
     ],
-    "answer": [
-      "1"
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "short",
+    "answer": "소정풍주",
+    "accept": [
+      "小定風珠"
     ],
-    "multiple": false,
-    "displayAnswer": "계자황·아교·생구판·동변·담채"
+    "displayAnswer": "소정풍주"
   },
   {
-    "id": "C-086",
+    "id": "C2-052",
     "kind": "concept",
     "chapter": "concept",
     "category": "10",
     "categoryName": "출혈",
-    "prompt": "출혈이 있다는 사실만으로 바로 서각지황탕을 선택하면 안 되는 이유는?",
-    "explanation": "위분열의 상증·기분습열의 폐혈락 손상·혈열·허증출혈 등 기전이 다릅니다.",
-    "source": "10/2 · PDF 38~41쪽",
     "inScope": true,
-    "years": "개념확인 · 출혈",
+    "years": "족보 핵심 개념",
+    "prompt": "황토탕과 연결하는 만성 장출혈의 시기·성질은?",
+    "explanation": "습열병 후기에 허한으로 변해 생긴 만성 장출혈입니다. 족보는 ‘후기’를 ‘초기’로 바꿔 출제합니다.",
+    "source": "10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 40~41쪽 — 출혈 부위와 관련 장부 / 10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 38~39쪽 — 출혈의 허실·위기영혈 / 10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 48쪽 — 서각지황탕의 구성·치법 표기",
+    "basedOn": "P-q18-17",
+    "basedOnIds": [
+      "P-q18-17",
+      "P-q20-25",
+      "P-q22-72"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "모든 출혈은 허한이어서",
-      "위기영혈 단계·허실한열·부위를 구분해야 해서",
-      "모든 출혈은 양허여서",
-      "혈열은 절대 출혈하지 않아서"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "위기영혈 단계·허실한열·부위를 구분해야 해서"
-  },
-  {
-    "id": "C-087",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "10",
-    "categoryName": "출혈",
-    "prompt": "음허화왕성 허증출혈에서 주로 제시되는 부위는?",
-    "explanation": "치뉵(齒衄)과 기뉵(肌衄)을 구분합니다. 기허·양허의 출혈도 별도 가능합니다.",
-    "source": "10/2 · PDF 40쪽",
-    "inScope": true,
-    "years": "개념확인 · 출혈",
-    "type": "mc",
-    "choices": [
-      "치뉵·비뉵",
-      "모두 외상성 피부출혈",
-      "익혈·열입혈실만",
-      "기뉵만"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "치뉵·비뉵"
-  },
-  {
-    "id": "C-088",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "10",
-    "categoryName": "출혈",
-    "prompt": "습열병에서 허한으로 변하여 만성 장출혈이 생기는 경우의 시기·처방은?",
-    "explanation": "모든 습열병 후기에 반드시 생기는 것이 아니라 가능한 변화 양상입니다.",
-    "source": "10/2 · PDF 40쪽",
-    "inScope": true,
-    "years": "개념확인 · 출혈",
-    "type": "mc",
-    "choices": [
-      "후기 / 의이죽엽산",
-      "초기 / 화반탕",
-      "후기 / 황토탕",
-      "초기 / 황토탕"
+      "기분 실열 / 모든 피부 출혈",
+      "습열병 초기 / 모든 혈열성 출혈",
+      "습열병 후기 / 허한성",
+      "위분 초기 / 단순 오한"
     ],
     "answer": [
       "3"
     ],
-    "multiple": false,
-    "displayAnswer": "후기 / 황토탕"
+    "displayAnswer": "습열병 후기 / 허한성",
+    "multiple": false
   },
   {
-    "id": "C-089",
+    "id": "C2-053",
     "kind": "concept",
     "chapter": "concept",
     "category": "10",
     "categoryName": "출혈",
-    "prompt": "출혈 부위와 장부의 연결 중 틀린 것은?",
-    "explanation": "생리기간 외 하혈은 열입혈실과 연결합니다. 익혈은 혈뇨입니다.",
-    "source": "10/2 · PDF 40~41쪽",
     "inScope": true,
-    "years": "개념확인 · 출혈",
-    "type": "mc",
-    "choices": [
-      "변혈—장열",
-      "생리기간 외 하혈—방광열",
-      "토혈—위열",
-      "익혈—방광열"
+    "years": "족보 핵심 개념",
+    "prompt": "태음온병 혈종상일(太陰溫病 血從上溢)에 은교산과 합방하는 처방은?",
+    "explanation": "족보 조문의 답은 서각지황탕 합 은교산입니다. 출혈이 있다는 이유만으로 모든 경우에 같은 합방을 적용하지 않습니다.",
+    "source": "10/2 · PDF 42~47쪽 — 상규출혈 제11조·분홍혈수·청락육음 / 10/2 · PDF 48쪽 — 서각지황탕의 구성·치법 표기",
+    "basedOn": "P-q20-21",
+    "basedOnIds": [
+      "P-q20-21"
     ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "생리기간 외 하혈—방광열"
-  },
-  {
-    "id": "C-090",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "10",
-    "categoryName": "출혈",
-    "prompt": "‘뉵’이라는 같은 음 때문에 혼동하는 치뉵·기뉵의 차이는?",
-    "explanation": "齒는 치아, 肌는 피부·기육입니다. 글자를 보면 부위가 구분됩니다.",
-    "source": "10/2 · PDF 40~41쪽",
-    "inScope": true,
-    "years": "개념확인 · 출혈",
-    "type": "mc",
-    "choices": [
-      "잇몸출혈 / 피부의 출혈",
-      "둘 다 토혈",
-      "피부출혈 / 잇몸출혈",
-      "둘 다 혈뇨"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "잇몸출혈 / 피부의 출혈"
-  },
-  {
-    "id": "C-091",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "10",
-    "categoryName": "출혈",
-    "prompt": "피부의 기뉵에 열이 심하지 않으면 추가로 살필 기전은?",
-    "explanation": "강의는 위열이 흔하지만 열이 심하지 않은 경우 비의 통혈 기능도 살핀다고 설명합니다.",
-    "source": "10/2 · PDF 41쪽",
-    "inScope": true,
-    "years": "개념확인 · 출혈",
-    "type": "mc",
-    "choices": [
-      "비불통혈",
-      "항상 폐열만",
-      "주독충심만",
-      "방광열만"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "비불통혈"
-  },
-  {
-    "id": "C-092",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "10",
-    "categoryName": "출혈",
-    "prompt": "서각지황탕 합 은교산을 묻는 상초 조문 단서는?",
-    "explanation": "태음온병 혈종상일의 문맥입니다. 출혈 전반에 같은 조합을 일반화하지 않습니다.",
-    "source": "10/2 · PDF 42~47쪽",
-    "inScope": true,
-    "years": "개념확인 · 출혈",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "short",
-    "answer": "혈종상일",
+    "answer": "서각지황탕",
     "accept": [
-      "血從上溢"
+      "犀角地黃湯"
     ],
-    "displayAnswer": "혈종상일"
+    "displayAnswer": "서각지황탕"
   },
   {
-    "id": "C-093",
+    "id": "C2-054",
     "kind": "concept",
     "chapter": "concept",
     "category": "10",
     "categoryName": "출혈",
-    "prompt": "서각지황탕의 네 구성 약재로 강의에 제시된 것은?",
-    "explanation": "치법 표기는 감함미고법(甘鹹微苦法)입니다.",
-    "source": "10/2 · PDF 48쪽",
     "inScope": true,
-    "years": "개념확인 · 출혈",
+    "years": "족보 핵심 개념",
+    "prompt": "출혈과 관련 병기를 바르게 연결한 것은?",
+    "explanation": "방광열은 익혈(혈뇨)입니다. 생리기간 외 하혈을 방광열과 연결한 족보 선지는 X이며 열입혈실과 연결합니다.",
+    "source": "10/2 · PDF 40~41쪽 — 출혈 부위와 관련 장부",
+    "basedOn": "P-q20-39",
+    "basedOnIds": [
+      "P-q20-39"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "건지황·생백작·목단피·서각",
-      "석고·지모·갱미·감초",
-      "우황·울금·사향·웅황만",
-      "인삼·맥문동·오미자·창출"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "건지황·생백작·목단피·서각"
-  },
-  {
-    "id": "C-094",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "11",
-    "categoryName": "치료 시 주의사항",
-    "prompt": "온열병과 습열병의 치료 방향을 비교한 강의의 큰 원칙은?",
-    "explanation": "열의 진액 손상과 습의 기기·양기 저애를 구분하는 큰 원칙입니다. 실제 단계·허실을 함께 봅니다.",
-    "source": "10/13 · PDF 3~5쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료 시 주의사항",
-    "type": "mc",
-    "choices": [
-      "온열은 양음·자음, 습열은 양기선통·조습을 중시",
-      "모두 신온발표만",
-      "온열은 강한 조습만, 습열은 유윤약만",
-      "모두 고한청심만"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "온열은 양음·자음, 습열은 양기선통·조습을 중시"
-  },
-  {
-    "id": "C-095",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "11",
-    "categoryName": "치료 시 주의사항",
-    "prompt": "상·중·하초 치료의 비유를 알맞게 연결한 것은?",
-    "explanation": "治上焦如羽, 治中焦如衡, 治下焦如權입니다. 약의 경중·승강과 병변 부위를 연결합니다.",
-    "source": "10/13 · PDF 7쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료 시 주의사항",
-    "type": "mc",
-    "choices": [
-      "여권 / 여우 / 여형",
-      "셋 다 여우",
-      "여형 / 여권 / 여우",
-      "여우 / 여형 / 여권"
-    ],
-    "answer": [
-      "4"
-    ],
-    "multiple": false,
-    "displayAnswer": "여우 / 여형 / 여권"
-  },
-  {
-    "id": "C-096",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "11",
-    "categoryName": "치료 시 주의사항",
-    "prompt": "위기영혈 단계와 치법의 연결 중 강의와 맞는 것은?",
-    "explanation": "영분은 청영해독과 청기분을 배합하여 열을 기분으로 풀어내는 투열전기를 설명합니다.",
-    "source": "10/13 · PDF 6쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료 시 주의사항",
-    "type": "mc",
-    "choices": [
-      "혈분—무조건 신온발표",
-      "위분—강한 공하만",
-      "영분—투열전기",
-      "기분—회양만"
+      "익혈(혈뇨): 열입혈실 / 생리기간 외 하혈: 방광열",
+      "토혈: 방광열 / 변혈: 폐열",
+      "익혈(혈뇨): 방광열 / 생리기간 외 하혈: 열입혈실",
+      "토혈: 장열 / 변혈: 위열"
     ],
     "answer": [
       "3"
     ],
-    "multiple": false,
-    "displayAnswer": "영분—투열전기"
+    "displayAnswer": "익혈(혈뇨): 방광열 / 생리기간 외 하혈: 열입혈실",
+    "multiple": false
   },
   {
-    "id": "C-097",
+    "id": "C2-055",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "10",
+    "categoryName": "출혈",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "음허화왕성 허증출혈에서 강의가 주로 제시한 것은?",
+    "explanation": "치뉵(齒衄)은 잇몸출혈, 기뉵(肌衄)은 피부 출혈입니다. 족보는 ‘치뉵’을 ‘기뉵’으로 바꿉니다.",
+    "source": "10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 38~39쪽 — 출혈의 허실·위기영혈 / 10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 48쪽 — 서각지황탕의 구성·치법 표기",
+    "basedOn": "P-q21-54",
+    "basedOnIds": [
+      "P-q21-54",
+      "P-q22-72"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "익혈·하혈만",
+      "기뉵·비뉵",
+      "피부 출혈만",
+      "치뉵·비뉵"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "치뉵·비뉵",
+    "multiple": false
+  },
+  {
+    "id": "C2-056",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "10",
+    "categoryName": "출혈",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "서각지황탕의 강의상 치법 표기로 맞는 것은?",
+    "explanation": "족보의 ‘감함미신법’은 X이며 감함미고법(甘鹹微苦法)입니다. 마지막 글자 ‘고/신’을 구별하세요.",
+    "source": "10/2 · PDF 38~39쪽 — 출혈의 허실·위기영혈 / 10/2 · PDF 40쪽 — 허증출혈·습열병 후기 장출혈 / 10/2 · PDF 48쪽 — 서각지황탕의 구성·치법 표기",
+    "basedOn": "P-q22-72",
+    "basedOnIds": [
+      "P-q22-72"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "신온발표법",
+      "고한청심법만",
+      "감함미신법",
+      "감함미고법"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "감함미고법",
+    "multiple": false
+  },
+  {
+    "id": "C2-057",
     "kind": "concept",
     "chapter": "concept",
     "category": "11",
     "categoryName": "치료 시 주의사항",
-    "prompt": "온병 전에 가래가 많던 환자를 청열만 하며 담음을 소홀히 해도 되나요?",
-    "explanation": "병사·단계·부위·허실뿐 아니라 겸증을 보는 이유입니다.",
-    "source": "10/13 · PDF 10쪽",
     "inScope": true,
-    "years": "개념확인 · 치료 시 주의사항",
+    "years": "족보 핵심 개념",
+    "prompt": "온병 치료에서 함께 고려해야 하는 대표적 겸증으로 족보에서 묻는 것은?",
+    "explanation": "온병의 열만 보고 기존 담음·식체를 소홀히 하지 않는다는 취지입니다. 족보는 겸증을 함께 고려하는 문장의 정오를 묻습니다.",
+    "source": "10/13 · PDF 10쪽 — 치료 시 고려하는 겸증",
+    "basedOn": "P-q18-18",
+    "basedOnIds": [
+      "P-q18-18"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "예. 겸증은 온병과 무관",
-      "아니요. 담음·식체 등 겸증도 치료에 고려"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "아니요. 담음·식체 등 겸증도 치료에 고려"
-  },
-  {
-    "id": "C-098",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "사기가 성하면 거사를, 정기가 허하면 부정을 고려한다는 원칙을 바르게 해석한 것은?",
-    "explanation": "거사와 부정의 비중은 사기와 정기의 허실에 따라 결정합니다.",
-    "source": "10/13 · PDF 9,11~13쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료원칙",
-    "type": "mc",
-    "choices": [
-      "온병에서는 정기가 절대 손상되지 않음",
-      "둘은 어떤 상황에도 함께 쓸 수 없음",
-      "부정은 오직 말기에만 가능",
-      "두 치법은 상황에 맞게 함께 배합할 수 있음"
+      "반드시 외상만",
+      "혈뇨만",
+      "자궁의 질환만",
+      "담음·식체"
     ],
     "answer": [
       "4"
     ],
-    "multiple": false,
-    "displayAnswer": "두 치법은 상황에 맞게 함께 배합할 수 있음"
+    "displayAnswer": "담음·식체",
+    "multiple": false
   },
   {
-    "id": "C-099",
+    "id": "C2-058",
     "kind": "concept",
     "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "정기가 극도로 허하여 공하약의 작용을 뒷받침하지 못할 때 강의가 설명한 방법은?",
-    "explanation": "부정하면서 공하하여 약의 효력이 발휘되도록 하는 설명입니다.",
-    "source": "10/13 · PDF 12쪽",
+    "category": "14",
+    "categoryName": "상한과 온병 치법 비교",
     "inScope": true,
-    "years": "개념확인 · 치료원칙",
-    "type": "short",
-    "answer": "공보겸시",
-    "accept": [
-      "攻補兼施"
+    "years": "족보 핵심 개념",
+    "prompt": "신량해표법에 관한 설명으로 맞는 것은?",
+    "explanation": "신량해표라는 치법과 구성 약물 하나하나의 성질은 같은 말이 아닙니다. 족보의 핵심은 신온약도 배합될 수 있다는 점입니다.",
+    "source": "10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합 / 10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합",
+    "basedOn": "P-q18-19",
+    "basedOnIds": [
+      "P-q18-19",
+      "P-q20-40"
     ],
-    "displayAnswer": "공보겸시"
-  },
-  {
-    "id": "C-100",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "다른 질병이지만 같은 증후가 되어 같은 치법을 쓰는 것은?",
-    "explanation": "병명이 다르면 무조건 다른 치료를 한다는 뜻과 구별합니다. 동증이면 동치한다는 취지입니다.",
-    "source": "10/13 · PDF 16~18쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료원칙",
-    "type": "short",
-    "answer": "이병동치",
-    "accept": [
-      "異病同治"
-    ],
-    "displayAnswer": "이병동치"
-  },
-  {
-    "id": "C-101",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "같은 질병도 단계·부위·장부·허실에 따라 치료를 달리하는 것은?",
-    "explanation": "병명이 같아도 증후가 다르면 다른 치료를 합니다.",
-    "source": "10/13 · PDF 16쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료원칙",
-    "type": "short",
-    "answer": "동병이치",
-    "accept": [
-      "同病異治"
-    ],
-    "displayAnswer": "동병이치"
-  },
-  {
-    "id": "C-102",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "서온과 습온이 진행 중 같은 습열 증후를 보여 백호가창출탕을 쓰는 예는?",
-    "explanation": "서로 다른 병도 전변 과정에서 같은 증후에 도달할 수 있다는 예입니다.",
-    "source": "10/13 · PDF 17~18쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료원칙",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "항상 같은 초기 치료라는 뜻",
-      "이병동치",
-      "병명이 같다는 뜻",
-      "모든 습온에 무조건 백호탕을 쓴다는 뜻"
+      "신온약이 하나라도 있으면 신온해표법이다",
+      "신온약을 주류로 쓰는 것과 항상 같다",
+      "구성 약물이 모두 신량약이어야만 한다",
+      "신온약이 배합될 수 있으며 처방 전체의 성향·비율을 함께 본다"
+    ],
+    "answer": [
+      "4"
+    ],
+    "displayAnswer": "신온약이 배합될 수 있으며 처방 전체의 성향·비율을 함께 본다",
+    "multiple": false
+  },
+  {
+    "id": "C2-059",
+    "kind": "concept",
+    "chapter": "concept",
+    "category": "14",
+    "categoryName": "상한과 온병 치법 비교",
+    "inScope": true,
+    "years": "족보 핵심 개념",
+    "prompt": "강의가 은교산의 해표약 세 가지로 제시한 것은?",
+    "explanation": "족보는 두시를 우방자로 바꿉니다. 해당 강의의 목록은 박하·형개·두시이며 금은화·연교의 청열해독과 구분합니다.",
+    "source": "10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합",
+    "basedOn": "P-q21-55",
+    "basedOnIds": [
+      "P-q21-55"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
+    "type": "mc",
+    "choices": [
+      "인삼·맥문동·오미자",
+      "박하·형개·두시",
+      "박하·형개·우방자",
+      "금은화·연교·서각"
     ],
     "answer": [
       "2"
     ],
-    "multiple": false,
-    "displayAnswer": "이병동치"
+    "displayAnswer": "박하·형개·두시",
+    "multiple": false
   },
   {
-    "id": "C-103",
+    "id": "C2-060",
     "kind": "concept",
     "chapter": "concept",
-    "category": "12",
-    "categoryName": "치료원칙",
-    "prompt": "온병 후기에는 자음이 원칙이니 양기가 외탈해도 자음만 해야 하나요?",
-    "explanation": "원칙을 현재 병기와 무관하게 고정하지 않습니다.",
-    "source": "10/13 · PDF 19~22쪽",
+    "category": "14",
+    "categoryName": "상한과 온병 치법 비교",
     "inScope": true,
-    "years": "개념확인 · 치료원칙",
+    "years": "족보 핵심 개념",
+    "prompt": "강의는 오국통이 은교산에 사용한 두시의 성질을 어떻게 보나요?",
+    "explanation": "해당 강의는 오국통의 두시를 신온으로 봅니다. 모든 수치의 두시가 언제나 신온이라는 일반화까지 외우는 문제는 아닙니다.",
+    "source": "10/13 · PDF 31~33쪽 — 두시 수치법과 오국통의 판단 / 9/16 추석보강 · PDF 42쪽 — 발진 시 은교산에서 두시를 빼는 방론 / 10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합",
+    "basedOn": "P-q22-73",
+    "basedOnIds": [
+      "P-q22-73"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "예",
-      "아니요. 현재 양기 외탈에 회양·보양하는 융통성이 필요"
+      "신량으로만 봄",
+      "고한",
+      "감한",
+      "신온"
     ],
     "answer": [
-      "2"
+      "4"
     ],
-    "multiple": false,
-    "displayAnswer": "아니요. 현재 양기 외탈에 회양·보양하는 융통성이 필요"
+    "displayAnswer": "신온",
+    "multiple": false
   },
   {
-    "id": "C-104",
+    "id": "C2-061",
     "kind": "concept",
     "chapter": "concept",
-    "category": "13",
-    "categoryName": "치료유형",
-    "prompt": "온병 치법 중 부정의 두 큰 방향은?",
-    "explanation": "거사와 부정은 배타적이지 않고 함께 배합될 수 있습니다.",
-    "source": "10/13 · PDF 23~25쪽",
+    "category": "14",
+    "categoryName": "상한과 온병 치법 비교",
     "inScope": true,
-    "years": "개념확인 · 치료유형",
+    "years": "족보 핵심 개념",
+    "prompt": "오국통이 고한약의 진액 손상을 보완하려 배합한 것은?",
+    "explanation": "족보는 감한(甘寒)을 산(酸)으로 바꿉니다. 고한약에 감한·함미약을 배합하여 생음양음한다는 연결을 확인하세요.",
+    "source": "10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합 / 10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합",
+    "basedOn": "P-q20-40",
+    "basedOnIds": [
+      "P-q20-40",
+      "P-q21-55"
+    ],
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "청열 / 공하만",
-      "선폐 / 이뇨만",
-      "음액 자양 / 회양구탈",
-      "해표 / 통하만"
+      "산미약만",
+      "신온발표약만",
+      "감한한 약물이나 짠맛의 약물",
+      "고한약만 더 많이"
     ],
     "answer": [
       "3"
     ],
-    "multiple": false,
-    "displayAnswer": "음액 자양 / 회양구탈"
+    "displayAnswer": "감한한 약물이나 짠맛의 약물",
+    "multiple": false
   },
   {
-    "id": "C-105",
+    "id": "C2-062",
     "kind": "concept",
     "chapter": "concept",
-    "category": "13",
-    "categoryName": "치료유형",
-    "prompt": "습사를 여러 통로로 나누어 없애는 방법은?",
-    "explanation": "폐·위분 선통, 이뇨, 조습 및 비위 운화 도움 등 경로를 함께 활용합니다.",
-    "source": "10/13 · PDF 26쪽",
+    "category": "14",
+    "categoryName": "상한과 온병 치법 비교",
     "inScope": true,
-    "years": "개념확인 · 치료유형",
-    "type": "short",
-    "answer": "분소",
-    "accept": [
-      "分消"
+    "years": "족보 핵심 개념",
+    "prompt": "상한과 비교하여 강의가 강조하는 온병 공하의 특징은?",
+    "explanation": "족보는 상한의 단순 공하·급하존음과 온병의 자음하며 공하하는 특징을 비교합니다. 온열지사가 진액을 소모한다는 이유까지 연결하세요.",
+    "source": "10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합 / 10/13 · PDF 35~36쪽 — 청열해독과 감한·함미 배합 / 10/13 · PDF 34쪽 — 상한과 온병의 공하법 / 10/13 · PDF 29~33쪽 — 신온해표와 신량해표·은교산의 배합",
+    "basedOn": "P-q21-55",
+    "basedOnIds": [
+      "P-q21-55",
+      "P-q20-40"
     ],
-    "displayAnswer": "분소"
-  },
-  {
-    "id": "C-106",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "13",
-    "categoryName": "치료유형",
-    "prompt": "국소의 홍종열통에 내복약과 함께 외용약으로 청열해독·소종지통하는 설명은?",
-    "explanation": "온독 등의 국소 증상에 활용하는 외치법의 예입니다.",
-    "source": "10/13 · PDF 24쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료유형",
+    "curriculum": "past-core-v2",
+    "countStats": true,
     "type": "mc",
     "choices": [
-      "항상 통하축사법만",
-      "외치법",
-      "식풍지경법만",
-      "자음양액법만"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "외치법"
-  },
-  {
-    "id": "C-107",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "13",
-    "categoryName": "치료유형",
-    "prompt": "열이 심포로 들어가 신혼이 나타날 때 청심과 함께 방향약을 사용하는 목적은?",
-    "explanation": "현재 증상을 일으킨 기전을 보고 청열·개규를 배합합니다.",
-    "source": "10/13 · PDF 27~28쪽",
-    "inScope": true,
-    "years": "개념확인 · 치료유형",
-    "type": "mc",
-    "choices": [
-      "하리 유도만",
-      "조습만",
-      "부실 생성",
-      "개규"
+      "공하법을 전혀 쓰지 않음",
+      "모든 경우에 신온발표로 대체함",
+      "진액 상태와 관계없이 단순 공하만 함",
+      "진액 소모를 고려하여 자음하면서 공하함"
     ],
     "answer": [
       "4"
     ],
-    "multiple": false,
-    "displayAnswer": "개규"
-  },
-  {
-    "id": "C-108",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "14",
-    "categoryName": "상한과 온병 치법 비교",
-    "prompt": "신량해표법과 신량약만으로 구성한 처방의 관계를 바르게 설명한 것은?",
-    "explanation": "금은화·연교의 청열해독과 박하·형개·두시의 해표를 강의의 구분으로 비교합니다.",
-    "source": "10/13 · PDF 29~33쪽",
-    "inScope": true,
-    "years": "개념확인 · 상한과 온병 치법 비교",
-    "type": "mc",
-    "choices": [
-      "신온약이 배합될 수 있으나 전체 성향·비율은 신량해표에 맞아야 함",
-      "두 말은 반드시 같은 뜻",
-      "신온약을 주류로 쓰면 언제나 같은 신량처방",
-      "금은화·연교는 해표약이므로 구분 불필요"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "신온약이 배합될 수 있으나 전체 성향·비율은 신량해표에 맞아야 함"
-  },
-  {
-    "id": "C-109",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "14",
-    "categoryName": "상한과 온병 치법 비교",
-    "prompt": "발진에서 두시를 빼면서 ‘외기온야’라 한 조문은 강의에서 무엇의 근거인가요?",
-    "explanation": "특정 조문의 성온·동혈 우려를 수치법 설명과 함께 읽습니다.",
-    "source": "10/13 · PDF 31~33쪽",
-    "inScope": true,
-    "years": "개념확인 · 상한과 온병 치법 비교",
-    "type": "mc",
-    "choices": [
-      "두시는 모든 온병에 영구 금기",
-      "오국통이 쓴 두시를 신온으로 보았다는 판단",
-      "모든 두시는 수치와 무관하게 신량",
-      "은교산은 모두 신온제만으로 구성"
-    ],
-    "answer": [
-      "2"
-    ],
-    "multiple": false,
-    "displayAnswer": "오국통이 쓴 두시를 신온으로 보았다는 판단"
-  },
-  {
-    "id": "C-110",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "14",
-    "categoryName": "상한과 온병 치법 비교",
-    "prompt": "고한약에 감한·함미약을 배합하는 취지는?",
-    "explanation": "청열해독하면서 생음양음하여 정기를 보완하는 설명입니다.",
-    "source": "10/13 · PDF 35~36쪽",
-    "inScope": true,
-    "years": "개념확인 · 상한과 온병 치법 비교",
-    "type": "mc",
-    "choices": [
-      "고한약의 건조한 성질에 따른 음액 손상 보완",
-      "청열을 포기하기",
-      "습을 무조건 더 보태기",
-      "일부러 진액을 더 말리기"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "고한약의 건조한 성질에 따른 음액 손상 보완"
-  },
-  {
-    "id": "C-111",
-    "kind": "concept",
-    "chapter": "concept",
-    "category": "14",
-    "categoryName": "상한과 온병 치법 비교",
-    "prompt": "상한의 단순 공하·급하존음과 비교한 온병 공하의 특징은?",
-    "explanation": "온열지사의 진액 소모를 고려합니다. 모든 처방을 일률적으로 한 방식으로만 쓰라는 뜻은 아닙니다.",
-    "source": "10/13 · PDF 34쪽",
-    "inScope": true,
-    "years": "개념확인 · 상한과 온병 치법 비교",
-    "type": "mc",
-    "choices": [
-      "자음하면서 공하하는 경우를 중시",
-      "온병은 공하법을 절대 쓰지 않음",
-      "진액 상태를 고려하지 않음",
-      "언제나 신온발표만"
-    ],
-    "answer": [
-      "1"
-    ],
-    "multiple": false,
-    "displayAnswer": "자음하면서 공하하는 경우를 중시"
+    "displayAnswer": "진액 소모를 고려하여 자음하면서 공하함",
+    "multiple": false
   }
 ]

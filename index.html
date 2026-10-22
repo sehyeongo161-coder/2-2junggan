@@ -825,7 +825,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
   for(const id of ['panel','neuro-panel','obgyn-panel','pediatrics-panel'])document.getElementById(id).hidden=true;
   panel.hidden=false;document.body.dataset.subject='wenbing';
   for(const b of [...others,tab]){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
-  if(!frame.getAttribute('src'))frame.src='./wenbing-quiz.html?v=20261022-wenbing-v1';
+  if(!frame.getAttribute('src'))frame.src='./wenbing-quiz.html?v=20261023-past-core-v2';
   if(pending)frame.contentWindow?.postMessage({type:'wenbing-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',e=>{e.stopImmediatePropagation();open();},true);
