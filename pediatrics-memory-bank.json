@@ -1,0 +1,5419 @@
+{
+  "version": 1,
+  "categories": {
+    "1": "책·저자·이론",
+    "2": "소아기 구분·생리·병리",
+    "3": "연령별 진단·액맥·호구삼관",
+    "4": "망진·색·혀·외형",
+    "5": "울음·기침·청진",
+    "6": "맥·변증",
+    "7": "성장 패턴",
+    "8": "체중·키·두위",
+    "9": "천문·반사·치아·골연령",
+    "10": "소화기·태변",
+    "11": "감각·운동 발달",
+    "12": "기타 핵심 연결"
+  },
+  "questions": [
+    {
+      "id": "M001",
+      "type": "mc",
+      "prompt": "우리나라 최초의 소아과 전문서는?",
+      "choices": [
+        "경악전서·소아칙",
+        "유유신서",
+        "급유방",
+        "소아의방"
+      ],
+      "answer": "3",
+      "displayAnswer": "급유방",
+      "explanation": "조정준의 급유방은 우리나라 최초의 소아과 전문서입니다. 중국 최초 전문서인 노신경과 구별합니다. 의학입문·전을의 처방을 바탕으로 우리 기후·풍토의 동방육기를 논했습니다.",
+      "source": "수업자료 16쪽 · 써머리 10쪽 · 주형 해설집 3쪽 (PDF 페이지 기준) · 연결 족보 Q1",
+      "sourceIds": [
+        "Q1"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M002",
+      "type": "mc",
+      "prompt": "최초의 소아과 의안이 기록된 서적은?",
+      "choices": [
+        "급유방",
+        "소아의방",
+        "사기·편작창공열전",
+        "노신경"
+      ],
+      "answer": "3",
+      "displayAnswer": "사기·편작창공열전",
+      "explanation": "같은 사기 편작창공열전 안에서도 편작은 ‘최초 소아의 기록’, 순우의의 하기탕 치료는 ‘최초 소아과 의안’입니다. 의안은 실제 환자의 진료 사례를 뜻합니다.",
+      "source": "수업자료 4쪽 · 써머리 1,2쪽 · 주형 해설집 3쪽 (PDF 페이지 기준) · 연결 족보 Q2",
+      "sourceIds": [
+        "Q2"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M003",
+      "type": "mc",
+      "prompt": "중국 최초의 소아과 전문서는?",
+      "choices": [
+        "급유방",
+        "유유신서",
+        "노신경",
+        "사기·편작창공열전"
+      ],
+      "answer": "3",
+      "displayAnswer": "노신경",
+      "explanation": "노신경은 최초의 소아과 전문서이며 순양 이론·맥법·화단·경간감리를 다룹니다. ‘송대 이전 내용을 집대성’한 책은 유유신서입니다.",
+      "source": "수업자료 8쪽 · 써머리 4쪽 · 주형 해설집 4쪽 (PDF 페이지 기준) · 연결 족보 Q3",
+      "sourceIds": [
+        "Q3"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M004",
+      "type": "mc",
+      "prompt": "송대 이전의 소아과 학술을 집대성한 서적은?",
+      "choices": [
+        "노신경",
+        "소아약증직결",
+        "경악전서·소아칙",
+        "유유신서"
+      ],
+      "answer": "4",
+      "displayAnswer": "유유신서",
+      "explanation": "‘송대 이전 학술 집대성’이라는 표현이면 유방의 유유신서입니다. ‘최초 소아과 전문서’ 노신경, ‘우리나라 최초’ 급유방과 나누어 외웁니다.",
+      "source": "수업자료 10쪽 · 써머리 4쪽 · 주형 해설집 9쪽 (PDF 페이지 기준) · 연결 족보 Q7",
+      "sourceIds": [
+        "Q7"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M005",
+      "type": "mc",
+      "prompt": "소아 변증에서 표리한열허실을 표준으로 제시한 서적은?",
+      "choices": [
+        "사기·편작창공열전",
+        "노신경",
+        "경악전서·소아칙",
+        "소아의방"
+      ],
+      "answer": "3",
+      "displayAnswer": "경악전서·소아칙",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M006",
+      "type": "mc",
+      "prompt": "소아의 생리·병리 특징과 임증치료 기준을 정립한 전을의 서적은?",
+      "choices": [
+        "노신경",
+        "소아의방",
+        "유유신서",
+        "소아약증직결"
+      ],
+      "answer": "4",
+      "displayAnswer": "소아약증직결",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M007",
+      "type": "mc",
+      "prompt": "병증의 원인·증상과 치료약방을 병기한 최규헌의 서적은?",
+      "choices": [
+        "경악전서·소아칙",
+        "소아약증직결",
+        "사기·편작창공열전",
+        "소아의방"
+      ],
+      "answer": "4",
+      "displayAnswer": "소아의방",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M008",
+      "type": "mc",
+      "prompt": "《급유방》의 저자는?",
+      "choices": [
+        "최규헌",
+        "조정준",
+        "유하간",
+        "유방"
+      ],
+      "answer": "2",
+      "displayAnswer": "조정준",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M009",
+      "type": "mc",
+      "prompt": "《유유신서》의 저자는?",
+      "choices": [
+        "유하간",
+        "최규헌",
+        "유방",
+        "전을"
+      ],
+      "answer": "3",
+      "displayAnswer": "유방",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M010",
+      "type": "mc",
+      "prompt": "《소아약증직결》의 저자는?",
+      "choices": [
+        "주단계",
+        "조정준",
+        "전을",
+        "장경악"
+      ],
+      "answer": "3",
+      "displayAnswer": "전을",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M011",
+      "type": "mc",
+      "prompt": "《경악전서·소아칙》의 저자는?",
+      "choices": [
+        "최규헌",
+        "장경악",
+        "조정준",
+        "유방"
+      ],
+      "answer": "2",
+      "displayAnswer": "장경악",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M012",
+      "type": "mc",
+      "prompt": "《소아의방》의 저자는?",
+      "choices": [
+        "조정준",
+        "장자화",
+        "최규헌",
+        "유하간"
+      ],
+      "answer": "3",
+      "displayAnswer": "최규헌",
+      "explanation": "최초 한국 전문서→급유방, 표리한열허실의 규범→경악전서 소아칙, 송대 이전 집대성→유유신서, 소아 생리·병리와 임증치료 기준→소아약증직결, 원인·증상·처방 병기→소아의방으로 연결합니다.",
+      "source": "수업자료 9,10,13,16쪽 · 써머리 3,4,7,10쪽 · 주형 해설집 5쪽 (PDF 페이지 기준) · 연결 족보 Q4",
+      "sourceIds": [
+        "Q4"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M013",
+      "type": "mc",
+      "prompt": "이허이실·이한이열(易虛易實·易寒易熱)을 강조한 인물은?",
+      "choices": [
+        "조정준",
+        "장자화",
+        "최규헌",
+        "전을"
+      ],
+      "answer": "4",
+      "displayAnswer": "전을",
+      "explanation": "전을은 오장한열허실 변증과 이허이실·이한이열을 강조했습니다. ③의 순양·열다냉소는 유하간, ④의 식보·약공은 장자화입니다. 주단계는 양상유여·음상부족과 자음을 연결합니다.",
+      "source": "수업자료 9,11,12,13쪽 · 써머리 3,5,6,7쪽 · 주형 해설집 8쪽 (PDF 페이지 기준) · 연결 족보 Q6",
+      "sourceIds": [
+        "Q6"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M014",
+      "type": "mc",
+      "prompt": "순양·열다냉소(純陽·熱多冷少)와 연결되는 인물은?",
+      "choices": [
+        "유하간",
+        "주단계",
+        "유방",
+        "장자화"
+      ],
+      "answer": "1",
+      "displayAnswer": "유하간",
+      "explanation": "전을은 오장한열허실 변증과 이허이실·이한이열을 강조했습니다. ③의 순양·열다냉소는 유하간, ④의 식보·약공은 장자화입니다. 주단계는 양상유여·음상부족과 자음을 연결합니다.",
+      "source": "수업자료 9,11,12,13쪽 · 써머리 3,5,6,7쪽 · 주형 해설집 8쪽 (PDF 페이지 기준) · 연결 족보 Q6",
+      "sourceIds": [
+        "Q6"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M015",
+      "type": "mc",
+      "prompt": "양생은 식보, 치병은 약공과 연결되는 인물은?",
+      "choices": [
+        "유하간",
+        "조정준",
+        "장자화",
+        "전을"
+      ],
+      "answer": "3",
+      "displayAnswer": "장자화",
+      "explanation": "전을은 오장한열허실 변증과 이허이실·이한이열을 강조했습니다. ③의 순양·열다냉소는 유하간, ④의 식보·약공은 장자화입니다. 주단계는 양상유여·음상부족과 자음을 연결합니다.",
+      "source": "수업자료 9,11,12,13쪽 · 써머리 3,5,6,7쪽 · 주형 해설집 8쪽 (PDF 페이지 기준) · 연결 족보 Q6",
+      "sourceIds": [
+        "Q6"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M016",
+      "type": "mc",
+      "prompt": "양상유여·음상부족 및 자음과 연결되는 인물은?",
+      "choices": [
+        "조정준",
+        "전을",
+        "최규헌",
+        "주단계"
+      ],
+      "answer": "4",
+      "displayAnswer": "주단계",
+      "explanation": "전을은 오장한열허실 변증과 이허이실·이한이열을 강조했습니다. ③의 순양·열다냉소는 유하간, ④의 식보·약공은 장자화입니다. 주단계는 양상유여·음상부족과 자음을 연결합니다.",
+      "source": "수업자료 9,11,12,13쪽 · 써머리 3,5,6,7쪽 · 주형 해설집 8쪽 (PDF 페이지 기준) · 연결 족보 Q6",
+      "sourceIds": [
+        "Q6"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M017",
+      "type": "mc",
+      "prompt": "최초 소아과 의안에서 하기탕으로 영아를 치료한 인물은?",
+      "choices": [
+        "순우의",
+        "편작",
+        "전을",
+        "조정준"
+      ],
+      "answer": "1",
+      "displayAnswer": "순우의",
+      "explanation": "같은 사기 편작창공열전 안에서도 편작은 ‘최초 소아의 기록’, 순우의의 하기탕 치료는 ‘최초 소아과 의안’입니다. 의안은 실제 환자의 진료 사례를 뜻합니다.",
+      "source": "수업자료 4쪽 · 써머리 1,2쪽 · 주형 해설집 3쪽 (PDF 페이지 기준) · 연결 족보 Q2",
+      "sourceIds": [
+        "Q2"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M018",
+      "type": "mc",
+      "prompt": "十八已上爲(　): 18세 이상을 나타내는 빈칸 한자는?",
+      "choices": [
+        "壯",
+        "小",
+        "少",
+        "老"
+      ],
+      "answer": "3",
+      "displayAnswer": "少",
+      "explanation": "少와 小는 독음이 같아도 한자가 다릅니다. 18세 이상은 少, 6세 이상은 小입니다. 여자는 7세에 신기가 성하며, 영아는 기육이 연약하고 혈이 적고 기가 약하다고 서술합니다.",
+      "source": "수업자료 5,6쪽 · 써머리 2,3쪽 · 주형 해설집 10쪽 (PDF 페이지 기준) · 연결 족보 Q8",
+      "sourceIds": [
+        "Q8"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M019",
+      "type": "mc",
+      "prompt": "六歲已上爲(　): 6세 이상을 나타내는 빈칸 한자는?",
+      "choices": [
+        "少",
+        "小",
+        "老",
+        "壯"
+      ],
+      "answer": "2",
+      "displayAnswer": "小",
+      "explanation": "少와 小는 독음이 같아도 한자가 다릅니다. 18세 이상은 少, 6세 이상은 小입니다. 여자는 7세에 신기가 성하며, 영아는 기육이 연약하고 혈이 적고 기가 약하다고 서술합니다.",
+      "source": "수업자료 5,6쪽 · 써머리 2,3쪽 · 주형 해설집 10쪽 (PDF 페이지 기준) · 연결 족보 Q8",
+      "sourceIds": [
+        "Q8"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M020",
+      "type": "mc",
+      "prompt": "女子七歲, (　)盛, 齒更髮長의 빈칸은?",
+      "choices": [
+        "腎氣(신기)",
+        "肺氣(폐기)",
+        "脾氣(비기)",
+        "心氣(심기)"
+      ],
+      "answer": "1",
+      "displayAnswer": "腎氣(신기)",
+      "explanation": "少와 小는 독음이 같아도 한자가 다릅니다. 18세 이상은 少, 6세 이상은 小입니다. 여자는 7세에 신기가 성하며, 영아는 기육이 연약하고 혈이 적고 기가 약하다고 서술합니다.",
+      "source": "수업자료 5,6쪽 · 써머리 2,3쪽 · 주형 해설집 10쪽 (PDF 페이지 기준) · 연결 족보 Q8",
+      "sourceIds": [
+        "Q8"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M021",
+      "type": "mc",
+      "prompt": "영아의 특징인 肌肉(　)·血(　)·氣(　)의 순서로 옳은 것은?",
+      "choices": [
+        "脆·少·弱(취·소·약)",
+        "弱·脆·少(약·취·소)",
+        "脆·多·强(취·다·강)",
+        "少·弱·脆(소·약·취)"
+      ],
+      "answer": "1",
+      "displayAnswer": "脆·少·弱(취·소·약)",
+      "explanation": "少와 小는 독음이 같아도 한자가 다릅니다. 18세 이상은 少, 6세 이상은 小입니다. 여자는 7세에 신기가 성하며, 영아는 기육이 연약하고 혈이 적고 기가 약하다고 서술합니다.",
+      "source": "수업자료 5,6쪽 · 써머리 2,3쪽 · 주형 해설집 10쪽 (PDF 페이지 기준) · 연결 족보 Q8",
+      "sourceIds": [
+        "Q8"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "1",
+      "categoryName": "책·저자·이론",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M022",
+      "type": "mc",
+      "prompt": "배아기의 범위는?",
+      "choices": [
+        "수정 후 20주까지",
+        "수정 후 12주까지",
+        "수정 후 8주까지",
+        "출생까지"
+      ],
+      "answer": "3",
+      "displayAnswer": "수정 후 8주까지",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M023",
+      "type": "mc",
+      "prompt": "태아기가 시작되는 시점은?",
+      "choices": [
+        "수정 후 9주",
+        "수정 후 13주",
+        "수정 후 22주",
+        "수정 후 5주"
+      ],
+      "answer": "1",
+      "displayAnswer": "수정 후 9주",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M024",
+      "type": "mc",
+      "prompt": "광의의 신생아기는?",
+      "choices": [
+        "6～10년",
+        "10～20년",
+        "생후 1개월～1년",
+        "생후 4주"
+      ],
+      "answer": "4",
+      "displayAnswer": "생후 4주",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M025",
+      "type": "mc",
+      "prompt": "영아기의 범위는?",
+      "choices": [
+        "생후 4주",
+        "6～10년",
+        "10～20년",
+        "생후 1개월～1년"
+      ],
+      "answer": "4",
+      "displayAnswer": "생후 1개월～1년",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M026",
+      "type": "mc",
+      "prompt": "유아기의 범위는?",
+      "choices": [
+        "6～10년",
+        "2～5년",
+        "생후 4주",
+        "10～20년"
+      ],
+      "answer": "2",
+      "displayAnswer": "2～5년",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M027",
+      "type": "mc",
+      "prompt": "학령기의 범위는?",
+      "choices": [
+        "생후 4주",
+        "생후 1개월～1년",
+        "6～10년",
+        "2～5년"
+      ],
+      "answer": "3",
+      "displayAnswer": "6～10년",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M028",
+      "type": "mc",
+      "prompt": "이번 수업자료에서 사춘기의 전체 범위는?",
+      "choices": [
+        "6～10년",
+        "생후 4주",
+        "10～20년",
+        "생후 1개월～1년"
+      ],
+      "answer": "3",
+      "displayAnswer": "10～20년",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M029",
+      "type": "mc",
+      "prompt": "이번 수업자료의 출생전후기 범위는?",
+      "choices": [
+        "재태 28주～생후 4주",
+        "재태 28주～생후 1주",
+        "재태 22주～생후 4주",
+        "재태 22주～생후 1주"
+      ],
+      "answer": "4",
+      "displayAnswer": "재태 22주～생후 1주",
+      "explanation": "신생아기는 생후 4주, 영아기는 1개월~1년, 유아기는 2~5년입니다. 영아기는 성장·영양장애, 유아기는 보행·언어 발달이 특징입니다. 출생전후기는 재태 22주~생후 1주입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 11쪽 (PDF 페이지 기준) · 연결 족보 Q9",
+      "sourceIds": [
+        "Q9"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M030",
+      "type": "mc",
+      "prompt": "보행·언어 발달이 왕성한 시기는?",
+      "choices": [
+        "유아기",
+        "사춘기",
+        "신생아기",
+        "학령기"
+      ],
+      "answer": "1",
+      "displayAnswer": "유아기",
+      "explanation": "① 배아기 8주까지와 ③ 영아기의 영양장애·높은 사망률은 자료와 일치합니다. ⑤ 보행·언어 발달이 왕성한 것은 학령기(6~10년)가 아니라 유아기(2~5년)입니다.",
+      "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 주형 해설집 13쪽 (PDF 페이지 기준) · 연결 족보 Q11",
+      "sourceIds": [
+        "Q11"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M031",
+      "type": "mc",
+      "prompt": "각 기관의 발육이 부전하고 취약함을 뜻하는 말은?",
+      "choices": [
+        "形氣未充(형기미충)",
+        "發育迅速(발육신속)",
+        "生機旺盛(생기왕성)",
+        "臟腑嬌嫩(장부교눈)"
+      ],
+      "answer": "4",
+      "displayAnswer": "臟腑嬌嫩(장부교눈)",
+      "explanation": "장부교눈은 ‘기관의 발육 부전·취약’, 형기미충은 ‘형체와 기능이 완전하지 못함’에 대응합니다. 치음·치양 역시 물질적 기초와 생리기능이 모두 미성숙함을 가리킵니다.",
+      "source": "수업자료 20쪽 · 써머리 14쪽 · 주형 해설집 14쪽 (PDF 페이지 기준) · 연결 족보 Q13",
+      "sourceIds": [
+        "Q13"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M032",
+      "type": "mc",
+      "prompt": "형체와 기능이 완전하지 못함을 뜻하는 말은?",
+      "choices": [
+        "生機旺盛(생기왕성)",
+        "發育迅速(발육신속)",
+        "形氣未充(형기미충)",
+        "臟腑嬌嫩(장부교눈)"
+      ],
+      "answer": "3",
+      "displayAnswer": "形氣未充(형기미충)",
+      "explanation": "장부교눈은 ‘기관의 발육 부전·취약’, 형기미충은 ‘형체와 기능이 완전하지 못함’에 대응합니다. 치음·치양 역시 물질적 기초와 생리기능이 모두 미성숙함을 가리킵니다.",
+      "source": "수업자료 20쪽 · 써머리 14쪽 · 주형 해설집 14쪽 (PDF 페이지 기준) · 연결 족보 Q13",
+      "sourceIds": [
+        "Q13"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M033",
+      "type": "mc",
+      "prompt": "소아의 생리적 특징에 해당하는 짝은?",
+      "choices": [
+        "이우변화·이우강복",
+        "생기왕성·발육신속",
+        "이우발병·이우강복",
+        "이우발병·이우변화"
+      ],
+      "answer": "2",
+      "displayAnswer": "생기왕성·발육신속",
+      "explanation": "③의 생기왕성·발육신속은 생리적 특징의 제목입니다. ④의 ‘빨리 회복’은 이우강복에 해당하므로 병리적 특징에 포함됩니다. 두 표현이 비슷해도 분류를 구별합니다.",
+      "source": "수업자료 20,21,22,24,25쪽 · 써머리 14,15,16,18,19쪽 · 주형 해설집 15쪽 (PDF 페이지 기준) · 연결 족보 Q15",
+      "sourceIds": [
+        "Q15"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M034",
+      "type": "mc",
+      "prompt": "소아의 병리적 특징 세 가지는?",
+      "choices": [
+        "생기왕성·발육신속·이우강복",
+        "장부교눈·형기미충·발육신속",
+        "장부교눈·생기왕성·이우발병",
+        "이우발병·이우변화·이우강복"
+      ],
+      "answer": "4",
+      "displayAnswer": "이우발병·이우변화·이우강복",
+      "explanation": "이우발병=비·폐·신의 미숙 등으로 쉽게 아픔, 이우변화=이한이열·이허이실하고 전변이 빠름, 이우강복=생기가 왕성하여 회복이 빠름입니다. 세 항목 모두 병리적 특징으로 분류합니다.",
+      "source": "수업자료 22,23,24,25쪽 · 써머리 16,17,18,19쪽 · 주형 해설집 14쪽 (PDF 페이지 기준) · 연결 족보 Q14",
+      "sourceIds": [
+        "Q14"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M035",
+      "type": "mc",
+      "prompt": "소아가 병에 걸린 뒤 빨리 회복한다는 병리적 특징은?",
+      "choices": [
+        "易于變化(이우변화)",
+        "形氣未充(형기미충)",
+        "易于康復(이우강복)",
+        "易于發病(이우발병)"
+      ],
+      "answer": "3",
+      "displayAnswer": "易于康復(이우강복)",
+      "explanation": "③의 생기왕성·발육신속은 생리적 특징의 제목입니다. ④의 ‘빨리 회복’은 이우강복에 해당하므로 병리적 특징에 포함됩니다. 두 표현이 비슷해도 분류를 구별합니다.",
+      "source": "수업자료 20,21,22,24,25쪽 · 써머리 14,15,16,18,19쪽 · 주형 해설집 15쪽 (PDF 페이지 기준) · 연결 족보 Q15",
+      "sourceIds": [
+        "Q15"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "2",
+      "categoryName": "소아기 구분·생리·병리",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M036",
+      "type": "mc",
+      "prompt": "출생 후 12개월까지 쓰는 특징적인 진단법은?",
+      "choices": [
+        "액맥진",
+        "성인과 동일한 진단",
+        "이지삼부맥",
+        "호구삼관맥법·인영기구맥"
+      ],
+      "answer": "1",
+      "displayAnswer": "액맥진",
+      "explanation": "어릴수록 촌관척 부위가 짧으므로 성인처럼 세 손가락을 쓰지 않습니다. 1~6세에는 한 손가락으로 인영·기구맥을 비교하고, 7~12·13세에는 한 손가락을 옮겨 삼부맥을 봅니다.",
+      "source": "수업자료 47쪽 · 써머리 41쪽 · 주형 해설집 18쪽 (PDF 페이지 기준) · 연결 족보 Q16",
+      "sourceIds": [
+        "Q16"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M037",
+      "type": "mc",
+      "prompt": "1～6세에 쓰는 진단법의 짝은?",
+      "choices": [
+        "액맥진",
+        "호구삼관맥법·인영기구맥",
+        "성인과 동일한 진단",
+        "이지삼부맥"
+      ],
+      "answer": "2",
+      "displayAnswer": "호구삼관맥법·인영기구맥",
+      "explanation": "어릴수록 촌관척 부위가 짧으므로 성인처럼 세 손가락을 쓰지 않습니다. 1~6세에는 한 손가락으로 인영·기구맥을 비교하고, 7~12·13세에는 한 손가락을 옮겨 삼부맥을 봅니다.",
+      "source": "수업자료 47쪽 · 써머리 41쪽 · 주형 해설집 18쪽 (PDF 페이지 기준) · 연결 족보 Q16",
+      "sourceIds": [
+        "Q16"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M038",
+      "type": "mc",
+      "prompt": "7～12·13세에 한 손가락을 옮겨 보는 맥법은?",
+      "choices": [
+        "성인과 동일한 진단",
+        "호구삼관맥법·인영기구맥",
+        "이지삼부맥",
+        "액맥진"
+      ],
+      "answer": "3",
+      "displayAnswer": "이지삼부맥",
+      "explanation": "어릴수록 촌관척 부위가 짧으므로 성인처럼 세 손가락을 쓰지 않습니다. 1~6세에는 한 손가락으로 인영·기구맥을 비교하고, 7~12·13세에는 한 손가락을 옮겨 삼부맥을 봅니다.",
+      "source": "수업자료 47쪽 · 써머리 41쪽 · 주형 해설집 18쪽 (PDF 페이지 기준) · 연결 족보 Q16",
+      "sourceIds": [
+        "Q16"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M039",
+      "type": "mc",
+      "prompt": "14세 이상에서 사용하는 진단 방법은?",
+      "choices": [
+        "이지삼부맥",
+        "성인과 동일한 진단",
+        "호구삼관맥법·인영기구맥",
+        "액맥진"
+      ],
+      "answer": "2",
+      "displayAnswer": "성인과 동일한 진단",
+      "explanation": "어릴수록 촌관척 부위가 짧으므로 성인처럼 세 손가락을 쓰지 않습니다. 1~6세에는 한 손가락으로 인영·기구맥을 비교하고, 7~12·13세에는 한 손가락을 옮겨 삼부맥을 봅니다.",
+      "source": "수업자료 47쪽 · 써머리 41쪽 · 주형 해설집 18쪽 (PDF 페이지 기준) · 연결 족보 Q16",
+      "sourceIds": [
+        "Q16"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M040",
+      "type": "mc",
+      "prompt": "액맥진에서 이마에 접촉하는 세 손가락은?",
+      "choices": [
+        "무지·중지·소지",
+        "식지·중지·무명지",
+        "중지·무명지·소지",
+        "무지·식지·중지"
+      ],
+      "answer": "2",
+      "displayAnswer": "식지·중지·무명지",
+      "explanation": "손가락은 엄지를 포함하지 않고 식지·중지·무명지입니다. 눈썹 위에서 발제 아래까지 접촉해 한열을 보며, 환아 오른쪽 이마는 의사의 왼손으로 진찰합니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 21쪽 (PDF 페이지 기준) · 연결 족보 Q20",
+      "sourceIds": [
+        "Q20"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M041",
+      "type": "mc",
+      "prompt": "액맥진에서 접촉하는 이마의 범위는?",
+      "choices": [
+        "눈썹 위～발제 아래",
+        "코끝～미간",
+        "관자놀이～귀 뒤",
+        "눈썹 아래～눈꺼풀"
+      ],
+      "answer": "1",
+      "displayAnswer": "눈썹 위～발제 아래",
+      "explanation": "손가락은 엄지를 포함하지 않고 식지·중지·무명지입니다. 눈썹 위에서 발제 아래까지 접촉해 한열을 보며, 환아 오른쪽 이마는 의사의 왼손으로 진찰합니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 21쪽 (PDF 페이지 기준) · 연결 족보 Q20",
+      "sourceIds": [
+        "Q20"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M042",
+      "type": "mc",
+      "prompt": "환아의 오른쪽 액맥을 진찰할 때 의사가 쓰는 손은?",
+      "choices": [
+        "양손을 동시에 사용",
+        "환아의 오른손",
+        "오른손",
+        "왼손"
+      ],
+      "answer": "4",
+      "displayAnswer": "왼손",
+      "explanation": "손가락은 엄지를 포함하지 않고 식지·중지·무명지입니다. 눈썹 위에서 발제 아래까지 접촉해 한열을 보며, 환아 오른쪽 이마는 의사의 왼손으로 진찰합니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 21쪽 (PDF 페이지 기준) · 연결 족보 Q20",
+      "sourceIds": [
+        "Q20"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M043",
+      "type": "mc",
+      "prompt": "액맥에서 三指俱冷(삼지구랭)이면 연결되는 것은?",
+      "choices": [
+        "간열·목직시",
+        "위열·구취",
+        "토사·장불안",
+        "한사 감염·비색발열"
+      ],
+      "answer": "3",
+      "displayAnswer": "토사·장불안",
+      "explanation": "삼지구랭은 세 손가락에 닿는 이마가 모두 차가운 경우로 토사·장불안입니다. 삼지구열은 한사 감염으로 비색발열·성조·해수가 나타나는 경우입니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 20쪽 (PDF 페이지 기준) · 연결 족보 Q19",
+      "sourceIds": [
+        "Q19"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M044",
+      "type": "mc",
+      "prompt": "액맥에서 三指俱熱(삼지구열)이면 연결되는 것은?",
+      "choices": [
+        "토사·장불안",
+        "위기음부족·지도설",
+        "한사 감염·비색발열·해수",
+        "심양부족·곤봉지"
+      ],
+      "answer": "3",
+      "displayAnswer": "한사 감염·비색발열·해수",
+      "explanation": "손가락은 엄지를 포함하지 않고 식지·중지·무명지입니다. 눈썹 위에서 발제 아래까지 접촉해 한열을 보며, 환아 오른쪽 이마는 의사의 왼손으로 진찰합니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 21쪽 (PDF 페이지 기준) · 연결 족보 Q20",
+      "sourceIds": [
+        "Q20"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M045",
+      "type": "mc",
+      "prompt": "액맥에서 無名指熱(무명지열)과 연결되는 것은?",
+      "choices": [
+        "장불안",
+        "장중첩증",
+        "難乳消(난유소)",
+        "뇌막염"
+      ],
+      "answer": "3",
+      "displayAnswer": "難乳消(난유소)",
+      "explanation": "⑤ 무명지열–난유소만 맞습니다. ②는 식지·중지·무명지로 고치고, ③·④는 삼지구랭과 삼지구열의 증상을 서로 바꾼 선지입니다. 대상은 초생아~12개월입니다.",
+      "source": "수업자료 49쪽 · 써머리 43쪽 · 주형 해설집 21쪽 (PDF 페이지 기준) · 연결 족보 Q21",
+      "sourceIds": [
+        "Q21"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M046",
+      "type": "mc",
+      "prompt": "식지 안쪽의 얕은 정맥에 나타나는 지문을 관찰하는 방법은?",
+      "choices": [
+        "이지삼부맥",
+        "액맥진",
+        "호구삼관맥법",
+        "인영기구맥"
+      ],
+      "answer": "3",
+      "displayAnswer": "호구삼관맥법",
+      "explanation": "식지 안쪽의 얕은 정맥에 나타난 지문을 보는 호구삼관맥법입니다. 명관에서 풍관 방향으로 가볍게 밀며, 이름에 ‘맥’이 있어도 써머리는 망진에 속한다고 강조합니다.",
+      "source": "수업자료 50,54쪽 · 써머리 44,48쪽 · 주형 해설집 22쪽 (PDF 페이지 기준) · 연결 족보 Q22",
+      "sourceIds": [
+        "Q22"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M047",
+      "type": "mc",
+      "prompt": "호구삼관맥법에서 지문을 드러내려고 가볍게 미는 방향은?",
+      "choices": [
+        "풍관 → 명관",
+        "손목 → 손바닥",
+        "명관 → 풍관",
+        "기관 → 손끝"
+      ],
+      "answer": "3",
+      "displayAnswer": "명관 → 풍관",
+      "explanation": "식지 안쪽의 얕은 정맥에 나타난 지문을 보는 호구삼관맥법입니다. 명관에서 풍관 방향으로 가볍게 밀며, 이름에 ‘맥’이 있어도 써머리는 망진에 속한다고 강조합니다.",
+      "source": "수업자료 50,54쪽 · 써머리 44,48쪽 · 주형 해설집 22쪽 (PDF 페이지 기준) · 연결 족보 Q22",
+      "sourceIds": [
+        "Q22"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M048",
+      "type": "mc",
+      "prompt": "이름에 맥이 들어가지만 지문을 눈으로 관찰하는 호구삼관맥법의 분류는?",
+      "choices": [
+        "문진(問診)",
+        "절진",
+        "망진",
+        "문진(聞診)"
+      ],
+      "answer": "3",
+      "displayAnswer": "망진",
+      "explanation": "식지 안쪽의 얕은 정맥에 나타난 지문을 보는 호구삼관맥법입니다. 명관에서 풍관 방향으로 가볍게 밀며, 이름에 ‘맥’이 있어도 써머리는 망진에 속한다고 강조합니다.",
+      "source": "수업자료 50,54쪽 · 써머리 44,48쪽 · 주형 해설집 22쪽 (PDF 페이지 기준) · 연결 족보 Q22",
+      "sourceIds": [
+        "Q22"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M049",
+      "type": "mc",
+      "prompt": "이번 자료에서 호구삼관맥법의 대상 연령은?",
+      "choices": [
+        "1～6세",
+        "7～12세",
+        "14세 이상",
+        "출생～12개월"
+      ],
+      "answer": "1",
+      "displayAnswer": "1～6세",
+      "explanation": "(1) 연령별 진단과 (2) 액맥 대상·삼지구랭은 자료와 일치합니다. (3) 호구삼관맥 대상의 ‘1~5세’를 ‘1~6세’로 고칩니다. 자료에는 3세 이내 관찰이 바람직하다는 조건도 있습니다.",
+      "source": "수업자료 47,49,50쪽 · 써머리 41,43,44쪽 · 주형 해설집 19쪽 (PDF 페이지 기준) · 연결 족보 Q17",
+      "sourceIds": [
+        "Q17"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M050",
+      "type": "mc",
+      "prompt": "인영맥을 보는 혈관은?",
+      "choices": [
+        "요골동맥",
+        "경동맥",
+        "대퇴동맥",
+        "상완동맥"
+      ],
+      "answer": "2",
+      "displayAnswer": "경동맥",
+      "explanation": "인영은 목의 경동맥으로 삼양·외·표·육부, 기구는 손목의 요골동맥으로 삼음·내·리·오장입니다. 두 맥의 강약과 상응관계로 음양의 유여·부족을 판단합니다.",
+      "source": "수업자료 53쪽 · 써머리 47쪽 · 주형 해설집 23쪽 (PDF 페이지 기준) · 연결 족보 Q24",
+      "sourceIds": [
+        "Q24"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M051",
+      "type": "mc",
+      "prompt": "기구맥을 보는 혈관은?",
+      "choices": [
+        "대퇴동맥",
+        "요골동맥",
+        "상완동맥",
+        "경동맥"
+      ],
+      "answer": "2",
+      "displayAnswer": "요골동맥",
+      "explanation": "인영은 목의 경동맥으로 삼양·외·표·육부, 기구는 손목의 요골동맥으로 삼음·내·리·오장입니다. 두 맥의 강약과 상응관계로 음양의 유여·부족을 판단합니다.",
+      "source": "수업자료 53쪽 · 써머리 47쪽 · 주형 해설집 23쪽 (PDF 페이지 기준) · 연결 족보 Q24",
+      "sourceIds": [
+        "Q24"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M052",
+      "type": "mc",
+      "prompt": "인영과 연결되는 묶음은?",
+      "choices": [
+        "삼음·내·리·오장",
+        "삼양·외·표·육부",
+        "삼양·내·리·오장",
+        "삼음·외·표·육부"
+      ],
+      "answer": "2",
+      "displayAnswer": "삼양·외·표·육부",
+      "explanation": "인영은 목의 경동맥으로 삼양·외·표·육부, 기구는 손목의 요골동맥으로 삼음·내·리·오장입니다. 두 맥의 강약과 상응관계로 음양의 유여·부족을 판단합니다.",
+      "source": "수업자료 53쪽 · 써머리 47쪽 · 주형 해설집 23쪽 (PDF 페이지 기준) · 연결 족보 Q24",
+      "sourceIds": [
+        "Q24"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M053",
+      "type": "mc",
+      "prompt": "기구와 연결되는 묶음은?",
+      "choices": [
+        "삼음·내·리·오장",
+        "삼양·내·리·오장",
+        "삼양·외·표·육부",
+        "삼음·외·표·육부"
+      ],
+      "answer": "1",
+      "displayAnswer": "삼음·내·리·오장",
+      "explanation": "인영은 목의 경동맥으로 삼양·외·표·육부, 기구는 손목의 요골동맥으로 삼음·내·리·오장입니다. 두 맥의 강약과 상응관계로 음양의 유여·부족을 판단합니다.",
+      "source": "수업자료 53쪽 · 써머리 47쪽 · 주형 해설집 23쪽 (PDF 페이지 기준) · 연결 족보 Q24",
+      "sourceIds": [
+        "Q24"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M054",
+      "type": "mc",
+      "prompt": "오색주병에서 경·통·어혈에 해당하는 색은?",
+      "choices": [
+        "흑(黑)",
+        "적(赤)",
+        "백(白)",
+        "청(靑)"
+      ],
+      "answer": "4",
+      "displayAnswer": "청(靑)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M055",
+      "type": "mc",
+      "prompt": "오색주병에서 열에 해당하는 색은?",
+      "choices": [
+        "황(黃)",
+        "적(赤)",
+        "백(白)",
+        "흑(黑)"
+      ],
+      "answer": "2",
+      "displayAnswer": "적(赤)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M056",
+      "type": "mc",
+      "prompt": "오색주병에서 허·습에 해당하는 색은?",
+      "choices": [
+        "청(靑)",
+        "황(黃)",
+        "백(白)",
+        "흑(黑)"
+      ],
+      "answer": "2",
+      "displayAnswer": "황(黃)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M057",
+      "type": "mc",
+      "prompt": "오색주병에서 한·허에 해당하는 색은?",
+      "choices": [
+        "청(靑)",
+        "황(黃)",
+        "백(白)",
+        "적(赤)"
+      ],
+      "answer": "3",
+      "displayAnswer": "백(白)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M058",
+      "type": "mc",
+      "prompt": "오색주병에서 한·통·수습정음·악후에 해당하는 색은?",
+      "choices": [
+        "적(赤)",
+        "황(黃)",
+        "흑(黑)",
+        "청(靑)"
+      ],
+      "answer": "3",
+      "displayAnswer": "흑(黑)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M059",
+      "type": "mc",
+      "prompt": "驚(경)을 黃(황)에 연결한 선지가 틀린 이유는? 경에 해당하는 색을 고르세요.",
+      "choices": [
+        "흑(黑)",
+        "적(赤)",
+        "청(靑)",
+        "황(黃)"
+      ],
+      "answer": "3",
+      "displayAnswer": "청(靑)",
+      "explanation": "청=경·통·어혈, 적=열, 황=허·습, 백=한·허, 흑=한·통·수습정음·악후입니다. 특히 ‘경을 황으로 연결’하면 틀립니다.",
+      "source": "수업자료 55쪽 · 써머리 49쪽 · 주형 해설집 24쪽 (PDF 페이지 기준) · 연결 족보 Q25",
+      "sourceIds": [
+        "Q25"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M060",
+      "type": "mc",
+      "prompt": "자색 손발톱·곤봉지와 연결되는 묶음은?",
+      "choices": [
+        "비허·식적·혈허",
+        "풍한·담탁·조사범폐",
+        "심양부족·기혈어체·선천성 심장질환",
+        "위기음부족·감증·장중첩증"
+      ],
+      "answer": "3",
+      "displayAnswer": "심양부족·기혈어체·선천성 심장질환",
+      "explanation": "자색 곤봉지는 심양부족·기혈어체·선천성 심장질환, 배만 불룩하고 팔다리가 마른 것은 감증입니다. 혈액·점액변과 주기적 심한 울음이 함께 나오면 장중첩증을 연결합니다.",
+      "source": "수업자료 56,58,72쪽 · 써머리 50,52,66쪽 · 주형 해설집 25쪽 (PDF 페이지 기준) · 연결 족보 Q27",
+      "sourceIds": [
+        "Q27"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M061",
+      "type": "mc",
+      "prompt": "배가 불룩하고 팔다리가 마르며 머리카락이 드물고 이마에 청근이 보이면?",
+      "choices": [
+        "후두염",
+        "묘성증후군",
+        "장중첩증",
+        "감증"
+      ],
+      "answer": "4",
+      "displayAnswer": "감증",
+      "explanation": "자색 곤봉지는 심양부족·기혈어체·선천성 심장질환, 배만 불룩하고 팔다리가 마른 것은 감증입니다. 혈액·점액변과 주기적 심한 울음이 함께 나오면 장중첩증을 연결합니다.",
+      "source": "수업자료 56,58,72쪽 · 써머리 50,52,66쪽 · 주형 해설집 25쪽 (PDF 페이지 기준) · 연결 족보 Q27",
+      "sourceIds": [
+        "Q27"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M062",
+      "type": "mc",
+      "prompt": "혈액·점액이 섞인 변을 보며 주기적으로 심하게 우는 소아에서 연결할 병은?",
+      "choices": [
+        "감증",
+        "후두염",
+        "크레틴병",
+        "장중첩증"
+      ],
+      "answer": "4",
+      "displayAnswer": "장중첩증",
+      "explanation": "자색 곤봉지는 심양부족·기혈어체·선천성 심장질환, 배만 불룩하고 팔다리가 마른 것은 감증입니다. 혈액·점액변과 주기적 심한 울음이 함께 나오면 장중첩증을 연결합니다.",
+      "source": "수업자료 56,58,72쪽 · 써머리 50,52,66쪽 · 주형 해설집 25쪽 (PDF 페이지 기준) · 연결 족보 Q27",
+      "sourceIds": [
+        "Q27"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M063",
+      "type": "mc",
+      "prompt": "설태가 군데군데 벗겨져 지도 모양인 혀의 이름은?",
+      "choices": [
+        "황니태",
+        "지도설·설질화박",
+        "백니태",
+        "딸기혀"
+      ],
+      "answer": "2",
+      "displayAnswer": "지도설·설질화박",
+      "explanation": "설태가 군데군데 벗겨져 지도 모양을 보이는 지도설입니다. 자료는 위의 기와 음이 부족한 상태로 설명하며, 써머리에는 통증이 없고 소화기 허약과 관련된다고 적혀 있습니다. 원시험 사진은 없으므로 병명·의의 복기를 기준으로 풀이합니다.",
+      "source": "수업자료 61,63쪽 · 써머리 55,57쪽 · 주형 해설집 26쪽 (PDF 페이지 기준) · 연결 족보 Q28",
+      "sourceIds": [
+        "Q28"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M064",
+      "type": "mc",
+      "prompt": "지도설·설질화박의 의의는?",
+      "choices": [
+        "습열내체",
+        "위의 기음부족",
+        "한습내체",
+        "심양부족"
+      ],
+      "answer": "2",
+      "displayAnswer": "위의 기음부족",
+      "explanation": "설태가 군데군데 벗겨져 지도 모양을 보이는 지도설입니다. 자료는 위의 기와 음이 부족한 상태로 설명하며, 써머리에는 통증이 없고 소화기 허약과 관련된다고 적혀 있습니다. 원시험 사진은 없으므로 병명·의의 복기를 기준으로 풀이합니다.",
+      "source": "수업자료 61,63쪽 · 써머리 55,57쪽 · 주형 해설집 26쪽 (PDF 페이지 기준) · 연결 족보 Q28",
+      "sourceIds": [
+        "Q28"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M065",
+      "type": "mc",
+      "prompt": "설태의 색, 즉 태색으로 주로 판단하는 것은?",
+      "choices": [
+        "맥박수",
+        "치아의 발육 정도",
+        "병사의 성질",
+        "골연령"
+      ],
+      "answer": "3",
+      "displayAnswer": "병사의 성질",
+      "explanation": "태색은 병사의 성질을, 태질은 병의 경중·진행과 진액·사정소장을 봅니다. 백태=한·표, 황태=열·리, 백니=한습내체, 황니=습열내체입니다.",
+      "source": "수업자료 61쪽 · 써머리 55쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q29",
+      "sourceIds": [
+        "Q29"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M066",
+      "type": "mc",
+      "prompt": "백니태와 연결되는 것은?",
+      "choices": [
+        "열입영분",
+        "습열내체",
+        "위기음부족",
+        "한습내체"
+      ],
+      "answer": "4",
+      "displayAnswer": "한습내체",
+      "explanation": "태색은 병사의 성질을, 태질은 병의 경중·진행과 진액·사정소장을 봅니다. 백태=한·표, 황태=열·리, 백니=한습내체, 황니=습열내체입니다.",
+      "source": "수업자료 61쪽 · 써머리 55쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q29",
+      "sourceIds": [
+        "Q29"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M067",
+      "type": "mc",
+      "prompt": "황니태와 연결되는 것은?",
+      "choices": [
+        "심양부족",
+        "한습내체",
+        "습열내체",
+        "정기부족"
+      ],
+      "answer": "3",
+      "displayAnswer": "습열내체",
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "source": "수업자료 61쪽 · 써머리 55쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q30",
+      "sourceIds": [
+        "Q30"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M068",
+      "type": "mc",
+      "prompt": "주형 해설·수업자료에서 무태와 연결하는 것은?",
+      "choices": [
+        "외감풍한",
+        "정기부족",
+        "습열내체",
+        "한습내체"
+      ],
+      "answer": "2",
+      "displayAnswer": "정기부족",
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "source": "수업자료 61쪽 · 써머리 55쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q30",
+      "sourceIds": [
+        "Q30"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M069",
+      "type": "mc",
+      "prompt": "정상 소아의 얼굴색을 표현한 것은?",
+      "choices": [
+        "紅潤而光澤(홍윤이광택)",
+        "面色萎黃(면색위황)",
+        "淡紅潤澤(담홍윤택)",
+        "蒼白無華(창백무화)"
+      ],
+      "answer": "1",
+      "displayAnswer": "紅潤而光澤(홍윤이광택)",
+      "explanation": "정상 안색·변·맥·설체를 그대로 쓰는 한자 문제입니다. 설체의 담홍윤택과 얼굴색의 홍윤이광택을 서로 바꾸지 않으며, 맥은 평화하면서 성인보다 세연합니다.",
+      "source": "수업자료 55,60,72,84쪽 · 써머리 49,54,66,78쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q31",
+      "sourceIds": [
+        "Q31"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M070",
+      "type": "mc",
+      "prompt": "정상 소아의 설체를 표현한 것은?",
+      "choices": [
+        "舌絳少津(설강소진)",
+        "紅潤而光澤(홍윤이광택)",
+        "舌淡胖嫩(설담반눈)",
+        "淡紅潤澤(담홍윤택)"
+      ],
+      "answer": "4",
+      "displayAnswer": "淡紅潤澤(담홍윤택)",
+      "explanation": "정상 안색·변·맥·설체를 그대로 쓰는 한자 문제입니다. 설체의 담홍윤택과 얼굴색의 홍윤이광택을 서로 바꾸지 않으며, 맥은 평화하면서 성인보다 세연합니다.",
+      "source": "수업자료 55,60,72,84쪽 · 써머리 49,54,66,78쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q31",
+      "sourceIds": [
+        "Q31"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M071",
+      "type": "mc",
+      "prompt": "정상 소아의 맥은 평화하면서 성인보다 어떠한가?",
+      "choices": [
+        "細軟(세연)",
+        "遲澀(지삽)",
+        "弦緊(현긴)",
+        "洪大(홍대)"
+      ],
+      "answer": "1",
+      "displayAnswer": "細軟(세연)",
+      "explanation": "정상 안색·변·맥·설체를 그대로 쓰는 한자 문제입니다. 설체의 담홍윤택과 얼굴색의 홍윤이광택을 서로 바꾸지 않으며, 맥은 평화하면서 성인보다 세연합니다.",
+      "source": "수업자료 55,60,72,84쪽 · 써머리 49,54,66,78쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q31",
+      "sourceIds": [
+        "Q31"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M072",
+      "type": "mc",
+      "prompt": "다른 이상 증상 없이 녹색변만 보이는 경우, 자료의 기본 판단은?",
+      "choices": [
+        "항상 세균성 장염",
+        "대개 정상",
+        "항상 장폐색",
+        "항상 장중첩증"
+      ],
+      "answer": "2",
+      "displayAnswer": "대개 정상",
+      "explanation": "녹색이라는 색만으로 병적인 변으로 판정하지 않습니다. 수업자료는 전유만 수유하거나 채소 섭취 등에 의한 녹색변은 대개 정상이며, 구토·발열·혈변이 함께 있으면 이상변으로 봅니다.",
+      "source": "수업자료 72쪽 · 써머리 66쪽 · 주형 해설집 29쪽 (PDF 페이지 기준) · 연결 족보 Q33",
+      "sourceIds": [
+        "Q33"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M073",
+      "type": "mc",
+      "prompt": "갑자기 큰소리로 자지러지게 우는 소리와 연결되는 것은?",
+      "choices": [
+        "묘성증후군",
+        "호흡곤란증후군·폐렴",
+        "뇌막염·중추신경장애",
+        "장중첩증·산통"
+      ],
+      "answer": "4",
+      "displayAnswer": "장중첩증·산통",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M074",
+      "type": "mc",
+      "prompt": "날카로운 울음소리와 연결되는 것은?",
+      "choices": [
+        "장중첩증·산통",
+        "선천성 심질환·크레틴병",
+        "묘성증후군",
+        "뇌막염·중추신경장애"
+      ],
+      "answer": "4",
+      "displayAnswer": "뇌막염·중추신경장애",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M075",
+      "type": "mc",
+      "prompt": "약하고 쉰 울음소리와 연결되는 것은?",
+      "choices": [
+        "묘성증후군",
+        "호흡곤란증후군·폐렴",
+        "선천성 심질환·크레틴병",
+        "장중첩증·산통"
+      ],
+      "answer": "3",
+      "displayAnswer": "선천성 심질환·크레틴병",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M076",
+      "type": "mc",
+      "prompt": "고양이가 우는 것 같은 울음소리와 연결되는 것은?",
+      "choices": [
+        "뇌막염·중추신경장애",
+        "후두염",
+        "Cornelia de Lange 증후군",
+        "묘성증후군"
+      ],
+      "answer": "4",
+      "displayAnswer": "묘성증후군",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M077",
+      "type": "mc",
+      "prompt": "어린양이 매애 우는 것 같은 울음소리와 연결되는 것은?",
+      "choices": [
+        "Cornelia de Lange 증후군",
+        "선천성 심질환·크레틴병",
+        "호흡곤란증후군·폐렴",
+        "장중첩증·산통"
+      ],
+      "answer": "1",
+      "displayAnswer": "Cornelia de Lange 증후군",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M078",
+      "type": "mc",
+      "prompt": "컹컹하는 울음소리(croupy cry)와 연결되는 것은?",
+      "choices": [
+        "후두염",
+        "뇌막염·중추신경장애",
+        "선천성 심질환·크레틴병",
+        "호흡곤란증후군·폐렴"
+      ],
+      "answer": "1",
+      "displayAnswer": "후두염",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M079",
+      "type": "mc",
+      "prompt": "신음하는 것 같은 울음소리와 연결되는 것은?",
+      "choices": [
+        "묘성증후군",
+        "Cornelia de Lange 증후군",
+        "호흡곤란증후군·폐렴",
+        "후두염"
+      ],
+      "answer": "3",
+      "displayAnswer": "호흡곤란증후군·폐렴",
+      "explanation": "갑자기 자지러짐=장중첩증·산통, 날카로움=뇌막염·중추신경장애, 약하고 쉼=선천성 심질환·크레틴병입니다. 고양이=묘성, 어린양=Cornelia de Lange, 컹컹=후두염, 신음=호흡곤란·폐렴을 연결합니다.",
+      "source": "수업자료 75쪽 · 써머리 69쪽 · 주형 해설집 30쪽 (PDF 페이지 기준) · 연결 족보 Q34",
+      "sourceIds": [
+        "Q34"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M080",
+      "type": "mc",
+      "prompt": "맑고 높고 큰 기침＋코막힘·콧물과 연결되는 것은?",
+      "choices": [
+        "백일해·이물흡입",
+        "조사범폐",
+        "폐열담탁",
+        "외감풍한"
+      ],
+      "answer": "4",
+      "displayAnswer": "외감풍한",
+      "explanation": "맑고 높고 큰 기침+코막힘·콧물=외감풍한, 무겁고 담이 막힘=폐열담탁, 마른기침·적은 담=조사범폐입니다. 발작성 연속 기침은 백일해·이물흡입, 개 짖듯 컹컹하면 디프테리아·후두염·후두개염입니다.",
+      "source": "수업자료 77쪽 · 써머리 71쪽 · 주형 해설집 31쪽 (PDF 페이지 기준) · 연결 족보 Q36",
+      "sourceIds": [
+        "Q36"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M081",
+      "type": "mc",
+      "prompt": "무겁고 맑지 못한 기침＋담조불리와 연결되는 것은?",
+      "choices": [
+        "조사범폐",
+        "백일해·이물흡입",
+        "폐열담탁",
+        "외감풍한"
+      ],
+      "answer": "3",
+      "displayAnswer": "폐열담탁",
+      "explanation": "맑고 높고 큰 기침+코막힘·콧물=외감풍한, 무겁고 담이 막힘=폐열담탁, 마른기침·적은 담=조사범폐입니다. 발작성 연속 기침은 백일해·이물흡입, 개 짖듯 컹컹하면 디프테리아·후두염·후두개염입니다.",
+      "source": "수업자료 77쪽 · 써머리 71쪽 · 주형 해설집 31쪽 (PDF 페이지 기준) · 연결 족보 Q36",
+      "sourceIds": [
+        "Q36"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M082",
+      "type": "mc",
+      "prompt": "건해무담·담소와 연결되는 것은?",
+      "choices": [
+        "조사범폐",
+        "외감풍한",
+        "디프테리아·후두염·후두개염",
+        "폐열담탁"
+      ],
+      "answer": "1",
+      "displayAnswer": "조사범폐",
+      "explanation": "맑고 높고 큰 기침+코막힘·콧물=외감풍한, 무겁고 담이 막힘=폐열담탁, 마른기침·적은 담=조사범폐입니다. 발작성 연속 기침은 백일해·이물흡입, 개 짖듯 컹컹하면 디프테리아·후두염·후두개염입니다.",
+      "source": "수업자료 77쪽 · 써머리 71쪽 · 주형 해설집 31쪽 (PDF 페이지 기준) · 연결 족보 Q36",
+      "sourceIds": [
+        "Q36"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M083",
+      "type": "mc",
+      "prompt": "끊이지 않는 발작성 기침과 연결되는 것은?",
+      "choices": [
+        "디프테리아·후두염·후두개염",
+        "백일해·이물흡입",
+        "외감풍한",
+        "조사범폐"
+      ],
+      "answer": "2",
+      "displayAnswer": "백일해·이물흡입",
+      "explanation": "맑고 높고 큰 기침+코막힘·콧물=외감풍한, 무겁고 담이 막힘=폐열담탁, 마른기침·적은 담=조사범폐입니다. 발작성 연속 기침은 백일해·이물흡입, 개 짖듯 컹컹하면 디프테리아·후두염·후두개염입니다.",
+      "source": "수업자료 77쪽 · 써머리 71쪽 · 주형 해설집 31쪽 (PDF 페이지 기준) · 연결 족보 Q36",
+      "sourceIds": [
+        "Q36"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M084",
+      "type": "mc",
+      "prompt": "개가 짖는 것 같은 기침(barking cough)과 연결되는 것은?",
+      "choices": [
+        "조사범폐",
+        "디프테리아·후두염·후두개염",
+        "백일해·이물흡입",
+        "폐열담탁"
+      ],
+      "answer": "2",
+      "displayAnswer": "디프테리아·후두염·후두개염",
+      "explanation": "맑고 높고 큰 기침+코막힘·콧물=외감풍한, 무겁고 담이 막힘=폐열담탁, 마른기침·적은 담=조사범폐입니다. 발작성 연속 기침은 백일해·이물흡입, 개 짖듯 컹컹하면 디프테리아·후두염·후두개염입니다.",
+      "source": "수업자료 77쪽 · 써머리 71쪽 · 주형 해설집 31쪽 (PDF 페이지 기준) · 연결 족보 Q36",
+      "sourceIds": [
+        "Q36"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M085",
+      "type": "mc",
+      "prompt": "정상 호흡음끼리 묶인 것은?",
+      "choices": [
+        "crackles·wheeze·bronchial",
+        "vesicular·bronchial·bronchovesicular",
+        "crackles·wheeze·vesicular",
+        "wheeze·bronchial·bronchovesicular"
+      ],
+      "answer": "2",
+      "displayAnswer": "vesicular·bronchial·bronchovesicular",
+      "explanation": "20학번 원본 정리의 ①·②는 모두 O이며 실제 시험에서는 호흡음 종류, 방향, 유두 안팎을 바꾸었다고 적혀 있습니다. 써머리는 ‘정상음 구분’과 ‘순서는 상관없음’을 적고 있어, 방향의 정오는 과거 출제 복기와 구별해 읽습니다.",
+      "source": "수업자료 80쪽 · 써머리 74쪽 · 20학번 원본 3쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q37",
+      "sourceIds": [
+        "Q37"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M086",
+      "type": "mc",
+      "prompt": "비정상 호흡음끼리 묶인 것은?",
+      "choices": [
+        "vesicular·bronchial",
+        "bronchial·bronchovesicular",
+        "vesicular·bronchovesicular",
+        "crackles·wheeze"
+      ],
+      "answer": "4",
+      "displayAnswer": "crackles·wheeze",
+      "explanation": "20학번 원본 정리의 ①·②는 모두 O이며 실제 시험에서는 호흡음 종류, 방향, 유두 안팎을 바꾸었다고 적혀 있습니다. 써머리는 ‘정상음 구분’과 ‘순서는 상관없음’을 적고 있어, 방향의 정오는 과거 출제 복기와 구별해 읽습니다.",
+      "source": "수업자료 80쪽 · 써머리 74쪽 · 20학번 원본 3쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q37",
+      "sourceIds": [
+        "Q37"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "5",
+      "categoryName": "울음·기침·청진",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M087",
+      "type": "mc",
+      "prompt": "의사의 한 번 호흡인 일식에 성인 맥은 몇 지인가?",
+      "choices": [
+        "7～8지",
+        "5지",
+        "4지",
+        "6지"
+      ],
+      "answer": "3",
+      "displayAnswer": "4지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M088",
+      "type": "mc",
+      "prompt": "일식에 소아 맥은 몇 지인가?",
+      "choices": [
+        "4지",
+        "7～8지",
+        "5지",
+        "6지"
+      ],
+      "answer": "4",
+      "displayAnswer": "6지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M089",
+      "type": "mc",
+      "prompt": "해설집 표의 신생아 분당 맥박수는?",
+      "choices": [
+        "95회/분",
+        "90회/분",
+        "100회/분",
+        "140회/분"
+      ],
+      "answer": "4",
+      "displayAnswer": "140회/분",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M090",
+      "type": "mc",
+      "prompt": "해설집 표의 1세 분당 맥박수는?",
+      "choices": [
+        "140회/분",
+        "90회/분",
+        "100회/분",
+        "95회/분"
+      ],
+      "answer": "3",
+      "displayAnswer": "100회/분",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M091",
+      "type": "mc",
+      "prompt": "해설집 표의 4세 분당 맥박수는?",
+      "choices": [
+        "90회/분",
+        "95회/분",
+        "100회/분",
+        "140회/분"
+      ],
+      "answer": "2",
+      "displayAnswer": "95회/분",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M092",
+      "type": "mc",
+      "prompt": "해설집 표의 8세 분당 맥박수는?",
+      "choices": [
+        "100회/분",
+        "90회/분",
+        "95회/분",
+        "140회/분"
+      ],
+      "answer": "2",
+      "displayAnswer": "90회/분",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M093",
+      "type": "mc",
+      "prompt": "담·식적과 연결되는 맥은?",
+      "choices": [
+        "규맥",
+        "활맥",
+        "유맥",
+        "결대맥"
+      ],
+      "answer": "2",
+      "displayAnswer": "활맥",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Q39",
+      "sourceIds": [
+        "Q39"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M094",
+      "type": "mc",
+      "prompt": "경풍·복통·고혈압과 연결되는 맥은?",
+      "choices": [
+        "유맥",
+        "활맥",
+        "현맥",
+        "결대맥"
+      ],
+      "answer": "3",
+      "displayAnswer": "현맥",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Q39",
+      "sourceIds": [
+        "Q39"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M095",
+      "type": "mc",
+      "prompt": "기혈부족·습중과 연결되는 맥은?",
+      "choices": [
+        "결대맥",
+        "규맥",
+        "유맥",
+        "활맥"
+      ],
+      "answer": "3",
+      "displayAnswer": "유맥",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Q39",
+      "sourceIds": [
+        "Q39"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M096",
+      "type": "mc",
+      "prompt": "심기부족과 연결되는 맥은?",
+      "choices": [
+        "결대맥",
+        "활맥",
+        "현맥",
+        "규맥"
+      ],
+      "answer": "1",
+      "displayAnswer": "결대맥",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Q39",
+      "sourceIds": [
+        "Q39"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M097",
+      "type": "mc",
+      "prompt": "실혈과 연결되는 맥은?",
+      "choices": [
+        "현맥",
+        "규맥",
+        "유맥",
+        "결대맥"
+      ],
+      "answer": "2",
+      "displayAnswer": "규맥",
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Q39",
+      "sourceIds": [
+        "Q39"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M098",
+      "type": "mc",
+      "prompt": "위기영혈변증을 주로 응용하는 질병군은?",
+      "choices": [
+        "외상성 출혈만",
+        "온열병·시온역열증",
+        "선천성 기형",
+        "골절·탈구"
+      ],
+      "answer": "2",
+      "displayAnswer": "온열병·시온역열증",
+      "explanation": "20학번 원본은 위기영혈변증을 시온역열증에 주로 응용하며 홍역·풍진·풍온·서온·성홍열 등을 예로 듭니다. 이번 자료는 위분·기분·영분·혈분의 네 단계와 온열병에 쓰는 변증임을 확인해 줍니다. 문항·선지 원문은 없어 답 번호는 미복기입니다.",
+      "source": "수업자료 87쪽 · 써머리 81쪽 · 20학번 원본 3쪽 · 주형 해설집 33쪽 (PDF 페이지 기준) · 연결 족보 Y20-10",
+      "sourceIds": [
+        "Y20-10"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M099",
+      "type": "mc",
+      "prompt": "야열·섬망·설강과 연결되는 단계는?",
+      "choices": [
+        "영분증",
+        "기분증",
+        "태양병",
+        "위분증"
+      ],
+      "answer": "1",
+      "displayAnswer": "영분증",
+      "explanation": "원본의 핵심은 夜熱(야열)·譫妄(섬망)·舌絳(설강)입니다. 기분에서 풀리지 못한 온열사가 영분으로 깊이 들어간 것으로 설명하며, 기분에서 순전·위분에서 기분을 거치지 않는 역전·곧바로 영분 침입을 구별합니다. 이번 자료에는 단계 이름만 있어 상세 내용은 원본족보 출처입니다.",
+      "source": "수업자료 87쪽 · 써머리 81쪽 · 20학번 원본 4쪽 (PDF 페이지 기준) · 연결 족보 Y20-11",
+      "sourceIds": [
+        "Y20-11"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M100",
+      "type": "mc",
+      "prompt": "원족보에서 장열음수·목직시·신반절강직이 함께 제시된 증상 묶음의 변증은?",
+      "choices": [
+        "심양허증",
+        "비기허증",
+        "신양허증",
+        "간열증"
+      ],
+      "answer": "4",
+      "displayAnswer": "간열증",
+      "explanation": "20학번 원본은 이 증상 묶음을 간열증이라고 명시합니다. 장열음수·천민·구중기열과 함께 목내청·목직시·몸의 강직·손으로 물건을 만지는 증상을 한 묶음으로 연결합니다. 새 자료는 오장변증의 틀만 제시하므로 구체 답의 출처는 원본족보입니다.",
+      "source": "수업자료 87쪽 · 써머리 81쪽 · 20학번 원본 9쪽 (PDF 페이지 기준) · 연결 족보 Y20-추가오장",
+      "sourceIds": [
+        "Y20-추가오장"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M101",
+      "type": "mc",
+      "prompt": "키·체중·심장과 연결되는 성장 유형은?",
+      "choices": [
+        "림프형",
+        "일반형",
+        "생식형",
+        "신경형"
+      ],
+      "answer": "2",
+      "displayAnswer": "일반형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M102",
+      "type": "mc",
+      "prompt": "뇌와 연결되는 성장 유형은?",
+      "choices": [
+        "일반형",
+        "신경형",
+        "림프형",
+        "생식형"
+      ],
+      "answer": "2",
+      "displayAnswer": "신경형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M103",
+      "type": "mc",
+      "prompt": "흉선·림프절·편도와 연결되는 성장 유형은?",
+      "choices": [
+        "신경형",
+        "일반형",
+        "림프형",
+        "생식형"
+      ],
+      "answer": "3",
+      "displayAnswer": "림프형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M104",
+      "type": "mc",
+      "prompt": "고환·자궁·전립선과 연결되는 성장 유형은?",
+      "choices": [
+        "일반형",
+        "림프형",
+        "생식형",
+        "신경형"
+      ],
+      "answer": "3",
+      "displayAnswer": "생식형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M105",
+      "type": "mc",
+      "prompt": "영아기와 사춘기에 급증하는 S자형 성장 유형은?",
+      "choices": [
+        "일반형",
+        "신경형",
+        "생식형",
+        "림프형"
+      ],
+      "answer": "1",
+      "displayAnswer": "일반형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M106",
+      "type": "mc",
+      "prompt": "사춘기부터 급격히 증가하는 성장 유형은?",
+      "choices": [
+        "생식형",
+        "일반형",
+        "림프형",
+        "신경형"
+      ],
+      "answer": "1",
+      "displayAnswer": "생식형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M107",
+      "type": "mc",
+      "prompt": "중간에 성인의 약 2배까지 커졌다가 퇴축하는 성장 유형은?",
+      "choices": [
+        "림프형",
+        "신경형",
+        "일반형",
+        "생식형"
+      ],
+      "answer": "1",
+      "displayAnswer": "림프형",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M108",
+      "type": "mc",
+      "prompt": "두위의 성장 유형은?",
+      "choices": [
+        "신경형",
+        "림프형",
+        "일반형",
+        "생식형"
+      ],
+      "answer": "1",
+      "displayAnswer": "신경형",
+      "explanation": "①의 ‘두위’가 오답 포인트입니다. 두위는 뇌의 발육과 관련된 신경형으로 구분합니다. 나머지의 신경형 4세 80%, 림프형 10~12세 2배, 생식형 사춘기 급증은 자료와 일치합니다.",
+      "source": "수업자료 92쪽 · 써머리 86쪽 · 주형 해설집 37쪽 (PDF 페이지 기준) · 연결 족보 Q44",
+      "sourceIds": [
+        "Q44"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M109",
+      "type": "mc",
+      "prompt": "족보·해설집에서 비장의 성장 유형은?",
+      "choices": [
+        "신경형",
+        "일반형",
+        "생식형",
+        "림프형"
+      ],
+      "answer": "2",
+      "displayAnswer": "일반형",
+      "explanation": "해당 그래프는 림프형입니다. 흉선(가슴샘)·림프절·편도는 림프형, 비장은 족보·해설집에서 일반형으로 분류하여 ②를 고릅니다. 수업자료는 림프형 예시로 흉선·림프절·편도를 제시합니다.",
+      "source": "수업자료 92쪽 · 써머리 86쪽 · 주형 해설집 36쪽 (PDF 페이지 기준) · 연결 족보 Q42",
+      "sourceIds": [
+        "Q42"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M110",
+      "type": "mc",
+      "prompt": "신경형은 4세에 성인 크기의 약 몇 %에 도달하는가?",
+      "choices": [
+        "20%",
+        "50%",
+        "80%",
+        "200%"
+      ],
+      "answer": "3",
+      "displayAnswer": "80%",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M111",
+      "type": "mc",
+      "prompt": "림프형이 성인의 약 2배에 이르는 시기는?",
+      "choices": [
+        "4～6세",
+        "18～20세",
+        "1～2세",
+        "10～12세"
+      ],
+      "answer": "4",
+      "displayAnswer": "10～12세",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M112",
+      "type": "mc",
+      "prompt": "제1 성장 급진기의 범위는?",
+      "choices": [
+        "사춘기～15·16세",
+        "2세～사춘기",
+        "출생～2세",
+        "15·16세 이후"
+      ],
+      "answer": "3",
+      "displayAnswer": "출생～2세",
+      "explanation": "제1 급진기는 출생~2세, 제2 급진기는 사춘기~15·16세입니다. 사이인 2세~사춘기는 서서히 자라고, 15·16세 이후는 성장속도가 급감합니다. 번호만 미복기이고 관련 기준은 자료로 확인됩니다.",
+      "source": "수업자료 94쪽 · 써머리 88쪽 · 20학번 원본 5쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Y20-13",
+      "sourceIds": [
+        "Y20-13"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M113",
+      "type": "mc",
+      "prompt": "제2 성장 급진기의 범위는?",
+      "choices": [
+        "2세～사춘기",
+        "출생～2세",
+        "사춘기～15·16세",
+        "15·16세 이후"
+      ],
+      "answer": "3",
+      "displayAnswer": "사춘기～15·16세",
+      "explanation": "제1 급진기는 출생~2세, 제2 급진기는 사춘기~15·16세입니다. 사이인 2세~사춘기는 서서히 자라고, 15·16세 이후는 성장속도가 급감합니다. 번호만 미복기이고 관련 기준은 자료로 확인됩니다.",
+      "source": "수업자료 94쪽 · 써머리 88쪽 · 20학번 원본 5쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Y20-13",
+      "sourceIds": [
+        "Y20-13"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M114",
+      "type": "mc",
+      "prompt": "이번 수업자료의 본문에 적힌 출생 평균 체중은?",
+      "choices": [
+        "3.2kg",
+        "4.0kg",
+        "2.5kg",
+        "3.3kg"
+      ],
+      "answer": "1",
+      "displayAnswer": "3.2kg",
+      "explanation": "과거 족보의 빈칸 답은 3.3 / 3~4 / 5~10 / 7~10 / 3입니다. 이번 수업자료 본문은 평균 3.2kg, 첫 주 자연분만 10%·제왕절개 12% 감소로 적혀 있습니다. 같은 페이지 증가배수 표의 출생 체중은 3.3kg로 남아 있어 본문과 표의 차이를 표시했습니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 37쪽 (PDF 페이지 기준) · 연결 족보 Q45",
+      "sourceIds": [
+        "Q45"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "이번 본문과 과거 족보·같은 자료의 증가배수 표 수치가 다릅니다.",
+      "memory": true
+    },
+    {
+      "id": "M115",
+      "type": "mc",
+      "prompt": "이번 수업자료 본문의 생리적 체중감소 기간은?",
+      "choices": [
+        "출생 후 첫 주",
+        "생후 6개월 이후",
+        "생후 2～3개월",
+        "출생 후 첫 달"
+      ],
+      "answer": "1",
+      "displayAnswer": "출생 후 첫 주",
+      "explanation": "과거 족보의 빈칸 답은 3.3 / 3~4 / 5~10 / 7~10 / 3입니다. 이번 수업자료 본문은 평균 3.2kg, 첫 주 자연분만 10%·제왕절개 12% 감소로 적혀 있습니다. 같은 페이지 증가배수 표의 출생 체중은 3.3kg로 남아 있어 본문과 표의 차이를 표시했습니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 37쪽 (PDF 페이지 기준) · 연결 족보 Q45",
+      "sourceIds": [
+        "Q45"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M116",
+      "type": "mc",
+      "prompt": "이번 수업자료 본문의 체중감소율 짝은?",
+      "choices": [
+        "자연분만 10%·제왕절개 12%",
+        "자연분만 12%·제왕절개 10%",
+        "자연분만 5%·제왕절개 7%",
+        "자연분만 20%·제왕절개 25%"
+      ],
+      "answer": "1",
+      "displayAnswer": "자연분만 10%·제왕절개 12%",
+      "explanation": "과거 족보의 빈칸 답은 3.3 / 3~4 / 5~10 / 7~10 / 3입니다. 이번 수업자료 본문은 평균 3.2kg, 첫 주 자연분만 10%·제왕절개 12% 감소로 적혀 있습니다. 같은 페이지 증가배수 표의 출생 체중은 3.3kg로 남아 있어 본문과 표의 차이를 표시했습니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 37쪽 (PDF 페이지 기준) · 연결 족보 Q45",
+      "sourceIds": [
+        "Q45"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M117",
+      "type": "mc",
+      "prompt": "생리적으로 감소한 체중이 출생 체중으로 회복되는 시기는?",
+      "choices": [
+        "1개월",
+        "7～10일",
+        "3～4일",
+        "1～2일"
+      ],
+      "answer": "2",
+      "displayAnswer": "7～10일",
+      "explanation": "태변·체액 배출과 제한된 영양 섭취로 처음에는 체중이 줄었다가 7~10일에 출생 체중으로 회복합니다. 감소 폭의 이전 족보 수치와 관계없이 회복 시기는 이번 자료에서도 같습니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q46",
+      "sourceIds": [
+        "Q46"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M118",
+      "type": "mc",
+      "prompt": "1세 체중은 출생 체중의 약 몇 배인가?",
+      "choices": [
+        "5배",
+        "2배",
+        "3배",
+        "4배"
+      ],
+      "answer": "3",
+      "displayAnswer": "3배",
+      "explanation": "수업자료의 증가배수 표는 1년 3배·10kg, 2년 4배·13kg, 4년 5배·16kg입니다. 이 문항은 2년을 묻기 때문에 4배를 고릅니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q47",
+      "sourceIds": [
+        "Q47"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M119",
+      "type": "mc",
+      "prompt": "2세 체중은 출생 체중의 약 몇 배인가?",
+      "choices": [
+        "2배",
+        "3배",
+        "5배",
+        "4배"
+      ],
+      "answer": "4",
+      "displayAnswer": "4배",
+      "explanation": "수업자료의 증가배수 표는 1년 3배·10kg, 2년 4배·13kg, 4년 5배·16kg입니다. 이 문항은 2년을 묻기 때문에 4배를 고릅니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q47",
+      "sourceIds": [
+        "Q47"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M120",
+      "type": "mc",
+      "prompt": "4세 체중은 출생 체중의 약 몇 배인가?",
+      "choices": [
+        "2배",
+        "4배",
+        "5배",
+        "3배"
+      ],
+      "answer": "3",
+      "displayAnswer": "5배",
+      "explanation": "수업자료의 증가배수 표는 1년 3배·10kg, 2년 4배·13kg, 4년 5배·16kg입니다. 이 문항은 2년을 묻기 때문에 4배를 고릅니다.",
+      "source": "수업자료 95쪽 · 써머리 89쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q47",
+      "sourceIds": [
+        "Q47"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M121",
+      "type": "mc",
+      "prompt": "출생 시 신장은 약 얼마인가?",
+      "choices": [
+        "50cm",
+        "100cm",
+        "125cm",
+        "75cm"
+      ],
+      "answer": "1",
+      "displayAnswer": "50cm",
+      "explanation": "수업자료 표에서 출생 시 50cm→1년 75cm→4년 100cm입니다. 4세의 출생 대비 증가배수는 2배이며, 체중의 4세 5배와 구별합니다.",
+      "source": "수업자료 97쪽 · 써머리 91쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q48",
+      "sourceIds": [
+        "Q48"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M122",
+      "type": "mc",
+      "prompt": "1세 신장은 약 얼마인가?",
+      "choices": [
+        "50cm",
+        "100cm",
+        "125cm",
+        "75cm"
+      ],
+      "answer": "4",
+      "displayAnswer": "75cm",
+      "explanation": "수업자료 표에서 출생 시 50cm→1년 75cm→4년 100cm입니다. 4세의 출생 대비 증가배수는 2배이며, 체중의 4세 5배와 구별합니다.",
+      "source": "수업자료 97쪽 · 써머리 91쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q48",
+      "sourceIds": [
+        "Q48"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M123",
+      "type": "mc",
+      "prompt": "4세 신장은 약 얼마인가?",
+      "choices": [
+        "50cm",
+        "75cm",
+        "100cm",
+        "125cm"
+      ],
+      "answer": "3",
+      "displayAnswer": "100cm",
+      "explanation": "수업자료 표에서 출생 시 50cm→1년 75cm→4년 100cm입니다. 4세의 출생 대비 증가배수는 2배이며, 체중의 4세 5배와 구별합니다.",
+      "source": "수업자료 97쪽 · 써머리 91쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q48",
+      "sourceIds": [
+        "Q48"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M124",
+      "type": "mc",
+      "prompt": "4세 키는 출생 시 키의 약 몇 배인가?",
+      "choices": [
+        "4배",
+        "2배",
+        "5배",
+        "3배"
+      ],
+      "answer": "2",
+      "displayAnswer": "2배",
+      "explanation": "수업자료 표에서 출생 시 50cm→1년 75cm→4년 100cm입니다. 4세의 출생 대비 증가배수는 2배이며, 체중의 4세 5배와 구별합니다.",
+      "source": "수업자료 97쪽 · 써머리 91쪽 · 주형 해설집 38쪽 (PDF 페이지 기준) · 연결 족보 Q48",
+      "sourceIds": [
+        "Q48"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M125",
+      "type": "mc",
+      "prompt": "출생 시 두위는 약 얼마인가?",
+      "choices": [
+        "46cm",
+        "34cm",
+        "40cm",
+        "50cm"
+      ],
+      "answer": "2",
+      "displayAnswer": "34cm",
+      "explanation": "관련 수치는 소천문 6~8주·대천문 14~18개월 폐쇄, 두위 출생 34cm→1년 46cm→4세 50cm입니다. 두위는 출생 시 흉위보다 크고 1년에는 비슷해집니다. 실제 선지가 없어 정답 번호는 미복기입니다.",
+      "source": "수업자료 101,103쪽 · 써머리 95,97쪽 · 주형 해설집 41쪽 (PDF 페이지 기준) · 연결 족보 Q53",
+      "sourceIds": [
+        "Q53"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M126",
+      "type": "mc",
+      "prompt": "1세 두위는 약 얼마인가?",
+      "choices": [
+        "34cm",
+        "40cm",
+        "50cm",
+        "46cm"
+      ],
+      "answer": "4",
+      "displayAnswer": "46cm",
+      "explanation": "관련 수치는 소천문 6~8주·대천문 14~18개월 폐쇄, 두위 출생 34cm→1년 46cm→4세 50cm입니다. 두위는 출생 시 흉위보다 크고 1년에는 비슷해집니다. 실제 선지가 없어 정답 번호는 미복기입니다.",
+      "source": "수업자료 101,103쪽 · 써머리 95,97쪽 · 주형 해설집 41쪽 (PDF 페이지 기준) · 연결 족보 Q53",
+      "sourceIds": [
+        "Q53"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M127",
+      "type": "mc",
+      "prompt": "4세 두위는 약 얼마인가?",
+      "choices": [
+        "40cm",
+        "34cm",
+        "46cm",
+        "50cm"
+      ],
+      "answer": "4",
+      "displayAnswer": "50cm",
+      "explanation": "관련 수치는 소천문 6~8주·대천문 14~18개월 폐쇄, 두위 출생 34cm→1년 46cm→4세 50cm입니다. 두위는 출생 시 흉위보다 크고 1년에는 비슷해집니다. 실제 선지가 없어 정답 번호는 미복기입니다.",
+      "source": "수업자료 101,103쪽 · 써머리 95,97쪽 · 주형 해설집 41쪽 (PDF 페이지 기준) · 연결 족보 Q53",
+      "sourceIds": [
+        "Q53"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M128",
+      "type": "mc",
+      "prompt": "4세 소아의 정상치 묶음으로 외울 것은?",
+      "choices": [
+        "키 100cm·체중 16kg·두위 50cm·유치 20개",
+        "키 75cm·체중 10kg·두위 46cm·유치 20개",
+        "키 125cm·체중 16kg·두위 46cm·유치 32개",
+        "키 100cm·체중 13kg·두위 34cm·유치 28개"
+      ],
+      "answer": "1",
+      "displayAnswer": "키 100cm·체중 16kg·두위 50cm·유치 20개",
+      "explanation": "4세 기준은 키 100cm·체중 16kg·두위 50cm·유치 20개입니다. 유치는 2년 반이면 이미 모두 나므로 4세에도 20개입니다. 실제 제시 숫자는 미복기여서 이상 선지의 번호는 확인할 수 없습니다.",
+      "source": "수업자료 95,97,103,128쪽 · 써머리 89,91,97,122쪽 · 주형 해설집 52쪽 (PDF 페이지 기준) · 연결 족보 Q72",
+      "sourceIds": [
+        "Q72"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M129",
+      "type": "mc",
+      "prompt": "출생 시 몸의 중앙점은 어디인가?",
+      "choices": [
+        "치골결합 부근",
+        "배꼽보다 약 2cm 아래",
+        "흉골 위쪽",
+        "배꼽보다 약 2cm 위"
+      ],
+      "answer": "4",
+      "displayAnswer": "배꼽보다 약 2cm 위",
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Q49",
+      "sourceIds": [
+        "Q49"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M130",
+      "type": "mc",
+      "prompt": "소아 성장에서 사지와 몸통의 관계로 옳은 것은?",
+      "choices": [
+        "사지는 몸통보다 더 빨리 자란다",
+        "사춘기 이후에는 사지만 성장한다",
+        "출생 시부터 성인 비율이 완성되어 있다",
+        "몸통만 자라고 사지는 자라지 않는다"
+      ],
+      "answer": "1",
+      "displayAnswer": "사지는 몸통보다 더 빨리 자란다",
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Q49",
+      "sourceIds": [
+        "Q49"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M131",
+      "type": "mc",
+      "prompt": "첫 6개월과 다음 6개월의 키 증가량 짝은?",
+      "choices": [
+        "8cm·17cm",
+        "5cm·5cm",
+        "17cm·8cm",
+        "25cm·25cm"
+      ],
+      "answer": "3",
+      "displayAnswer": "17cm·8cm",
+      "explanation": "첫 6개월 17cm·후반 6개월 8cm 성장, 출생 중심점 배꼽 위 2cm·2세 배꼽 약간 아래, 사춘기 이후 몸통 성장 우세는 자료와 일치합니다. ‘16세 치골결합 부근’은 20학번 원본의 복기 표현이며 이번 본문에는 직접 나오지 않습니다.",
+      "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 20학번 원본 5쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Y20-14신장",
+      "sourceIds": [
+        "Y20-14신장"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M132",
+      "type": "mc",
+      "prompt": "소천문 폐쇄 시기는?",
+      "choices": [
+        "1～2년",
+        "14～18개월",
+        "6～8개월",
+        "6～8주"
+      ],
+      "answer": "4",
+      "displayAnswer": "6～8주",
+      "explanation": "소천문은 6~8주, 대천문은 14~18개월에 닫힙니다. 작은 천문의 단위는 ‘주’, 큰 천문의 단위는 ‘개월’입니다.",
+      "source": "수업자료 101쪽 · 써머리 95쪽 · 주형 해설집 40쪽 (PDF 페이지 기준) · 연결 족보 Q51",
+      "sourceIds": [
+        "Q51"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M133",
+      "type": "mc",
+      "prompt": "대천문 폐쇄 시기는?",
+      "choices": [
+        "3～4개월",
+        "14～18개월",
+        "6～8주",
+        "4～5년"
+      ],
+      "answer": "2",
+      "displayAnswer": "14～18개월",
+      "explanation": "소천문은 6~8주, 대천문은 14~18개월에 닫힙니다. 작은 천문의 단위는 ‘주’, 큰 천문의 단위는 ‘개월’입니다.",
+      "source": "수업자료 101쪽 · 써머리 95쪽 · 주형 해설집 40쪽 (PDF 페이지 기준) · 연결 족보 Q51",
+      "sourceIds": [
+        "Q51"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M134",
+      "type": "mc",
+      "prompt": "대천문 크기를 구하는 방법은?",
+      "choices": [
+        "마주 보는 변의 중점 사이 거리 두 개의 평균",
+        "앞뒤 거리에서 좌우 거리를 뺀 값",
+        "마주 보는 변의 중점 사이 거리 두 개의 곱",
+        "머리둘레의 절반"
+      ],
+      "answer": "1",
+      "displayAnswer": "마주 보는 변의 중점 사이 거리 두 개의 평균",
+      "explanation": "대천문은 마주 보는 두 변의 중점 사이 거리 두 개의 평균으로 계산합니다. 표의 10~12개월 평균은 1.0cm이므로, 복기상 10개월 아이의 2.5cm는 평균보다 큽니다. 2.5cm는 표의 4~6개월 값입니다.",
+      "source": "수업자료 102쪽 · 써머리 96쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Q50",
+      "sourceIds": [
+        "Q50"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M135",
+      "type": "mc",
+      "prompt": "복기된 10개월 소아의 대천문이 2.5cm이면 10～12개월 평균 1.0cm보다 어떠한가?",
+      "choices": [
+        "작다",
+        "같다",
+        "거리 정보가 전혀 없어 비교 불가",
+        "크다"
+      ],
+      "answer": "4",
+      "displayAnswer": "크다",
+      "explanation": "대천문은 마주 보는 두 변의 중점 사이 거리 두 개의 평균으로 계산합니다. 표의 10~12개월 평균은 1.0cm이므로, 복기상 10개월 아이의 2.5cm는 평균보다 큽니다. 2.5cm는 표의 4~6개월 값입니다.",
+      "source": "수업자료 102쪽 · 써머리 96쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Q50",
+      "sourceIds": [
+        "Q50"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M136",
+      "type": "mc",
+      "prompt": "두위를 측정하는 경로는?",
+      "choices": [
+        "전두결절·후두결절을 지나는 최대 둘레",
+        "대천문만 둘러싼 둘레",
+        "양쪽 귀끝을 지나는 최소 둘레",
+        "눈썹과 턱끝을 지나는 세로 둘레"
+      ],
+      "answer": "1",
+      "displayAnswer": "전두결절·후두결절을 지나는 최대 둘레",
+      "explanation": "이마의 전두결절과 뒤통수의 후두결절을 지나는 가장 큰 둘레를 잽니다. 두위는 신생아·유아의 뇌 성장과 발달을 평가하는 지표입니다.",
+      "source": "수업자료 103쪽 · 써머리 97쪽 · 주형 해설집 40쪽 (PDF 페이지 기준) · 연결 족보 Q52",
+      "sourceIds": [
+        "Q52"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M137",
+      "type": "mc",
+      "prompt": "수업자료 소실시기 표에서 1개월에 소실되는 반사는?",
+      "choices": [
+        "Moro·Sucking·Grasp",
+        "Babinski",
+        "Stepping",
+        "Landau"
+      ],
+      "answer": "3",
+      "displayAnswer": "Stepping",
+      "explanation": "소실시기 표에서는 Stepping 1개월, 나머지 Moro·Sucking·Grasp는 3개월입니다. 본문의 ‘6개월이 지나도 Moro·Grasp가 남으면 이상 의심’은 정상 표의 대표 소실시기와 다른 기준입니다.",
+      "source": "수업자료 111,112,113,122쪽 · 써머리 105,106,107,116쪽 · 주형 해설집 43쪽 (PDF 페이지 기준) · 연결 족보 Q57",
+      "sourceIds": [
+        "Q57"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M138",
+      "type": "mc",
+      "prompt": "수업자료 소실시기 표에서 3개월에 소실되는 반사 묶음은?",
+      "choices": [
+        "Moro·Sucking·Grasp",
+        "Babinski",
+        "Stepping",
+        "Landau"
+      ],
+      "answer": "1",
+      "displayAnswer": "Moro·Sucking·Grasp",
+      "explanation": "소실시기 표에서는 Stepping 1개월, 나머지 Moro·Sucking·Grasp는 3개월입니다. 본문의 ‘6개월이 지나도 Moro·Grasp가 남으면 이상 의심’은 정상 표의 대표 소실시기와 다른 기준입니다.",
+      "source": "수업자료 111,112,113,122쪽 · 써머리 105,106,107,116쪽 · 주형 해설집 43쪽 (PDF 페이지 기준) · 연결 족보 Q57",
+      "sourceIds": [
+        "Q57"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M139",
+      "type": "mc",
+      "prompt": "흉복부를 받치면 머리를 들고 몸통·하지를 펴며, 머리를 굽히면 양하지가 굽혀지는 반사는?",
+      "choices": [
+        "Stepping",
+        "Babinski",
+        "Moro·Sucking·Grasp",
+        "Landau"
+      ],
+      "answer": "4",
+      "displayAnswer": "Landau",
+      "explanation": "흉복부를 손바닥으로 받치면 머리를 들고 몸통·하지를 펴며, 머리를 굽히면 양하지가 굽혀지는 Landau 반사입니다. 소실시기 표에서 1~2년으로 가장 늦은 편입니다.",
+      "source": "수업자료 116,122쪽 · 써머리 110,116쪽 · 주형 해설집 42쪽 (PDF 페이지 기준) · 연결 족보 Q54",
+      "sourceIds": [
+        "Q54"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M140",
+      "type": "mc",
+      "prompt": "Landau 반사의 소실 시기는?",
+      "choices": [
+        "1개월",
+        "3개월",
+        "1～2년",
+        "6～8주"
+      ],
+      "answer": "3",
+      "displayAnswer": "1～2년",
+      "explanation": "흉복부를 손바닥으로 받치면 머리를 들고 몸통·하지를 펴며, 머리를 굽히면 양하지가 굽혀지는 Landau 반사입니다. 소실시기 표에서 1~2년으로 가장 늦은 편입니다.",
+      "source": "수업자료 116,122쪽 · 써머리 110,116쪽 · 주형 해설집 42쪽 (PDF 페이지 기준) · 연결 족보 Q54",
+      "sourceIds": [
+        "Q54"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M141",
+      "type": "mc",
+      "prompt": "Babinski 반사의 수업자료 표상 소실 시기는?",
+      "choices": [
+        "1개월",
+        "10～16개월",
+        "4～5년",
+        "3개월"
+      ],
+      "answer": "2",
+      "displayAnswer": "10～16개월",
+      "explanation": "수업자료 표 3-5에서 10개월 무렵 남을 수 있는 반사는 Babinski(10~16개월 소실)와 Landau(1~2년 소실)입니다. 3개월에 소실되는 Moro·Sucking·Grasp와 구별합니다.",
+      "source": "수업자료 120,122쪽 · 써머리 114,116쪽 · 주형 해설집 43쪽 (PDF 페이지 기준) · 연결 족보 Q55",
+      "sourceIds": [
+        "Q55"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M142",
+      "type": "mc",
+      "prompt": "정상 10개월 소아에서 볼 수 있는 반사의 짝은?",
+      "choices": [
+        "Moro·Stepping",
+        "Stepping·Grasp",
+        "Landau·Babinski",
+        "Moro·Sucking"
+      ],
+      "answer": "3",
+      "displayAnswer": "Landau·Babinski",
+      "explanation": "수업자료 표 3-5에서 10개월 무렵 남을 수 있는 반사는 Babinski(10~16개월 소실)와 Landau(1~2년 소실)입니다. 3개월에 소실되는 Moro·Sucking·Grasp와 구별합니다.",
+      "source": "수업자료 120,122쪽 · 써머리 114,116쪽 · 주형 해설집 43쪽 (PDF 페이지 기준) · 연결 족보 Q55",
+      "sourceIds": [
+        "Q55"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M143",
+      "type": "mc",
+      "prompt": "주형 해설집에서 정상 14개월 소아에게 남는 반사로 선택한 답은?",
+      "choices": [
+        "Stepping",
+        "Landau",
+        "Sucking",
+        "Moro"
+      ],
+      "answer": "2",
+      "displayAnswer": "Landau",
+      "explanation": "해설집의 선택 답은 Landau입니다. 수업자료 표에서 Landau는 1~2년, Babinski는 10~16개월 소실이므로 14개월에는 Babinski도 개인에 따라 남을 수 있는 범위입니다. ‘확실히 남는 반사’를 묻는 취지와 단순 존재 가능성을 구별합니다.",
+      "source": "수업자료 120,122쪽 · 써머리 114,116쪽 · 주형 해설집 43쪽 (PDF 페이지 기준) · 연결 족보 Q56",
+      "sourceIds": [
+        "Q56"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "Babinski의 표상 소실 범위는 10～16개월입니다. 이 문제는 원족보의 선택답을 묻습니다.",
+      "memory": true
+    },
+    {
+      "id": "M144",
+      "type": "mc",
+      "prompt": "치주모형의 기본이 되는 중요한 영구치는?",
+      "choices": [
+        "측절치",
+        "유견치",
+        "제1대구치",
+        "내절치"
+      ],
+      "answer": "3",
+      "displayAnswer": "제1대구치",
+      "explanation": "제1대구치는 6세에 나며 치주모형의 기본이 되는 중요한 영구치입니다. 이름에 ‘대구치’가 들어가도 유치가 아니라 영구치입니다.",
+      "source": "수업자료 129쪽 · 써머리 123쪽 · 주형 해설집 44쪽 (PDF 페이지 기준) · 연결 족보 Q58",
+      "sourceIds": [
+        "Q58"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M145",
+      "type": "mc",
+      "prompt": "제1대구치가 나는 시기는?",
+      "choices": [
+        "6개월",
+        "2년 반",
+        "6세",
+        "12세"
+      ],
+      "answer": "3",
+      "displayAnswer": "6세",
+      "explanation": "제1대구치는 6세에 나며 치주모형의 기본이 되는 중요한 영구치입니다. 이름에 ‘대구치’가 들어가도 유치가 아니라 영구치입니다.",
+      "source": "수업자료 129쪽 · 써머리 123쪽 · 주형 해설집 44쪽 (PDF 페이지 기준) · 연결 족보 Q58",
+      "sourceIds": [
+        "Q58"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M146",
+      "type": "mc",
+      "prompt": "유치가 나기 시작하는 시기는?",
+      "choices": [
+        "6주",
+        "14개월",
+        "6개월",
+        "6세"
+      ],
+      "answer": "3",
+      "displayAnswer": "6개월",
+      "explanation": "④ 생후 6개월 무렵부터 치아가 나기 시작한다는 것이 족보 답입니다. ②의 유치수 공식은 월령−6으로 고치며, ③ 최초 영구치는 내절치가 아니라 제1대구치입니다. 유치는 총 20개로 2년 반 무렵 완성됩니다.",
+      "source": "수업자료 128,129쪽 · 써머리 122,123쪽 · 주형 해설집 45쪽 (PDF 페이지 기준) · 연결 족보 Q59",
+      "sourceIds": [
+        "Q59"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M147",
+      "type": "mc",
+      "prompt": "유치의 총 개수는?",
+      "choices": [
+        "28개",
+        "16개",
+        "20개",
+        "32개"
+      ],
+      "answer": "3",
+      "displayAnswer": "20개",
+      "explanation": "④ 생후 6개월 무렵부터 치아가 나기 시작한다는 것이 족보 답입니다. ②의 유치수 공식은 월령−6으로 고치며, ③ 최초 영구치는 내절치가 아니라 제1대구치입니다. 유치는 총 20개로 2년 반 무렵 완성됩니다.",
+      "source": "수업자료 128,129쪽 · 써머리 122,123쪽 · 주형 해설집 45쪽 (PDF 페이지 기준) · 연결 족보 Q59",
+      "sourceIds": [
+        "Q59"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M148",
+      "type": "mc",
+      "prompt": "유치가 모두 나는 시기는?",
+      "choices": [
+        "6세",
+        "12세",
+        "2년 반",
+        "생후 6개월"
+      ],
+      "answer": "3",
+      "displayAnswer": "2년 반",
+      "explanation": "④ 생후 6개월 무렵부터 치아가 나기 시작한다는 것이 족보 답입니다. ②의 유치수 공식은 월령−6으로 고치며, ③ 최초 영구치는 내절치가 아니라 제1대구치입니다. 유치는 총 20개로 2년 반 무렵 완성됩니다.",
+      "source": "수업자료 128,129쪽 · 써머리 122,123쪽 · 주형 해설집 45쪽 (PDF 페이지 기준) · 연결 족보 Q59",
+      "sourceIds": [
+        "Q59"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M149",
+      "type": "mc",
+      "prompt": "족보의 유치 수 간편식은?",
+      "choices": [
+        "연령－1",
+        "월령－8",
+        "월령－6",
+        "연령＋1"
+      ],
+      "answer": "3",
+      "displayAnswer": "월령－6",
+      "explanation": "④ 생후 6개월 무렵부터 치아가 나기 시작한다는 것이 족보 답입니다. ②의 유치수 공식은 월령−6으로 고치며, ③ 최초 영구치는 내절치가 아니라 제1대구치입니다. 유치는 총 20개로 2년 반 무렵 완성됩니다.",
+      "source": "수업자료 128,129쪽 · 써머리 122,123쪽 · 주형 해설집 45쪽 (PDF 페이지 기준) · 연결 족보 Q59",
+      "sourceIds": [
+        "Q59"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M150",
+      "type": "mc",
+      "prompt": "족보의 손목 화골핵 수를 이용한 골연령 간편식은?",
+      "choices": [
+        "화골핵 수÷2",
+        "화골핵 수×2",
+        "화골핵 수－1",
+        "화골핵 수＋1"
+      ],
+      "answer": "3",
+      "displayAnswer": "화골핵 수－1",
+      "explanation": "6개월~6세에 쓰는 간편식은 손목 화골핵 수=연령+1이므로 골연령=수−1입니다. 예를 들어 4개면 약 3세입니다. 수업자료는 대표적 정식 측정법으로 좌측 손 X-ray를 이용하는 TW3도 제시합니다.",
+      "source": "수업자료 144쪽 · 써머리 138쪽 · 주형 해설집 49쪽 (PDF 페이지 기준) · 연결 족보 Q66",
+      "sourceIds": [
+        "Q66"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M151",
+      "type": "mc",
+      "prompt": "손목 화골핵이 4개인 소아의 간편식상 골연령은?",
+      "choices": [
+        "2세",
+        "3세",
+        "4세",
+        "5세"
+      ],
+      "answer": "2",
+      "displayAnswer": "3세",
+      "explanation": "6개월~6세에 쓰는 간편식은 손목 화골핵 수=연령+1이므로 골연령=수−1입니다. 예를 들어 4개면 약 3세입니다. 수업자료는 대표적 정식 측정법으로 좌측 손 X-ray를 이용하는 TW3도 제시합니다.",
+      "source": "수업자료 144쪽 · 써머리 138쪽 · 주형 해설집 49쪽 (PDF 페이지 기준) · 연결 족보 Q66",
+      "sourceIds": [
+        "Q66"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M152",
+      "type": "mc",
+      "prompt": "신생아 위의 특징으로 외울 묶음은?",
+      "choices": [
+        "위저 완성·분문 폐쇄 완성",
+        "위저 미발달·분문 폐쇄 미완성",
+        "성인과 동일한 모양·성인과 동일한 용량",
+        "위저 완성·분문 소실"
+      ],
+      "answer": "2",
+      "displayAnswer": "위저 미발달·분문 폐쇄 미완성",
+      "explanation": "신생아는 위저부 발달과 분문 폐쇄가 미완성이고 위가 원주·서양배 모양입니다. 생후 반년 이후 위저가 형성됩니다. 써머리는 이 미숙함을 수유 후 역류와 연결해 설명합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 47쪽 (PDF 페이지 기준) · 연결 족보 Q62",
+      "sourceIds": [
+        "Q62"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M153",
+      "type": "mc",
+      "prompt": "위저가 형성되는 시기는?",
+      "choices": [
+        "출생 직후",
+        "생후 1개월",
+        "10세 이후",
+        "생후 반년 이후"
+      ],
+      "answer": "4",
+      "displayAnswer": "생후 반년 이후",
+      "explanation": "신생아는 위저부 발달과 분문 폐쇄가 미완성이고 위가 원주·서양배 모양입니다. 생후 반년 이후 위저가 형성됩니다. 써머리는 이 미숙함을 수유 후 역류와 연결해 설명합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 47쪽 (PDF 페이지 기준) · 연결 족보 Q62",
+      "sourceIds": [
+        "Q62"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M154",
+      "type": "mc",
+      "prompt": "신생아의 위용량은 약 얼마인가?",
+      "choices": [
+        "500mL",
+        "5mL",
+        "50mL",
+        "200mL"
+      ],
+      "answer": "3",
+      "displayAnswer": "50mL",
+      "explanation": "③의 ‘8세’를 ‘10세에 성인과 비슷한 모양’으로 고칩니다. 신생아 위용량 50ml는 맞습니다. ①·②·④·⑤도 위저 미숙·반년 후 형성·간 기능·장 길이에 대한 자료와 일치합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q63",
+      "sourceIds": [
+        "Q63"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M155",
+      "type": "mc",
+      "prompt": "이번 자료에서 위가 성인과 비슷한 모양이 되는 연령은?",
+      "choices": [
+        "6개월",
+        "8세",
+        "4세",
+        "10세"
+      ],
+      "answer": "4",
+      "displayAnswer": "10세",
+      "explanation": "③의 ‘8세’를 ‘10세에 성인과 비슷한 모양’으로 고칩니다. 신생아 위용량 50ml는 맞습니다. ①·②·④·⑤도 위저 미숙·반년 후 형성·간 기능·장 길이에 대한 자료와 일치합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q63",
+      "sourceIds": [
+        "Q63"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M156",
+      "type": "mc",
+      "prompt": "신생아 장의 길이는 신장의 약 몇 배인가?",
+      "choices": [
+        "10배",
+        "2배",
+        "4배",
+        "7배"
+      ],
+      "answer": "4",
+      "displayAnswer": "7배",
+      "explanation": "③의 ‘8세’를 ‘10세에 성인과 비슷한 모양’으로 고칩니다. 신생아 위용량 50ml는 맞습니다. ①·②·④·⑤도 위저 미숙·반년 후 형성·간 기능·장 길이에 대한 자료와 일치합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q63",
+      "sourceIds": [
+        "Q63"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M157",
+      "type": "mc",
+      "prompt": "간의 기능을 태아기 → 생후 순서로 연결한 것은?",
+      "choices": [
+        "호흡 → 조혈",
+        "담즙분비만 → 호흡",
+        "조혈 → 신진대사",
+        "신진대사 → 조혈"
+      ],
+      "answer": "3",
+      "displayAnswer": "조혈 → 신진대사",
+      "explanation": "③의 ‘8세’를 ‘10세에 성인과 비슷한 모양’으로 고칩니다. 신생아 위용량 50ml는 맞습니다. ①·②·④·⑤도 위저 미숙·반년 후 형성·간 기능·장 길이에 대한 자료와 일치합니다.",
+      "source": "수업자료 135쪽 · 써머리 129쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q63",
+      "sourceIds": [
+        "Q63"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M158",
+      "type": "mc",
+      "prompt": "타액 분비가 증가하는 시기로 외울 것은?",
+      "choices": [
+        "생후 2～3주",
+        "생후 2～3일",
+        "생후 2～3개월",
+        "6세"
+      ],
+      "answer": "3",
+      "displayAnswer": "생후 2～3개월",
+      "explanation": "복기된 여섯 문장은 해설집에서 모두 O로 정리합니다. 수업자료로도 태아기 간의 조혈·생후 신진대사, 신생아 장 길이 신장의 약 7배, 타액분비 2~3개월 증가를 확인했습니다. ② 자세에 따른 통과속도는 제공 수업자료에 직접 서술되지 않았습니다.",
+      "source": "수업자료 130,135,136쪽 · 써머리 124,129,130쪽 · 주형 해설집 47쪽 (PDF 페이지 기준) · 연결 족보 Q61",
+      "sourceIds": [
+        "Q61"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M159",
+      "type": "mc",
+      "prompt": "자료에서 첫 태변은 보통 출생 후 언제 나오는가?",
+      "choices": [
+        "약 48시간",
+        "약 1시간",
+        "약 10시간",
+        "약 1주"
+      ],
+      "answer": "3",
+      "displayAnswer": "약 10시간",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M160",
+      "type": "mc",
+      "prompt": "태변이 이어지는 기간은?",
+      "choices": [
+        "2～3개월",
+        "2～3시간",
+        "2～3일",
+        "2～3주"
+      ],
+      "answer": "3",
+      "displayAnswer": "2～3일",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M161",
+      "type": "mc",
+      "prompt": "수업자료에서 태변이 나오지 않아 장폐색을 의심하는 기준 시간은?",
+      "choices": [
+        "6시간",
+        "72시간",
+        "24시간",
+        "48시간"
+      ],
+      "answer": "3",
+      "displayAnswer": "24시간",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M162",
+      "type": "mc",
+      "prompt": "이행변의 시기는?",
+      "choices": [
+        "생후 첫 1시간",
+        "생후 4일～2주",
+        "생후 6개월 이후",
+        "생후 2～3개월"
+      ],
+      "answer": "2",
+      "displayAnswer": "생후 4일～2주",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M163",
+      "type": "mc",
+      "prompt": "태변의 색으로 외울 것은?",
+      "choices": [
+        "백색",
+        "암록색",
+        "선홍색",
+        "무색"
+      ],
+      "answer": "2",
+      "displayAnswer": "암록색",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M164",
+      "type": "mc",
+      "prompt": "이번 발달표에서 목 가누기는?",
+      "choices": [
+        "15개월",
+        "4개월",
+        "24개월",
+        "10개월"
+      ],
+      "answer": "2",
+      "displayAnswer": "4개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M165",
+      "type": "mc",
+      "prompt": "이번 발달표에서 지지 없이 앉기는?",
+      "choices": [
+        "10개월",
+        "4개월",
+        "24개월",
+        "6개월"
+      ],
+      "answer": "4",
+      "displayAnswer": "6개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M166",
+      "type": "mc",
+      "prompt": "이번 발달표에서 등을 곧게 펴 혼자 앉기는?",
+      "choices": [
+        "4개월",
+        "15개월",
+        "24개월",
+        "10개월"
+      ],
+      "answer": "4",
+      "displayAnswer": "10개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M167",
+      "type": "mc",
+      "prompt": "이번 발달표에서 붙잡고 걷기는?",
+      "choices": [
+        "15개월",
+        "10개월",
+        "4개월",
+        "24개월"
+      ],
+      "answer": "2",
+      "displayAnswer": "10개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M168",
+      "type": "mc",
+      "prompt": "이번 발달표에서 혼자 걷기는?",
+      "choices": [
+        "15개월",
+        "4개월",
+        "10개월",
+        "6개월"
+      ],
+      "answer": "1",
+      "displayAnswer": "15개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M169",
+      "type": "mc",
+      "prompt": "이번 발달표에서 뛰기는?",
+      "choices": [
+        "15개월",
+        "6개월",
+        "24개월",
+        "4개월"
+      ],
+      "answer": "3",
+      "displayAnswer": "24개월",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M170",
+      "type": "mc",
+      "prompt": "연령별 표에서 혼자 계단을 올라가는 시기는?",
+      "choices": [
+        "10개월",
+        "2년",
+        "6개월",
+        "5년"
+      ],
+      "answer": "2",
+      "displayAnswer": "2년",
+      "explanation": "이번 표 3-9는 목 가누기 4개월, 지지 없이 앉기 6개월, 등을 곧게 펴 혼자 앉기·붙잡고 서기·걷기 10개월, 혼자 걷기 15개월, 뛰기 24개월입니다. 계단 혼자 오르기 2년·줄넘기 5년은 연령별 표에도 확인됩니다.",
+      "source": "수업자료 153,154,171쪽 · 써머리 147,148쪽 · 20학번 원본 6쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Y20-17",
+      "sourceIds": [
+        "Y20-17"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M171",
+      "type": "mc",
+      "prompt": "연령별 표에서 줄넘기를 하는 시기는?",
+      "choices": [
+        "3년",
+        "2년",
+        "5년",
+        "1년"
+      ],
+      "answer": "3",
+      "displayAnswer": "5년",
+      "explanation": "이번 표 3-9는 목 가누기 4개월, 지지 없이 앉기 6개월, 등을 곧게 펴 혼자 앉기·붙잡고 서기·걷기 10개월, 혼자 걷기 15개월, 뛰기 24개월입니다. 계단 혼자 오르기 2년·줄넘기 5년은 연령별 표에도 확인됩니다.",
+      "source": "수업자료 153,154,171쪽 · 써머리 147,148쪽 · 20학번 원본 6쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Y20-17",
+      "sourceIds": [
+        "Y20-17"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M172",
+      "type": "mc",
+      "prompt": "운동발달의 일반적인 방향은?",
+      "choices": [
+        "발끝 → 몸통 → 머리",
+        "다리 → 머리",
+        "발끝과 손끝에서만 시작",
+        "머리 → 다리"
+      ],
+      "answer": "4",
+      "displayAnswer": "머리 → 다리",
+      "explanation": "기존 족보의 출제답은 ⑤이며, 이번 표에서도 혼자 걷기는 15개월이라 9~10개월 걸음마와 다릅니다. 단, 표는 ‘지지 없이 앉기 6개월’과 ‘등을 곧게 펴 혼자 앉기 10개월’을 구분하므로 과거 ④의 7~8개월도 그대로 새 표 수치로 외우지 않습니다. 목 가누기 4개월, 붙잡고 걷기 10개월, 뛰기 24개월입니다.",
+      "source": "수업자료 153,154쪽 · 써머리 147,148쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q71",
+      "sourceIds": [
+        "Q71"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M173",
+      "type": "mc",
+      "prompt": "성인의 정상 시력에 도달하는 시기는?",
+      "choices": [
+        "4개월",
+        "4세",
+        "1～2세",
+        "5～6세"
+      ],
+      "answer": "4",
+      "displayAnswer": "5～6세",
+      "explanation": "성인 정상 시력 도달은 5~6세입니다. 신생아 시야·시력이 아직 제한적이라는 점과, 네 살 때 이미 성인 시력이라는 선지를 구별합니다.",
+      "source": "수업자료 146쪽 · 써머리 140쪽 · 주형 해설집 50쪽 (PDF 페이지 기준) · 연결 족보 Q67",
+      "sourceIds": [
+        "Q67"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M174",
+      "type": "mc",
+      "prompt": "짠맛과 쓴맛을 구별하는 시기는?",
+      "choices": [
+        "1～2세",
+        "5～6세",
+        "4～6개월",
+        "생후 1주"
+      ],
+      "answer": "3",
+      "displayAnswer": "4～6개월",
+      "explanation": "② 성인 정상 시력 도달은 4세가 아니라 5~6세입니다. 짠맛·쓴맛 구별은 4~6개월, 소리 방향으로 고개 돌리기는 4개월로 나머지는 자료와 일치합니다.",
+      "source": "수업자료 146,150,151쪽 · 써머리 140,144,145쪽 · 주형 해설집 50쪽 (PDF 페이지 기준) · 연결 족보 Q68",
+      "sourceIds": [
+        "Q68"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M175",
+      "type": "mc",
+      "prompt": "소리 나는 방향으로 고개를 돌리는 시기는?",
+      "choices": [
+        "12개월",
+        "생후 1주",
+        "4개월",
+        "4세"
+      ],
+      "answer": "3",
+      "displayAnswer": "4개월",
+      "explanation": "② 성인 정상 시력 도달은 4세가 아니라 5~6세입니다. 짠맛·쓴맛 구별은 4~6개월, 소리 방향으로 고개 돌리기는 4개월로 나머지는 자료와 일치합니다.",
+      "source": "수업자료 146,150,151쪽 · 써머리 140,144,145쪽 · 주형 해설집 50쪽 (PDF 페이지 기준) · 연결 족보 Q68",
+      "sourceIds": [
+        "Q68"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M176",
+      "type": "mc",
+      "prompt": "신생아가 보는 거리로 외울 것은?",
+      "choices": [
+        "20～30m",
+        "20～30cm",
+        "2～3m",
+        "2～3cm"
+      ],
+      "answer": "2",
+      "displayAnswer": "20～30cm",
+      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다.",
+      "source": "수업자료 146,150쪽 · 써머리 140,144쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q69",
+      "sourceIds": [
+        "Q69"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M177",
+      "type": "mc",
+      "prompt": "출생 시 촉각이 다른 부위보다 발달한 곳은?",
+      "choices": [
+        "발뒤꿈치·종아리",
+        "입술·혀",
+        "팔꿈치·무릎",
+        "어깨·등"
+      ],
+      "answer": "2",
+      "displayAnswer": "입술·혀",
+      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다.",
+      "source": "수업자료 146,150쪽 · 써머리 140,144쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q69",
+      "sourceIds": [
+        "Q69"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M178",
+      "type": "mc",
+      "prompt": "Waldeyer 편도환을 구성하는 네 편도는?",
+      "choices": [
+        "이관·흉선·갑상선·림프절",
+        "인두·이관·구개·설편도",
+        "구개·갑상선·설편도·부갑상선",
+        "인두·림프절·비장·흉선"
+      ],
+      "answer": "2",
+      "displayAnswer": "인두·이관·구개·설편도",
+      "explanation": "인두 주위의 네 편도가 고리처럼 배치된 편도환입니다. 호흡기관 감염 방어·면역글로불린 형성에 관여하지만, 자체 감염·비대도 문제가 됩니다. 감기 예방만을 위한 절제는 자료에서 금지합니다.",
+      "source": "수업자료 137,138,139쪽 · 써머리 131,132,133쪽 · 주형 해설집 49쪽 (PDF 페이지 기준) · 연결 족보 Q65",
+      "sourceIds": [
+        "Q65"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M179",
+      "type": "mc",
+      "prompt": "아데노이드의 다른 이름은?",
+      "choices": [
+        "인두편도",
+        "구개편도",
+        "이관편도",
+        "설편도"
+      ],
+      "answer": "1",
+      "displayAnswer": "인두편도",
+      "explanation": "인두 주위의 네 편도가 고리처럼 배치된 편도환입니다. 호흡기관 감염 방어·면역글로불린 형성에 관여하지만, 자체 감염·비대도 문제가 됩니다. 감기 예방만을 위한 절제는 자료에서 금지합니다.",
+      "source": "수업자료 137,138,139쪽 · 써머리 131,132,133쪽 · 주형 해설집 49쪽 (PDF 페이지 기준) · 연결 족보 Q65",
+      "sourceIds": [
+        "Q65"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M180",
+      "type": "mc",
+      "prompt": "주형 해설집에 수록된 2단계 소아 고혈압 기준은?",
+      "choices": [
+        "95백분위수 미만",
+        "99백분위수＋5mmHg 이상",
+        "50백분위수 이상",
+        "90백분위수 이상"
+      ],
+      "answer": "2",
+      "displayAnswer": "99백분위수＋5mmHg 이상",
+      "explanation": "주형 해설집이 제시한 표 3-6 기준은 2단계가 99백분위수+5mmHg 이상, 1단계가 95백분위수~99백분위수+5mmHg입니다. 이번 제공 수업자료에는 연령별 정상 수축기 혈압만 있어 이 분류 수치는 해설집 출처로 남깁니다.",
+      "source": "주형 해설집 46쪽 (PDF 페이지 기준) · 연결 족보 Q60",
+      "sourceIds": [
+        "Q60"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "해설집의 과거 분류 기준을 외우는 문항입니다.",
+      "memory": true
+    },
+    {
+      "id": "M181",
+      "type": "mc",
+      "prompt": "족보에서 청각 자극에 따른 전기적 반응 기록 검사와 연결할 답은?",
+      "choices": [
+        "골연령검사(TW3)",
+        "단순 흉부 X선검사",
+        "뇌간유발전위검사(BAEP·ABR)",
+        "심전도검사(ECG)"
+      ],
+      "answer": "3",
+      "displayAnswer": "뇌간유발전위검사(BAEP·ABR)",
+      "explanation": "청각·체성감각 자극에 대해 중추신경계가 만드는 전기적 반응을 기록하는 검사입니다. 이름의 ‘뇌간유발전위’와 청력 평가의 객관적 전기반응을 연결합니다.",
+      "source": "수업자료 152쪽 · 써머리 146쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q70",
+      "sourceIds": [
+        "Q70"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M182",
+      "type": "mc",
+      "prompt": "성장은 키·체중 등의 어떤 변화인가?",
+      "choices": [
+        "질병의 중증도 분류",
+        "성격 유형의 분류",
+        "기능의 발전",
+        "양적 증가"
+      ],
+      "answer": "4",
+      "displayAnswer": "양적 증가",
+      "explanation": "성장은 키·체중·기관 무게 등 양적 증가, 발달은 운동·정신 등 기능의 발전입니다. 성장·발달에는 유전적 요인의 영향이 가장 크고 환경·운동·영양·질병도 영향을 줍니다. 첫 수업 스크린샷도 성장과 발달을 이 구분으로 설명합니다.",
+      "source": "수업자료 89,90쪽 · 써머리 83,84쪽 · 첫 수업 스크린샷 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q40",
+      "sourceIds": [
+        "Q40"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M183",
+      "type": "mc",
+      "prompt": "발달은 운동·정신 등의 어떤 변화인가?",
+      "choices": [
+        "키의 증가만",
+        "기관 무게의 증가만",
+        "체중의 증가만",
+        "기능의 발전"
+      ],
+      "answer": "4",
+      "displayAnswer": "기능의 발전",
+      "explanation": "성장은 키·체중·기관 무게 등 양적 증가, 발달은 운동·정신 등 기능의 발전입니다. 성장·발달에는 유전적 요인의 영향이 가장 크고 환경·운동·영양·질병도 영향을 줍니다. 첫 수업 스크린샷도 성장과 발달을 이 구분으로 설명합니다.",
+      "source": "수업자료 89,90쪽 · 써머리 83,84쪽 · 첫 수업 스크린샷 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q40",
+      "sourceIds": [
+        "Q40"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M184",
+      "type": "mc",
+      "prompt": "성장·발달에 가장 큰 영향을 주는 요인은?",
+      "choices": [
+        "스트레스만",
+        "계절만",
+        "유전적 요인",
+        "운동만"
+      ],
+      "answer": "3",
+      "displayAnswer": "유전적 요인",
+      "explanation": "성장은 키·체중·기관 무게 등 양적 증가, 발달은 운동·정신 등 기능의 발전입니다. 성장·발달에는 유전적 요인의 영향이 가장 크고 환경·운동·영양·질병도 영향을 줍니다. 첫 수업 스크린샷도 성장과 발달을 이 구분으로 설명합니다.",
+      "source": "수업자료 89,90쪽 · 써머리 83,84쪽 · 첫 수업 스크린샷 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q40",
+      "sourceIds": [
+        "Q40"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "12",
+      "categoryName": "기타 핵심 연결",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M185",
+      "type": "mc",
+      "prompt": "태질로 판단하는 내용의 묶음은?",
+      "choices": [
+        "병사의 성질만",
+        "병정의 경중·진행도·진액 변화·사정소장",
+        "치아 수·골연령",
+        "키·체중의 증가배수"
+      ],
+      "answer": "2",
+      "displayAnswer": "병정의 경중·진행도·진액 변화·사정소장",
+      "explanation": "태색은 병사의 성질을, 태질은 병의 경중·진행과 진액·사정소장을 봅니다. 백태=한·표, 황태=열·리, 백니=한습내체, 황니=습열내체입니다.",
+      "source": "수업자료 61쪽 · 써머리 55쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q29",
+      "sourceIds": [
+        "Q29"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M186",
+      "type": "mc",
+      "prompt": "정상 소아 대변의 색으로 빈칸에 쓰는 것은?",
+      "choices": [
+        "鮮紅色(선홍색)",
+        "黑色(흑색)",
+        "黃色(황색)",
+        "白色(백색)"
+      ],
+      "answer": "3",
+      "displayAnswer": "黃色(황색)",
+      "explanation": "정상 안색·변·맥·설체를 그대로 쓰는 한자 문제입니다. 설체의 담홍윤택과 얼굴색의 홍윤이광택을 서로 바꾸지 않으며, 맥은 평화하면서 성인보다 세연합니다.",
+      "source": "수업자료 55,60,72,84쪽 · 써머리 49,54,66,78쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q31",
+      "sourceIds": [
+        "Q31"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M187",
+      "type": "mc",
+      "prompt": "정상 소아 대변의 농도를 표현하는 빈칸은?",
+      "choices": [
+        "血性(혈성)",
+        "極硬(극경)",
+        "水樣(수양)",
+        "適當(적당)"
+      ],
+      "answer": "4",
+      "displayAnswer": "適當(적당)",
+      "explanation": "정상 안색·변·맥·설체를 그대로 쓰는 한자 문제입니다. 설체의 담홍윤택과 얼굴색의 홍윤이광택을 서로 바꾸지 않으며, 맥은 평화하면서 성인보다 세연합니다.",
+      "source": "수업자료 55,60,72,84쪽 · 써머리 49,54,66,78쪽 · 주형 해설집 27쪽 (PDF 페이지 기준) · 연결 족보 Q31",
+      "sourceIds": [
+        "Q31"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M188",
+      "type": "mc",
+      "prompt": "소아 맥박 표에서 신생아의 일식 지수는?",
+      "choices": [
+        "7～8지",
+        "5지",
+        "6～7지",
+        "6지"
+      ],
+      "answer": "1",
+      "displayAnswer": "7～8지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M189",
+      "type": "mc",
+      "prompt": "소아 맥박 표에서 1세의 일식 지수는?",
+      "choices": [
+        "5지",
+        "7～8지",
+        "6지",
+        "6～7지"
+      ],
+      "answer": "4",
+      "displayAnswer": "6～7지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M190",
+      "type": "mc",
+      "prompt": "소아 맥박 표에서 4세의 일식 지수는?",
+      "choices": [
+        "7～8지",
+        "6～7지",
+        "5지",
+        "6지"
+      ],
+      "answer": "4",
+      "displayAnswer": "6지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M191",
+      "type": "mc",
+      "prompt": "소아 맥박 표에서 8세의 일식 지수는?",
+      "choices": [
+        "5지",
+        "6지",
+        "6～7지",
+        "7～8지"
+      ],
+      "answer": "1",
+      "displayAnswer": "5지",
+      "explanation": "일식은 의사의 한 번 호흡을 뜻합니다. 성인은 일식 4지, 소아는 6지이며, 어릴수록 맥박수가 많습니다. 지수와 분당 맥박수를 같은 숫자로 착각하지 않습니다.",
+      "source": "수업자료 84쪽 · 써머리 78쪽 · 주형 해설집 32쪽 (PDF 페이지 기준) · 연결 족보 Q38",
+      "sourceIds": [
+        "Q38"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "6",
+      "categoryName": "맥·변증",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M192",
+      "type": "mc",
+      "prompt": "2세 무렵 몸의 중앙점은 어디인가?",
+      "choices": [
+        "배꼽보다 약간 아래",
+        "배꼽보다 약 2cm 위",
+        "흉골 위쪽",
+        "목의 중앙"
+      ],
+      "answer": "1",
+      "displayAnswer": "배꼽보다 약간 아래",
+      "explanation": "첫 6개월 17cm·후반 6개월 8cm 성장, 출생 중심점 배꼽 위 2cm·2세 배꼽 약간 아래, 사춘기 이후 몸통 성장 우세는 자료와 일치합니다. ‘16세 치골결합 부근’은 20학번 원본의 복기 표현이며 이번 본문에는 직접 나오지 않습니다.",
+      "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 20학번 원본 5쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Y20-14신장",
+      "sourceIds": [
+        "Y20-14신장"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M193",
+      "type": "mc",
+      "prompt": "사춘기 이후 몸통과 사지 중 약간 더 빨리 성장하는 쪽은?",
+      "choices": [
+        "몸통",
+        "두위만 성장함",
+        "둘 다 성장하지 않음",
+        "사지"
+      ],
+      "answer": "1",
+      "displayAnswer": "몸통",
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 주형 해설집 39쪽 (PDF 페이지 기준) · 연결 족보 Q49",
+      "sourceIds": [
+        "Q49"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "8",
+      "categoryName": "체중·키·두위",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M194",
+      "type": "mc",
+      "prompt": "신생아가 보는 범위로 족보에서 외울 각도는?",
+      "choices": [
+        "45～90도",
+        "180～270도",
+        "5～10도",
+        "360도"
+      ],
+      "answer": "1",
+      "displayAnswer": "45～90도",
+      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다.",
+      "source": "수업자료 146,150쪽 · 써머리 140,144쪽 · 주형 해설집 51쪽 (PDF 페이지 기준) · 연결 족보 Q69",
+      "sourceIds": [
+        "Q69"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "11",
+      "categoryName": "감각·운동 발달",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M195",
+      "type": "mc",
+      "prompt": "태변의 산·알칼리성을 묻는 족보 표현은?",
+      "choices": [
+        "강산성",
+        "약산성",
+        "중성",
+        "알칼리성"
+      ],
+      "answer": "4",
+      "displayAnswer": "알칼리성",
+      "explanation": "수업자료는 태변이 24시간 내 안 나오면 장폐색을 의심한다고 적어 ④의 48시간이 틀립니다. 첫 태변은 약 10시간, 2~3일간 지속하며, 이행변은 생후 4일~2주로 묶어 외웁니다.",
+      "source": "수업자료 142쪽 · 써머리 136쪽 · 주형 해설집 48쪽 (PDF 페이지 기준) · 연결 족보 Q64",
+      "sourceIds": [
+        "Q64"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "10",
+      "categoryName": "소화기·태변",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M196",
+      "type": "mc",
+      "prompt": "유치 수 간편식으로 계산한 16개월 소아의 유치 수는?",
+      "choices": [
+        "10개",
+        "6개",
+        "16개",
+        "8개"
+      ],
+      "answer": "1",
+      "displayAnswer": "10개",
+      "explanation": "족보의 간편식은 월령－6이므로 16－6＝10개입니다. 유치는 총 20개입니다.",
+      "source": "수업자료 128,129쪽 · 써머리 122,123쪽 · 주형 해설집 45쪽 (PDF 페이지 기준) · 연결 족보 Q59",
+      "sourceIds": [
+        "Q59"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "9",
+      "categoryName": "천문·반사·치아·골연령",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M197",
+      "type": "mc",
+      "prompt": "수업자료에서 입안의 두꺼운 녹색 위막과 연결되는 질환은?",
+      "choices": [
+        "돌발진",
+        "장중첩증",
+        "디프테리아",
+        "묘성증후군"
+      ],
+      "answer": "3",
+      "displayAnswer": "디프테리아",
+      "explanation": "두꺼운 녹색 위막은 디프테리아의 구강 소견으로 연결합니다. 딸기혀는 가와사키병·성홍열과 구별합니다.",
+      "source": "수업자료 64,67,68쪽 · 써머리 58,61,62쪽 · 주형 해설집 28쪽 (PDF 페이지 기준) · 연결 족보 Q32",
+      "sourceIds": [
+        "Q32"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M198",
+      "type": "mc",
+      "prompt": "수업자료에서 딸기혀와 연결되는 질환의 짝은?",
+      "choices": [
+        "가와사키병·성홍열",
+        "묘성증후군·크레틴병",
+        "장중첩증·산통",
+        "돌발진·장폐색"
+      ],
+      "answer": "1",
+      "displayAnswer": "가와사키병·성홍열",
+      "explanation": "자료는 가와사키병·성홍열의 딸기혀를 제시합니다. 디프테리아의 두꺼운 녹색 위막과 구별합니다.",
+      "source": "수업자료 64,67,68쪽 · 써머리 58,61,62쪽 · 주형 해설집 28쪽 (PDF 페이지 기준) · 연결 족보 Q32",
+      "sourceIds": [
+        "Q32"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "4",
+      "categoryName": "망진·색·혀·외형",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M199",
+      "type": "mc",
+      "prompt": "신경형이 성인 크기의 약 80%에 이르는 연령은?",
+      "choices": [
+        "1세",
+        "4세",
+        "10세",
+        "18세"
+      ],
+      "answer": "2",
+      "displayAnswer": "4세",
+      "explanation": "일반형은 S자형으로 영아기·사춘기에 급증, 신경형은 4세에 성인의 80%, 림프형은 10~12세에 성인의 2배 후 퇴축합니다. 생식형은 사춘기부터 급성장해 16~18세 성인치에 이릅니다.",
+      "source": "수업자료 92,94쪽 · 써머리 86,88쪽 · 주형 해설집 35쪽 (PDF 페이지 기준) · 연결 족보 Q41",
+      "sourceIds": [
+        "Q41"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "7",
+      "categoryName": "성장 패턴",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    },
+    {
+      "id": "M200",
+      "type": "mc",
+      "prompt": "인영맥과 기구맥을 비교하는 목적은?",
+      "choices": [
+        "골연령 산출",
+        "음양의 유여·부족과 평·불평 판단",
+        "태변 배출 시간 계산",
+        "영구치 맹출 순서 결정"
+      ],
+      "answer": "2",
+      "displayAnswer": "음양의 유여·부족과 평·불평 판단",
+      "explanation": "인영은 목의 경동맥으로 삼양·외·표·육부, 기구는 손목의 요골동맥으로 삼음·내·리·오장입니다. 두 맥의 강약과 상응관계로 음양의 유여·부족을 판단합니다.",
+      "source": "수업자료 53쪽 · 써머리 47쪽 · 주형 해설집 23쪽 (PDF 페이지 기준) · 연결 족보 Q24",
+      "sourceIds": [
+        "Q24"
+      ],
+      "years": "답치기 암기 · 족보 기반 변형",
+      "category": "3",
+      "categoryName": "연령별 진단·액맥·호구삼관",
+      "chapter": "memory",
+      "inScope": true,
+      "countStats": true,
+      "referenceOnly": false,
+      "note": "",
+      "memory": true
+    }
+  ]
+}
