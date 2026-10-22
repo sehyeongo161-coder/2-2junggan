@@ -174,7 +174,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        7,
+        8
+      ],
+      "juheongQuestionIds": [
+        "Q5"
+      ],
+      "juheongReference": "PDF 7~8쪽 · Q5"
     },
     {
       "id": "M004",
@@ -201,7 +209,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        9,
+        10
+      ],
+      "juheongQuestionIds": [
+        "Q7"
+      ],
+      "juheongReference": "PDF 9~10쪽 · Q7"
     },
     {
       "id": "M008",
@@ -228,7 +244,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        7,
+        8
+      ],
+      "juheongQuestionIds": [
+        "Q5"
+      ],
+      "juheongReference": "PDF 7~8쪽 · Q5"
     },
     {
       "id": "M009",
@@ -255,7 +279,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        9,
+        10
+      ],
+      "juheongQuestionIds": [
+        "Q7"
+      ],
+      "juheongReference": "PDF 9~10쪽 · Q7"
     },
     {
       "id": "M012",
@@ -282,7 +314,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        7,
+        8
+      ],
+      "juheongQuestionIds": [
+        "Q5"
+      ],
+      "juheongReference": "PDF 7~8쪽 · Q5"
     },
     {
       "id": "M013",
@@ -309,7 +349,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        8,
+        9
+      ],
+      "juheongQuestionIds": [
+        "Q6"
+      ],
+      "juheongReference": "PDF 8~9쪽 · Q6"
     },
     {
       "id": "M014",
@@ -336,7 +384,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        8,
+        9
+      ],
+      "juheongQuestionIds": [
+        "Q6"
+      ],
+      "juheongReference": "PDF 8~9쪽 · Q6"
     },
     {
       "id": "M015",
@@ -363,7 +419,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        8,
+        9
+      ],
+      "juheongQuestionIds": [
+        "Q6"
+      ],
+      "juheongReference": "PDF 8~9쪽 · Q6"
     },
     {
       "id": "M016",
@@ -390,7 +454,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        8,
+        9
+      ],
+      "juheongQuestionIds": [
+        "Q6"
+      ],
+      "juheongReference": "PDF 8~9쪽 · Q6"
     },
     {
       "id": "M201",
@@ -417,7 +489,15 @@
       "categoryName": "소아과학의 개념과 역사",
       "source": "수업자료 14,16쪽 · 써머리 8,10쪽 · 21학번 2번 · 22학번 2번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "조정준–급유방이 맞습니다. 헷갈리는 연결은 유방–유유신서, 진복정–유유집성, 최규헌–소아의방입니다."
+      "explanation": "조정준–급유방이 맞습니다. 헷갈리는 연결은 유방–유유신서, 진복정–유유집성, 최규헌–소아의방입니다.",
+      "juheongPages": [
+        7,
+        8
+      ],
+      "juheongQuestionIds": [
+        "Q5"
+      ],
+      "juheongReference": "PDF 7~8쪽 · Q5"
     },
     {
       "id": "M022",
@@ -444,7 +524,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M024",
@@ -471,7 +561,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M025",
@@ -498,7 +598,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M026",
@@ -525,7 +635,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M027",
@@ -552,7 +672,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M030",
@@ -579,7 +709,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M202",
@@ -606,7 +746,17 @@
       "categoryName": "소아기의 분류",
       "source": "수업자료 18,19쪽 · 써머리 12,13쪽 · 21학번 3번 · 22학번 3번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "① 배아기 8주까지와 ③ 영아기의 영양장애·높은 사망률은 자료와 일치합니다. ⑤ 보행·언어 발달이 왕성한 것은 학령기(6~10년)가 아니라 유아기(2~5년)입니다."
+      "explanation": "① 배아기 8주까지와 ③ 영아기의 영양장애·높은 사망률은 자료와 일치합니다. ⑤ 보행·언어 발달이 왕성한 것은 학령기(6~10년)가 아니라 유아기(2~5년)입니다.",
+      "juheongPages": [
+        11,
+        12,
+        13
+      ],
+      "juheongQuestionIds": [
+        "Q9",
+        "Q11"
+      ],
+      "juheongReference": "PDF 11~13쪽 · Q9·Q11"
     },
     {
       "id": "M031",
@@ -633,7 +783,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        13,
+        14
+      ],
+      "juheongQuestionIds": [
+        "Q12",
+        "Q13"
+      ],
+      "juheongReference": "PDF 13~14쪽 · Q12·Q13"
     },
     {
       "id": "M032",
@@ -660,7 +819,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        13,
+        14
+      ],
+      "juheongQuestionIds": [
+        "Q12",
+        "Q13"
+      ],
+      "juheongReference": "PDF 13~14쪽 · Q12·Q13"
     },
     {
       "id": "M033",
@@ -687,7 +855,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        14,
+        15,
+        16
+      ],
+      "juheongQuestionIds": [
+        "Q14",
+        "Q15"
+      ],
+      "juheongReference": "PDF 14~16쪽 · Q14·Q15"
     },
     {
       "id": "M034",
@@ -714,7 +892,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        14,
+        15,
+        16
+      ],
+      "juheongQuestionIds": [
+        "Q14",
+        "Q15"
+      ],
+      "juheongReference": "PDF 14~16쪽 · Q14·Q15"
     },
     {
       "id": "M035",
@@ -741,7 +929,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        14,
+        15,
+        16
+      ],
+      "juheongQuestionIds": [
+        "Q14",
+        "Q15"
+      ],
+      "juheongReference": "PDF 14~16쪽 · Q14·Q15"
     },
     {
       "id": "M036",
@@ -768,7 +966,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        18,
+        19
+      ],
+      "juheongQuestionIds": [
+        "Q16",
+        "Q17",
+        "Q18"
+      ],
+      "juheongReference": "PDF 18~19쪽 · Q16·Q17·Q18"
     },
     {
       "id": "M037",
@@ -795,7 +1003,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        18,
+        19
+      ],
+      "juheongQuestionIds": [
+        "Q16",
+        "Q17",
+        "Q18"
+      ],
+      "juheongReference": "PDF 18~19쪽 · Q16·Q17·Q18"
     },
     {
       "id": "M038",
@@ -822,7 +1040,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        18,
+        19
+      ],
+      "juheongQuestionIds": [
+        "Q16",
+        "Q17",
+        "Q18"
+      ],
+      "juheongReference": "PDF 18~19쪽 · Q16·Q17·Q18"
     },
     {
       "id": "M039",
@@ -849,7 +1077,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        18,
+        19
+      ],
+      "juheongQuestionIds": [
+        "Q16",
+        "Q17",
+        "Q18"
+      ],
+      "juheongReference": "PDF 18~19쪽 · Q16·Q17·Q18"
     },
     {
       "id": "M040",
@@ -876,7 +1114,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        20,
+        21
+      ],
+      "juheongQuestionIds": [
+        "Q19",
+        "Q21"
+      ],
+      "juheongReference": "PDF 20~21쪽 · Q19·Q21"
     },
     {
       "id": "M041",
@@ -903,7 +1150,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        20,
+        21
+      ],
+      "juheongQuestionIds": [
+        "Q19",
+        "Q21"
+      ],
+      "juheongReference": "PDF 20~21쪽 · Q19·Q21"
     },
     {
       "id": "M043",
@@ -930,7 +1186,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        20,
+        21
+      ],
+      "juheongQuestionIds": [
+        "Q19",
+        "Q21"
+      ],
+      "juheongReference": "PDF 20~21쪽 · Q19·Q21"
     },
     {
       "id": "M044",
@@ -957,7 +1222,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        20,
+        21
+      ],
+      "juheongQuestionIds": [
+        "Q19",
+        "Q21"
+      ],
+      "juheongReference": "PDF 20~21쪽 · Q19·Q21"
     },
     {
       "id": "M045",
@@ -984,7 +1258,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        20,
+        21
+      ],
+      "juheongQuestionIds": [
+        "Q19",
+        "Q21"
+      ],
+      "juheongReference": "PDF 20~21쪽 · Q19·Q21"
     },
     {
       "id": "M049",
@@ -1011,7 +1294,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        18,
+        19
+      ],
+      "juheongQuestionIds": [
+        "Q16",
+        "Q17",
+        "Q18"
+      ],
+      "juheongReference": "PDF 18~19쪽 · Q16·Q17·Q18"
     },
     {
       "id": "M203",
@@ -1038,7 +1331,16 @@
       "categoryName": "진단 개요와 연령별 진단법",
       "source": "수업자료 50,52쪽 · 써머리 44,46쪽 · 21학번 6번 · 22학번 6번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "정상지문의 홍자색은 홍황색으로 고칩니다. 원래 진단 구절은 부침분표리·홍자변한열입니다. 명관까지 드러나면 중증·불치로 설명되어 첫 진술이 유력하지만, 실제 변형 문구와 공식 정답이 없어 확정하지 않습니다."
+      "explanation": "정상지문의 홍자색은 홍황색으로 고칩니다. 원래 진단 구절은 부침분표리·홍자변한열입니다. 명관까지 드러나면 중증·불치로 설명되어 첫 진술이 유력하지만, 실제 변형 문구와 공식 정답이 없어 확정하지 않습니다.",
+      "juheongPages": [
+        22,
+        23
+      ],
+      "juheongQuestionIds": [
+        "Q22",
+        "Q23"
+      ],
+      "juheongReference": "PDF 22~23쪽 · Q22·Q23"
     },
     {
       "id": "M204",
@@ -1065,7 +1367,16 @@
       "categoryName": "진단 개요와 연령별 진단법",
       "source": "수업자료 50,52쪽 · 써머리 44,46쪽 · 21학번 6번 · 22학번 6번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "정상지문의 홍자색은 홍황색으로 고칩니다. 원래 진단 구절은 부침분표리·홍자변한열입니다. 명관까지 드러나면 중증·불치로 설명되어 첫 진술이 유력하지만, 실제 변형 문구와 공식 정답이 없어 확정하지 않습니다."
+      "explanation": "정상지문의 홍자색은 홍황색으로 고칩니다. 원래 진단 구절은 부침분표리·홍자변한열입니다. 명관까지 드러나면 중증·불치로 설명되어 첫 진술이 유력하지만, 실제 변형 문구와 공식 정답이 없어 확정하지 않습니다.",
+      "juheongPages": [
+        22,
+        23
+      ],
+      "juheongQuestionIds": [
+        "Q22",
+        "Q23"
+      ],
+      "juheongReference": "PDF 22~23쪽 · Q22·Q23"
     },
     {
       "id": "M066",
@@ -1092,7 +1403,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M067",
@@ -1119,7 +1439,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M068",
@@ -1146,7 +1475,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M069",
@@ -1173,7 +1511,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        27,
+        28
+      ],
+      "juheongQuestionIds": [
+        "Q31"
+      ],
+      "juheongReference": "PDF 27~28쪽 · Q31"
     },
     {
       "id": "M205",
@@ -1200,7 +1546,16 @@
       "categoryName": "망진",
       "source": "수업자료 61쪽 · 써머리 55쪽 · 21학번 8번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다."
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M206",
@@ -1227,7 +1582,16 @@
       "categoryName": "망진",
       "source": "수업자료 61쪽 · 써머리 55쪽 · 21학번 8번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다."
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M207",
@@ -1254,7 +1618,16 @@
       "categoryName": "망진",
       "source": "수업자료 61쪽 · 써머리 55쪽 · 21학번 8번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다."
+      "explanation": "①~④는 수업자료와 일치합니다. ⑤ 무태는 정기부족이고, 습열내체는 황니태입니다. 열병에서 태가 벗겨지는 것은 상음으로 연결합니다.",
+      "juheongPages": [
+        26,
+        27
+      ],
+      "juheongQuestionIds": [
+        "Q28",
+        "Q30"
+      ],
+      "juheongReference": "PDF 26~27쪽 · Q28·Q30"
     },
     {
       "id": "M073",
@@ -1281,7 +1654,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        30,
+        31
+      ],
+      "juheongQuestionIds": [
+        "Q34",
+        "Q35"
+      ],
+      "juheongReference": "PDF 30~31쪽 · Q34·Q35"
     },
     {
       "id": "M074",
@@ -1308,7 +1690,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        30,
+        31
+      ],
+      "juheongQuestionIds": [
+        "Q34",
+        "Q35"
+      ],
+      "juheongReference": "PDF 30~31쪽 · Q34·Q35"
     },
     {
       "id": "M076",
@@ -1335,7 +1726,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        30,
+        31
+      ],
+      "juheongQuestionIds": [
+        "Q34",
+        "Q35"
+      ],
+      "juheongReference": "PDF 30~31쪽 · Q34·Q35"
     },
     {
       "id": "M078",
@@ -1362,7 +1762,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        30,
+        31
+      ],
+      "juheongQuestionIds": [
+        "Q34",
+        "Q35"
+      ],
+      "juheongReference": "PDF 30~31쪽 · Q34·Q35"
     },
     {
       "id": "M079",
@@ -1389,7 +1798,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        30,
+        31
+      ],
+      "juheongQuestionIds": [
+        "Q34",
+        "Q35"
+      ],
+      "juheongReference": "PDF 30~31쪽 · Q34·Q35"
     },
     {
       "id": "M093",
@@ -1416,7 +1834,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M094",
@@ -1443,7 +1870,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M095",
@@ -1470,7 +1906,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M096",
@@ -1497,7 +1942,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M097",
@@ -1524,7 +1978,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M208",
@@ -1551,7 +2014,16 @@
       "categoryName": "절진",
       "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 22학번 9번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다."
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M209",
@@ -1578,7 +2050,16 @@
       "categoryName": "절진",
       "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 22학번 9번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다."
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M210",
@@ -1605,7 +2086,16 @@
       "categoryName": "절진",
       "source": "수업자료 85,86쪽 · 써머리 79,80쪽 · 22학번 9번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다."
+      "explanation": "수업자료의 절진 요점은 3세 이후 가능, 안정·수면 중 진찰, 엄지 또는 식지로 일지정삼관입니다. 활맥=담·식적, 현맥=경풍·복통·고혈압, 유맥=기혈부족·습중, 결대맥=심기부족, 규맥=실혈입니다. 선지가 없어 답 번호는 미복기입니다.",
+      "juheongPages": [
+        32,
+        33
+      ],
+      "juheongQuestionIds": [
+        "Q38",
+        "Q39"
+      ],
+      "juheongReference": "PDF 32~33쪽 · Q38·Q39"
     },
     {
       "id": "M101",
@@ -1632,7 +2122,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M102",
@@ -1659,7 +2159,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M103",
@@ -1686,7 +2196,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M104",
@@ -1713,7 +2233,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M105",
@@ -1740,7 +2270,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M106",
@@ -1767,7 +2307,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M107",
@@ -1794,7 +2344,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M108",
@@ -1821,7 +2381,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M110",
@@ -1848,7 +2418,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M111",
@@ -1875,7 +2455,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M199",
@@ -1902,7 +2492,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        35,
+        36,
+        37
+      ],
+      "juheongQuestionIds": [
+        "Q41",
+        "Q44"
+      ],
+      "juheongReference": "PDF 35~37쪽 · Q41·Q44"
     },
     {
       "id": "M118",
@@ -1929,7 +2529,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        37,
+        38
+      ],
+      "juheongQuestionIds": [
+        "Q45",
+        "Q46",
+        "Q47"
+      ],
+      "juheongReference": "PDF 37~38쪽 · Q45·Q46·Q47"
     },
     {
       "id": "M119",
@@ -1956,7 +2566,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        37,
+        38
+      ],
+      "juheongQuestionIds": [
+        "Q45",
+        "Q46",
+        "Q47"
+      ],
+      "juheongReference": "PDF 37~38쪽 · Q45·Q46·Q47"
     },
     {
       "id": "M120",
@@ -1983,7 +2603,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        37,
+        38
+      ],
+      "juheongQuestionIds": [
+        "Q45",
+        "Q46",
+        "Q47"
+      ],
+      "juheongReference": "PDF 37~38쪽 · Q45·Q46·Q47"
     },
     {
       "id": "M129",
@@ -2010,7 +2640,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        39
+      ],
+      "juheongQuestionIds": [
+        "Q49"
+      ],
+      "juheongReference": "PDF 39쪽 · Q49"
     },
     {
       "id": "M130",
@@ -2037,7 +2674,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        39
+      ],
+      "juheongQuestionIds": [
+        "Q49"
+      ],
+      "juheongReference": "PDF 39쪽 · Q49"
     },
     {
       "id": "M193",
@@ -2064,7 +2708,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        39
+      ],
+      "juheongQuestionIds": [
+        "Q49"
+      ],
+      "juheongReference": "PDF 39쪽 · Q49"
     },
     {
       "id": "M211",
@@ -2091,7 +2742,14 @@
       "categoryName": "체중 신장 신체 비례",
       "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 21학번 11번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다."
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "juheongPages": [
+        39
+      ],
+      "juheongQuestionIds": [
+        "Q49"
+      ],
+      "juheongReference": "PDF 39쪽 · Q49"
     },
     {
       "id": "M212",
@@ -2118,7 +2776,14 @@
       "categoryName": "체중 신장 신체 비례",
       "source": "수업자료 96,98쪽 · 써머리 90,92쪽 · 21학번 11번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다."
+      "explanation": "복기된 다섯 문장은 수업자료에 모두 실려 있어 O입니다. 출생 중심점은 배꼽 위 약 2cm, 사지는 몸통보다 빨리 성장하며, 사춘기에는 비슷하고 이후에는 몸통이 약간 더 빨리 자랍니다. 실제 출제·변형 여부는 복기 자체가 불확실합니다.",
+      "juheongPages": [
+        39
+      ],
+      "juheongQuestionIds": [
+        "Q49"
+      ],
+      "juheongReference": "PDF 39쪽 · Q49"
     },
     {
       "id": "M125",
@@ -2145,7 +2810,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        40,
+        41
+      ],
+      "juheongQuestionIds": [
+        "Q51",
+        "Q52",
+        "Q53"
+      ],
+      "juheongReference": "PDF 40~41쪽 · Q51·Q52·Q53"
     },
     {
       "id": "M126",
@@ -2172,7 +2847,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        40,
+        41
+      ],
+      "juheongQuestionIds": [
+        "Q51",
+        "Q52",
+        "Q53"
+      ],
+      "juheongReference": "PDF 40~41쪽 · Q51·Q52·Q53"
     },
     {
       "id": "M127",
@@ -2199,7 +2884,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        40,
+        41
+      ],
+      "juheongQuestionIds": [
+        "Q51",
+        "Q52",
+        "Q53"
+      ],
+      "juheongReference": "PDF 40~41쪽 · Q51·Q52·Q53"
     },
     {
       "id": "M132",
@@ -2226,7 +2921,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        40,
+        41
+      ],
+      "juheongQuestionIds": [
+        "Q51",
+        "Q52",
+        "Q53"
+      ],
+      "juheongReference": "PDF 40~41쪽 · Q51·Q52·Q53"
     },
     {
       "id": "M133",
@@ -2253,7 +2958,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        40,
+        41
+      ],
+      "juheongQuestionIds": [
+        "Q51",
+        "Q52",
+        "Q53"
+      ],
+      "juheongReference": "PDF 40~41쪽 · Q51·Q52·Q53"
     },
     {
       "id": "M134",
@@ -2280,7 +2995,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        39,
+        40
+      ],
+      "juheongQuestionIds": [
+        "Q50"
+      ],
+      "juheongReference": "PDF 39~40쪽 · Q50"
     },
     {
       "id": "M135",
@@ -2307,7 +3030,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        39,
+        40
+      ],
+      "juheongQuestionIds": [
+        "Q50"
+      ],
+      "juheongReference": "PDF 39~40쪽 · Q50"
     },
     {
       "id": "M213",
@@ -2334,7 +3065,15 @@
       "categoryName": "천문과 두위",
       "source": "수업자료 102쪽 · 써머리 96쪽 · 21학번 서술형 5번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "대천문 크기는 마주 보는 변의 중점 사이 거리 두 개의 평균입니다. 복기된 2.5cm는 10~12개월 평균 1.0cm보다 큽니다."
+      "explanation": "대천문 크기는 마주 보는 변의 중점 사이 거리 두 개의 평균입니다. 복기된 2.5cm는 10~12개월 평균 1.0cm보다 큽니다.",
+      "juheongPages": [
+        39,
+        40
+      ],
+      "juheongQuestionIds": [
+        "Q50"
+      ],
+      "juheongReference": "PDF 39~40쪽 · Q50"
     },
     {
       "id": "M139",
@@ -2361,7 +3100,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        42
+      ],
+      "juheongQuestionIds": [
+        "Q54"
+      ],
+      "juheongReference": "PDF 42쪽 · Q54"
     },
     {
       "id": "M140",
@@ -2388,7 +3134,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        42
+      ],
+      "juheongQuestionIds": [
+        "Q54"
+      ],
+      "juheongReference": "PDF 42쪽 · Q54"
     },
     {
       "id": "M144",
@@ -2415,7 +3168,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M146",
@@ -2442,7 +3205,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M147",
@@ -2469,7 +3242,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M148",
@@ -2496,7 +3279,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M149",
@@ -2523,7 +3316,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M196",
@@ -2550,7 +3353,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        44,
+        45,
+        46
+      ],
+      "juheongQuestionIds": [
+        "Q58",
+        "Q59"
+      ],
+      "juheongReference": "PDF 44~46쪽 · Q58·Q59"
     },
     {
       "id": "M152",
@@ -2577,7 +3390,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M153",
@@ -2604,7 +3426,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M154",
@@ -2631,7 +3462,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M155",
@@ -2658,7 +3498,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M156",
@@ -2685,7 +3534,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M157",
@@ -2712,7 +3570,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        47,
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q61",
+        "Q63"
+      ],
+      "juheongReference": "PDF 47~48쪽 · Q61·Q63"
     },
     {
       "id": "M159",
@@ -2739,7 +3606,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M160",
@@ -2766,7 +3640,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M161",
@@ -2793,7 +3674,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M162",
@@ -2820,7 +3708,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M163",
@@ -2847,7 +3742,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M195",
@@ -2874,7 +3776,14 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        48
+      ],
+      "juheongQuestionIds": [
+        "Q64"
+      ],
+      "juheongReference": "PDF 48쪽 · Q64"
     },
     {
       "id": "M173",
@@ -2901,7 +3810,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M174",
@@ -2928,7 +3846,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M176",
@@ -2955,7 +3882,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M177",
@@ -2982,7 +3918,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M194",
@@ -3009,7 +3954,16 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M214",
@@ -3036,7 +3990,16 @@
       "categoryName": "감각 발달",
       "source": "수업자료 146,150쪽 · 써머리 140,144쪽 · 21학번 15번",
       "years": "21·22학번 답치기 · 족보 기반 변형",
-      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다."
+      "explanation": "④를 5~6세로 고칩니다. 신생아는 20~30cm 거리·45~90도 범위로 보고, 4개월에는 물체를 따라 손을 움직이며, 출생 시 촉각은 입술·혀를 제외하면 미발달입니다.",
+      "juheongPages": [
+        50,
+        51
+      ],
+      "juheongQuestionIds": [
+        "Q67",
+        "Q69"
+      ],
+      "juheongReference": "PDF 50~51쪽 · Q67·Q69"
     },
     {
       "id": "M164",
@@ -3063,7 +4026,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M165",
@@ -3090,7 +4061,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M166",
@@ -3117,7 +4096,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M167",
@@ -3144,7 +4131,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M168",
@@ -3171,7 +4166,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M169",
@@ -3198,7 +4201,15 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     },
     {
       "id": "M172",
@@ -3225,8 +4236,17 @@
       "countStats": true,
       "referenceOnly": false,
       "note": "",
-      "memory": true
+      "memory": true,
+      "juheongPages": [
+        51,
+        52
+      ],
+      "juheongQuestionIds": [
+        "Q71"
+      ],
+      "juheongReference": "PDF 51~52쪽 · Q71"
     }
   ],
-  "scopeNote": "대근육 운동까지 포함 · 소근육 운동부터 이후 범주 제외"
+  "scopeNote": "대근육 운동까지 포함 · 소근육 운동부터 이후 범주 제외",
+  "juheongPageBasis": "업로드한 소아과_족보해설집_주형 (1)(1).pdf의 PDF 쪽수 (전체 67쪽)"
 }

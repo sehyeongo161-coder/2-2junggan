@@ -120,6 +120,7 @@ button.primary,.section-buttons button[aria-pressed="true"]{background:#f2c744;b
 .bank-switch button[aria-selected="true"]{background:#f2c744;color:#493600;box-shadow:0 1px 5px #8b650012}
 .memory-note{margin:0 0 16px;padding:12px 15px;background:#fff8dc;border:1px solid var(--line);border-radius:10px;font-size:13px;color:#675e42}
 @media(max-width:600px){.bank-switch button{padding:10px 6px;font-size:13px;line-height:1.5}}
+.juheong-reference{padding:10px 12px;border-left:3px solid #d7aa22;background:#fff8dc;color:#675014;font-size:13px}
 </style></head>
 <body>
 <div class="header"><div><p id="study-eyebrow" class="eyebrow">본과 2학년 2학기 · 16~22학번 족보</p><h1 id="study-title">소아과학 족보 퀴즈</h1></div><div id="summary" class="summary"></div></div>
@@ -127,7 +128,7 @@ button.primary,.section-buttons button[aria-pressed="true"]{background:#f2c744;b
 <div class="bank-switch" role="tablist" aria-label="소아과 학습 유형"><button type="button" id="bank-recent" data-bank="recent" role="tab" aria-selected="false" aria-controls="learning-content" tabindex="-1">21·22학번 족보</button><button type="button" id="bank-past" data-bank="past" role="tab" aria-selected="true" aria-controls="learning-content">전체 학번 족보</button><button type="button" id="bank-memory" data-bank="memory" role="tab" aria-selected="false" aria-controls="learning-content" tabindex="-1">답치기 암기</button></div>
 <div id="learning-content" role="tabpanel" aria-labelledby="bank-past">
 <p id="recent-note" class="memory-note" hidden>21·22학번 족보만 모았습니다. 공통 문항은 한 번 수록하고 학번·문항 번호를 함께 표시합니다. Word의 01~15 범주에서 퀴즈 또는 정답·해설 목록으로 학습하세요.</p>
-<p id="memory-note" class="memory-note" hidden>21·22학번 족보 중 대근육 운동까지의 15개 범주에 맞춘 핵심 연결·숫자 연습입니다. 정답을 하나 고르고 채점하세요. 모든 문제를 한 번 푼 뒤 오답만 반복합니다.</p>
+<p id="memory-note" class="memory-note" hidden>21·22학번 족보 중 대근육 운동까지의 15개 범주에 맞춘 핵심 연결·숫자 연습입니다. 정답을 하나 고르고 채점하세요. 모든 문제를 한 번 푼 뒤 오답만 반복합니다. 주형 해설집 쪽수는 PDF 기준입니다.</p>
 <div class="section-selector" aria-label="소아과학 출제 범위"><div class="section-heading"><strong id="section-title">출제 범위</strong><span id="section-subtitle" class="section-subtitle">선택한 범위 안에서 랜덤 출제</span></div>
 <div id="section-buttons" class="section-buttons" role="group" aria-label="출제 범위 선택"><button type="button" data-scope="all" aria-pressed="true">이번 시험범위 <small></small></button><button type="button" data-scope="1" aria-pressed="false">제1장 <small></small></button><button type="button" data-scope="2" aria-pressed="false">제2장 <small></small></button><button type="button" data-scope="3" aria-pressed="false">제3장 <small></small></button><button type="button" data-scope="everything" aria-pressed="false">전체 족보 <small></small></button></div>
 <label class="category-picker">범주 선택 <select id="category-filter" aria-label="세부 범주 선택"></select></label><p id="section-name" class="section-name"></p></div>
@@ -135,4 +136,4 @@ button.primary,.section-buttons button[aria-pressed="true"]{background:#f2c744;b
 <section id="quiz-view" role="tabpanel" aria-labelledby="view-quiz"><div class="toolbar"><span id="quiz-scope-help" class="help"></span><button id="reset" class="round" title="선택 범위 처음부터 다시 풀기" aria-label="선택 범위 처음부터 다시 풀기">↻</button></div><div id="stage" class="card"></div></section>
 <section id="list-view" role="tabpanel" aria-labelledby="view-list" hidden><div class="list-top"><div><h2 id="list-heading"></h2><p id="list-count"></p></div><button id="list-toggle-answers" class="list-answer-toggle" aria-pressed="true">정답·해설 가리기</button></div><div id="list-items" class="past-paper-items"></div></section>
 <p id="source-note" class="source">대근육 운동까지의 족보 86항목. 주형 해설집·통합족보·학번별 복기·수업자료의 답과 간단 해설을 수록했습니다. 선지·그림이 불완전한 항목은 자료 확인으로 표시합니다.</p>
-</div></div><script src="./pediatrics-quiz.js?v=20261022-pediatrics-through-gross-v6"></script></body></html>
+</div></div><script src="./pediatrics-quiz.js?v=20261022-pediatrics-juheong-pages-v7"></script></body></html>
