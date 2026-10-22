@@ -789,7 +789,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
   for(const id of ['panel','neuro-panel','obgyn-panel'])document.getElementById(id).hidden=true;
   panel.hidden=false;document.body.dataset.subject='pediatrics';
   for(const b of [...others,tab]){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
-  if(!frame.getAttribute('src'))frame.src='./pediatrics-quiz.html?v=20261022-pediatrics-memory-v3';
+  if(!frame.getAttribute('src'))frame.src='./pediatrics-quiz.html?v=20261022-pediatrics-2122-sync-v4';
   if(pending)frame.contentWindow?.postMessage({type:'pediatrics-open-question',id:pending},location.origin);
  }
  tab.addEventListener('click',e=>{e.stopImmediatePropagation();open();},true);
