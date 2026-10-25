@@ -27,18 +27,77 @@ ul{margin:10px 0;padding-left:20px}.grade{display:flex;gap:10px;margin:14px 0}.g
 <h3 style="font-size:15px;margin-bottom:6px">필수 키워드 체크</h3><div id="checks" class="checklist"></div>
 <div class="grade"><button class="ok" id="correct">O · 맞았어요</button><button class="bad" id="wrong">X · 틀렸어요</button></div>
 </div></section>
-<div class="footer"><button id="prev">← 이전 문제</button><button class="primary" id="next">다음 문제 →</button></div>
+<div class="footer"><button id="newset">새 세트 시작</button><span class="mini">O/X로 채점하면 다음 문제로 자동 이동합니다.</span></div><section class="card hidden" id="finish"><h2>1세트 완료!</h2><p>6문제와 모든 오답 복습을 완료했습니다.</p><button class="primary" id="again">새 세트 풀기</button></section>
 <p class="mini">기록은 이 브라우저의 로컬 저장소에만 저장됩니다. Firebase 계정 간 동기화는 제공하지 않습니다. 20번은 교수님 자료에 '서술 또는 객관식'으로 표시되어 포함했습니다.</p>
 </main><script>
-const QUESTIONS=[{"n":3,"q":"홍반과 자반을 감별하고 비교하여 특징을 서술하시오.","a":"홍반은 모세혈관의 확장으로 발생하는 붉은색 병변으로, 지그시 압박하면 흰색으로 탈색된다. 자반은 혈관 밖으로 출혈이 발생한 보라색·자줏빛 병변으로, 압박해도 탈색되지 않는다.","k":["홍반: 모세혈관 확장·충혈","홍반: 붉은색, 압박 시 탈색","자반: 출혈, 보라색·자줏빛","자반: 압박해도 탈색되지 않음"],"hint":"홍반 = 충혈/탈색 O · 자반 = 출혈/탈색 X","page":"won 1쪽"},{"n":12,"q":"급성 출혈성 결막염과 알레르기성 결막염의 사진 소견과 증상을 비교해 설명하시오.","a":"급성 출혈성 결막염은 심한 결막충혈, 결막부종, 여포, 결막하출혈, 눈꺼풀 종창이 나타나며 심한 통증·이물감·눈물흘림을 동반한다. 알레르기성 결막염은 결막충혈·부종·눈물흘림이 나타나고, 가려움·화끈거림·눈부심 등이 특징적이다.","k":["급성 출혈성: 심한 충혈·결막하출혈","급성 출혈성: 여포·눈꺼풀 종창","급성 출혈성: 심한 통증·이물감","알레르기성: 결막충혈·부종·눈물","알레르기성: 가려움·화끈거림·눈부심"],"hint":"출혈성 = 출혈·통증 / 알레르기성 = 가려움","page":"won 8쪽"},{"n":17,"q":"말초성 어지러움과 중추성 어지러움의 감별진단을 설명하시오.","a":"말초성 어지러움은 회전성이 많고 난청·이명을 동반할 수 있으나 뇌신경증상은 보통 없다. 체위·두위에 따라 변동하고, 오심·구토가 어지러움의 강도에 비례하며 보상되어 호전되는 경우가 많다. 중추성 어지러움은 비회전성이 상대적으로 많고 난청·이명은 드물며 뇌신경증상이나 심한 보행·평형장애가 동반될 수 있다. 체위에 따른 변동이 적고 보상이 잘되지 않을 수 있다.","k":["말초: 회전성 흔함, 난청·이명 가능","말초: 뇌신경증상 드묾, 체위·두위 영향","말초: 오심·구토 동반, 보상 호전","중추: 비회전성 상대적으로 흔함","중추: 뇌신경증상·심한 보행장애 가능","중추: 체위 영향 적고 보상 어려움"],"hint":"말초 = 회전/이명/체위/보상 · 중추 = 뇌신경/평형장애","page":"won 13쪽"},{"n":18,"q":"중추성 안면신경마비와 말초성 안면신경마비의 감별점을 설명하시오.","a":"중추성 안면신경마비는 주로 반대측 아래 얼굴에 마비가 나타나며 이마 주름 형성과 눈 감기는 대체로 보존된다. 말초성 안면신경마비는 병변과 같은 쪽 얼굴 전체가 마비되어 이마 주름을 만들거나 눈을 감기 어렵고, 눈을 감으려 할 때 안구가 위로 돌아가는 벨현상이 관찰될 수 있다.","k":["중추: 주로 아래 얼굴 마비","중추: 이마 주름·눈 감기 보존","말초: 같은 쪽 얼굴 전체 마비","말초: 이마 주름 X·눈 감기 X","말초: 벨현상 가능"],"hint":"중추 = 이마 O/눈감기 O · 말초 = 이마 X/눈감기 X","page":"won 13쪽"},{"n":20,"q":"이성 대상포진의 정의, 증상과 치료를 서술하시오. (서술 또는 객관식 예고)","a":"이성 대상포진은 수두-대상포진바이러스에 의해 이개나 외이도에 수포성 발진이 나타나는 질환이다. 심한 이통과 동측 말초성 안면신경마비가 나타날 수 있으며, 청각·전정기능 침범 시 현기증과 난청을 동반한다. 대상포진에 의한 안면신경마비는 람세이헌트증후군과 관련되며, 치료에는 항바이러스제와 스테로이드를 사용한다.","k":["정의: 귀 주변 VZV·수포성 발진","증상: 심한 이통","증상: 동측 말초성 안면신경마비","증상: 현기증·난청 가능","치료: 항바이러스제·스테로이드"],"hint":"귀 수포 → 이통 → 동측 안면마비/난청 → 항바이러스제·스테로이드","page":"won 13~14쪽"},{"n":21,"q":"급성 외이도염과 급성 중이염의 감별에 대해 서술하시오.","a":"급성 외이도염은 외이도 부종이 나타나며 이주를 압박하거나 이개를 잡아당길 때 통증이 심해진다. 고막은 대개 정상이고 청력은 정상이거나 감소할 수 있다. 급성 중이염에서는 외이도 부종과 이주 압통이 특징적이지 않으며 고막 팽윤 또는 천공이 나타날 수 있다. 청력저하가 흔하고 천공 시 이루가 생길 수 있다.","k":["외이도염: 외이도 부종","외이도염: 이주 압통·이개 견인통","외이도염: 고막 대개 정상","중이염: 고막 팽윤·천공 가능","중이염: 이주 압통 드묾·청력저하"],"hint":"외이도염 = 이주 압통·외이도 부종 / 중이염 = 고막 팽윤","page":"won 14쪽"}];const STORAGE='yangjin-essay-20261025-v1';
-let state;try{state=JSON.parse(localStorage.getItem(STORAGE)||'{}')}catch{state={}};state.answers||={};state.grades||={};for(const n of Object.keys(state.grades))delete state.answers[n];state.index=Number.isInteger(state.index)?Math.max(0,Math.min(QUESTIONS.length-1,state.index)):0;state.shuffle=!!state.shuffle;state.order=Array.isArray(state.order)&&state.order.length===QUESTIONS.length?state.order:QUESTIONS.map((_,i)=>i);
-const $=id=>document.getElementById(id);let show=false;function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(state));$('saved').textContent='저장됨'}catch{$('saved').textContent='저장 실패'}}function current(){return QUESTIONS[state.order[state.index]]}function render(){const q=current();$('number').textContent='교수님 예고 '+q.n+'번';$('source').textContent=q.page;$('question').textContent=q.q;$('input').value=state.answers[q.n]||'';$('answer').textContent=q.a;$('checks').replaceChildren(...q.k.map((t,i)=>{const l=document.createElement('label'),c=document.createElement('input');c.type='checkbox';c.checked=false;l.append(c,document.createTextNode(t));return l}));show=false;$('solution').classList.add('hidden');$('reveal').textContent='모범답안 확인';$('position').textContent=(state.index+1)+' / '+QUESTIONS.length;const c=Object.values(state.grades);$('score').textContent='O '+c.filter(v=>v==='O').length+' · X '+c.filter(v=>v==='X').length;$('progress').textContent=c.length+' / '+QUESTIONS.length+' 채점';$('correct').classList.toggle('active',state.grades[q.n]==='O');$('wrong').classList.toggle('active',state.grades[q.n]==='X');$('order').textContent=state.shuffle?'랜덤 순서':'순서대로';$('prev').disabled=state.index===0;$('next').textContent=state.index===QUESTIONS.length-1?'처음으로 ↻':'다음 문제 →';persist()}
-$('input').addEventListener('input',()=>{state.answers[current().n]=$('input').value;persist()});
-$('reveal').onclick=()=>{show=!show;$('solution').classList.toggle('hidden',!show);$('reveal').textContent=show?'모범답안 숨기기':'모범답안 확인';parent.postMessage({type:'yangjin-size',height:document.documentElement.scrollHeight},location.origin)};
-function grade(v){const n=current().n;state.grades[n]=v;delete state.answers[n];state.index=(state.index+1)%QUESTIONS.length;render();scrollTo({top:0,behavior:'smooth'});parent.postMessage({type:'yangjin-size',height:document.documentElement.scrollHeight},location.origin)}
-$('correct').onclick=()=>grade('O');$('wrong').onclick=()=>grade('X');
-$('next').onclick=()=>{state.index=(state.index+1)%QUESTIONS.length;render();scrollTo({top:0,behavior:'smooth'})};$('prev').onclick=()=>{state.index=Math.max(0,state.index-1);render();scrollTo({top:0,behavior:'smooth'})};
-$('order').onclick=()=>{state.shuffle=!state.shuffle;state.order=QUESTIONS.map((_,i)=>i);if(state.shuffle)for(let i=state.order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[state.order[i],state.order[j]]=[state.order[j],state.order[i]]}state.index=0;render()};
-$('reset').onclick=()=>{if(!confirm('양진 서술형 답안과 O/X 기록을 모두 지울까요?'))return;state.answers={};state.grades={};state.index=0;render()};
-const resize=()=>parent.postMessage({type:'yangjin-size',height:document.documentElement.scrollHeight},location.origin);new ResizeObserver(resize).observe(document.body);render();resize();
+const QUESTIONS=[{"n":3,"q":"홍반과 자반을 감별하고 비교하여 특징을 서술하시오.","a":"홍반은 모세혈관의 확장으로 발생하는 붉은색 병변으로, 지그시 압박하면 흰색으로 탈색된다. 자반은 혈관 밖으로 출혈이 발생한 보라색·자줏빛 병변으로, 압박해도 탈색되지 않는다.","k":["홍반: 모세혈관 확장·충혈","홍반: 붉은색, 압박 시 탈색","자반: 출혈, 보라색·자줏빛","자반: 압박해도 탈색되지 않음"],"hint":"홍반 = 충혈/탈색 O · 자반 = 출혈/탈색 X","page":"won 1쪽"},{"n":12,"q":"급성 출혈성 결막염과 알레르기성 결막염의 사진 소견과 증상을 비교해 설명하시오.","a":"급성 출혈성 결막염은 심한 결막충혈, 결막부종, 여포, 결막하출혈, 눈꺼풀 종창이 나타나며 심한 통증·이물감·눈물흘림을 동반한다. 알레르기성 결막염은 결막충혈·부종·눈물흘림이 나타나고, 가려움·화끈거림·눈부심 등이 특징적이다.","k":["급성 출혈성: 심한 충혈·결막하출혈","급성 출혈성: 여포·눈꺼풀 종창","급성 출혈성: 심한 통증·이물감","알레르기성: 결막충혈·부종·눈물","알레르기성: 가려움·화끈거림·눈부심"],"hint":"출혈성 = 출혈·통증 / 알레르기성 = 가려움","page":"won 8쪽"},{"n":17,"q":"말초성 어지러움과 중추성 어지러움의 감별진단을 설명하시오.","a":"말초성 어지러움은 회전성이 많고 난청·이명을 동반할 수 있으나 뇌신경증상은 보통 없다. 체위·두위에 따라 변동하고, 오심·구토가 어지러움의 강도에 비례하며 보상되어 호전되는 경우가 많다. 중추성 어지러움은 비회전성이 상대적으로 많고 난청·이명은 드물며 뇌신경증상이나 심한 보행·평형장애가 동반될 수 있다. 체위에 따른 변동이 적고 보상이 잘되지 않을 수 있다.","k":["말초: 회전성 흔함, 난청·이명 가능","말초: 뇌신경증상 드묾, 체위·두위 영향","말초: 오심·구토 동반, 보상 호전","중추: 비회전성 상대적으로 흔함","중추: 뇌신경증상·심한 보행장애 가능","중추: 체위 영향 적고 보상 어려움"],"hint":"말초 = 회전/이명/체위/보상 · 중추 = 뇌신경/평형장애","page":"won 13쪽"},{"n":18,"q":"중추성 안면신경마비와 말초성 안면신경마비의 감별점을 설명하시오.","a":"중추성 안면신경마비는 주로 반대측 아래 얼굴에 마비가 나타나며 이마 주름 형성과 눈 감기는 대체로 보존된다. 말초성 안면신경마비는 병변과 같은 쪽 얼굴 전체가 마비되어 이마 주름을 만들거나 눈을 감기 어렵고, 눈을 감으려 할 때 안구가 위로 돌아가는 벨현상이 관찰될 수 있다.","k":["중추: 주로 아래 얼굴 마비","중추: 이마 주름·눈 감기 보존","말초: 같은 쪽 얼굴 전체 마비","말초: 이마 주름 X·눈 감기 X","말초: 벨현상 가능"],"hint":"중추 = 이마 O/눈감기 O · 말초 = 이마 X/눈감기 X","page":"won 13쪽"},{"n":20,"q":"이성 대상포진의 정의, 증상과 치료를 서술하시오. (서술 또는 객관식 예고)","a":"이성 대상포진은 수두-대상포진바이러스에 의해 이개나 외이도에 수포성 발진이 나타나는 질환이다. 심한 이통과 동측 말초성 안면신경마비가 나타날 수 있으며, 청각·전정기능 침범 시 현기증과 난청을 동반한다. 대상포진에 의한 안면신경마비는 람세이헌트증후군과 관련되며, 치료에는 항바이러스제와 스테로이드를 사용한다.","k":["정의: 귀 주변 VZV·수포성 발진","증상: 심한 이통","증상: 동측 말초성 안면신경마비","증상: 현기증·난청 가능","치료: 항바이러스제·스테로이드"],"hint":"귀 수포 → 이통 → 동측 안면마비/난청 → 항바이러스제·스테로이드","page":"won 13~14쪽"},{"n":21,"q":"급성 외이도염과 급성 중이염의 감별에 대해 서술하시오.","a":"급성 외이도염은 외이도 부종이 나타나며 이주를 압박하거나 이개를 잡아당길 때 통증이 심해진다. 고막은 대개 정상이고 청력은 정상이거나 감소할 수 있다. 급성 중이염에서는 외이도 부종과 이주 압통이 특징적이지 않으며 고막 팽윤 또는 천공이 나타날 수 있다. 청력저하가 흔하고 천공 시 이루가 생길 수 있다.","k":["외이도염: 외이도 부종","외이도염: 이주 압통·이개 견인통","외이도염: 고막 대개 정상","중이염: 고막 팽윤·천공 가능","중이염: 이주 압통 드묾·청력저하"],"hint":"외이도염 = 이주 압통·외이도 부종 / 중이염 = 고막 팽윤","page":"won 14쪽"}];
+const STORAGE='yangjin-essay-20261025-v4';
+const LEGACY='yangjin-essay-20261025-v1';
+const $=id=>document.getElementById(id);
+let state;
+try{state=JSON.parse(localStorage.getItem(STORAGE)||'null')}catch{state=null}
+if(!state||!Array.isArray(state.first)||!Array.isArray(state.retry)||!['first','retry','done'].includes(state.phase)){
+ let previous={};try{previous=JSON.parse(localStorage.getItem(LEGACY)||'{}')}catch{}
+ state={first:QUESTIONS.map((_,i)=>i),retry:[],phase:'first',shuffle:!!previous.shuffle,answers:{},grades:{},attempts:0};
+ if(state.shuffle)shuffle(state.first);
+}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
+function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(state));$('saved').textContent='저장됨'}catch{$('saved').textContent='저장 실패'}}
+function currentIndex(){return state.phase==='first'?state.first[0]:state.retry[0]}
+function current(){return QUESTIONS[currentIndex()]}
+let show=false;
+function render(){
+ const done=state.phase==='done',q=done?null:current();
+ $('card').classList.toggle('hidden',done);$('finish').classList.toggle('hidden',!done);
+ $('position').textContent=done?'모두 완료':(state.phase==='first'?'1차 출제 · 남은 '+state.first.length+'문제':'오답 복습 · 남은 '+state.retry.length+'문제');
+ $('score').textContent='통과 '+Object.values(state.grades).filter(v=>v==='O').length+' / 6 · 누적 풀이 '+state.attempts+'회';
+ $('progress').textContent=done?'세트 완료':(state.phase==='first'?'전체 6문제 중복 없이 진행':'틀린 문제만 다시 출제');
+ $('order').textContent=state.shuffle?'랜덤 순서':'순서대로';
+ if(done){persist();reportHeight();return}
+ $('number').textContent='교수님 예고 '+q.n+'번';
+ $('source').textContent=q.page;
+ $('question').textContent=q.q;
+ $('input').value=state.answers[q.n]||'';
+ $('answer').textContent=q.a;
+ $('checks').replaceChildren(...q.k.map(t=>{const l=document.createElement('label'),c=document.createElement('input');c.type='checkbox';l.append(c,document.createTextNode(t));return l}));
+ show=false;$('solution').classList.add('hidden');$('reveal').textContent='모범답안 확인';
+ $('correct').classList.toggle('active',false);$('wrong').classList.toggle('active',false);
+ persist();reportHeight();
+}
+function reportHeight(){parent.postMessage({type:'yangjin-size',height:document.documentElement.scrollHeight},location.origin)}
+function newSet(confirmFirst=false){
+ if(confirmFirst&&!confirm('현재 진행 중인 세트를 초기화하고 새로 시작할까요?'))return;
+ state.first=QUESTIONS.map((_,i)=>i);
+ if(state.shuffle)shuffle(state.first);
+ state.retry=[];state.phase='first';state.answers={};state.grades={};state.attempts=0;render();
+}
+$('input').addEventListener('input',()=>{if(state.phase==='done')return;state.answers[current().n]=$('input').value;persist()});
+$('reveal').onclick=()=>{show=!show;$('solution').classList.toggle('hidden',!show);$('reveal').textContent=show?'모범답안 숨기기':'모범답안 확인';reportHeight()};
+function grade(v){
+ if(state.phase==='done')return;
+ const idx=currentIndex(),n=QUESTIONS[idx].n,phase=state.phase;
+ state.grades[n]=v;state.attempts++;
+ delete state.answers[n];
+ if(phase==='first'){
+  state.first.shift();
+  if(v==='X'&&!state.retry.includes(idx))state.retry.push(idx);
+  if(state.first.length===0){
+   state.phase=state.retry.length?'retry':'done';
+  }
+ }else{
+  state.retry.shift();
+  if(v==='X')state.retry.push(idx);
+  if(state.retry.length===0)state.phase='done';
+ }
+ render();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+$('correct').onclick=()=>grade('O');
+$('wrong').onclick=()=>grade('X');
+$('order').onclick=()=>{state.shuffle=!state.shuffle;newSet(state.attempts>0)};
+$('reset').onclick=()=>newSet(true);
+$('newset').onclick=()=>newSet(true);
+$('again').onclick=()=>newSet(false);
+new ResizeObserver(reportHeight).observe(document.body);
+render();
 </script></body></html>
