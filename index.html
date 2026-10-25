@@ -864,7 +864,7 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
   panel.hidden=false;
   document.body.dataset.subject='yangjin';
   for(const b of [...others,tab]){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
-  if(!frame.src||frame.src==='about:blank')frame.src='./yangjin-essay.html?v=20261025-v3';
+  if(!frame.src||frame.src==='about:blank')frame.src='./yangjin-essay.html?v=20261025-v4';
  }
  tab.addEventListener('click',e=>{e.stopImmediatePropagation();open()},true);
  others.forEach(b=>b.addEventListener('click',()=>{panel.hidden=true;tab.setAttribute('aria-selected','false');tab.tabIndex=-1},true));
