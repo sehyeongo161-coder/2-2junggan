@@ -47,10 +47,11 @@ const storage=host?host.__QUIZ_STORAGE:localStorage;
 const prefix=host?'midterm-2-2-2026:quiz:v1:'+host.__QUIZ_USER_ID+':':'heechim-local:';
 const key=prefix+'heechim-scalp-v1';
 const pool=scope=>QUESTIONS.filter(q=>scope==='all'||q.kind===scope).map(q=>q.id);
-function fresh(scope='all',order='random'){const ids=pool(scope);return {v:1,scope,order,queue:order==='random'?shuffle(ids):ids,retry:[],passed:[],round:0,attempts:0,correct:0,options:[],selected:null,graded:false};}
+function fresh(scope='all',order='random'){const ids=pool(scope);return {v:1,scope,order,queue:order==='random'?shuffle(ids):ids,retry:[],passed:[],round:0,attempts:0,correct:0,options:[],selected:null,graded:false,lastAnswerPositions:{}};}
 function valid(s){return s&&s.v===1&&['all','core','parts'].includes(s.scope)&&['random','ordered'].includes(s.order)&&['queue','retry','passed','options'].every(k=>Array.isArray(s[k]))&&['queue','retry','passed'].every(k=>new Set(s[k]).size===s[k].length&&s[k].every(id=>pool(s.scope).includes(id)))&&Number.isInteger(s.round)&&Number.isInteger(s.attempts)&&Number.isInteger(s.correct);}
 let state;try{state=JSON.parse(storage.getItem(key))}catch{}
 if(!valid(state))state=fresh();
+if(!state.lastAnswerPositions||typeof state.lastAnswerPositions!=='object'||Array.isArray(state.lastAnswerPositions))state.lastAnswerPositions={};
 let view='quiz',showAnswers=true;
 function save(){try{storage.setItem(key,JSON.stringify(state))}catch{$('storage-note').textContent='기록을 저장하지 못했습니다. 현재 화면에서는 계속 풀 수 있습니다.'}}
 function send(type,data={}){if(parent!==window)parent.postMessage({type:'heechim-'+type,...data},location.origin)}
@@ -69,7 +70,16 @@ function render(){
  $('bar').style.width=state.passed.length/total*100+'%';
  if(!q){$('finished-summary').textContent=total+'문항을 모두 맞혔습니다. 총 '+state.attempts+'회 풀이 · 오답 '+(state.attempts-state.correct)+'회';save();resize();return;}
  const expected=[q.a,...q.d];
- if(state.options.length!==4||new Set(state.options).size!==4||!state.options.every(x=>expected.includes(x))){state.options=shuffle(expected);state.selected=null;state.graded=false;}
+ if(state.options.length!==4||new Set(state.options).size!==4||!state.options.every(x=>expected.includes(x))){
+  const choices=shuffle(expected),previous=state.lastAnswerPositions[q.id];
+  if(Number.isInteger(previous)&&previous>=0&&previous<choices.length&&choices.indexOf(q.a)===previous){
+   const alternative=shuffle(choices.map((_,i)=>i).filter(i=>i!==previous))[0];
+   [choices[previous],choices[alternative]]=[choices[alternative],choices[previous]];
+  }
+  state.options=choices;
+  state.lastAnswerPositions[q.id]=choices.indexOf(q.a);
+  state.selected=null;state.graded=false;
+ }
  $('category').textContent=q.cat;$('position').textContent=state.round===0?(total-state.queue.length+1)+' / '+total:'남은 '+state.queue.length+'문항';
  $('question').textContent=q.q;$('options').replaceChildren();
  state.options.forEach((opt,i)=>{const b=document.createElement('button');b.type='button';b.className='option';b.setAttribute('aria-pressed',String(state.selected===opt));b.disabled=state.graded;const n=document.createElement('span');n.className='num';n.textContent=i+1;b.append(n,document.createTextNode(opt));if(state.graded&&opt===q.a)b.classList.add('correct');if(state.graded&&opt===state.selected&&opt!==q.a)b.classList.add('wrong');b.onclick=()=>pick(opt);$('options').append(b)});
@@ -79,13 +89,13 @@ function render(){
 }
 function grade(){const q=current();if(!q||state.graded||state.selected===null)return;const correct=state.selected===q.a;state.graded=true;state.attempts++;if(correct){state.correct++;if(!state.passed.includes(q.id))state.passed.push(q.id)}else if(!state.retry.includes(q.id))state.retry.push(q.id);save();host?.__QUIZ_TRACK_ATTEMPT?.({key:q.id,label:q.q,group:'희침 · 두침요법',correct,revealed:false});render();requestAnimationFrame(()=>{if(parent!==window)send('focus-grade',{top:$('feedback').offsetTop,explanationTop:$('explanation').offsetTop});else $('feedback').scrollIntoView({block:'center',behavior:'smooth'});$('next').focus({preventScroll:true})});}
 function next(){if(!state.graded)return;state.queue.shift();state.graded=false;state.selected=null;state.options=[];if(!state.queue.length&&state.retry.length){state.queue=state.order==='random'?shuffle(state.retry):[...state.retry];state.retry=[];state.round++;}save();render();if(current())focusQuestion();}
-function restart(scope=state.scope,order=state.order){state=fresh(scope,order);save();render();if(view==='quiz')focusQuestion();}
+function restart(scope=state.scope,order=state.order){const lastPositions=state.lastAnswerPositions||{};state=fresh(scope,order);state.lastAnswerPositions=lastPositions;save();render();if(view==='quiz')focusQuestion();}
 function renderList(){const qs=pool(state.scope).map(id=>byId.get(id));$('list-count').textContent='위치 ↔ 명칭 목록 · '+qs.length+'개';$('toggle-answers').textContent=showAnswers?'정답 가리기':'정답 모두 보기';$('list-items').replaceChildren();qs.forEach((q,i)=>{const item=document.createElement('article');item.className='card list-item';const h=document.createElement('h3');h.textContent=(i+1)+'. '+(showAnswers?q.a:q.cat);const p=document.createElement('p');p.className='list-location';p.textContent=q.q;const d=document.createElement('details');d.open=showAnswers;const s=document.createElement('summary');s.textContent='정답·해설';const a=document.createElement('p');a.className='list-answer';a.textContent=q.a+' — '+q.e;const src=document.createElement('p');src.className='source';src.textContent='won 정리본 · PDF '+q.p+'쪽';d.append(s,a,src);item.append(h,p,d);if(q.note){const n=document.createElement('p');n.className='warning';n.textContent=q.note;item.append(n)}$('list-items').append(item)});}
 function switchView(v){view=v;render();}
 function onKey(e){if(e.repeat||e.isComposing||view!=='quiz'||!current()||['SELECT','INPUT','TEXTAREA'].includes(e.target?.tagName))return;if(['1','2','3','4'].includes(e.key)&&!state.graded){e.preventDefault();pick(state.options[Number(e.key)-1]);}else if(e.key==='Enter'){if(e.target?.closest?.('#quiz-tab,#list-tab,#reset,#again'))return;e.preventDefault();state.graded?next():grade();}}
 document.addEventListener('keydown',onKey);
 $('grade').onclick=grade;$('next').onclick=next;$('reset').onclick=()=>restart();$('again').onclick=()=>restart();$('scope').onchange=e=>restart(e.target.value);$('order').onchange=e=>restart(state.scope,e.target.value);$('quiz-tab').onclick=()=>switchView('quiz');$('list-tab').onclick=()=>switchView('list');$('toggle-answers').onclick=()=>{showAnswers=!showAnswers;render()};
-window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='heechim-open-question'&&byId.has(e.data.id)){state=fresh('all','ordered');state.queue=[e.data.id,...state.queue.filter(id=>id!==e.data.id)];view='quiz';save();render();focusQuestion();}if(e.data?.type==='heechim-key')onKey({key:e.data.key,target:null,preventDefault(){}});});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='heechim-open-question'&&byId.has(e.data.id)){const lastPositions=state.lastAnswerPositions||{};state=fresh('all','ordered');state.lastAnswerPositions=lastPositions;state.queue=[e.data.id,...state.queue.filter(id=>id!==e.data.id)];view='quiz';save();render();focusQuestion();}if(e.data?.type==='heechim-key')onKey({key:e.data.key,target:null,preventDefault(){}});});
 $('storage-note').textContent=host?'학습 진행과 오답 기록은 로그인한 계정에 저장됩니다.':'학습 진행은 이 브라우저에 저장됩니다.';
 new ResizeObserver(resize).observe(document.body);render();
 </script></body></html>
