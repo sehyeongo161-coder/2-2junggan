@@ -501,7 +501,7 @@ body[data-subject="wenbing"] .subject-tabs button[aria-selected="true"]{color:#a
 </section>
 <section id="pediatrics-panel" role="tabpanel" aria-labelledby="tab-pediatrics" hidden><iframe id="pediatrics-frame" title="소아과학 족보 퀴즈 및 전체 목록" referrerpolicy="same-origin"></iframe></section>
 <section id="wenbing-panel" role="tabpanel" aria-labelledby="tab-wenbing" hidden><iframe id="wenbing-frame" title="온병학 족보·족보 변형·개념확인 퀴즈 및 해설 목록" referrerpolicy="same-origin"></iframe></section>
-<section id="yangjin-panel" role="tabpanel" aria-labelledby="tab-yangjin" hidden><iframe id="yangjin-frame" title="양방진단학 서술형 답치기" referrerpolicy="same-origin" style="width:100%;border:0;min-height:900px"></iframe></section>
+<section id="yangjin-panel" role="tabpanel" aria-labelledby="tab-yangjin" hidden><nav class="subtabs" aria-label="양방진단학 학습 유형"><button id="yangjin-essay-tab" type="button" aria-selected="true">서술형</button><button id="yangjin-concept-tab" type="button" aria-selected="false">개념체크 (OX·객관식)</button></nav><iframe id="yangjin-frame" title="양방진단학 서술형 답치기" referrerpolicy="same-origin" style="width:100%;border:0;min-height:900px"></iframe><iframe id="yangjin-concept-frame" title="양방진단학 개념체크 OX·객관식" referrerpolicy="same-origin" style="width:100%;border:0;min-height:900px" hidden></iframe></section>
 </main>
 <div id="toast" class="toast" role="status" hidden></div>
 <div id="quick-grade-toast" class="quick-grade-toast" role="status" aria-live="polite" hidden></div>
@@ -853,22 +853,37 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
 })();
 </script>
 <script>
-/* 양방진단학 서술형: 기존 과목 기능은 변경하지 않고 독립 iframe으로 연결합니다. */
+/* 양진: 서술형과 개념체크를 별도의 독립 iframe으로 관리합니다. */
 (()=>{
- const tab=document.getElementById('tab-yangjin'),panel=document.getElementById('yangjin-panel'),frame=document.getElementById('yangjin-frame');
+ const tab=document.getElementById('tab-yangjin'),panel=document.getElementById('yangjin-panel');
  const root=document.getElementById('quiz-root');
+ const essayFrame=document.getElementById('yangjin-frame'),conceptFrame=document.getElementById('yangjin-concept-frame');
+ const essayTab=document.getElementById('yangjin-essay-tab'),conceptTab=document.getElementById('yangjin-concept-tab');
  const others=[...document.querySelectorAll('.subject-tabs button')].filter(x=>x!==tab);
+ function switchMode(mode){
+  const essay=mode==='essay';
+  essayFrame.hidden=!essay;conceptFrame.hidden=essay;
+  essayTab.setAttribute('aria-selected',String(essay));conceptTab.setAttribute('aria-selected',String(!essay));
+  const frame=essay?essayFrame:conceptFrame;
+  if(!frame.getAttribute('src'))frame.src=essay?'./yangjin-essay.html?v=20261025-v4':'./yangjin-concept.html?v=20261026-v1';
+ }
  function open(){
   if(root.hidden)return;
   for(const section of root.querySelectorAll(':scope > section[role="tabpanel"]'))section.hidden=section!==panel;
-  panel.hidden=false;
-  document.body.dataset.subject='yangjin';
+  panel.hidden=false;document.body.dataset.subject='yangjin';
   for(const b of [...others,tab]){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
-  if(!frame.src||frame.src==='about:blank')frame.src='./yangjin-essay.html?v=20261025-v4';
+  switchMode(conceptTab.getAttribute('aria-selected')==='true'?'concept':'essay');
  }
+ essayTab.addEventListener('click',()=>switchMode('essay'));
+ conceptTab.addEventListener('click',()=>switchMode('concept'));
  tab.addEventListener('click',e=>{e.stopImmediatePropagation();open()},true);
  others.forEach(b=>b.addEventListener('click',()=>{panel.hidden=true;tab.setAttribute('aria-selected','false');tab.tabIndex=-1},true));
- window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='yangjin-size')return;const h=Number(e.data.height);if(Number.isFinite(h)&&h>400&&h<20000)frame.style.height=(h+35)+'px'});
+ window.addEventListener('message',e=>{
+  if(e.origin!==location.origin||e.data?.type!=='yangjin-size')return;
+  const frame=e.source===essayFrame.contentWindow?essayFrame:e.source===conceptFrame.contentWindow?conceptFrame:null;
+  if(!frame)return;const h=Number(e.data.height);
+  if(Number.isFinite(h)&&h>200&&h<20000)frame.style.height=(h+35)+'px';
+ });
 })();
 </script>
 <script type="module" src="./auth-app.js?v=20261022-wenbing-v1"></script>
