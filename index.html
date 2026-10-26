@@ -273,6 +273,7 @@ body[data-subject="wenbing"] .subject-tabs button[aria-selected="true"]{color:#a
 #bangjae-past-panel{margin-top:-11px}
 #bangjae-order-modes #tab-bangjae-past[aria-selected="true"]{border-color:#2c624e;background:#eaf2ed;color:#2c624e}
 @media(max-width:600px){#bangjae-order-modes{gap:6px}#bangjae-order-modes button{flex:1;padding:8px 7px;font-size:13px}}
+body[data-subject="heechim"]{--accent:#276c78;--tint:#e8f3f3;--line:#c9dfe1;--muted:#637985}
 </style>
 </head>
 <body data-subject="sanghan">
@@ -356,8 +357,10 @@ body[data-subject="wenbing"] .subject-tabs button[aria-selected="true"]{color:#a
 <button id="tab-obgyn" role="tab" aria-selected="false" aria-controls="obgyn-panel" tabindex="-1">부인과학</button>
 <button id="tab-pediatrics" role="tab" aria-selected="false" aria-controls="pediatrics-panel" tabindex="-1">소아과학</button>
 <button id="tab-wenbing" role="tab" aria-selected="false" aria-controls="wenbing-panel" tabindex="-1" data-subject="wenbing">온병학</button>
+<button id="tab-heechim" role="tab" aria-selected="false" aria-controls="heechim-panel" tabindex="-1" data-subject="heechim">희침</button>
 <button id="tab-yangjin" role="tab" aria-selected="false" aria-controls="yangjin-panel" tabindex="-1" data-subject="yangjin">양방진단학</button>
 </nav>
+<section id="heechim-panel" role="tabpanel" aria-labelledby="tab-heechim" hidden><iframe id="heechim-frame" title="희침 두침요법 위치 객관식 및 전체 목록" referrerpolicy="same-origin" style="width:100%;border:0;min-height:700px"></iframe></section>
 <section id="panel" role="tabpanel" aria-labelledby="tab-sanghan">
 <nav id="sanghan-tabs" class="subtabs" role="tablist" aria-label="상한론 학습 유형">
 <button id="tab-names" role="tab" aria-selected="true" aria-controls="module" data-mode="sanghan-names">처방명</button>
@@ -886,8 +889,10 @@ window.__QUIZ_SCROLL_GRADE=({frame=null,top,explanationTop,gradeNode=null,explan
  });
 })();
 </script>
+<script src="./heechim-tab.js?v=20261026-scalp-v1" defer></script>
 <script type="module" src="./auth-app.js?v=20261022-wenbing-v1"></script>
 </body>
 </html>
+
 
 
