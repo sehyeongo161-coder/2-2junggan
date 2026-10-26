@@ -22,7 +22,7 @@ header{padding:5px 0 22px}h1{margin:0;font-size:27px;letter-spacing:-.7px}header
 .stats{display:flex;align-items:center;flex-wrap:wrap;gap:15px;color:#5b6280;font-size:13px;margin-bottom:15px}.stats strong{color:var(--accent);font-size:19px}
 @media(max-width:600px){.shell{padding:9px 0 28px}.card{padding:21px 17px}.question{font-size:18px}.option{font-size:15px;padding:12px}.group button{font-size:12px}.controls{gap:7px}h1{font-size:23px}}
 </style></head><body><div class="shell"><header><h1>김침 · 설명 보고 명칭 맞히기</h1><p>같은 범주 오답 선지 · 한자/독음 병기 · 구침 형상·용도는 족보 모음_고 기준 · 나머지는 암기표_won 기준</p></header>
-<div class="controls"><button class="pill" id="quizBtn" aria-pressed="true">객관식 퀴즈</button><button class="pill" id="listBtn" aria-pressed="false">전체 목록</button><button class="secondary" id="shuffleBtn" title="문항과 선지 순서 섞기">순서 섞기</button><button class="secondary" id="resetBtn" title="현재 분류 첫 회차부터 다시 시작">처음부터</button></div>
+<div class="controls"><button class="pill" id="quizBtn" aria-pressed="true">객관식 퀴즈</button><button class="pill" id="listBtn" aria-pressed="false">전체 목록</button><button class="secondary" id="shuffleBtn" title="문제 출제 순서만 섞기 · 객관식 선지는 항상 무작위">문제 순서 섞기</button><button class="secondary" id="resetBtn" title="현재 분류 첫 회차부터 다시 시작">처음부터</button></div>
 <div id="groupNav" class="group"></div><div class="stats"><span id="statCount"></span><span id="statPhase"></span><span id="statCorrect"></span></div>
 <div id="quiz"></div><div id="list" class="list" hidden></div>
 </div><script>
@@ -32,7 +32,8 @@ let selectedCategory="all", includeExtra=false, mode="quiz", shuffle=true, queue
 const $=id=>document.getElementById(id);
 const allEntries=()=>GROUPS.filter(g=>includeExtra||!OPTIONAL.has(g.id)).flatMap(g=>g.items.map((a,i)=>({id:g.id+'-'+i,group:g,term:a[0],definition:a[1],tip:a[2],source:a[3],supplemental:a[4]===true})).filter(q=>includeExtra||!q.supplemental));
 const entries=()=>allEntries().filter(q=>selectedCategory==="all"||q.group.id===selectedCategory);
-function shuffled(items){const a=items.slice();if(shuffle)for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function randomize(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function shuffled(items){return shuffle?randomize(items):items.slice()}
 function reset(){optionMemo.clear();queue=shuffled(entries());cursor=0;failed=[];phase=1;choice=null;completed=0;correct=0;render();}
 function notifySize(){requestAnimationFrame(()=>{const h=Math.ceil(document.documentElement.scrollHeight);parent!==window&&parent.postMessage({type:'kimchim-size',height:h},location.origin)})}
 function setCategory(id){selectedCategory=id;reset();}
@@ -41,13 +42,24 @@ function renderNav(){const nav=$("groupNav");nav.replaceChildren();
  const groups=GROUPS.filter(x=>includeExtra||!OPTIONAL.has(x.id)),visible=allEntries();add("전체","all",visible.length);for(const g of groups){const n=visible.filter(q=>q.group.id===g.id).length;if(n)add(g.title,g.id,n);}
  const b=document.createElement("button");b.textContent=includeExtra?"추가 범주 숨기기":"추가 범주·수업자료 보충 보기";b.setAttribute("aria-pressed",String(includeExtra));b.onclick=()=>{includeExtra=!includeExtra;selectedCategory="all";reset()};nav.appendChild(b);
 }
-function getOptions(q){const pool=q.group.items.filter(e=>includeExtra||e[4]!==true).map(e=>e[0]).filter(x=>x!==q.term);return shuffled([q.term,...shuffled(pool).slice(0,Math.min(3,pool.length))]);}
+const lastAnswerPositions=new Map();
+function getOptions(q){
+ const pool=q.group.items.filter(e=>includeExtra||e[4]!==true).map(e=>e[0]).filter(x=>x!==q.term);
+ const options=randomize([q.term,...randomize(pool).slice(0,Math.min(3,pool.length))]);
+ const previous=lastAnswerPositions.get(q.id);
+ if(options.length>1&&Number.isInteger(previous)&&options.indexOf(q.term)===previous){
+  const alternative=randomize(options.map((_,i)=>i).filter(i=>i!==previous))[0];
+  [options[previous],options[alternative]]=[options[alternative],options[previous]];
+ }
+ lastAnswerPositions.set(q.id,options.indexOf(q.term));
+ return options;
+}
 const optionMemo=new Map();
 function optionsFor(q){if(!optionMemo.has(q.id))optionMemo.set(q.id,getOptions(q));return optionMemo.get(q.id)}
 function make(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
 function saveResult(q,ok){try{const k='kimchim-quiz-history-v1';const a=JSON.parse(localStorage.getItem(k)||'{}');const m=a[q.id]||{right:0,wrong:0};m[ok?'right':'wrong']++;a[q.id]=m;localStorage.setItem(k,JSON.stringify(a))}catch{}}
 function answer(ix){if(choice!==null||cursor>=queue.length)return;const q=queue[cursor],opts=optionsFor(q);choice=ix;const ok=opts[ix]===q.term;completed++;if(ok)correct++;else if(!failed.find(x=>x.id===q.id))failed.push(q);saveResult(q,ok);renderQuestion();parent!==window&&parent.postMessage({type:'kimchim-focus-grade',top:0,explanationTop:450},location.origin)}
-function advance(){if(choice===null){return;}cursor++;choice=null;if(cursor>=queue.length){if(phase===1&&failed.length){queue=shuffled(failed);failed=[];phase=2;cursor=0;optionMemo.clear();}}render();}
+function advance(){if(choice===null){return;}cursor++;choice=null;optionMemo.clear();if(cursor>=queue.length){if(phase===1&&failed.length){queue=shuffled(failed);failed=[];phase=2;cursor=0;}}render();}
 function renderQuestion(){const host=$('quiz');host.replaceChildren();
  if(cursor>=queue.length){const box=make('div','card summary');box.appendChild(make('h2','',phase===2?'오답 재학습 완료':'첫 회차 완료'));box.appendChild(make('p','',phase===1?'이번 회차의 문항을 모두 풀었습니다.':'틀렸던 문항을 한 번 더 복습했습니다.'));const b=make('button','primary','다시 시작');b.onclick=reset;box.appendChild(b);host.appendChild(box);return}
  const q=queue[cursor],opts=optionsFor(q),done=choice!==null,yes=done&&opts[choice]===q.term;
@@ -63,7 +75,7 @@ function render(){renderNav();$('quiz').hidden=mode!=='quiz';$('list').hidden=mo
  if(mode==='quiz')renderQuestion();else renderList();notifySize()}
 $('quizBtn').onclick=()=>{mode='quiz';render()};$('listBtn').onclick=()=>{mode='list';render()};
 $('resetBtn').onclick=()=>{optionMemo.clear();reset()};
-$('shuffleBtn').onclick=()=>{shuffle=!shuffle;optionMemo.clear();$('shuffleBtn').textContent=shuffle?'순서 섞기 ✓':'순서대로';reset()};
+$('shuffleBtn').onclick=()=>{shuffle=!shuffle;optionMemo.clear();$('shuffleBtn').textContent=shuffle?'문제 순서 섞기 ✓':'문제 순서대로';reset()};
 window.addEventListener('keydown',e=>{if(mode!=='quiz'||e.isComposing||e.repeat||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
  if(/^[1-4]$/.test(e.key)&&choice===null){const q=queue[cursor];if(!q)return;const i=Number(e.key)-1;if(i<optionsFor(q).length){e.preventDefault();answer(i)}}else if(e.key==='Enter'&&choice!==null){e.preventDefault();advance();}});
 window.addEventListener('message',e=>{if(e.origin!==location.origin||!e.data)return;const d=e.data;if(d.type==='kimchim-key'){const ke=new KeyboardEvent('keydown',{key:d.key,bubbles:true});window.dispatchEvent(ke)}});
