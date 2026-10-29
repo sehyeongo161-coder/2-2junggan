@@ -12,7 +12,7 @@
   for(const section of root.querySelectorAll(':scope > section[role="tabpanel"]'))section.hidden=section!==panel;
   document.body.dataset.subject='choichim';
   for(const b of root.querySelectorAll('.subject-tabs button')){const on=b===tab;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;}
-  if(!frame.getAttribute('src'))frame.src='./choichim-quiz.html?v=20261028-v1';
+  if(!frame.getAttribute('src'))frame.src='./choichim-quiz.html?v=20261029-written-self-grade-v2';
  }
  document.addEventListener('click',e=>{
   const b=e.target.closest?.('.subject-tabs button');if(!b)return;

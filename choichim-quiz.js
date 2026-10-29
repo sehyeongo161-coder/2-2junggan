@@ -11,6 +11,7 @@ const number=q=>Number(q.id.slice(3));
 const category=q=>{const n=number(q);return n<=6?'ea':n<=9?'thermal':n<=12?'light':n<=19?'electro':n<=22?'syncope':'held';};
 const byId=new Map(QUESTIONS.map(q=>[q.id,q]));
 const kind=q=>q.selection_groups?'groups':q.statement_judgments?'ox':q.choices.length>0?'choice':'written';
+const selfWritten=q=>kind(q)==='written'&&!autoIds.has(q.id);
 const aliases={
  'CC-010':['IR','경피적외선조사요법','적외선조사요법','경피적외선요법','적외선요법'],
  'CC-012':['UV','경피자외선조사요법','자외선조사요법','경피자외선요법','자외선요법'],
@@ -111,7 +112,7 @@ function renderQuestion(){
   input.oninput=()=>{item.draft=input.value;save();updateGradeButton(q);};
   area.append(input);
  }
- $('question-actions').hidden=item.revealed;$('grade').hidden=!autoIds.has(q.id);$('reveal').textContent=autoIds.has(q.id)?'답안 보기':'참고 답안·해설 보기';
+ $('question-actions').hidden=item.revealed;$('grade').hidden=!autoIds.has(q.id)&&!selfWritten(q);$('reveal').hidden=selfWritten(q);$('reveal').textContent=autoIds.has(q.id)?'답안 보기':'참고 답안·해설 보기';
  updateGradeButton(q);renderFeedback(q);resize();
 }
 function updateGradeButton(q){$('grade').disabled=kind(q)==='written'?!state.item.draft.trim():state.item.selected===null;}
@@ -154,7 +155,8 @@ function renderFeedback(q){
  if(kind(q)==='choice'&&Number.isInteger(i.selected))$('answer-detail').append(make('p','내 선택: '+q.choices[i.selected].label+' '+q.choices[i.selected].text,'hint'));
  appendAnswer($('answer-detail'),q);
  $('self-actions').hidden=autoIds.has(q.id)||!!i.outcome;$('next-actions').hidden=!i.outcome;
- $('remember').textContent=q.recorded_answer.value===null?'자료 확인했어요':'기억했어요';
+ $('remember').textContent=q.recorded_answer.value===null?'자료 확인했어요':selfWritten(q)?'맞췄어요':'기억했어요';
+ $('review-again').textContent=selfWritten(q)&&q.recorded_answer.value!==null?'틀렸어요':'다시 볼래요';
  $('next').textContent=state.queue.length===1?'세트 결과 보기 →':'다음 문제 →';
 }
 function render(){
@@ -184,7 +186,9 @@ function record(q,result,isAuto){
  state.records[q.id]={kind:isAuto?'auto':'self',outcome:result};
 }
 function grade(){
- const q=current();if(!q||state.item.revealed||!autoIds.has(q.id)||$('grade').disabled)return;
+ const q=current();if(!q||state.item.revealed||$('grade').disabled)return;
+ if(selfWritten(q)){reveal();return;}
+ if(!autoIds.has(q.id))return;
  const k=kind(q),item=state.item;
  const correct=k==='written'?[...aliases[q.id],q.recorded_answer.value].some(a=>normalize(a)===normalize(item.draft)):k==='ox'?item.selected===q.statement_judgments[0].recorded_judgment:item.selected===choiceAnswers[q.id];
  item.revealed=true;state.attempts++;if(correct)state.correct++;
@@ -198,7 +202,9 @@ function reveal(){
 }
 function selfCheck(remembered){
  const q=current();if(!q||autoIds.has(q.id)||!state.item.revealed||state.item.outcome)return;
- record(q,remembered?'remembered':'review',false);save();render();$('next').focus({preventScroll:true});
+ record(q,remembered?'remembered':'review',false);
+ if(selfWritten(q)){next();return;}
+ save();render();$('next').focus({preventScroll:true});
 }
 function next(){if(!state.item.outcome||!current())return;const id=state.queue.shift();state.done.push(id);state.item=initialItem();save();render();if(current())focusQuestion();}
 function restart(scope=state.scope,mode=state.mode,order=state.order){state=fresh(scope,mode,order);save();render();if(current()&&view==='quiz')focusQuestion();}
